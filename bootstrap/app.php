@@ -15,5 +15,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [CabecerasSeguras::class]);
         $middleware->alias(['rol' => VerificarRol::class]);
         $middleware->redirectGuestsTo('/ingresar');
+        $middleware->redirectUsersTo('/panel');
     })
     ->withExceptions(function (Exceptions $exceptions): void {})->create();

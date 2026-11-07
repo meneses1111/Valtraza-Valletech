@@ -12,6 +12,22 @@ class AccesoTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_una_cuenta_activa_inicia_sesion_y_abre_el_panel(): void
+    {
+        $usuario = Usuario::query()->create([
+            'nombre_usuario' => 'admin', 'rol' => 'administrador', 'codigo_activacion' => 'ACT-1',
+        ]);
+        $usuario->activado = true;
+        $usuario->contrasena_hash = Hash::make('contrasena123');
+        $usuario->save();
+
+        $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'contrasena123'])
+            ->assertRedirect('/panel');
+
+        $this->assertAuthenticatedAs($usuario);
+        $this->get('/panel')->assertOk()->assertSee('Bienvenido, admin');
+    }
+
     public function test_una_cuenta_inactiva_no_puede_iniciar_sesion(): void
     {
         Usuario::query()->create(['nombre_usuario' => 'admin', 'rol' => 'administrador', 'codigo_activacion' => 'ACT-1']);
