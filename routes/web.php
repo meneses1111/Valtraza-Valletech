@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccesoController;
+use App\Http\Controllers\CuentasController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function (): void {
@@ -13,4 +14,8 @@ Route::middleware('guest')->group(function (): void {
 Route::middleware('auth')->group(function (): void {
     Route::get('/panel', fn () => view('acceso.panel'))->name('panel');
     Route::post('/salir', [AccesoController::class, 'salir'])->name('salir');
+    Route::middleware('rol:administrador')->group(function (): void {
+        Route::get('/cuentas/nueva', [CuentasController::class, 'crear'])->name('cuentas.crear');
+        Route::post('/cuentas', [CuentasController::class, 'guardar'])->name('cuentas.guardar');
+    });
 });
