@@ -53,8 +53,10 @@ jobs:
           extensions: mbstring, pdo_pgsql
           coverage: none
           tools: composer:v2
+      - name: Preparar la configuración de pruebas
+        run: cp .env.example .env
       - name: Instalar dependencias
-        run: composer update symfony/clock symfony/css-selector symfony/event-dispatcher symfony/string symfony/translation --with-all-dependencies --no-interaction --prefer-dist --no-progress
+        run: composer update mockery/mockery symfony/clock symfony/css-selector symfony/event-dispatcher symfony/string symfony/translation --with-all-dependencies --no-interaction --prefer-dist --no-progress
       - name: Conservar las dependencias resueltas
         if: always()
         timeout-minutes: 1
