@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.administrador')
 
 @section('contenido')
     <h1>Crear cuenta de técnico</h1>
