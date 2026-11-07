@@ -4,6 +4,10 @@ use App\Http\Controllers\AccesoController;
 use App\Http\Controllers\CuentasController;
 use Illuminate\Support\Facades\Route;
 
+foreach (glob(__DIR__.'/modulos/*.php') as $archivo) {
+    require $archivo;
+}
+
 Route::middleware('guest')->group(function (): void {
     Route::get('/ingresar', [AccesoController::class, 'login'])->name('login');
     Route::post('/ingresar', [AccesoController::class, 'iniciar'])->name('login.iniciar');
