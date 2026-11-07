@@ -1,12 +1,15 @@
 /contexto/
 /Capturas_BD/
 /ENTREGABLE/
-/*_BD_*
-/CONTEXTO_PROYECTO_Valtraza.md
-/Transcripción y Resumen de la Reunión.pdf
-/Valtraza_ERS_Analisis_IEEE830 definitiva.pdf
-/AGENTS.md
-/.env
+/*.pdf
+/*.docx
+/*.drawio
+/*.bkp
+/*.sql
+/*.md
+!/README.md
+/.env*
+!/.env.example
 /vendor/
 /storage/framework/cache/*
 /storage/framework/sessions/*
