@@ -6,4 +6,4 @@ El esquema utiliza tres tipos ENUM: rol_usuario (administrador, tecnico), estado
 
 Después de configurar una base vacía llamada valtraza, se ejecuta `php artisan migrate` y después `php artisan db:seed`. El seeder crea admin sin activar y muestra su código de activación en consola.
 
-Las pruebas utilizan una base separada llamada valtraza_test. RefreshDatabase elimina también los tipos ENUM antes de volver a migrar. Las pruebas EsquemaTest comprueban los valores permitidos y el rechazo de valores desconocidos. Su ejecución con PostgreSQL está pendiente de completar en el entorno local.
+Las comprobaciones automáticas utilizan una base separada llamada valtraza_test. RefreshDatabase elimina también los tipos ENUM antes de volver a migrar. EsquemaTest comprueba los valores permitidos y el rechazo de valores desconocidos. Sus seis pruebas pasaron en dos ejecuciones consecutivas en GitHub, con PHP 8.3 y PostgreSQL 18. Los casos, la matriz y los ciclos de pruebas del responsable de pruebas se realizan por separado.
