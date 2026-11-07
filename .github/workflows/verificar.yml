@@ -2,9 +2,13 @@ name: Verificar Valtraza
 
 on:
   push:
-    branches: [develop, pruebas, 'feature/**', 'correccion/**']
+    branches: [develop, pruebas]
   pull_request:
     branches: [develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -53,7 +57,8 @@ jobs:
         run: composer update symfony/clock symfony/css-selector symfony/event-dispatcher symfony/string symfony/translation --with-all-dependencies --no-interaction --prefer-dist --no-progress
       - name: Conservar las dependencias resueltas
         if: always()
-        run: php -r 'echo "VALTRAZA_LOCK_BEGIN\n", base64_encode(file_get_contents("composer.lock")), "\nVALTRAZA_LOCK_END\n";'
+        timeout-minutes: 1
+        run: php -r 'echo "VALTRAZA_LOCK_BEGIN\n", chunk_split(base64_encode(file_get_contents("composer.lock")), 76, "\n"), "VALTRAZA_LOCK_END\n";'
       - name: Comprobar el formato
         run: vendor/bin/pint --test
       - name: Ejecutar las pruebas
