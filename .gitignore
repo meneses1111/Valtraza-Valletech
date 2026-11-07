@@ -1,0 +1,22 @@
+/contexto/
+/Capturas_BD/
+/ENTREGABLE/
+/*_BD_*
+/CONTEXTO_PROYECTO_Valtraza.md
+/Transcripción y Resumen de la Reunión.pdf
+/Valtraza_ERS_Analisis_IEEE830 definitiva.pdf
+/AGENTS.md
+/.env
+/vendor/
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+!/storage/framework/cache/.gitignore
+!/storage/framework/sessions/.gitignore
+!/storage/framework/views/.gitignore
+/node_modules/
+/_book/
+/bootstrap/cache/*.php
+/storage/logs/*.log
+/.phpunit.cache/
+/.phpunit.result.cache

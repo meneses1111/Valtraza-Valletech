@@ -1,0 +1,67 @@
+name: Verificar Valtraza
+
+on:
+  push:
+    branches: [develop, pruebas]
+  pull_request:
+    branches: [develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: valtraza_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: valtraza_testing
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d valtraza_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      APP_ENV: testing
+      APP_KEY: base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+      DB_CONNECTION: pgsql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_DATABASE: valtraza_test
+      DB_USERNAME: postgres
+      DB_PASSWORD: valtraza_testing
+      CACHE_STORE: array
+      SESSION_DRIVER: array
+      SESSION_SECURE_COOKIE: 'false'
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v6
+      - name: Preparar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_pgsql
+          coverage: none
+          tools: composer:v2
+      - name: Preparar la configuración de pruebas
+        run: cp .env.example .env
+      - name: Instalar dependencias
+        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Comprobar el formato
+        run: vendor/bin/pint --test
+      - name: Ejecutar las pruebas
+        run: php artisan test
+      - name: Repetir las pruebas y comprobar la limpieza de los ENUM
+        run: php artisan test
+      - name: Revisar dependencias
+        run: composer audit --locked
