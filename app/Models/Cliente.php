@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cliente extends Model
 {
@@ -13,4 +14,9 @@ class Cliente extends Model
     public $timestamps = false;
 
     protected $fillable = ['nombre', 'numero_identificacion', 'correo'];
+
+    public function equipos(): HasMany
+    {
+        return $this->hasMany(Equipo::class, 'id_cliente', 'id_cliente')->orderByDesc('id_equipo');
+    }
 }
