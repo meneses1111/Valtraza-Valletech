@@ -50,7 +50,10 @@ jobs:
           coverage: none
           tools: composer:v2
       - name: Instalar dependencias
-        run: composer install --no-interaction --prefer-dist --no-progress
+        run: composer update symfony/clock symfony/css-selector symfony/event-dispatcher symfony/string symfony/translation --with-all-dependencies --no-interaction --prefer-dist --no-progress
+      - name: Conservar las dependencias resueltas
+        if: always()
+        run: php -r 'echo "VALTRAZA_LOCK_BEGIN\n", base64_encode(file_get_contents("composer.lock")), "\nVALTRAZA_LOCK_END\n";'
       - name: Comprobar el formato
         run: vendor/bin/pint --test
       - name: Ejecutar las pruebas
