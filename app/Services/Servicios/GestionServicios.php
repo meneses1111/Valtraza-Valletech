@@ -19,11 +19,13 @@ class GestionServicios
         private RegistroTecnicos $tecnicos
     ) {}
 
-    public function listar(?string $asignacion): mixed
+    public function listar(?string $asignacion, ?string $estado = null, ?int $idTecnico = null): mixed
     {
         return Servicio::query()->with(['equipo.cliente', 'tecnico'])
             ->when($asignacion === 'sin_tecnico', fn ($consulta) => $consulta->whereNull('id_tecnico'))
             ->when($asignacion === 'con_tecnico', fn ($consulta) => $consulta->whereNotNull('id_tecnico'))
+            ->when($estado, fn ($consulta) => $consulta->where('estado', $estado))
+            ->when($idTecnico, fn ($consulta) => $consulta->where('id_tecnico', $idTecnico))
             ->orderByDesc('fecha')->orderByDesc('id_servicio')->paginate(20)->withQueryString();
     }
 
