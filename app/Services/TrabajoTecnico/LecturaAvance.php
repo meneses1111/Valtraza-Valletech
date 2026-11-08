@@ -19,4 +19,15 @@ class LecturaAvance
             'repuestos' => Repuesto::query()->where('id_servicio', $idServicio)->orderBy('id_repuesto')->get(),
         ];
     }
+
+    public function resumenPublico(int $idServicio): array
+    {
+        $tipos = Trabajo::query()->where('id_servicio', $idServicio)->distinct()->pluck('tipo');
+
+        return [
+            'diagnosticos' => Diagnostico::query()->where('id_servicio', $idServicio)->exists(),
+            'mantenimientos' => $tipos->contains('mantenimiento'),
+            'reparaciones' => $tipos->contains('reparacion'),
+        ];
+    }
 }

@@ -34,6 +34,25 @@ class GestionServicios
         return Servicio::query()->with(['equipo.cliente', 'tecnico'])->findOrFail($id);
     }
 
+    public function paraSeguimiento(string $codigo): ?array
+    {
+        $servicio = Servicio::query()->select(['id_servicio', 'nombre', 'estado', 'id_equipo'])
+            ->with('equipo:id_equipo,codigo_equipo,modelo')
+            ->where('codigo_seguimiento', $codigo)->first();
+
+        if (! $servicio) {
+            return null;
+        }
+
+        return [
+            'id_servicio' => $servicio->id_servicio,
+            'nombre' => $servicio->nombre,
+            'estado' => $servicio->estado,
+            'equipo_codigo' => $servicio->equipo->codigo_equipo,
+            'equipo_modelo' => $servicio->equipo->modelo,
+        ];
+    }
+
     public function registrar(array $datos): Servicio
     {
         $equipo = $this->clientes->equipoDelCliente((int) $datos['id_equipo'], (int) $datos['id_cliente']);
