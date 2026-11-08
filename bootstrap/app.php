@@ -17,4 +17,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo('/ingresar');
         $middleware->redirectUsersTo('/panel');
     })
-    ->withExceptions(function (Exceptions $exceptions): void {})->create();
+    ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->dontFlash(['codigo_activacion', 'codigo_seguimiento']);
+    })->create();
