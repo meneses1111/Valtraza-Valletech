@@ -63,5 +63,203 @@ jobs:
         run: php artisan test
       - name: Repetir las pruebas y comprobar la limpieza de los ENUM
         run: php artisan test
+      - name: Comprobar el módulo en PostgreSQL
+        run: |
+          php <<'PHP'
+          <?php
+          require 'vendor/autoload.php';
+          $app = require 'bootstrap/app.php';
+          $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+          if (! $app->environment('testing') || config('database.connections.pgsql.database') !== 'valtraza_test') {
+              throw new RuntimeException('La revisión requiere la base aislada de pruebas.');
+          }
+          $comprobar = function (bool $condicion, string $mensaje): void {
+              if (! $condicion) {
+                  throw new RuntimeException($mensaje);
+              }
+          };
+          $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+          $solicitar = function (string $metodo, string $ruta, array $datos, App\Models\Usuario $usuario, int $esperado = 200) use ($kernel): string {
+              Illuminate\Support\Facades\Auth::setUser($usuario);
+              $peticion = Illuminate\Http\Request::create('http://localhost'.$ruta, $metodo, $datos);
+              $peticion->headers->set('Accept', 'application/json');
+              $respuesta = $kernel->handle($peticion);
+              $kernel->terminate($peticion, $respuesta);
+              if ($respuesta->getStatusCode() !== $esperado) {
+                  $error = json_decode($respuesta->getContent(), true);
+                  throw new RuntimeException($metodo.' '.$ruta.': estado '.$respuesta->getStatusCode().' en lugar de '.$esperado.'. '.($error['exception'] ?? ''));
+              }
+              return $respuesta->getContent();
+          };
+          $crearUsuario = function (string $nombre, ?int $idTecnico = null): App\Models\Usuario {
+              $usuario = App\Models\Usuario::query()->create([
+                  'nombre_usuario' => $nombre,
+                  'rol' => $idTecnico ? 'tecnico' : 'administrador',
+                  'id_tecnico' => $idTecnico,
+                  'codigo_activacion' => bin2hex(random_bytes(16)),
+              ]);
+              $usuario->contrasena_hash = Illuminate\Support\Facades\Hash::make('clave-de-revision');
+              $usuario->activado = true;
+              $usuario->save();
+              return $usuario;
+          };
+          Illuminate\Support\Facades\DB::beginTransaction();
+          try {
+              $admin = $crearUsuario('revision-administrador');
+              $solicitar('GET', '/tecnicos', [], $admin);
+              $solicitar('POST', '/tecnicos', ['nombre' => 'Técnico de revisión', 'numero_identificacion' => 'REV-T1'], $admin, 302);
+              $tecnico = App\Models\Tecnico::query()->where('numero_identificacion', 'REV-T1')->firstOrFail();
+              $comprobar(! App\Models\Usuario::query()->where('id_tecnico', $tecnico->id_tecnico)->exists(), 'Registrar un técnico creó una cuenta.');
+              $solicitar('POST', '/tecnicos', ['nombre' => 'Repetido', 'numero_identificacion' => 'REV-T1'], $admin, 422);
+              $solicitar('POST', '/tecnicos', ['nombre' => '', 'numero_identificacion' => 'REV-T2'], $admin, 422);
+              $usuario = $crearUsuario('revision-tecnico', $tecnico->id_tecnico);
+              $solicitar('GET', '/tecnicos', [], $usuario, 403);
+              $solicitar('POST', '/tecnicos', ['nombre' => 'Sin permiso', 'numero_identificacion' => 'REV-X'], $usuario, 403);
+              echo "Registro de técnicos y permisos: correctos.\n";
+          
+              if (Illuminate\Support\Facades\Route::has('clientes.index')) {
+                  $solicitar('POST', '/clientes', ['nombre' => 'Cliente de revisión', 'numero_identificacion' => 'REV-C1'], $admin, 302);
+                  $cliente = App\Models\Cliente::query()->where('numero_identificacion', 'REV-C1')->firstOrFail();
+                  $solicitar('POST', '/clientes', ['nombre' => 'Duplicado', 'numero_identificacion' => 'REV-C1'], $admin, 422);
+                  $solicitar('POST', '/clientes/'.$cliente->id_cliente.'/equipos', ['fecha_registro' => '2026-02-31'], $admin, 422);
+                  $solicitar('POST', '/clientes/'.$cliente->id_cliente.'/equipos', ['fecha_registro' => '2026-11-07', 'modelo' => 'Equipo de revisión'], $admin, 302);
+                  $equipo = App\Models\Equipo::query()->where('id_cliente', $cliente->id_cliente)->firstOrFail();
+                  $comprobar(str_starts_with($equipo->codigo_equipo, 'EQ-'), 'No se generó el código del equipo.');
+                  $solicitar('GET', '/clientes/'.$cliente->id_cliente, [], $admin);
+                  $solicitar('GET', '/clientes/'.$cliente->id_cliente, [], $usuario, 403);
+                  echo "Clientes, duplicados, fechas y equipos: correctos.\n";
+              }
+          
+              if (Illuminate\Support\Facades\Route::has('servicios.crear')) {
+                  $solicitar('GET', '/servicios/nuevo?id_cliente='.$cliente->id_cliente, [], $admin);
+                  $datos = ['id_cliente' => $cliente->id_cliente, 'id_equipo' => $equipo->id_equipo, 'fecha' => '2026-11-07', 'nombre' => 'Servicio de revisión', 'descripcion_problema' => 'No enciende'];
+                  $otroCliente = app(App\Services\ClientesEquipos\RegistroClientesEquipos::class)->registrarCliente(['nombre' => 'Otro cliente', 'numero_identificacion' => 'REV-C2']);
+                  $solicitar('POST', '/servicios', [...$datos, 'id_cliente' => $otroCliente->id_cliente], $admin, 422);
+                  $solicitar('POST', '/servicios', $datos, $admin, 302);
+                  $servicio = App\Models\Servicio::query()->where('nombre', 'Servicio de revisión')->firstOrFail();
+                  $comprobar($servicio->estado === 'pendiente' && $servicio->id_tecnico === null, 'El servicio no nació pendiente y sin técnico.');
+                  $comprobar(str_starts_with($servicio->codigo_servicio, 'SRV-') && strlen($servicio->codigo_seguimiento) === 32, 'No se generaron los códigos del servicio.');
+                  $solicitar('GET', '/servicios/'.$servicio->id_servicio.'/registrado', [], $admin);
+                  $solicitar('GET', '/servicios?asignacion=sin_tecnico', [], $admin);
+                  $solicitar('POST', '/servicios/'.$servicio->id_servicio.'/asignar', [], $admin, 422);
+                  $solicitar('POST', '/servicios/'.$servicio->id_servicio.'/asignar', ['id_tecnico' => $tecnico->id_tecnico], $admin, 302);
+                  $comprobar($servicio->fresh()->id_tecnico === $tecnico->id_tecnico, 'No se guardó la asignación.');
+                  $solicitar('GET', '/servicios', [], $usuario, 403);
+                  echo "Servicios, pertenencia del equipo, códigos y asignación: correctos.\n";
+              }
+          
+              if (Illuminate\Support\Facades\Route::has('mis-servicios.index')) {
+                  $ruta = '/mis-servicios/'.$servicio->id_servicio;
+                  $otroTecnico = app(App\Services\Tecnicos\RegistroTecnicos::class)->registrar(['nombre' => 'Segundo técnico', 'numero_identificacion' => 'REV-T2']);
+                  $otroUsuario = $crearUsuario('revision-segundo', $otroTecnico->id_tecnico);
+                  $solicitar('GET', '/mis-servicios', [], $usuario);
+                  $solicitar('GET', $ruta, [], $usuario);
+                  $solicitar('GET', $ruta, [], $otroUsuario, 403);
+                  $solicitar('POST', $ruta.'/estado', ['estado' => 'completado'], $usuario, 422);
+                  $solicitar('POST', $ruta.'/diagnosticos', ['resultado' => ''], $usuario, 422);
+                  $solicitar('POST', $ruta.'/diagnosticos', ['sin_fallas' => 1], $usuario, 302);
+                  $solicitar('POST', $ruta.'/trabajos', ['tipo' => 'otro', 'descripcion' => 'Inválido'], $usuario, 422);
+                  $solicitar('POST', $ruta.'/trabajos', ['tipo' => 'mantenimiento', 'descripcion' => 'Limpieza de revisión'], $usuario, 302);
+                  $solicitar('POST', $ruta.'/trabajos', ['tipo' => 'reparacion', 'descripcion' => 'Ajuste de revisión'], $usuario, 302);
+                  $solicitar('POST', $ruta.'/repuestos', ['repuestos' => [['nombre' => 'Pieza', 'cantidad' => 0]]], $usuario, 422);
+                  $solicitar('POST', $ruta.'/repuestos', ['repuestos' => [['nombre' => 'Pieza uno', 'cantidad' => 1, 'observacion' => 'Revisión'], ['nombre' => 'Pieza dos', 'cantidad' => 2]]], $usuario, 302);
+                  $comprobar($servicio->diagnosticos()->count() === 1 && $servicio->trabajos()->count() === 2 && $servicio->repuestos()->count() === 2, 'No se conservaron todas las actividades y repuestos.');
+                  $comprobar($servicio->repuestos()->where('observacion', 'Revisión')->exists(), 'No se guardó la observación del repuesto.');
+                  $solicitar('POST', $ruta.'/estado', ['estado' => 'en_curso'], $usuario, 302);
+                  $solicitar('POST', $ruta.'/estado', ['estado' => 'completado'], $usuario, 302);
+                  $solicitar('POST', '/servicios/'.$servicio->id_servicio.'/asignar', ['id_tecnico' => $otroTecnico->id_tecnico], $admin, 302);
+                  $comprobar($servicio->fresh()->estado === 'completado' && $servicio->diagnosticos()->count() === 1 && $servicio->trabajos()->count() === 2 && $servicio->repuestos()->count() === 2, 'La reasignación perdió información.');
+                  $solicitar('POST', $ruta.'/trabajos', ['tipo' => 'reparacion', 'descripcion' => 'Sin permiso'], $usuario, 403);
+                  $solicitar('POST', $ruta.'/repuestos', ['repuestos' => [['nombre' => 'Sin permiso', 'cantidad' => 1]]], $usuario, 403);
+                  $solicitar('GET', $ruta, [], $usuario, 403);
+                  $solicitar('GET', $ruta, [], $otroUsuario);
+                  $nuevo = app(App\Services\Servicios\GestionServicios::class)->registrar([...$datos, 'nombre' => 'Servicio posterior']);
+                  app(App\Services\Servicios\GestionServicios::class)->asignar($nuevo->id_servicio, $otroTecnico->id_tecnico);
+                  $contenido = $solicitar('GET', '/mis-servicios/'.$nuevo->id_servicio, [], $otroUsuario);
+                  $comprobar(str_contains($contenido, 'Limpieza de revisión'), 'No se mostró el historial del equipo.');
+                  $solicitar('GET', '/mis-servicios?estado=pendiente', [], $otroUsuario);
+                  $solicitar('GET', '/mis-servicios?estado=invalido', [], $otroUsuario, 422);
+                  $solicitar('GET', '/mis-servicios', [], $admin, 403);
+                  echo "Diagnósticos, actividades, repuestos, estado, historial y reasignación: correctos.\n";
+              }
+              $contenido = $solicitar('GET', '/servicios?estado=completado', [], $admin);
+              $comprobar(str_contains($contenido, $servicio->codigo_servicio) && ! str_contains($contenido, 'Servicio posterior'), 'El filtro de estado mezcló servicios.');
+              $contenido = $solicitar('GET', '/servicios?id_tecnico='.$otroTecnico->id_tecnico, [], $admin);
+              $comprobar(str_contains($contenido, $servicio->codigo_servicio) && str_contains($contenido, $nuevo->codigo_servicio), 'El filtro de técnico perdió servicios asignados.');
+              $sinTecnico = app(App\Services\Servicios\GestionServicios::class)->registrar([...$datos, 'nombre' => 'Servicio sin asignar']);
+              $contenido = $solicitar('GET', '/servicios?asignacion=sin_tecnico', [], $admin);
+              $comprobar(str_contains($contenido, $sinTecnico->codigo_servicio) && ! str_contains($contenido, $servicio->codigo_servicio), 'El filtro de asignación no coincide.');
+              $solicitar('GET', '/servicios?estado=invalido', [], $admin, 422);
+              $solicitar('GET', '/servicios?id_tecnico=2147483647', [], $admin, 422);
+              $contenido = $solicitar('GET', '/servicios/'.$servicio->id_servicio, [], $admin);
+              foreach (['Cliente de revisión', 'Segundo técnico', 'Limpieza de revisión', 'Pieza uno', 'Avance registrado'] as $texto) {
+                  $comprobar(str_contains($contenido, $texto), 'El detalle administrativo omite información de avance.');
+              }
+              $solicitar('GET', '/servicios/'.$servicio->id_servicio, [], $otroUsuario, 403);
+              echo "Supervisión, filtros y avance de solo lectura: correctos.\n";
+          
+              if (Illuminate\Support\Facades\Route::has('consulta.consultar')) {
+                  $consulta = app(App\Services\Consulta\ConsultaPublica::class);
+                  $resultado = $consulta->consultar($servicio->codigo_seguimiento);
+                  $comprobar(array_keys($resultado) === ['nombre', 'estado', 'equipo_codigo', 'equipo_modelo', 'avance'], 'La salida pública no respeta los campos permitidos.');
+                  $comprobar($resultado['avance'] === ['diagnosticos' => true, 'mantenimientos' => true, 'reparaciones' => true], 'El resumen público no refleja las actividades.');
+                  $comprobar($consulta->consultar('codigo-inexistente') === null, 'La búsqueda desconocida devolvió información.');
+                  if (strtoupper($servicio->codigo_seguimiento) !== $servicio->codigo_seguimiento) {
+                      $comprobar($consulta->consultar(strtoupper($servicio->codigo_seguimiento)) === null, 'La búsqueda no distingue mayúsculas.');
+                  }
+                  $publico = function (string $metodo, string $ruta, array $datos = [], int $esperado = 200) use ($kernel): Symfony\Component\HttpFoundation\Response {
+                      Illuminate\Support\Facades\Auth::forgetGuards();
+                      $peticion = Illuminate\Http\Request::create('http://localhost'.$ruta, $metodo, $datos, [], [], ['REMOTE_ADDR' => '198.51.100.52']);
+                      $peticion->headers->set('Accept', 'application/json');
+                      $respuesta = $kernel->handle($peticion);
+                      $kernel->terminate($peticion, $respuesta);
+                      if ($respuesta->getStatusCode() !== $esperado) {
+                          throw new RuntimeException('La consulta pública devolvió '.$respuesta->getStatusCode().' en lugar de '.$esperado.'.');
+                      }
+                      return $respuesta;
+                  };
+                  $publico('GET', '/');
+                  $respuesta = $publico('POST', '/consultar', ['codigo_seguimiento' => $servicio->codigo_seguimiento]);
+                  foreach (['Cliente de revisión', 'Segundo técnico', 'Limpieza de revisión', 'Pieza uno', $servicio->codigo_seguimiento] as $privado) {
+                      $comprobar(! str_contains($respuesta->getContent(), $privado), 'La vista pública expone información restringida.');
+                  }
+                  $publico('POST', '/consultar', ['codigo_seguimiento' => 'codigo-inexistente'], 302);
+                  $publico('POST', '/consultar', ['codigo_seguimiento' => ''], 422);
+                  $publico('POST', '/consultar', ['codigo_seguimiento' => ['invalido']], 422);
+                  $resumen = $consulta->consultar($sinTecnico->codigo_seguimiento);
+                  $comprobar($resumen['avance'] === ['diagnosticos' => false, 'mantenimientos' => false, 'reparaciones' => false], 'El resumen vacío es incorrecto.');
+                  echo "Consulta pública, búsqueda real, privacidad y validación: correctas.\n";
+              }
+          
+              if (config('app.locale') === 'es') {
+                  $tecnicoCuenta = app(App\Services\Tecnicos\RegistroTecnicos::class)->registrar(['nombre' => 'Técnico de activación', 'numero_identificacion' => 'REV-T3']);
+                  $acceso = app(App\Services\Cuentas\Acceso::class);
+                  $codigo = $acceso->crearCuentaTecnico(['nombre_usuario' => 'revision-activacion', 'id_tecnico' => $tecnicoCuenta->id_tecnico]);
+                  $cuenta = App\Models\Usuario::query()->where('nombre_usuario', 'revision-activacion')->firstOrFail();
+                  $comprobar(! $acceso->verificar($cuenta, 'Clave-de-revision-8'), 'Una cuenta inactiva pudo autenticarse.');
+                  $comprobar($acceso->activar($codigo, 'Clave-de-revision-8'), 'No se activó la cuenta válida.');
+                  $cuenta->refresh();
+                  $comprobar($cuenta->activado && $cuenta->codigo_activacion !== $codigo && $cuenta->sal === null && $acceso->verificar($cuenta, 'Clave-de-revision-8'), 'La activación no conserva las condiciones de seguridad.');
+                  $comprobar(! $acceso->activar($codigo, 'Otra-clave-8'), 'Se reutilizó un código consumido.');
+                  $comprobar(! $acceso->verificar($cuenta, str_repeat('x', 73)), 'Se aceptó una contraseña que excede bcrypt.');
+                  $comprobar(! array_key_exists('codigo_activacion', $acceso->listarCuentas()->first()->getAttributes()), 'El listado de cuentas contiene códigos.');
+                  $solicitar('GET', '/cuentas/nueva', [], $admin);
+                  $indices = Illuminate\Support\Facades\DB::select("SELECT indexname FROM pg_indexes WHERE schemaname = 'public' AND indexname IN ('idx_equipo_cliente','idx_servicio_equipo','idx_diagnostico_servicio','idx_trabajo_servicio','idx_repuesto_servicio','idx_servicio_tecnico_estado_fecha','idx_servicio_estado_fecha','idx_servicio_sin_tecnico')");
+                  $comprobar(count($indices) === 8, 'La migración no creó los ocho índices.');
+                  $respuesta = $publico('GET', '/');
+                  $comprobar(str_contains($respuesta->headers->get('Cache-Control'), 'no-store'), 'Falta la política de caché.');
+                  $comprobar($respuesta->headers->get('X-Frame-Options') === 'DENY', 'Faltan las cabeceras de seguridad.');
+                  $app->instance('env', 'local');
+                  $comprobar(! $app->runningUnitTests(), 'CSRF permaneció deshabilitado.');
+                  $publico('POST', '/consultar', ['codigo_seguimiento' => ''], 419);
+                  $app->instance('env', 'testing');
+                  echo "Activación, códigos consumidos, cuentas, índices y CSRF habilitado: correctos.\n";
+              }
+          
+          } finally {
+              Illuminate\Support\Facades\DB::rollBack();
+          }
+          echo "Revisión de desarrollo terminada en la base aislada, sin conservar datos.\n";
+          PHP
       - name: Revisar dependencias
         run: composer audit --locked
