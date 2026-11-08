@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Servicios;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Servicios\AsignarTecnicoRequest;
-use App\Http\Requests\Servicios\FiltrarServiciosRequest;
 use App\Http\Requests\Servicios\RegistrarServicioRequest;
 use App\Http\Requests\Servicios\SeleccionarClienteRequest;
 use App\Http\Requests\SolicitudAdministrador;
@@ -18,11 +17,6 @@ use Illuminate\View\View;
 class ServiciosController extends Controller
 {
     public function __construct(private GestionServicios $servicios) {}
-
-    public function index(FiltrarServiciosRequest $request): View
-    {
-        return view('servicios.index', ['servicios' => $this->servicios->listar($request->validated('asignacion'))]);
-    }
 
     public function crear(SeleccionarClienteRequest $request, RegistroClientesEquipos $clientes): View
     {
@@ -44,11 +38,6 @@ class ServiciosController extends Controller
     public function registrado(SolicitudAdministrador $request, int $servicio): View
     {
         return view('servicios.registrado', ['servicio' => $this->servicios->obtener($servicio)]);
-    }
-
-    public function ver(SolicitudAdministrador $request, int $servicio): View
-    {
-        return view('servicios.ver', ['servicio' => $this->servicios->obtener($servicio)]);
     }
 
     public function asignacion(SolicitudAdministrador $request, int $servicio, RegistroTecnicos $tecnicos): View

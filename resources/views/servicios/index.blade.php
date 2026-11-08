@@ -4,8 +4,10 @@
     <div class="cabecera-pagina"><div><p class="text-body-secondary mb-1">Administrador</p><h1>Servicios</h1></div><a class="btn btn-primary" href="{{ route('servicios.crear') }}">Nuevo servicio</a></div>
     <div class="card"><div class="card-body">
         <form method="get" action="{{ route('servicios.index') }}" class="row g-2 align-items-end mb-4">
+            <div class="col-sm-5 col-lg-3"><label for="estado" class="form-label">Estado</label><select id="estado" name="estado" class="form-select"><option value="">Todos los estados</option>@foreach(\App\Enums\EstadoServicio::cases() as $estado)<option value="{{ $estado->value }}" @selected(request('estado') === $estado->value)>{{ $estado->etiqueta() }}</option>@endforeach</select></div>
+            <div class="col-sm-5 col-lg-3"><label for="id_tecnico" class="form-label">Técnico</label><select id="id_tecnico" name="id_tecnico" class="form-select"><option value="">Todos los técnicos</option>@foreach($tecnicos as $tecnico)<option value="{{ $tecnico->id_tecnico }}" @selected((string) request('id_tecnico') === (string) $tecnico->id_tecnico)>{{ $tecnico->nombre }}</option>@endforeach</select></div>
             <div class="col-sm-5 col-lg-4"><label for="asignacion" class="form-label">Asignación de técnico</label><select id="asignacion" name="asignacion" class="form-select"><option value="">Todos los servicios</option><option value="sin_tecnico" @selected(request('asignacion') === 'sin_tecnico')>Sin técnico asignado</option><option value="con_tecnico" @selected(request('asignacion') === 'con_tecnico')>Con técnico asignado</option></select></div>
-            <div class="col-sm-auto"><button class="btn btn-outline-primary" type="submit">Filtrar</button></div>
+            <div class="col-sm-auto d-flex gap-2"><button class="btn btn-outline-primary" type="submit">Filtrar</button><a class="btn btn-outline-secondary" href="{{ route('servicios.index') }}">Limpiar</a></div>
         </form>
         <div class="table-responsive"><table class="table align-middle"><thead><tr><th>Código</th><th>Servicio / cliente</th><th>Computador</th><th>Técnico</th><th>Estado</th><th>Detalle</th></tr></thead><tbody>
             @forelse($servicios as $servicio)
