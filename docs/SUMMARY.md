@@ -8,3 +8,4 @@
 * [Registro y asignación de servicios](uso/servicios.md)
 * [Trabajo técnico](uso/trabajo-tecnico.md)
 * [Supervisión administrativa](uso/supervision.md)
+* [Consulta pública](uso/consulta-publica.md)
