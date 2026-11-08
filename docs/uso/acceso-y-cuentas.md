@@ -6,4 +6,8 @@ En /ingresar, administrador y técnico utilizan su nombre de usuario y contrase�
 
 Las rutas de creación de cuentas exigen el rol administrador en el servidor. Las contraseñas se guardan como hash. Los formularios utilizan validación, protección CSRF y límites de intentos para acceso y activación.
 
-AccesoTest verifica activación, permisos e inicio de sesión; PanelTest verifica las redirecciones y el acceso al panel. La validación automática del bloque completo pasó en GitHub con PHP 8.3 y PostgreSQL 18: dieciocho pruebas y treinta y ocho comprobaciones en dos ejecuciones consecutivas. Esta validación del desarrollo no completa los casos, la matriz ni los ciclos a cargo de Luis. El resto de módulos aún no forma parte de esta entrega.
+El administrador ve las cuentas registradas, su rol, el técnico vinculado y si están activadas. El código se entrega al crear la cuenta; la lista no expone códigos, contraseñas ni hashes. La activación consume el código y lo reemplaza por otro valor aleatorio.
+
+Las contraseñas no reaparecen al corregir un formulario. Se rechazan valores que excedan los 72 bytes admitidos por bcrypt, incluidos caracteres multibyte que sobrepasen ese límite.
+
+AccesoTest verifica activación, permisos e inicio de sesión; PanelTest verifica las redirecciones y el acceso al panel. Las pruebas automáticas existentes no sustituyen la matriz, los casos ni los ciclos del responsable de pruebas. Cada ejecución debe indicar qué versión del código verificó.
