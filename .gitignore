@@ -5,6 +5,9 @@
 /*.docx
 /*.drawio
 /*.bkp
+/*.backup
+/*.dump
+/backups/
 /*.sql
 /*.md
 !/README.md
