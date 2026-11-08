@@ -1,7 +1,11 @@
 # Índice
 
 * [Introducción](README.md)
+* [Requisitos y alcance](requisitos/README.md)
+* [Arquitectura y patrones](arquitectura/README.md)
 * [Base de datos](base-de-datos/modelo.md)
+* [Instalación y operación](instalacion/README.md)
+* [Uso por rol](uso/README.md)
 * [Acceso y cuentas](uso/acceso-y-cuentas.md)
 * [Técnicos](uso/tecnicos.md)
 * [Clientes y equipos](uso/clientes-y-equipos.md)
@@ -9,3 +13,7 @@
 * [Trabajo técnico](uso/trabajo-tecnico.md)
 * [Supervisión administrativa](uso/supervision.md)
 * [Consulta pública](uso/consulta-publica.md)
+* [Seguridad](seguridad/README.md)
+* [Pruebas y entrega de resultados](pruebas/README.md)
+* [Git, GitHub y publicación](git/README.md)
+* [Referencias y licencias](referencias/README.md)
