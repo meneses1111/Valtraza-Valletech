@@ -1,0 +1,153 @@
+{
+  "fecha_inicio": "2026-11-09T18:24:06.796Z",
+  "fecha_fin": "2026-11-09T18:25:39.100Z",
+  "destino": "https://valtraza.test",
+  "metodo": "Cliente HTTP de Node.js (fetch) contra el sitio HTTPS servido por Herd (Nginx + PHP-FPM 8.3) y PostgreSQL 18 en el mismo equipo. Cada tiempo mide desde el envío de la solicitud hasta recibir el cuerpo completo del HTML. No incluye el renderizado del navegador.",
+  "equipo": {
+    "sistema": "Windows_NT 10.0.19045",
+    "cpu": "AMD Ryzen 5 5600X 6-Core Processor             ",
+    "nucleos": 12,
+    "memoria_gb": 31.9,
+    "node": "v24.22.0"
+  },
+  "limite_ms": 2000,
+  "consultas_simples_un_usuario": [
+    {
+      "consulta": "GET / (inicio pública)",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 35.7,
+      "p50_ms": 37.2,
+      "p95_ms": 42.8,
+      "max_ms": 44.6,
+      "promedio_ms": 38.2,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios (supervisión, 1203 servicios)",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 88.2,
+      "p50_ms": 93,
+      "p95_ms": 147.6,
+      "max_ms": 196.9,
+      "promedio_ms": 100.6,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios?estado=en_curso",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 88,
+      "p50_ms": 92,
+      "p95_ms": 192.3,
+      "max_ms": 202.7,
+      "promedio_ms": 110.6,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios?asignacion=sin_tecnico",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 85.9,
+      "p50_ms": 92.8,
+      "p95_ms": 97.2,
+      "max_ms": 101.3,
+      "promedio_ms": 93.3,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios/{id} (detalle supervisión)",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 86,
+      "p50_ms": 91.3,
+      "p95_ms": 204.1,
+      "max_ms": 204.7,
+      "promedio_ms": 114.4,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /clientes?numero_identificacion=CARGA-C00150",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 74.6,
+      "p50_ms": 79.7,
+      "p95_ms": 181,
+      "max_ms": 182.6,
+      "promedio_ms": 91.3,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /mis-servicios (técnico)",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 81.2,
+      "p50_ms": 85,
+      "p95_ms": 189.8,
+      "max_ms": 205.6,
+      "promedio_ms": 96.9,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /mis-servicios/{id} (detalle técnico)",
+      "solicitudes": 20,
+      "errores": 0,
+      "min_ms": 91,
+      "p50_ms": 93.9,
+      "p95_ms": 192.2,
+      "max_ms": 194,
+      "promedio_ms": 105.2,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "POST /consultar (consulta pública por código)",
+      "solicitudes": 10,
+      "errores": 0,
+      "min_ms": 80.4,
+      "p50_ms": 84,
+      "p95_ms": 195.1,
+      "max_ms": 195.1,
+      "promedio_ms": 115.4,
+      "dentro_de_2s": 10
+    }
+  ],
+  "concurrencia": {
+    "usuarios_simultaneos": 15,
+    "consultas_publicas_simultaneas": {
+      "consulta": "15 POST /consultar al mismo tiempo, una por visitante",
+      "solicitudes": 15,
+      "errores": 0,
+      "min_ms": 110.2,
+      "p50_ms": 305.5,
+      "p95_ms": 479.5,
+      "max_ms": 479.5,
+      "promedio_ms": 283.5,
+      "dentro_de_2s": 15,
+      "duracion_total_ms": 481.3,
+      "estados": [
+        200
+      ]
+    },
+    "consultas_autenticadas_simultaneas": {
+      "consulta": "15 sesiones (10 técnicos y 5 administradores) con 20 consultas cada una en paralelo",
+      "solicitudes": 300,
+      "errores": 0,
+      "min_ms": 103.2,
+      "p50_ms": 398.4,
+      "p95_ms": 506,
+      "max_ms": 579.7,
+      "promedio_ms": 402.8,
+      "dentro_de_2s": 300,
+      "duracion_total_ms": 8362.3,
+      "estados": [
+        200
+      ]
+    }
+  },
+  "limitaciones": [
+    "Cliente y servidor comparten el mismo equipo; no se mide la latencia de red real.",
+    "Todas las solicitudes salen de la misma IP; la consulta pública admite 30 solicitudes por minuto por IP, por eso la ráfaga pública usa una consulta por visitante y se espera un minuto antes de la prueba simultánea.",
+    "Se usa el entorno local de pruebas (APP_ENV=local, APP_DEBUG=true) con datos ficticios."
+  ]
+}
