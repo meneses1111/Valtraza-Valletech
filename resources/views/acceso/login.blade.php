@@ -8,6 +8,7 @@
         <x-campo nombre="password" etiqueta="Contraseña *" tipo="password" autocomplete="current-password" required />
         <button class="btn btn-primary" type="submit">Ingresar</button>
     </form>
-    <div class="d-flex flex-wrap gap-3 mt-3"><a href="{{ route('activar') }}">Activar mi cuenta</a><a href="{{ route('inicio') }}">Consultar un servicio</a></div>
+    <p class="text-body-secondary mt-3 mb-2">Si todavía no activas tu cuenta, usa <a href="{{ route('activar') }}">Activar mi cuenta</a> con el código que te entregó el administrador.</p>
+    <div class="d-flex flex-wrap gap-3"><a href="{{ route('inicio') }}">Consultar un servicio</a></div>
 </div></div>
 @endsection
