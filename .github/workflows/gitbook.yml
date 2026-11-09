@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Descargar fuentes
         uses: actions/checkout@v6
-      - name: Comprobar contenido e �ndice
+      - name: Comprobar contenido e índice
         run: python3 herramientas/gitbook/verificar.py
       - name: Preparar Node exclusivo para GitBook
         uses: actions/setup-node@v6
@@ -39,12 +39,12 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '24'
-      - name: Preparar revisi�n en Chrome
+      - name: Preparar revisión en Chrome
         run: |
           npm install --prefix "$RUNNER_TEMP/gitbook-browser" --ignore-scripts --no-audit --no-fund puppeteer-core@24.10.0
           echo "GITBOOK_BROWSER_MODULES=$RUNNER_TEMP/gitbook-browser/node_modules" >> "$GITHUB_ENV"
           echo "GITBOOK_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
-      - name: Revisar p�ginas y navegaci�n en dos resoluciones
+      - name: Revisar páginas y navegación en dos resoluciones
         env:
           GITBOOK_QA_OUTPUT: ${{ runner.temp }}/gitbook-qa
         run: node herramientas/gitbook/revisar-navegador.cjs
@@ -55,7 +55,7 @@ jobs:
           path: _book/
           if-no-files-found: error
           retention-days: 30
-      - name: Conservar informe de revisi�n
+      - name: Conservar informe de revisión
         if: always()
         uses: actions/upload-artifact@v4
         with:

@@ -3,7 +3,7 @@
 var path = require('path');
 var root = path.resolve(__dirname, '../..');
 if (process.versions.node !== '10.24.1') {
-    console.error('El generador aislado requiere Node 10.24.1. La aplicaci�n Laravel no requiere cambiar su entorno.');
+    console.error('El generador aislado requiere Node 10.24.1. La aplicación Laravel no requiere cambiar su entorno.');
     process.exit(1);
 }
 var gitbook = require('gitbook');

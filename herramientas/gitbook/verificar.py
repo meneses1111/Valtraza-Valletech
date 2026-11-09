@@ -75,22 +75,22 @@ def main():
     summary = (DOCS / 'SUMMARY.md').read_text(encoding='utf-8')
     pages = [p for p in links(summary) if urlsplit(p).path.endswith('.md')]
     if len(pages) != len(set(pages)):
-        ERRORS.append('El �ndice repite una p�gina.')
+        ERRORS.append('El índice repite una página.')
     if not pages:
-        ERRORS.append('El �ndice no tiene p�ginas.')
+        ERRORS.append('El índice no tiene páginas.')
     for relative in pages:
         target = local_target(DOCS, relative, DOCS)
         if target is None or not target.is_file():
-            ERRORS.append(f'P�gina del �ndice inexistente: {relative}')
+            ERRORS.append(f'Página del índice inexistente: {relative}')
         elif len(target.read_text(encoding='utf-8').strip()) < 100:
-            ERRORS.append(f'P�gina del �ndice vac�a o incompleta: {relative}')
+            ERRORS.append(f'Página del índice vacía o incompleta: {relative}')
     all_pages = {p.relative_to(DOCS).as_posix() for p in DOCS.rglob('*.md') if p.name != 'SUMMARY.md'}
     if all_pages != set(pages):
-        ERRORS.append('Hay p�ginas fuera del �ndice o referencias sin p�gina: ' + ', '.join(sorted(all_pages ^ set(pages))))
+        ERRORS.append('Hay páginas fuera del índice o referencias sin página: ' + ', '.join(sorted(all_pages ^ set(pages))))
     for document in DOCS.rglob('*.md'):
         text = document.read_text(encoding='utf-8')
         if '\ufffd' in text:
-            ERRORS.append(f'Car�cter de sustituci�n en {document.relative_to(DOCS)}')
+            ERRORS.append(f'Carácter de sustitución en {document.relative_to(DOCS)}')
         for link in links(text):
             target = local_target(document.parent, link, DOCS)
             if target is not None and not target.exists():
@@ -108,13 +108,13 @@ def main():
         for relative in pages:
             html_file = build / output_path(relative)
             if not html_file.is_file():
-                ERRORS.append(f'No se gener� {html_file.relative_to(build)}')
+                ERRORS.append(f'No se generó {html_file.relative_to(build)}')
                 continue
             page = Page()
             page.feed(html_file.read_text(encoding='utf-8'))
             parsed[html_file.resolve()] = page
             if len(' '.join(page.content).strip()) < 80:
-                ERRORS.append(f'Secci�n HTML vac�a: {html_file.relative_to(build)}')
+                ERRORS.append(f'Sección HTML vacía: {html_file.relative_to(build)}')
         for html_file, page in parsed.items():
             html_count += 1
             for link in page.links:
