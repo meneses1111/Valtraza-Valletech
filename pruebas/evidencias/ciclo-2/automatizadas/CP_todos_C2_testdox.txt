@@ -1,0 +1,432 @@
+Acceso (Tests\Feature\Acceso)
+ [x] Una cuenta activa inicia sesion y abre el panel
+ [x] Una cuenta inactiva no puede iniciar sesion
+ [x] El codigo de activacion solo funciona una vez
+ [x] Un tecnico no puede crear cuentas
+ [x] Un visitante no puede crear cuentas
+
+Activacion Cuenta (Tests\Feature\ActivacionCuenta)
+ [x] Un codigo valido activa la cuenta
+ [x] La activacion informa que ya puede ingresar
+ [x] Despues de activar puede iniciar sesion con su contrasena
+ [x] El codigo no puede usarse dos veces
+ [x] Un segundo uso del codigo no cambia la contrasena
+ [x] El codigo usado se reemplaza en la base
+ [x] Un codigo incorrecto no activa la cuenta
+ [x] El aviso de codigo incorrecto se muestra en la pagina
+ [x] El codigo distingue mayusculas y minusculas
+ [x] Una contrasena de siete caracteres no activa la cuenta
+ [x] Una contrasena rechazada no consume el codigo
+ [x] La confirmacion distinta no activa la cuenta
+ [x] La contrasena se guarda con hash
+ [x] Cinco activaciones fallidas bloquean temporalmente el formulario
+ [x] El formulario de activacion no conserva el codigo tras un error
+
+Asignacion Tecnicos (Tests\Feature\AsignacionTecnicos)
+ [x] El administrador asigna un tecnico a un servicio
+ [x] El servicio asignado aparece entre los trabajos del tecnico
+ [x] Asignar sin elegir tecnico es rechazado
+ [x] Asignar un tecnico inexistente es rechazado
+ [x] Asignar a un servicio inexistente responde no encontrado
+ [x] Un tecnico puede tener varios servicios
+ [x] La reasignacion conserva el estado
+ [x] La reasignacion conserva diagnosticos actividades y repuestos
+ [x] El servicio reasignado deja de aparecer al tecnico anterior
+ [x] El nuevo tecnico ve los registros del anterior
+ [x] La pantalla de asignacion lista los tecnicos registrados
+
+Aviso Activacion Login (Tests\Feature\AvisoActivacionLogin)
+ [x] El ingreso explica como activar la cuenta antes de identificar al usuario
+ [x] Los ingresos rechazados mantienen el aviso generico y la guia de activacion with data set "cuenta pendiente de activar"
+ [x] Los ingresos rechazados mantienen el aviso generico y la guia de activacion with data set "cuenta activa con contraseña incorrecta"
+ [x] Los ingresos rechazados mantienen el aviso generico y la guia de activacion with data set "usuario inexistente"
+
+Codigo Seguimiento (Tests\Unit\CodigoSeguimiento)
+ [x] El codigo de seguimiento tiene 32 caracteres hexadecimales
+ [x] Los codigos de seguimiento no se repiten
+
+Consulta Publica (Tests\Feature\ConsultaPublica)
+ [x] Un visitante sin cuenta abre la pagina de consulta
+ [x] Un codigo valido muestra nombre computador y estado
+ [x] El resumen indica que avances existen
+ [x] La consulta no muestra datos personales del cliente
+ [x] La consulta no muestra datos del tecnico
+ [x] La consulta no muestra detalles tecnicos
+ [x] La consulta no ofrece formularios para modificar
+ [x] Un codigo vacio muestra un aviso
+ [x] Un codigo inexistente muestra un aviso
+ [x] Un codigo en mayusculas no coincide
+ [x] Un codigo con inyeccion sql no devuelve servicios
+ [x] Un codigo demasiado largo es rechazado
+ [x] El codigo no viaja en la direccion
+ [x] El codigo consultado no se rellena tras un error
+ [x] Cada codigo muestra solo su servicio
+ [x] La consulta publica se limita a treinta por minuto
+ [x] Un servicio sin avance lo indica
+
+Control Acceso Roles (Tests\Feature\ControlAccesoRoles)
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "lista de servicios"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "nuevo servicio"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "guardar servicio"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "detalle de servicio"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "confirmacion de servicio"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "pantalla de asignacion"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "guardar asignacion"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "clientes"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "guardar cliente"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "ficha de cliente"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "guardar equipo"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "tecnicos"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "guardar tecnico"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "cuentas"
+ [x] Un visitante es enviado a ingresar desde rutas de administrador with data set "guardar cuenta"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "mis servicios"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "detalle"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "formulario diagnostico"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "guardar diagnostico"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "formulario actividad"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "guardar actividad"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "formulario repuestos"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "guardar repuestos"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "formulario estado"
+ [x] Un visitante es enviado a ingresar desde rutas de tecnico with data set "guardar estado"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "lista de servicios"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "nuevo servicio"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "guardar servicio"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "detalle de servicio"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "confirmacion de servicio"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "pantalla de asignacion"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "guardar asignacion"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "clientes"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "guardar cliente"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "ficha de cliente"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "guardar equipo"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "tecnicos"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "guardar tecnico"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "cuentas"
+ [x] Un tecnico es bloqueado en rutas de administrador with data set "guardar cuenta"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "mis servicios"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "detalle"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "formulario diagnostico"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "guardar diagnostico"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "formulario actividad"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "guardar actividad"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "formulario repuestos"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "guardar repuestos"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "formulario estado"
+ [x] Un administrador es bloqueado en rutas de tecnico with data set "guardar estado"
+ [x] El bloqueo muestra el aviso de acceso no autorizado
+ [x] Un bloqueo de tecnico no registra datos
+ [x] La consulta publica funciona sin iniciar sesion
+ [x] La consulta publica tambien funciona con sesion iniciada
+ [x] Un identificador no numerico en la ruta no existe
+ [x] Un identificador con inyeccion en la ruta no existe
+
+Cuentas Tecnicos (Tests\Feature\CuentasTecnicos)
+ [x] El administrador crea la cuenta de un tecnico registrado
+ [x] La cuenta nueva no tiene contrasena hasta activarse
+ [x] El codigo de activacion se muestra al administrador
+ [x] El codigo generado activa la cuenta del tecnico
+ [x] El codigo generado no es predecible
+ [x] El tecnico es obligatorio
+ [x] El nombre de usuario es obligatorio
+ [x] Un nombre de usuario repetido es rechazado
+ [x] Un tecnico con cuenta no recibe una segunda
+ [x] Un tecnico inexistente es rechazado
+ [x] La lista de cuentas muestra el estado pendiente y activa
+ [x] La lista de cuentas no expone contrasenas ni codigos
+
+Entrada Formulario (Tests\Unit\EntradaFormulario)
+ [x] Un texto se conserva
+ [x] Un arreglo manipulado se convierte en texto vacio
+ [x] Un identificador entero positivo es aceptado
+ [x] Un identificador manipulado es descartado with data set "cero"
+ [x] Un identificador manipulado es descartado with data set "negativo"
+ [x] Un identificador manipulado es descartado with data set "decimal"
+ [x] Un identificador manipulado es descartado with data set "texto"
+ [x] Un identificador manipulado es descartado with data set "inyeccion"
+ [x] Un identificador manipulado es descartado with data set "arreglo"
+ [x] Un identificador manipulado es descartado with data set "nulo"
+
+Enumeraciones (Tests\Unit\Enumeraciones)
+ [x] El servicio solo tiene los tres estados de la ers
+ [x] Los estados se muestran con texto legible
+ [x] Las actividades son mantenimiento o reparacion
+ [x] Las actividades se muestran con texto legible
+
+Esquema (Tests\Feature\Esquema)
+ [x] Los enum conservan los valores del diseno with data set #0
+ [x] Los enum conservan los valores del diseno with data set #1
+ [x] Los enum conservan los valores del diseno with data set #2
+ [x] Los enum rechazan valores desconocidos with data set #0
+ [x] Los enum rechazan valores desconocidos with data set #1
+ [x] Los enum rechazan valores desconocidos with data set #2
+
+Estado Del Servicio (Tests\Unit\EstadoDelServicio)
+ [x] Cada estado del servicio tiene su regla
+ [x] Completar sin diagnostico es rechazado
+ [x] Completar sin diagnostico conserva el estado anterior
+ [x] El aviso de completar sin diagnostico pide registrarlo
+ [x] Completar con diagnostico cambia el estado
+ [x] Pasar a en curso no exige diagnostico
+ [x] Volver a pendiente no exige diagnostico
+
+Estado Servicio (Tests\Feature\EstadoServicio)
+ [x] El tecnico pasa el servicio a en curso
+ [x] Sin elegir estado no se guarda
+ [x] Un estado ajeno no se guarda
+ [x] Completar sin diagnostico es rechazado
+ [x] El aviso de completar sin diagnostico se muestra
+ [x] Completar con diagnostico y sin reparacion es aceptado
+ [x] El estado nuevo se ve en la supervision
+ [x] El estado nuevo se ve en la consulta publica
+ [x] El estado se conserva al reasignar
+ [x] El formulario de estado muestra los tres estados
+
+Inicio Sesion (Tests\Feature\InicioSesion)
+ [x] El administrador ingresa y llega a su panel
+ [x] El panel del administrador muestra sus funciones
+ [x] El tecnico ingresa y llega a su panel
+ [x] El panel del tecnico no muestra funciones de administrador
+ [x] El usuario vacio es rechazado
+ [x] La contrasena vacia es rechazada
+ [x] Una contrasena incorrecta no inicia sesion
+ [x] Un usuario inexistente recibe el mismo aviso que una contrasena incorrecta
+ [x] El aviso de datos incorrectos se muestra en la pagina
+ [x] Una cuenta sin activar no inicia sesion
+ [x] Al ingresar se renueva la sesion
+ [x] Salir cierra la sesion y vuelve al ingreso
+ [x] Despues de salir el panel pide ingresar nuevamente
+ [x] Salir renueva el token csrf
+ [x] Salir no se puede hacer con un enlace get
+ [x] Cinco intentos fallidos bloquean temporalmente el ingreso
+ [x] El bloqueo temporal indica cuando reintentar
+ [x] El bloqueo temporal termina despues de un minuto
+ [x] La pagina de ingreso ofrece activar cuenta y consultar servicio
+ [x] La guia de activacion del ingreso abre el formulario de activacion
+ [x] Tras rechazar una cuenta sin activar la pagina es igual a la de un usuario inexistente
+ [x] Tras rechazar una cuenta sin activar la pagina es igual a la de una contrasena incorrecta
+ [x] Una cuenta sin activar con su contrasena recibe el aviso generico y la guia
+
+Middleware Seguridad (Tests\Unit\MiddlewareSeguridad)
+ [x] Las respuestas prohiben mostrarse dentro de marcos
+ [x] Las respuestas incluyen politica de contenido
+ [x] Las respuestas impiden adivinar el tipo de contenido
+ [x] Las paginas dinamicas no se guardan en cache
+ [x] Un tecnico es bloqueado en una ruta de administrador
+ [x] Un administrador es bloqueado en una ruta de tecnico
+ [x] Una solicitud sin usuario es bloqueada
+ [x] El rol correcto pasa el filtro
+
+Panel (Tests\Feature\Panel)
+ [x] Un usuario autenticado que abre ingresar es redirigido al panel with data set #0
+ [x] Un usuario autenticado que abre ingresar es redirigido al panel with data set #1
+ [x] Un usuario autenticado que abre activar es redirigido al panel with data set #0
+ [x] Un usuario autenticado que abre activar es redirigido al panel with data set #1
+ [x] Un usuario autenticado puede ver el panel with data set #0
+ [x] Un usuario autenticado puede ver el panel with data set #1
+ [x] Un visitante debe ingresar antes de ver el panel
+
+Proteccion Informacion (Tests\Feature\ProteccionInformacion)
+ [x] Un error a mitad de una operacion no deja registros incompletos
+ [x] Un duplicado detectado por la base se informa como aviso
+ [x] La base impide completar un servicio sin tecnico
+ [x] La base impide repuestos con cantidad cero
+ [x] La base impide borrar un cliente con equipos
+ [x] La base impide borrar un servicio con diagnosticos
+ [x] La base impide codigos de seguimiento repetidos
+ [x] La base rechaza un estado fuera del enum
+ [x] Un texto con html se muestra escapado al administrador
+ [x] Un diagnostico con html se muestra escapado en la supervision
+ [x] Un nombre de servicio con html se muestra escapado en la consulta
+ [x] Los formularios incluyen el token csrf
+ [x] Las paginas incluyen las cabeceras de seguridad
+ [x] La cookie de sesion no es accesible desde javascript
+ [x] Los registros previos no cambian al registrar un servicio nuevo
+
+Registro Clientes (Tests\Feature\RegistroClientes)
+ [x] El administrador registra un cliente con nombre e identificacion
+ [x] Al registrar un cliente se abre su ficha
+ [x] El correo del cliente es opcional y se guarda si se envia
+ [x] El nombre del cliente es obligatorio
+ [x] La identificacion del cliente es obligatoria
+ [x] Un correo invalido es rechazado
+ [x] Una identificacion repetida no duplica el cliente
+ [x] Una identificacion repetida con espacios no duplica el cliente
+ [x] El aviso de cliente repetido permite consultar su ficha
+ [x] Registrar un cliente no crea una cuenta de acceso
+ [x] La busqueda por identificacion encuentra al cliente
+ [x] La busqueda sin coincidencias muestra un aviso
+ [x] Una ficha inexistente responde no encontrado
+
+Registro Equipos (Tests\Feature\RegistroEquipos)
+ [x] El administrador registra un equipo con cliente y fecha
+ [x] El equipo recibe un codigo unico automatico
+ [x] Los equipos reciben codigos distintos
+ [x] El codigo enviado en el formulario es ignorado
+ [x] El modelo y los datos tecnicos son opcionales
+ [x] La fecha es obligatoria
+ [x] Una fecha inexistente es rechazada
+ [x] Un cliente inexistente no recibe equipos
+ [x] El cliente enviado en el formulario no cambia el de la ruta
+ [x] Un cliente puede tener varios equipos
+ [x] La ficha muestra el historial de servicios de cada equipo
+
+Registro Servicios (Tests\Feature\RegistroServicios)
+ [x] El administrador registra un servicio para el equipo de un cliente
+ [x] El servicio nuevo queda pendiente y sin tecnico
+ [x] El registro lleva a la confirmacion con los dos codigos
+ [x] El servicio recibe un codigo de servicio automatico
+ [x] El codigo de seguimiento es dificil de adivinar
+ [x] Dos servicios tienen codigos distintos
+ [x] Los codigos enviados en el formulario son ignorados
+ [x] El nombre del servicio es obligatorio
+ [x] La descripcion del problema es obligatoria
+ [x] La fecha del servicio es obligatoria
+ [x] Una fecha inexistente es rechazada
+ [x] El cliente es obligatorio
+ [x] El computador es obligatorio
+ [x] Un computador de otro cliente es rechazado
+ [x] Un computador inexistente es rechazado
+ [x] Un nuevo servicio conserva los anteriores del mismo computador
+ [x] El formulario permite elegir entre los computadores del cliente
+ [x] El formulario ofrece registrar cliente o equipo si no existen
+
+Registro Tecnicos (Tests\Feature\RegistroTecnicos)
+ [x] El administrador registra un tecnico con nombre e identificacion
+ [x] El correo del tecnico es opcional y se guarda si se envia
+ [x] El nombre del tecnico es obligatorio
+ [x] La identificacion del tecnico es obligatoria
+ [x] Un nombre de solo espacios es rechazado
+ [x] Una identificacion repetida no crea otro tecnico
+ [x] Un correo invalido es rechazado
+ [x] Registrar un tecnico no crea una cuenta de acceso
+ [x] El tecnico registrado aparece en la lista
+ [x] El tecnico registrado puede asignarse a un servicio
+
+Registro Trabajo Tecnico (Tests\Feature\RegistroTrabajoTecnico)
+ [x] El tecnico registra un diagnostico con fallas y pruebas
+ [x] El diagnostico sin resultado no se guarda
+ [x] El diagnostico puede indicar que no hay fallas
+ [x] Un segundo diagnostico no reemplaza el primero
+ [x] El tecnico registra un mantenimiento
+ [x] El tecnico registra una reparacion
+ [x] Varias actividades se acumulan sin reemplazarse
+ [x] La actividad sin descripcion no se guarda
+ [x] La actividad con tipo ajeno no se guarda
+ [x] El tecnico registra varios repuestos con cantidad
+ [x] Un repuesto invalido no se guarda with data set "cantidad cero"
+ [x] Un repuesto invalido no se guarda with data set "cantidad negativa"
+ [x] Un repuesto invalido no se guarda with data set "cantidad decimal"
+ [x] Un repuesto invalido no se guarda with data set "nombre vacio"
+ [x] Una fila invalida impide guardar todas las filas
+ [x] El avance queda visible en el detalle del tecnico
+ [x] Otro tecnico no puede registrar en un servicio ajeno with data set "diagnostico"
+ [x] Otro tecnico no puede registrar en un servicio ajeno with data set "actividad"
+ [x] Otro tecnico no puede registrar en un servicio ajeno with data set "repuestos"
+ [x] Otro tecnico no puede registrar en un servicio ajeno with data set "estado"
+ [x] Otro tecnico no puede abrir los formularios de un servicio ajeno with data set "diagnostico"
+ [x] Otro tecnico no puede abrir los formularios de un servicio ajeno with data set "actividad"
+ [x] Otro tecnico no puede abrir los formularios de un servicio ajeno with data set "repuestos"
+ [x] Otro tecnico no puede abrir los formularios de un servicio ajeno with data set "estado"
+ [x] El administrador no modifica el trabajo del tecnico with data set "diagnostico"
+ [x] El administrador no modifica el trabajo del tecnico with data set "actividad"
+ [x] El administrador no modifica el trabajo del tecnico with data set "repuestos"
+ [x] El administrador no modifica el trabajo del tecnico with data set "estado"
+ [x] El registro en un servicio reasignado es rechazado para el tecnico anterior
+
+Reglas Activacion (Tests\Unit\ReglasActivacion)
+ [x] Una contrasena de siete caracteres es rechazada
+ [x] Una contrasena de ocho caracteres es aceptada
+ [x] La confirmacion debe coincidir
+ [x] Una contrasena de 72 bytes es aceptada
+ [x] Una contrasena de 73 bytes es rechazada
+ [x] Una contrasena con tildes se mide en bytes
+ [x] Una contrasena con caracter nulo es rechazada
+ [x] El codigo de activacion es obligatorio
+ [x] La contrasena es obligatoria
+
+Reglas Registro (Tests\Unit\ReglasRegistro)
+ [x] El equipo rechaza una fecha invalida with data set "dia inexistente"
+ [x] El equipo rechaza una fecha invalida with data set "formato dia mes anio"
+ [x] El equipo rechaza una fecha invalida with data set "mes trece"
+ [x] El equipo rechaza una fecha invalida with data set "texto"
+ [x] El equipo rechaza una fecha invalida with data set "vacia"
+ [x] El equipo acepta una fecha valida sin datos opcionales
+ [x] El equipo acepta el 29 de febrero de un anio bisiesto
+ [x] La consulta exige el codigo
+ [x] La consulta acepta un codigo de 32 caracteres
+ [x] La consulta rechaza un codigo de 33 caracteres
+ [x] La consulta rechaza un codigo enviado como arreglo
+
+Reglas Trabajo Tecnico (Tests\Unit\ReglasTrabajoTecnico)
+ [x] El diagnostico exige un resultado
+ [x] El diagnostico sin fallas no exige resultado
+ [x] El diagnostico con resultado es aceptado
+ [x] La actividad exige descripcion
+ [x] La actividad exige un tipo
+ [x] La actividad rechaza un tipo ajeno
+ [x] La actividad acepta mantenimiento y reparacion with data set #0
+ [x] La actividad acepta mantenimiento y reparacion with data set #1
+ [x] Los repuestos invalidos son rechazados with data set "cantidad cero"
+ [x] Los repuestos invalidos son rechazados with data set "cantidad negativa"
+ [x] Los repuestos invalidos son rechazados with data set "cantidad decimal"
+ [x] Los repuestos invalidos son rechazados with data set "cantidad en texto"
+ [x] Los repuestos invalidos son rechazados with data set "cantidad vacia"
+ [x] Los repuestos invalidos son rechazados with data set "nombre vacio"
+ [x] Los repuestos invalidos son rechazados with data set "nombre de mas de 100 caracteres"
+ [x] Los repuestos invalidos son rechazados with data set "campo no permitido"
+ [x] Los repuestos invalidos son rechazados with data set "lista vacia"
+ [x] Un repuesto con nombre y cantidad valida es aceptado
+ [x] La observacion del repuesto es opcional
+ [x] El cambio de estado exige un estado
+ [x] El cambio de estado rechaza un estado ajeno
+ [x] El cambio de estado acepta los tres estados with data set #0
+ [x] El cambio de estado acepta los tres estados with data set #1
+ [x] El cambio de estado acepta los tres estados with data set #2
+
+Servicios Asignados (Tests\Feature\ServiciosAsignados)
+ [x] El tecnico solo ve sus servicios asignados
+ [x] Los servicios se ordenan del mas reciente al mas antiguo
+ [x] El tecnico filtra sus servicios por estado
+ [x] Un tecnico sin servicios recibe un aviso
+ [x] Un filtro sin resultados muestra un aviso
+ [x] Un estado de filtro inexistente es rechazado
+ [x] El detalle muestra nombre descripcion estado y computador
+ [x] El detalle muestra lo registrado durante el trabajo
+ [x] El historial muestra servicios completados anteriores del computador
+ [x] El historial no incluye servicios sin finalizar de otros tecnicos
+ [x] El tecnico no puede abrir un servicio ajeno
+ [x] El tecnico no puede abrir un servicio sin asignar
+ [x] Un servicio inexistente no revela informacion
+ [x] El administrador no usa la lista del tecnico
+
+Supervision Servicios (Tests\Feature\SupervisionServicios)
+ [x] El administrador ve todos los servicios
+ [x] El filtro por estado muestra solo ese estado
+ [x] El filtro por tecnico muestra solo sus servicios
+ [x] El filtro sin tecnico muestra los pendientes de asignar
+ [x] El filtro con tecnico excluye los pendientes de asignar
+ [x] Los filtros se pueden combinar
+ [x] Sin resultados se muestra un aviso
+ [x] Un filtro manipulado es rechazado
+ [x] Un tecnico inexistente en el filtro es rechazado
+ [x] El detalle muestra cliente computador y tecnico
+ [x] El detalle indica cuando no hay tecnico
+ [x] El detalle muestra el avance registrado por el tecnico
+ [x] El detalle no ofrece formularios para modificar el trabajo tecnico
+ [x] Un servicio inexistente responde no encontrado
+ [x] Un tecnico no accede a la supervision
+
+Verificacion Contrasena (Tests\Unit\VerificacionContrasena)
+ [x] Una cuenta activa con la contrasena correcta es aceptada
+ [x] Una contrasena incorrecta es rechazada
+ [x] Una cuenta sin activar es rechazada aunque la contrasena coincida
+ [x] Una contrasena de mas de 72 bytes es rechazada
+ [x] Una contrasena con caracter nulo es rechazada
+ [x] Una cuenta sin contrasena guardada es rechazada
+ [x] La contrasena no se guarda como texto visible
+ [x] Cada contrasena recibe una sal diferente
+ [x] La contrasena usa un hash bcrypt
+ [x] El hash no aparece al serializar el usuario
+
