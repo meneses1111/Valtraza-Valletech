@@ -36,3 +36,9 @@ Servicios no depende de Mantenimientos y reparaciones. La condición de completa
 | Estado | Clases Pendiente, EnCurso y Completado para aplicar el estado del servicio |
 
 Los detalles del cambio de estado y la asignación están descritos en [Trabajo técnico](../uso/trabajo-tecnico.md). La revisión final del grafo del repositorio con GitDiagram se realiza sobre la versión de entrega y se contrasta con estas dependencias; no debe registrarse como realizada sin conservar su evidencia.
+
+## Vista de módulos
+
+![Seis módulos y sus dependencias de consumo](../assets/modulos.svg)
+
+La vista resume las dependencias entre los servicios de los seis módulos. No sustituye el análisis final con GitDiagram ni representa cada llamada a un controlador o modelo. Los tres actores ingresan por rutas con los permisos correspondientes.
