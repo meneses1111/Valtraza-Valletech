@@ -7,9 +7,9 @@ Responsable: Luis Eduardo Ramos Giraldo, responsable de pruebas de software (equ
 | Ciclo | Base de `develop` | SHA de `pruebas` ejecutado | Fecha |
 | --- | --- | --- | --- |
 | 1 | `1f2f3a2aa4647dfa537b2b40535ebe653b620431` | `db1221d1fdc39e70c906896c4d36a9e03f7ddab3` (código funcional idéntico a la base) | 09-11-2026 |
-| 2 | Pendiente de la corrección integrada | Pendiente | Pendiente |
+| 2 | `90fa6a2e3e9a16ce0ec7acc432bd7283977e460e` (corrección del PR #17) | `6fc7b13ebc29c474b7c02a332b60c588a04107ac` (código funcional idéntico a la base) | 09-11-2026 |
 
-Entorno del ciclo 1: Windows 10, Laravel Herd 2.1.1 (Nginx + PHP 8.3.36) con HTTPS en `https://valtraza.test`, PostgreSQL 18.6, Chrome 156.0.8078.81 y Firefox 159.0. Todos los datos son ficticios.
+Entorno de los dos ciclos: Windows 10, Laravel Herd 2.1.1 (Nginx + PHP 8.3.36) con HTTPS en `https://valtraza.test`, PostgreSQL 18.6, Chrome 156.0.8078.81 y Firefox 159.0. Todos los datos son ficticios.
 
 ## Resumen del ciclo 1
 
@@ -25,7 +25,24 @@ Entorno del ciclo 1: Windows 10, Laravel Herd 2.1.1 (Nginx + PHP 8.3.36) con HTT
 - Defecto: [#14 [CP005][Baja] La cuenta sin activar recibe el aviso genérico y no indica cómo activarla](https://github.com/meneses1111/Valtraza-Valletech/issues/14).
 - Mejoras sugeridas (no son defectos): [#15 Ajustes de texto y presentación frente al mockup](https://github.com/meneses1111/Valtraza-Valletech/issues/15).
 
-Pruebas automáticas: 368 pruebas y 677 aserciones en verde, en dos ejecuciones seguidas (Unit + Feature, incluidas las 18 existentes). Recorridos en navegador: 204 comprobaciones correctas en Chrome y Firefox, a 1366 × 768 y 1920 × 1080.
+Pruebas automáticas del ciclo 1: 368 pruebas y 677 aserciones en verde, en dos ejecuciones seguidas (Unit + Feature, incluidas las 18 existentes). Recorridos en navegador: 204 comprobaciones correctas en Chrome y Firefox, a 1366 × 768 y 1920 × 1080.
+
+## Resumen del ciclo 2
+
+Johan corrigió la Issue #14 y separó los botones de CP070 (Issue #15) en el [PR #17](https://github.com/meneses1111/Valtraza-Valletech/pull/17). Repetí CP005 y sus regresiones: CP001–CP008, CP026 (la pantalla «Servicio registrado» cambió) y CP070.
+
+| Estado en el ciclo 2 | Casos |
+| --- | --- |
+| Aprobado | 10 (CP001–CP008, CP026 y CP070) |
+| Fallido | 0 |
+| Bloqueado | 0 |
+| No ejecutado en el ciclo 2 | 69 (sin cambios que los afecten; conservan el resultado del ciclo 1) |
+
+- CP005: la cuenta sin activar sigue sin ingresar, con el aviso genérico y la guía fija con enlace a `/activar`. La página es idéntica para una cuenta sin activar, un usuario inexistente y una contraseña incorrecta.
+- CP070: «Asignar técnico» y «Ver servicios» quedan separados por 8 px en los dos navegadores y las dos resoluciones. Los textos de CP004 y CP032 se conservan; siguen como mejora opcional de la #15.
+- Pruebas automáticas: 376 pruebas y 727 aserciones en verde, en dos ejecuciones seguidas sobre `valtraza_test`. Incluyen las 4 de Johan (`AvisoActivacionLoginTest`) y 4 nuevas mías en `InicioSesionTest`.
+- Recorridos en navegador: 224 comprobaciones correctas y 0 fallidas, en Chrome y Firefox a 1366 × 768 y 1920 × 1080. Comprobaciones HTTP: 24 correctas.
+- Las evidencias del ciclo 1 no cambiaron. Las del ciclo 2 están en `pruebas/evidencias/ciclo-2`.
 
 ## Contenido
 

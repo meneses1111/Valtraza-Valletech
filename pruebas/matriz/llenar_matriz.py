@@ -98,4 +98,8 @@ libro.save(DESTINO)
 estados = {}
 for caso in DATOS["casos"]:
     estados[caso["estado"]] = estados.get(caso["estado"], 0) + 1
-print(f"Matriz guardada en {DESTINO.name}: {len(DATOS['casos'])} casos · ciclo 1 {estados}")
+repetidos = {}
+for caso in DATOS["casos"]:
+    if "ciclo2" in caso:
+        repetidos[caso["ciclo2"]["estado"]] = repetidos.get(caso["ciclo2"]["estado"], 0) + 1
+print(f"Matriz guardada en {DESTINO.name}: {len(DATOS['casos'])} casos · ciclo 1 {estados} · ciclo 2 {repetidos}")
