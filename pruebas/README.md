@@ -11,6 +11,8 @@ Responsable: Luis Eduardo Ramos Giraldo, responsable de pruebas de software (equ
 
 Entorno de los dos ciclos: Windows 10, Laravel Herd 2.1.1 (Nginx + PHP 8.3.36) con HTTPS en `https://valtraza.test`, PostgreSQL 18.6, Chrome 156.0.8078.81 y Firefox 159.0. Todos los datos son ficticios.
 
+> **Historial reescrito el 09-11-2026.** Retiré la coautoría de 14 mensajes de commit sin cambiar archivos, autores ni fechas. Los SHA de esta tabla, de la matriz, de las evidencias y de las Issues pertenecen al historial anterior. Su equivalencia con los SHA actuales está en [equivalencia_sha.md](equivalencia_sha.md). Por ejemplo, el ciclo 1 se ejecutó en `db1221d`, que ahora es `c4cd5b4`, y el ciclo 2 en `6fc7b13`, que ahora es `8e66f48`.
+
 ## Resumen del ciclo 1
 
 79 casos (CP001–CP079) cubren RF01–RF14 y RNF01–RNF09.
