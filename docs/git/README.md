@@ -20,7 +20,7 @@ Las fuentes están en `docs`. `SUMMARY.md` define la navegación y `book.json` f
 
 ### Comprobación automática
 
-El workflow **Revisar GitBook** comprueba fuentes y enlaces internos, compila el libro con GitBook 3.2.2 y Node 10.24.1 y revisa el HTML generado. Después abre las páginas con Chrome en 1366 × 768 y 1920 × 1080 y guarda el informe de navegación.
+El workflow **Revisar GitBook** comprueba fuentes y enlaces internos, compila el libro con GitBook 3.2.2 y Node 10.24.1 y revisa el HTML generado. Después abre las páginas con Chrome en 1366 × 768 y 1920 × 1080, tanto en la raíz como bajo `/Valtraza-Valletech/`, y guarda el informe de navegación. Se comprueba también el acceso directo a `index.html` sin depender de redirecciones del servidor.
 
 Si termina correctamente, en la ejecución de GitHub Actions aparece el artefacto **gitbook-vista-previa-SHA**, que contiene el sitio estático, y el artefacto de validación. Para abrir la vista previa, extraer el sitio en una carpeta y servirla con un servidor HTTP local; la búsqueda y la navegación del tema no deben evaluarse mediante `file://`.
 
@@ -42,11 +42,15 @@ La comprobación de las fuentes se puede ejecutar sin instalar GitBook:
 python herramientas/gitbook/verificar.py
 ```
 
-El generador utiliza la biblioteca oficial GitBook 3.2.2; no se reemplaza por otro motor ni se instala de forma global. `_book` es salida generada y se mantiene fuera de las ramas de desarrollo. El workflow de revisión no despliega el sitio ni modifica la base de datos.
+El generador utiliza la biblioteca oficial GitBook 3.2.2; no se reemplaza por otro motor ni se instala de forma global. `_book` es salida generada y se mantiene fuera de las ramas de desarrollo. Los PR y los cambios de `develop` generan solo vistas previas. El despliegue se habilita únicamente para `main`; no modifica la base de datos.
 
 ### Publicación de la entrega
 
-Al cerrar la entrega se publica únicamente el contenido generado en `gh-pages` y se activa GitHub Pages sobre esa rama. Después de comprobar la URL pública se añade el enlace al README. La vista previa y los archivos de `docs` no equivalen a una publicación estable. La aceptación del ciclo 2 se registra antes del cierre de la versión de entrega.
+Después de integrar a `main`, **Revisar GitBook** conserva únicamente el sitio generado en `gh-pages` y prepara el artefacto oficial de Pages. Excluye los iniciadores locales y añade `.nojekyll`. No se publican el código PHP, `.env`, dependencias ni archivos de contexto.
+
+La primera vez, un administrador debe abrir **Settings → Pages → Build and deployment → Source** y seleccionar **GitHub Actions**. Esta activación necesita permisos de administración; no se sustituye añadiendo permisos al token del workflow. Después, abrir **Actions → Revisar GitBook → Run workflow**, seleccionar `main` y ejecutar. El workflow despliega el libro comprobado mediante las acciones oficiales de Pages. `gh-pages` conserva la salida generada; el despliegue utiliza el artefacto de Actions para que las actualizaciones no dependan de que un push del token automático active otro workflow.
+
+Si Pages no está activado, se conserva el libro y se muestra la instrucción pendiente; una compilación correcta no se anuncia como sitio publicado. Tras desplegar, comprobar la URL indicada, el índice, la búsqueda, imágenes y enlaces internos, y solo entonces añadir el enlace público al README. La vista previa y los archivos de `docs` no equivalen a una publicación estable.
 
 ## GitDiagram
 

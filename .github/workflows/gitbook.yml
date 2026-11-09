@@ -2,10 +2,10 @@ name: Revisar GitBook
 
 on:
   push:
-    branches: [develop]
+    branches: [develop, main]
     paths: ['docs/**', 'herramientas/gitbook/**', '.github/workflows/gitbook.yml', 'README.md', '.gitignore']
   pull_request:
-    branches: [develop]
+    branches: [develop, main]
     paths: ['docs/**', 'herramientas/gitbook/**', '.github/workflows/gitbook.yml', 'README.md', '.gitignore']
   workflow_dispatch:
 
@@ -48,6 +48,12 @@ jobs:
         env:
           GITBOOK_QA_OUTPUT: ${{ runner.temp }}/gitbook-qa
         run: node herramientas/gitbook/revisar-navegador.cjs
+      - name: Revisar el libro bajo la ruta del repositorio
+        env:
+          GITBOOK_QA_OUTPUT: ${{ runner.temp }}/gitbook-qa/subruta
+          GITBOOK_BASE_PATH: /Valtraza-Valletech
+          GITBOOK_INDEX_REDIRECT: 'false'
+        run: node herramientas/gitbook/revisar-navegador.cjs
       - name: Conservar vista previa
         uses: actions/upload-artifact@v4
         with:
@@ -63,3 +69,67 @@ jobs:
           path: ${{ runner.temp }}/gitbook-qa/
           if-no-files-found: ignore
           retention-days: 30
+
+  publicar:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: libro
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - name: Descargar el libro comprobado
+        uses: actions/download-artifact@v4
+        with:
+          name: gitbook-vista-previa-${{ github.sha }}
+          path: _book
+      - name: Preparar solamente el sitio estático
+        run: |
+          rm _book/ABRIR-GITBOOK.cmd _book/abrir-vista-previa.cjs
+          touch _book/.nojekyll
+      - name: Conservar el sitio generado en gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _book
+          publish_branch: gh-pages
+          full_commit_message: Publico el GitBook de ${{ github.sha }}
+      - name: Consultar la activación inicial de Pages
+        id: pages
+        uses: actions/github-script@v8
+        with:
+          script: |
+            try {
+              const {data} = await github.rest.repos.getPages(context.repo);
+              core.setOutput('activo', data.build_type === 'workflow' ? 'true' : 'false');
+              if (data.build_type !== 'workflow') core.notice('Selecciona GitHub Actions en Settings > Pages > Source y vuelve a ejecutar este workflow sobre main.');
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              core.setOutput('activo', 'false');
+              core.notice('Libro generado. Falta activar Pages: Settings > Pages > Source > GitHub Actions. Después ejecuta de nuevo Revisar GitBook sobre main.');
+            }
+      - name: Preparar GitHub Pages
+        if: steps.pages.outputs.activo == 'true'
+        uses: actions/configure-pages@v5
+      - name: Empaquetar el sitio para Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _book
+      - name: Desplegar el libro
+        if: steps.pages.outputs.activo == 'true'
+        id: despliegue
+        uses: actions/deploy-pages@v4
+      - name: Registrar el estado de publicación
+        env:
+          PAGES_ACTIVO: ${{ steps.pages.outputs.activo }}
+          PAGES_URL: ${{ steps.despliegue.outputs.page_url }}
+        run: |
+          if [ "$PAGES_ACTIVO" = true ]; then
+            printf 'GitBook desplegado: %s\n' "$PAGES_URL" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf 'El libro comprobado está en gh-pages. Falta la activación administrativa en Settings > Pages > Source > GitHub Actions y repetir este workflow sobre main. Todavía no se afirma una URL pública.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
