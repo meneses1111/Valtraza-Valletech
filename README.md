@@ -6,13 +6,15 @@ El cliente consulta con un código de seguimiento y no necesita cuenta. Administ
 
 ## Documentación
 
+**[Abrir el GitBook de Valtraza](https://meneses1111.github.io/Valtraza-Valletech/)** — documentación pública con índice y búsqueda.
+
 - [Inicio de la documentación](docs/README.md) y [índice completo](docs/SUMMARY.md).
 - [Instalación y operación](docs/instalacion/README.md).
 - [Guía de uso por rol](docs/uso/README.md).
 - [Solución de problemas](docs/instalacion/solucion-de-problemas.md).
 - [Estado y evidencias de pruebas](docs/pruebas/estado-y-evidencias.md).
 
-El GitBook se compila y revisa en el workflow **Revisar GitBook**. Sus ejecuciones correctas ofrecen una vista previa descargable; la publicación estable queda para el cierre de entrega.
+El GitBook está publicado en GitHub Pages. El workflow **Revisar GitBook** comprueba las páginas, la navegación y los recursos antes de desplegar desde `main`; después verifica por HTTPS las páginas públicas y sus recursos. Las ejecuciones también conservan una vista previa descargable.
 
 ## Entorno de la aplicación
 
