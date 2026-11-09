@@ -6,7 +6,9 @@ const path = require('node:path');
 const { spawn } = require('node:child_process');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'application/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff': 'font/woff', '.woff2': 'font/woff2', '.ttf': 'font/ttf' };
 
-function crearServidor(directory) {
+function crearServidor(directory, options = {}) {
+    const basePath = options.basePath || '';
+    const redirectIndex = options.redirectIndex !== false;
     const book = path.resolve(directory);
     return http.createServer((request, response) => {
         let url;
@@ -15,8 +17,12 @@ function crearServidor(directory) {
             url = new URL(request.url, 'http://localhost');
             pathname = decodeURIComponent(url.pathname);
         } catch { response.writeHead(400); response.end(); return; }
-        if (pathname.endsWith('/index.html')) {
-            response.writeHead(301, { Location: pathname.slice(0, -10) + url.search });
+        if (basePath) {
+            if (!pathname.startsWith(basePath + '/')) { response.writeHead(404); response.end(); return; }
+            pathname = pathname.slice(basePath.length);
+        }
+        if (redirectIndex && pathname.endsWith('/index.html')) {
+            response.writeHead(301, { Location: basePath + pathname.slice(0, -10) + url.search });
             response.end();
             return;
         }
@@ -24,7 +30,7 @@ function crearServidor(directory) {
         if (!target.startsWith(book + path.sep) && target !== book) { response.writeHead(403); response.end(); return; }
         if (fs.existsSync(target) && fs.statSync(target).isDirectory()) {
             if (!pathname.endsWith('/')) {
-                response.writeHead(301, { Location: pathname + '/' + url.search });
+                response.writeHead(301, { Location: basePath + pathname + '/' + url.search });
                 response.end();
                 return;
             }

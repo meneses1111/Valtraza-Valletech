@@ -2,9 +2,9 @@ name: Verificar Valtraza
 
 on:
   push:
-    branches: [develop, pruebas]
+    branches: [develop, pruebas, main]
   pull_request:
-    branches: [develop]
+    branches: [develop, main]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
