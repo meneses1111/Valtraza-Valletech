@@ -41,7 +41,7 @@ async function run() {
                 const width = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, visible: window.innerWidth }));
                 const images = await page.$$eval('.markdown-section img', elements => elements.every(image => image.complete && image.naturalWidth > 0));
                 if (!response || response.status() !== 200 || content.length < 80 || width.scroll > width.visible + 1 || !images) {
-                    throw new Error(`P�gina incompleta o desbordada: ${relative} a ${size.width}x${size.height}`);
+                    throw new Error(`Página incompleta o desbordada: ${relative} a ${size.width}x${size.height}`);
                 }
                 results.push({ pagina: relative, resolucion: `${size.width}x${size.height}`, http: response.status(), contenido: true, sin_desbordamiento_horizontal: true, imagenes: images });
                 if (size.width === 1366 && ['index.html', 'arquitectura/index.html', 'base-de-datos/modelo.html'].includes(relative)) {
@@ -52,17 +52,17 @@ async function run() {
             await Promise.all([
                 page.waitForNavigation({ waitUntil: 'networkidle0' }),
                 page.evaluate(() => {
-                    const navigation = [...document.querySelectorAll('.summary a')].find(link => link.textContent.includes('Instalaci�n y operaci�n'));
-                    if (!navigation) throw new Error('No aparece Instalaci�n en el �ndice del tema.');
+                    const navigation = [...document.querySelectorAll('.summary a')].find(link => link.textContent.includes('Instalación y operación'));
+                    if (!navigation) throw new Error('No aparece Instalación en el índice del tema.');
                     navigation.click();
                 }),
             ]);
-            if (!page.url().includes('/instalacion/')) throw new Error('El �ndice no navega a Instalaci�n.');
+            if (!page.url().includes('/instalacion/')) throw new Error('El índice no navega a Instalación.');
             if (errors.length) throw new Error('Errores JavaScript: ' + errors.join('; '));
             await page.close();
         }
         fs.writeFileSync(path.join(destination, 'resultado.json'), JSON.stringify({ gitbook: '3.2.2', paginas: pages.length, comprobaciones: results.length, indice_navegable: true, resultados: results }, null, 2));
-        console.log(`GitBook: ${pages.length} p�ginas, ${results.length} comprobaciones en Chrome y navegaci�n del �ndice correctas.`);
+        console.log(`GitBook: ${pages.length} páginas, ${results.length} comprobaciones en Chrome y navegación del índice correctas.`);
     } finally {
         await browser.close();
     }
