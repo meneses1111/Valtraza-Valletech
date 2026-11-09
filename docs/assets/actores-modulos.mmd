@@ -1,0 +1,18 @@
+flowchart TB
+    administrador["Administrador"]
+    tecnico["Técnico"]
+    cliente["Cliente sin cuenta"]
+    cuentas["Cuentas y acceso"]
+    tecnicos["Técnicos"]
+    clientesEquipos["Clientes y equipos"]
+    servicios["Servicios"]
+    trabajo["Mantenimientos y reparaciones"]
+    consulta["Consulta y seguimiento"]
+    administrador -->|"Gestiona cuentas"| cuentas
+    administrador -->|"Registra técnicos"| tecnicos
+    administrador -->|"Registra clientes y equipos"| clientesEquipos
+    administrador -->|"Registra y asigna"| servicios
+    administrador -->|"Supervisa"| consulta
+    tecnico -->|"Activa su cuenta e ingresa"| cuentas
+    tecnico -->|"Opera sus servicios asignados"| trabajo
+    cliente -->|"Consulta pública por código"| consulta

@@ -35,7 +35,7 @@ Servicios no depende de Mantenimientos y reparaciones. La condición de completa
 | Observador | Generación de códigos y notificación de nuevos registros de avance |
 | Estado | Clases Pendiente, EnCurso y Completado para aplicar el estado del servicio |
 
-Los detalles del cambio de estado y la asignación están descritos en [Trabajo técnico](../uso/trabajo-tecnico.md). La revisión final del grafo del repositorio con GitDiagram se realiza sobre la versión de entrega y se contrasta con estas dependencias; no debe registrarse como realizada sin conservar su evidencia.
+Los detalles del cambio de estado y la asignación están descritos en [Trabajo técnico](../uso/trabajo-tecnico.md). El resultado de GitDiagram compartido por Johan se contrastó con el código de la entrega. Las diferencias, la versión de referencia y la vista corregida se documentan en el [análisis de GitDiagram](analisis-gitdiagram.md).
 
 ## Vista de módulos
 
