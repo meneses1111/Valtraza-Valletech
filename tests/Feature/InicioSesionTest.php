@@ -174,4 +174,47 @@ class InicioSesionTest extends TestCase
     {
         $this->get('/ingresar')->assertOk()->assertSee('Activar mi cuenta')->assertSee('Consultar un servicio');
     }
+
+    public function test_la_guia_de_activacion_del_ingreso_abre_el_formulario_de_activacion(): void
+    {
+        preg_match('/<a href="([^"]+)">Activar mi cuenta<\/a>/', $this->get('/ingresar')->getContent(), $enlace);
+
+        $this->assertSame(route('activar'), $enlace[1] ?? null);
+        $this->get($enlace[1])->assertOk()->assertSee('name="codigo_activacion"', false);
+    }
+
+    public function test_tras_rechazar_una_cuenta_sin_activar_la_pagina_es_igual_a_la_de_un_usuario_inexistente(): void
+    {
+        $this->cuentaTecnico(nombreUsuario: 'pendiente1', activa: false);
+
+        $this->assertSame($this->paginaTrasIngresoRechazado('inexistente1'), $this->paginaTrasIngresoRechazado('pendiente1'));
+    }
+
+    public function test_tras_rechazar_una_cuenta_sin_activar_la_pagina_es_igual_a_la_de_una_contrasena_incorrecta(): void
+    {
+        $this->cuentaTecnico(nombreUsuario: 'pendiente1', activa: false);
+        $this->administrador('activo1');
+
+        $this->assertSame($this->paginaTrasIngresoRechazado('activo1'), $this->paginaTrasIngresoRechazado('pendiente1'));
+    }
+
+    public function test_una_cuenta_sin_activar_con_su_contrasena_recibe_el_aviso_generico_y_la_guia(): void
+    {
+        $this->cuentaTecnico(nombreUsuario: 'pendiente1', activa: false);
+
+        $this->followingRedirects()->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'pendiente1', 'password' => $this->contrasenaDePrueba])
+            ->assertSeeText('No se pudo iniciar sesión con estos datos.')
+            ->assertSeeText('Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.');
+
+        $this->assertGuest();
+    }
+
+    private function paginaTrasIngresoRechazado(string $nombreUsuario): string
+    {
+        $html = $this->followingRedirects()->from('/ingresar')
+            ->post('/ingresar', ['nombre_usuario' => $nombreUsuario, 'password' => 'Clave-equivocada'])
+            ->assertOk()->assertSeeText('No se pudo iniciar sesión con estos datos.')->getContent();
+
+        return preg_replace('/name="_token" value="[^"]*"/', '', str_replace($nombreUsuario, '[usuario]', $html));
+    }
 }

@@ -25,9 +25,10 @@ const RESOLUCIONES = [
     { nombre: '1920x1080', width: 1920, height: 1080 },
 ];
 
+const GUIA_ACTIVACION = 'Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.';
+
 const MOCKUP = {
     login_incorrecto: 'Usuario o contraseña incorrectos',
-    login_sin_activar: 'todavía no está activa',
     consulta_no_encontrada: 'No encontramos un servicio con ese código',
     sin_tecnico: 'Falta elegir un técnico',
     cliente_repetido: 'Este cliente ya existe',
@@ -135,6 +136,36 @@ async function salir(pagina) {
     await Promise.all([pagina.waitForNavigation({ waitUntil: 'load' }), pagina.click('header form button[type="submit"]')]);
 }
 
+async function estadoIngreso(pagina) {
+    return pagina.evaluate(() => {
+        const enlace = Array.from(document.querySelectorAll('main a')).find((nodo) => nodo.textContent.trim() === 'Activar mi cuenta');
+
+        return {
+            avisos: Array.from(document.querySelectorAll('.alert, .invalid-feedback, .text-danger')).map((nodo) => nodo.innerText.trim()).filter(Boolean),
+            guia: enlace?.closest('p')?.innerText.trim() ?? null,
+            enlace: enlace?.href ?? null,
+        };
+    });
+}
+
+function mismaRespuesta(a, b) {
+    return JSON.stringify(a) === JSON.stringify(b);
+}
+
+async function separacionBotones(pagina) {
+    return pagina.evaluate(() => {
+        const botones = Array.from(document.querySelectorAll('main a.btn'));
+        const asignar = botones.find((nodo) => nodo.textContent.trim() === 'Asignar técnico')?.getBoundingClientRect();
+        const ver = botones.find((nodo) => nodo.textContent.trim() === 'Ver servicios')?.getBoundingClientRect();
+
+        if (!asignar || !ver) {
+            return null;
+        }
+
+        return Math.round(Math.abs(ver.top - asignar.top) < 1 ? ver.left - asignar.right : ver.top - asignar.bottom);
+    });
+}
+
 function contiene(lista, texto) {
     return lista.some((linea) => linea.includes(texto));
 }
@@ -168,6 +199,8 @@ async function recorrido(navegador) {
         medidas.inicio = await capturar(navegador, pagina, 'inicio-publico', 'CP056');
 
         await ir(pagina, '/ingresar');
+        const ingresoInicial = await estadoIngreso(pagina);
+        registrar(navegador, 'CP005', 'la guía de activación aparece antes de intentar ingresar', ingresoInicial.guia === GUIA_ACTIVACION && ingresoInicial.enlace === BASE + '/activar', { guia: ingresoInicial.guia, enlace: ingresoInicial.enlace });
         const nativoVacio = await pagina.evaluate(() => document.querySelector('main form').checkValidity());
         registrar(navegador, 'CP003', 'el navegador impide enviar el ingreso vacío', nativoVacio === false);
         await sinValidacionNativa(pagina);
@@ -184,7 +217,14 @@ async function recorrido(navegador) {
             mockup: MOCKUP.login_incorrecto,
             coincide_mockup: contiene(avisoIncorrecto, MOCKUP.login_incorrecto),
         });
+        const respuestaContrasena = await estadoIngreso(pagina);
         await capturar(navegador, pagina, 'ingreso-incorrecto', 'CP004');
+
+        await llenar(pagina, { '#nombre_usuario': `nadie${sufijo}`, '#password': 'Clave-equivocada' });
+        await enviar(pagina);
+        const respuestaInexistente = await estadoIngreso(pagina);
+        registrar(navegador, 'CP004', 'usuario inexistente recibe el mismo aviso que la contraseña incorrecta', pagina.url().endsWith('/ingresar') && mismaRespuesta(respuestaInexistente, respuestaContrasena), { mensajes: respuestaInexistente.avisos });
+        await capturar(navegador, pagina, 'ingreso-usuario-inexistente', 'CP004');
 
         await ingresar(pagina, ADMIN, ADMIN_CLAVE);
         registrar(navegador, 'CP001', 'administrador ingresa y llega al panel', pagina.url().endsWith('/panel'));
@@ -240,6 +280,12 @@ async function recorrido(navegador) {
         const codigoSeguimiento = await pagina.$eval('.codigo-seguimiento', (nodo) => nodo.textContent.trim()).catch(() => null);
         const idServicio = pagina.url().match(/servicios\/(\d+)\/registrado/)?.[1];
         registrar(navegador, 'CP026', 'servicio registrado pendiente con códigos', Boolean(codigoSeguimiento) && (await pagina.content()).includes('Pendiente'));
+        for (const resolucion of RESOLUCIONES) {
+            await pagina.setViewport({ width: resolucion.width, height: resolucion.height });
+            const separacion = await separacionBotones(pagina);
+            registrar(navegador, 'CP070', `botones de Servicio registrado separados en ${resolucion.nombre}`, separacion !== null && separacion > 0, { nota: `${separacion}px` });
+        }
+        await pagina.setViewport({ width: 1366, height: 768 });
         await capturar(navegador, pagina, 'servicio-registrado', 'CP026');
 
         await ir(pagina, '/servicios?asignacion=sin_tecnico');
@@ -269,11 +315,15 @@ async function recorrido(navegador) {
         registrar(navegador, 'CP006', 'después de salir el panel pide ingresar', pagina.url().endsWith('/ingresar'), { nota: String(panelTrasSalir.estado) });
 
         await ingresar(pagina, `tec${pref.toLowerCase()}${sufijo}`, claveTecnico);
-        const avisoSinActivar = await textos(pagina);
-        registrar(navegador, 'CP005', 'cuenta sin activar no ingresa', pagina.url().endsWith('/ingresar'), { mensajes: avisoSinActivar, mockup: MOCKUP.login_sin_activar, coincide_mockup: contiene(avisoSinActivar, MOCKUP.login_sin_activar) });
+        const respuestaSinActivar = await estadoIngreso(pagina);
+        registrar(navegador, 'CP005', 'cuenta sin activar no ingresa', pagina.url().endsWith('/ingresar'), { mensajes: respuestaSinActivar.avisos });
+        registrar(navegador, 'CP005', 'tras el rechazo se muestra la guía con enlace a /activar', respuestaSinActivar.guia === GUIA_ACTIVACION && respuestaSinActivar.enlace === BASE + '/activar', { guia: respuestaSinActivar.guia, enlace: respuestaSinActivar.enlace });
+        registrar(navegador, 'CP005', 'la respuesta no distingue la cuenta sin activar del usuario inexistente', mismaRespuesta(respuestaSinActivar, respuestaInexistente));
+        registrar(navegador, 'CP005', 'la respuesta no distingue la cuenta sin activar de la contraseña incorrecta', mismaRespuesta(respuestaSinActivar, respuestaContrasena));
         await capturar(navegador, pagina, 'ingreso-sin-activar', 'CP005');
 
-        await ir(pagina, '/activar');
+        await Promise.all([pagina.waitForNavigation({ waitUntil: 'load' }), pagina.click('main p a[href$="/activar"]')]);
+        registrar(navegador, 'CP005', 'el enlace de la guía abre el formulario de activación', pagina.url() === BASE + '/activar' && Boolean(await pagina.$('#codigo_activacion')));
         await llenar(pagina, { '#codigo_activacion': codigoActivacion, '#password': 'corta1', '#password_confirmation': 'corta1' });
         await sinValidacionNativa(pagina);
         await enviar(pagina);
