@@ -26,3 +26,8 @@
 /storage/logs/*.log
 /.phpunit.cache/
 /.phpunit.result.cache
+
+# Dependencias y salidas de la documentaci�n
+**/node_modules/
+/docs/_book/
+/_verificacion_gitbook/
