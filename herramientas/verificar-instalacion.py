@@ -65,7 +65,7 @@ with log.open('w', encoding='utf-8') as output:
         if 'Cuenta activada.' not in html: raise RuntimeError('La activación no se confirmó')
         _, _, login = request('/ingresar')
         status, url, panel = request('/ingresar', {'_token': token(login), 'nombre_usuario': 'admin', 'password': password})
-        if '/panel' not in url or 'Administrador' not in panel: raise RuntimeError('La activación o el ingreso no llevó al panel de administrador')
+        if '/panel' not in url or 'Bienvenido, admin' not in panel: raise RuntimeError('La activación o el ingreso no llevó al panel de administrador')
         _, _, accounts = request('/cuentas/nueva')
         if 'Crear cuenta' not in accounts: raise RuntimeError('La cuenta no tiene acceso administrativo')
         _, url, _ = request('/salir', {'_token': token(accounts)})
