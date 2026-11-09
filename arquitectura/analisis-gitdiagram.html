@@ -1,0 +1,625 @@
+
+<!DOCTYPE HTML>
+<html lang="es" >
+    <head><script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Análisis de GitDiagram · Valtraza | Documentación técnica y guía de uso</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="author" content="Equipo ValleTech">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../instalacion/" />
+    
+    
+    <link rel="prev" href="../base-de-datos/modelo.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Escribe para buscar" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Bienvenida a Valtraza
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../inicio/primeros-pasos.html">
+            
+                <a href="../inicio/primeros-pasos.html">
+            
+                    
+                    Primeros pasos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../requisitos/">
+            
+                <a href="../requisitos/">
+            
+                    
+                    Requisitos y alcance
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Arquitectura y patrones
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../base-de-datos/modelo.html">
+            
+                <a href="../base-de-datos/modelo.html">
+            
+                    
+                    Base de datos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="analisis-gitdiagram.html">
+            
+                <a href="analisis-gitdiagram.html">
+            
+                    
+                    Análisis de GitDiagram
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../instalacion/">
+            
+                <a href="../instalacion/">
+            
+                    
+                    Instalación y operación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../instalacion/solucion-de-problemas.html">
+            
+                <a href="../instalacion/solucion-de-problemas.html">
+            
+                    
+                    Solución de problemas
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../uso/">
+            
+                <a href="../uso/">
+            
+                    
+                    Guía de uso por rol
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../uso/acceso-y-cuentas.html">
+            
+                <a href="../uso/acceso-y-cuentas.html">
+            
+                    
+                    Acceso y cuentas
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../uso/tecnicos.html">
+            
+                <a href="../uso/tecnicos.html">
+            
+                    
+                    Técnicos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../uso/clientes-y-equipos.html">
+            
+                <a href="../uso/clientes-y-equipos.html">
+            
+                    
+                    Clientes y equipos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../uso/servicios.html">
+            
+                <a href="../uso/servicios.html">
+            
+                    
+                    Registro y asignación de servicios
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../uso/trabajo-tecnico.html">
+            
+                <a href="../uso/trabajo-tecnico.html">
+            
+                    
+                    Trabajo del técnico
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../uso/supervision.html">
+            
+                <a href="../uso/supervision.html">
+            
+                    
+                    Supervisión administrativa
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../uso/consulta-publica.html">
+            
+                <a href="../uso/consulta-publica.html">
+            
+                    
+                    Consulta pública
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../seguridad/">
+            
+                <a href="../seguridad/">
+            
+                    
+                    Seguridad
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+            
+                <a href="../pruebas/">
+            
+                    
+                    Pruebas y entrega de resultados
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+            
+                <a href="../pruebas/estado-y-evidencias.html">
+            
+                    
+                    Estado y evidencias
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../git/">
+            
+                <a href="../git/">
+            
+                    
+                    Git, GitHub y documentación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../preguntas-frecuentes.html">
+            
+                <a href="../preguntas-frecuentes.html">
+            
+                    
+                    Preguntas frecuentes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../referencias/">
+            
+                <a href="../referencias/">
+            
+                    
+                    Referencias y licencias
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publicado con GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Análisis de GitDiagram</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="an&#xE1;lisis-de-gitdiagram">An&#xE1;lisis de GitDiagram</h1>
+<h2 id="enlace-p&#xFA;blico-y-versi&#xF3;n-de-referencia">Enlace p&#xFA;blico y versi&#xF3;n de referencia</h2>
+<p><strong><a href="https://gitdiagram.com/meneses1111/valtraza-valletech" target="_blank">Abrir el diagrama p&#xFA;blico de Valtraza en GitDiagram</a></strong></p>
+<p>El an&#xE1;lisis corresponde al proyecto Valtraza del equipo ValleTech. Se contrasta la captura <code>diagram.png</code>, compartida por Johan el <strong>09 de noviembre de 2026</strong> despu&#xE9;s de indicar que regener&#xF3; el diagrama, con la ERS definitiva 1.1 y el c&#xF3;digo de la entrega en <code>main</code> <strong>55fe5b5858397cca57444dcb8c786b6ad896d813</strong>.</p>
+<p>Ese SHA identifica el c&#xF3;digo utilizado para esta revisi&#xF3;n manual. La captura no muestra el SHA que GitDiagram ingiri&#xF3;: no se atribuye al generador una versi&#xF3;n exacta que no pueda comprobarse. El enlace p&#xFA;blico puede mostrar otro resultado si posteriormente se regenera.</p>
+<p>Esta p&#xE1;gina re&#xFA;ne el <strong>an&#xE1;lisis y el enlace p&#xFA;blico</strong> solicitados en la actividad. La vista corregida que se incluye m&#xE1;s adelante es una elaboraci&#xF3;n manual contrastada con el c&#xF3;digo; no modifica el resultado almacenado en GitDiagram.</p>
+<h2 id="lectura-del-resultado-generado">Lectura del resultado generado</h2>
+<p>El resultado reconoce tres actores &#x2014;administrador, t&#xE9;cnico y cliente&#x2014; y agrupa funcionalidades de acceso, recepci&#xF3;n y asignaci&#xF3;n, trabajo t&#xE9;cnico, consulta y supervisi&#xF3;n. Tambi&#xE9;n relaciona servicios de aplicaci&#xF3;n, modelos y una base de datos com&#xFA;n. Esta agrupaci&#xF3;n permite ubicar las responsabilidades generales del sistema, aunque no reproduce literalmente los seis m&#xF3;dulos acordados.</p>
+<p>La lectura es coherente con una aplicaci&#xF3;n Laravel organizada mediante MVC y capas: las rutas llegan a controladores, estos utilizan servicios de aplicaci&#xF3;n y los modelos Eloquent acceden a PostgreSQL. La separaci&#xF3;n entre consulta p&#xFA;blica y supervisi&#xF3;n tambi&#xE9;n aparece en la imagen. Sin embargo, el grafo mezcla niveles de detalle y contiene asignaciones de responsabilidad que deben corregirse al explicarlo.</p>
+<h2 id="diferencias-encontradas-y-correcci&#xF3;n">Diferencias encontradas y correcci&#xF3;n</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento observado en la captura</th>
+<th>Contraste con la implementaci&#xF3;n</th>
+<th>Correcci&#xF3;n documental</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El cliente tiene una flecha &#xAB;inicia sesi&#xF3;n&#xBB; hacia Acceso.</td>
+<td>El cliente no tiene cuenta. La consulta por c&#xF3;digo es p&#xFA;blica, conforme a RF14.</td>
+<td>Conectar al cliente &#xFA;nicamente con la consulta p&#xFA;blica por c&#xF3;digo. El acceso autenticado corresponde al administrador y al t&#xE9;cnico.</td>
+</tr>
+<tr>
+<td>El cliente tiene una flecha &#xAB;registra datos&#xBB; hacia Registro de clientes.</td>
+<td>Las rutas de registro de clientes y equipos exigen autenticaci&#xF3;n y rol administrador.</td>
+<td>Atribuir esos registros al administrador.</td>
+</tr>
+<tr>
+<td>El bloque de registros t&#xE9;cnicos se representa con <code>Diagnostico.php</code>.</td>
+<td>El servicio t&#xE9;cnico conserva diagn&#xF3;sticos, trabajos y repuestos como modelos distintos, adem&#xE1;s del estado del servicio.</td>
+<td>Explicitar <code>Diagnostico.php</code>, <code>Trabajo.php</code> y <code>Repuesto.php</code> y las operaciones sobre el estado.</td>
+</tr>
+<tr>
+<td>El registro de t&#xE9;cnicos aparece como una dependencia consultada por la gesti&#xF3;n de servicios.</td>
+<td>La selecci&#xF3;n de t&#xE9;cnicos para asignar un servicio es distinta del registro de t&#xE9;cnicos, reservado al administrador.</td>
+<td>Mostrar al administrador como responsable del registro de t&#xE9;cnicos y mantener la consulta de t&#xE9;cnicos para la asignaci&#xF3;n.</td>
+</tr>
+</tbody>
+</table>
+<p>La omisi&#xF3;n de una clase en un resumen visual no demuestra que falte su implementaci&#xF3;n. En este caso, <code>Trabajo.php</code> y <code>Repuesto.php</code> existen, y <code>Servicio</code> declara las relaciones <code>diagnosticos()</code>, <code>trabajos()</code> y <code>repuestos()</code>. Las flechas incorrectas de los actores tampoco representan los permisos efectivos: estos se controlan en rutas y servicios.</p>
+<h2 id="vista-corregida-de-actores-m&#xF3;dulos-y-persistencia">Vista corregida de actores, m&#xF3;dulos y persistencia</h2>
+<p><img src="../assets/arquitectura-revisada.svg" alt="Vista revisada: permisos de los tres actores, seis m&#xF3;dulos y ocho modelos"></p>
+<p>Descargas: <a href="../assets/arquitectura-revisada.png">imagen PNG</a>, <a href="../assets/arquitectura-revisada.svg">SVG ampliable</a> y <a href="../assets/actores-modulos.mmd">fuente Mermaid de actores y m&#xF3;dulos</a>.</p>
+<p>Las flechas de esta vista indican qu&#xE9; actor utiliza cada m&#xF3;dulo. No son una secuencia de ejecuci&#xF3;n ni relaciones entre tablas. Un mismo m&#xF3;dulo puede aparecer en m&#xE1;s de una columna porque sus operaciones se autorizan seg&#xFA;n el rol; supervisi&#xF3;n administrativa y consulta p&#xFA;blica forman parte del m&#xF3;dulo Consulta y seguimiento.</p>
+<h2 id="correspondencia-con-los-seis-m&#xF3;dulos">Correspondencia con los seis m&#xF3;dulos</h2>
+<table>
+<thead>
+<tr>
+<th>M&#xF3;dulo acordado</th>
+<th>Responsabilidad comprobada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clientes y equipos</td>
+<td>El administrador registra clientes y computadores y consulta su historial.</td>
+</tr>
+<tr>
+<td>T&#xE9;cnicos</td>
+<td>El administrador registra y consulta t&#xE9;cnicos; sus datos se usan al crear cuentas y asignar servicios.</td>
+</tr>
+<tr>
+<td>Cuentas y acceso</td>
+<td>Activaci&#xF3;n e ingreso de administrador y t&#xE9;cnico; creaci&#xF3;n de cuentas t&#xE9;cnicas por el administrador.</td>
+</tr>
+<tr>
+<td>Servicios</td>
+<td>El administrador registra servicios, genera sus c&#xF3;digos, asigna o reasigna t&#xE9;cnicos y consulta los servicios.</td>
+</tr>
+<tr>
+<td>Mantenimientos y reparaciones</td>
+<td>El t&#xE9;cnico consulta sus servicios asignados y registra diagn&#xF3;sticos, actividades, repuestos y cambios de estado.</td>
+</tr>
+<tr>
+<td>Consulta y seguimiento</td>
+<td>El administrador supervisa los servicios; el cliente consulta el estado y un resumen permitido mediante el c&#xF3;digo de seguimiento.</td>
+</tr>
+</tbody>
+</table>
+<p>Las dependencias entre m&#xF3;dulos se explican en la <a href="./">arquitectura del sistema</a>. Servicios utiliza Clientes y equipos y T&#xE9;cnicos; el trabajo t&#xE9;cnico utiliza Servicios; la consulta re&#xFA;ne informaci&#xF3;n de los servicios y de su avance. La regla de completar con diagn&#xF3;stico se aplica en la operaci&#xF3;n de trabajo t&#xE9;cnico.</p>
+<h2 id="modelo-de-datos-completo">Modelo de datos completo</h2>
+<p><img src="../assets/relaciones-datos.svg" alt="Ocho tablas y sus relaciones principales"></p>
+<p>Los ocho modelos son <code>Usuario</code>, <code>Cliente</code>, <code>Equipo</code>, <code>Tecnico</code>, <code>Servicio</code>, <code>Diagnostico</code>, <code>Trabajo</code> y <code>Repuesto</code>. Cada servicio corresponde a un equipo; el cliente se obtiene a trav&#xE9;s de ese equipo. El servicio puede estar sin t&#xE9;cnico mientras permanece pendiente, y re&#xFA;ne sus diagn&#xF3;sticos, trabajos y repuestos. La cuenta de un t&#xE9;cnico se vincula con su registro de t&#xE9;cnico; el administrador no utiliza esa vinculaci&#xF3;n.</p>
+<p>La consulta p&#xFA;blica presenta el servicio, el computador, el estado y un resumen del avance. No entrega al cliente los datos personales ni el detalle de diagn&#xF3;sticos, trabajos y repuestos. El <a href="../base-de-datos/modelo.html">modelo de datos</a> contiene las claves, restricciones y reglas de persistencia.</p>
+<h2 id="fuentes-comprobadas">Fuentes comprobadas</h2>
+<p>Las siguientes referencias quedan fijadas al c&#xF3;digo utilizado para la revisi&#xF3;n:</p>
+<ul>
+<li><a href="https://github.com/meneses1111/Valtraza-Valletech/blob/55fe5b5858397cca57444dcb8c786b6ad896d813/routes/modulos/consulta-publica.php" target="_blank">Consulta p&#xFA;blica sin autenticaci&#xF3;n</a>.</li>
+<li><a href="https://github.com/meneses1111/Valtraza-Valletech/blob/55fe5b5858397cca57444dcb8c786b6ad896d813/routes/modulos/clientes-equipos.php" target="_blank">Clientes y equipos: rutas del administrador</a>.</li>
+<li><a href="https://github.com/meneses1111/Valtraza-Valletech/blob/55fe5b5858397cca57444dcb8c786b6ad896d813/routes/modulos/tecnicos.php" target="_blank">T&#xE9;cnicos: rutas del administrador</a>.</li>
+<li><a href="https://github.com/meneses1111/Valtraza-Valletech/blob/55fe5b5858397cca57444dcb8c786b6ad896d813/routes/modulos/trabajo-tecnico.php" target="_blank">Trabajo t&#xE9;cnico: rutas de diagn&#xF3;sticos, trabajos, repuestos y estado</a>.</li>
+<li><a href="https://github.com/meneses1111/Valtraza-Valletech/blob/55fe5b5858397cca57444dcb8c786b6ad896d813/app/Models/Servicio.php" target="_blank">Modelo Servicio y sus relaciones</a>.</li>
+<li><a href="https://github.com/meneses1111/Valtraza-Valletech/blob/55fe5b5858397cca57444dcb8c786b6ad896d813/app/Services/TrabajoTecnico/RegistroTrabajoTecnico.php" target="_blank">Operaciones sobre servicios asignados y comprobaci&#xF3;n de diagn&#xF3;stico</a>.</li>
+<li><a href="https://github.com/meneses1111/Valtraza-Valletech/blob/55fe5b5858397cca57444dcb8c786b6ad896d813/app/Services/Consulta/ConsultaPublica.php" target="_blank">Campos permitidos en la consulta p&#xFA;blica</a>.</li>
+</ul>
+<h2 id="conclusi&#xF3;n">Conclusi&#xF3;n</h2>
+<p>GitDiagram ayuda a reconocer las &#xE1;reas del repositorio y sus relaciones generales. La revisi&#xF3;n detect&#xF3; errores de atribuci&#xF3;n al cliente y una representaci&#xF3;n incompleta de los registros t&#xE9;cnicos. La vista corregida y las referencias al c&#xF3;digo aclaran esas diferencias sin cambiar la aplicaci&#xF3;n ni presentar la salida autom&#xE1;tica como una especificaci&#xF3;n exacta. La comprobaci&#xF3;n de requisitos y la aceptaci&#xF3;n del sistema se sustentan en la <a href="../pruebas/estado-y-evidencias.html">matriz y las evidencias de pruebas</a>, no en la apariencia del grafo.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../base-de-datos/modelo.html" class="navigation navigation-prev " aria-label="Previous page: Base de datos">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../instalacion/" class="navigation navigation-next " aria-label="Next page: Instalación y operación">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"next":{"title":"Instalación y operación","level":"1.3","depth":1,"path":"instalacion/README.md","ref":"instalacion/README.md","articles":[{"title":"Solución de problemas","level":"1.3.1","depth":2,"path":"instalacion/solucion-de-problemas.md","ref":"instalacion/solucion-de-problemas.md","articles":[]}]},"previous":{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"arquitectura/analisis-gitdiagram.md","mtime":"2026-11-09T21:57:20.711Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T21:57:36.345Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
