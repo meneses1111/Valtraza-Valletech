@@ -1,5 +1,13 @@
 {
-    "title": "Valtraza",
+    "title": "Valtraza | Documentaci�n t�cnica y gu�a de uso",
+    "description": "Equipo ValleTech: instalaci�n, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza.",
     "gitbook": "3.2.2",
-    "language": "es"
+    "language": "es",
+    "author": "Equipo ValleTech",
+    "plugins": [
+        "-sharing"
+    ],
+    "styles": {
+        "website": "styles/website.css"
+    }
 }
