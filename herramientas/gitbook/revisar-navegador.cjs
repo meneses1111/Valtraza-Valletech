@@ -34,7 +34,11 @@ async function run() {
             const page = await browser.newPage();
             await page.setViewport(size);
             const errors = [];
-            page.on('pageerror', error => errors.push(String(error)));
+            page.on('pageerror', error => {
+                const detail = { pagina: page.url(), mensaje: String(error), stack: error.stack };
+                errors.push(detail);
+                console.error(JSON.stringify(detail));
+            });
             for (const relative of pages) {
                 const response = await page.goto(origin + '/' + relative, { waitUntil: 'networkidle0', timeout: 20000 });
                 const content = await page.$eval('.markdown-section', element => element.innerText.trim());
@@ -58,7 +62,7 @@ async function run() {
                 }),
             ]);
             if (!page.url().includes('/instalacion/')) throw new Error('El índice no navega a Instalación.');
-            if (errors.length) throw new Error('Errores JavaScript: ' + errors.join('; '));
+            if (errors.length) throw new Error('Errores JavaScript: ' + JSON.stringify(errors));
             await page.close();
         }
         fs.writeFileSync(path.join(destination, 'resultado.json'), JSON.stringify({ gitbook: '3.2.2', paginas: pages.length, comprobaciones: results.length, indice_navegable: true, resultados: results }, null, 2));
