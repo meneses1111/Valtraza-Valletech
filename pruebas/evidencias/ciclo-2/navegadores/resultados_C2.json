@@ -1,0 +1,1784 @@
+{
+  "fecha": "2026-11-09T19:49:07.303Z",
+  "base": "https://valtraza.test",
+  "versiones": [
+    {
+      "navegador": "chrome",
+      "version": "Chrome/156.0.8078.81"
+    },
+    {
+      "navegador": "firefox",
+      "version": "firefox/159.0"
+    }
+  ],
+  "avisos_confirmacion": [
+    "Técnico registrado",
+    "Cliente registrado",
+    "Equipo registrado"
+  ],
+  "resultados": [
+    {
+      "navegador": "chrome",
+      "cp": "CP074/CP075",
+      "paso": "versión Chrome/156.0.8078.81",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP056",
+      "paso": "página de inicio pública por HTTPS",
+      "ok": true,
+      "nota": "270 ms"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en inicio-publico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_chrome_1366x768_inicio-publico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en inicio-publico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_chrome_1920x1080_inicio-publico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP005",
+      "paso": "la guía de activación aparece antes de intentar ingresar",
+      "ok": true,
+      "guia": "Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.",
+      "enlace": "https://valtraza.test/activar"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP003",
+      "paso": "el navegador impide enviar el ingreso vacío",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP003",
+      "paso": "el servidor avisa campos vacíos",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCompleta el campo usuario.\nCompleta el campo contraseña.",
+        "Completa el campo usuario.",
+        "Completa el campo contraseña."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP003_C2_chrome_1366x768_ingreso-vacio.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP003_C2_chrome_1920x1080_ingreso-vacio.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP004",
+      "paso": "credenciales incorrectas muestran aviso y no ingresan",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo se pudo iniciar sesión con estos datos.",
+        "No se pudo iniciar sesión con estos datos."
+      ],
+      "mockup": "Usuario o contraseña incorrectos",
+      "coincide_mockup": false
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-incorrecto",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_chrome_1366x768_ingreso-incorrecto.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-incorrecto",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_chrome_1920x1080_ingreso-incorrecto.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP004",
+      "paso": "usuario inexistente recibe el mismo aviso que la contraseña incorrecta",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo se pudo iniciar sesión con estos datos.",
+        "No se pudo iniciar sesión con estos datos."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-usuario-inexistente",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_chrome_1366x768_ingreso-usuario-inexistente.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-usuario-inexistente",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_chrome_1920x1080_ingreso-usuario-inexistente.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP001",
+      "paso": "administrador ingresa y llega al panel",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en panel-administrador",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP001_C2_chrome_1366x768_panel-administrador.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en panel-administrador",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP001_C2_chrome_1920x1080_panel-administrador.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP009",
+      "paso": "registro de técnico",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en tecnico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP009_C2_chrome_1366x768_tecnico-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en tecnico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP009_C2_chrome_1920x1080_tecnico-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP011",
+      "paso": "identificación de técnico repetida",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nLa identificación ya está registrada.",
+        "La identificación ya está registrada."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en tecnico-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP011_C2_chrome_1366x768_tecnico-repetido.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en tecnico-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP011_C2_chrome_1920x1080_tecnico-repetido.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP013",
+      "paso": "cuenta creada con código de activación y estado pendiente",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en cuenta-creada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP013_C2_chrome_1366x768_cuenta-creada.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en cuenta-creada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP013_C2_chrome_1920x1080_cuenta-creada.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP019",
+      "paso": "registro de cliente abre su ficha",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en cliente-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP019_C2_chrome_1366x768_cliente-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en cliente-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP019_C2_chrome_1920x1080_cliente-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP021",
+      "paso": "cliente repetido avisa y ofrece la ficha",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nLa identificación ya está registrada.",
+        "Este cliente ya existe: Cliente CH 565bb9. Ver ficha",
+        "La identificación ya está registrada."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en cliente-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP021_C2_chrome_1366x768_cliente-repetido.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en cliente-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP021_C2_chrome_1920x1080_cliente-repetido.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP023",
+      "paso": "registro de equipo con código automático",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en equipo-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP023_C2_chrome_1366x768_equipo-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en equipo-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP023_C2_chrome_1920x1080_equipo-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP026",
+      "paso": "servicio registrado pendiente con códigos",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP070",
+      "paso": "botones de Servicio registrado separados en 1366x768",
+      "ok": true,
+      "nota": "8px"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP070",
+      "paso": "botones de Servicio registrado separados en 1920x1080",
+      "ok": true,
+      "nota": "8px"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en servicio-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP026_C2_chrome_1366x768_servicio-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en servicio-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP026_C2_chrome_1920x1080_servicio-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP053",
+      "paso": "filtro sin técnico muestra el servicio nuevo",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en supervision-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_chrome_1366x768_supervision-sin-tecnico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en supervision-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_chrome_1920x1080_supervision-sin-tecnico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP032",
+      "paso": "asignar sin técnico muestra aviso",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCompleta este campo.",
+        "Al cambiar de técnico se conservan el estado, los diagnósticos, las actividades y los repuestos registrados.",
+        "Completa este campo."
+      ],
+      "mockup": "Falta elegir un técnico",
+      "coincide_mockup": false
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en asignar-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP032_C2_chrome_1366x768_asignar-sin-tecnico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en asignar-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP032_C2_chrome_1920x1080_asignar-sin-tecnico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP031",
+      "paso": "asignación de técnico",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en servicio-asignado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP031_C2_chrome_1366x768_servicio-asignado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en servicio-asignado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP031_C2_chrome_1920x1080_servicio-asignado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP053",
+      "paso": "filtros sin resultados muestran aviso",
+      "ok": true,
+      "mensajes": [
+        "No hay servicios con esos filtros. Cambia o limpia el filtro."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en supervision-sin-resultados",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_chrome_1366x768_supervision-sin-resultados.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en supervision-sin-resultados",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_chrome_1920x1080_supervision-sin-resultados.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP006",
+      "paso": "cerrar sesión vuelve al ingreso",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP006",
+      "paso": "después de salir el panel pide ingresar",
+      "ok": true,
+      "nota": "200"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP005",
+      "paso": "cuenta sin activar no ingresa",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo se pudo iniciar sesión con estos datos.",
+        "No se pudo iniciar sesión con estos datos."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP005",
+      "paso": "tras el rechazo se muestra la guía con enlace a /activar",
+      "ok": true,
+      "guia": "Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.",
+      "enlace": "https://valtraza.test/activar"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP005",
+      "paso": "la respuesta no distingue la cuenta sin activar del usuario inexistente",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP005",
+      "paso": "la respuesta no distingue la cuenta sin activar de la contraseña incorrecta",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-sin-activar",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP005_C2_chrome_1366x768_ingreso-sin-activar.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-sin-activar",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP005_C2_chrome_1920x1080_ingreso-sin-activar.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP005",
+      "paso": "el enlace de la guía abre el formulario de activación",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP017",
+      "paso": "contraseña de menos de 8 caracteres es rechazada",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nEl campo contraseña debe tener al menos 8 caracteres.",
+        "El campo contraseña debe tener al menos 8 caracteres."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en activacion-corta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP017_C2_chrome_1366x768_activacion-corta.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en activacion-corta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP017_C2_chrome_1920x1080_activacion-corta.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP015",
+      "paso": "activación con código válido",
+      "ok": true,
+      "mensajes": [
+        "Cuenta activada. Ya puedes ingresar."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en activacion-correcta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP015_C2_chrome_1366x768_activacion-correcta.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en activacion-correcta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP015_C2_chrome_1920x1080_activacion-correcta.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP016",
+      "paso": "el código ya usado es rechazado",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCódigo inválido o ya utilizado.",
+        "Código inválido o ya utilizado."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en activacion-reutilizada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP016_C2_chrome_1366x768_activacion-reutilizada.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en activacion-reutilizada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP016_C2_chrome_1920x1080_activacion-reutilizada.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP002",
+      "paso": "técnico ingresa y llega al panel",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en panel-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP002_C2_chrome_1366x768_panel-tecnico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en panel-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP002_C2_chrome_1920x1080_panel-tecnico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP035",
+      "paso": "mis servicios muestra el asignado",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en mis-servicios",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP035_C2_chrome_1366x768_mis-servicios.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en mis-servicios",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP035_C2_chrome_1920x1080_mis-servicios.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP036",
+      "paso": "filtro sin resultados del técnico",
+      "ok": true,
+      "mensajes": [
+        "No hay servicios con ese filtro. Prueba con otro estado."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en mis-servicios-filtro-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP036_C2_chrome_1366x768_mis-servicios-filtro-vacio.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en mis-servicios-filtro-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP036_C2_chrome_1920x1080_mis-servicios-filtro-vacio.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP048",
+      "paso": "completar sin diagnóstico es rechazado",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo puedes completar el servicio sin registrar al menos un diagnóstico.",
+        "Para completar el servicio debes registrar al menos un diagnóstico. Registrar diagnóstico",
+        "No puedes completar el servicio sin registrar al menos un diagnóstico."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en estado-sin-diagnostico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP048_C2_chrome_1366x768_estado-sin-diagnostico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en estado-sin-diagnostico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP048_C2_chrome_1920x1080_estado-sin-diagnostico.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP040",
+      "paso": "diagnóstico sin resultado muestra aviso",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCompleta este campo.",
+        "Completa este campo."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en diagnostico-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP040_C2_chrome_1366x768_diagnostico-vacio.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en diagnostico-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP040_C2_chrome_1920x1080_diagnostico-vacio.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP039",
+      "paso": "diagnóstico registrado",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en diagnostico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP039_C2_chrome_1366x768_diagnostico-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en diagnostico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP039_C2_chrome_1920x1080_diagnostico-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP043",
+      "paso": "reparación registrada",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en actividad-registrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP043_C2_chrome_1366x768_actividad-registrada.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en actividad-registrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP043_C2_chrome_1920x1080_actividad-registrada.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP046",
+      "paso": "cantidad cero es rechazada",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nRegistra al menos un repuesto y cantidades mayores que cero.",
+        "Registra al menos un repuesto y cantidades mayores que cero."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en repuesto-cantidad-cero",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP046_C2_chrome_1366x768_repuesto-cantidad-cero.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en repuesto-cantidad-cero",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP046_C2_chrome_1920x1080_repuesto-cantidad-cero.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP045",
+      "paso": "repuesto registrado",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en repuesto-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP045_C2_chrome_1366x768_repuesto-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en repuesto-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP045_C2_chrome_1920x1080_repuesto-registrado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP049",
+      "paso": "completar con diagnóstico",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en estado-completado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP049_C2_chrome_1366x768_estado-completado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en estado-completado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP049_C2_chrome_1920x1080_estado-completado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP063",
+      "paso": "técnico bloqueado por URL directa en supervisión",
+      "ok": true,
+      "nota": "403"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en acceso-no-autorizado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP063_C2_chrome_1366x768_acceso-no-autorizado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en acceso-no-autorizado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP063_C2_chrome_1920x1080_acceso-no-autorizado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP056",
+      "paso": "consulta pública con código válido",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP057",
+      "paso": "consulta pública sin datos personales ni detalles técnicos",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP059",
+      "paso": "el código no aparece en la dirección",
+      "ok": true
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en consulta-resultado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_chrome_1366x768_consulta-resultado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en consulta-resultado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_chrome_1920x1080_consulta-resultado.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP058",
+      "paso": "código inexistente muestra aviso",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo encontramos un servicio con ese código.",
+        "No encontramos un servicio con ese código."
+      ]
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en consulta-no-encontrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP058_C2_chrome_1366x768_consulta-no-encontrada.png"
+    },
+    {
+      "navegador": "chrome",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en consulta-no-encontrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP058_C2_chrome_1920x1080_consulta-no-encontrada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP074/CP075",
+      "paso": "versión firefox/159.0",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP056",
+      "paso": "página de inicio pública por HTTPS",
+      "ok": true,
+      "nota": "711 ms"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en inicio-publico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_firefox_1366x768_inicio-publico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en inicio-publico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_firefox_1920x1080_inicio-publico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP005",
+      "paso": "la guía de activación aparece antes de intentar ingresar",
+      "ok": true,
+      "guia": "Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.",
+      "enlace": "https://valtraza.test/activar"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP003",
+      "paso": "el navegador impide enviar el ingreso vacío",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP003",
+      "paso": "el servidor avisa campos vacíos",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCompleta el campo usuario.\nCompleta el campo contraseña.",
+        "Completa el campo usuario.",
+        "Completa el campo contraseña."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP003_C2_firefox_1366x768_ingreso-vacio.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP003_C2_firefox_1920x1080_ingreso-vacio.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP004",
+      "paso": "credenciales incorrectas muestran aviso y no ingresan",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo se pudo iniciar sesión con estos datos.",
+        "No se pudo iniciar sesión con estos datos."
+      ],
+      "mockup": "Usuario o contraseña incorrectos",
+      "coincide_mockup": false
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-incorrecto",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_firefox_1366x768_ingreso-incorrecto.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-incorrecto",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_firefox_1920x1080_ingreso-incorrecto.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP004",
+      "paso": "usuario inexistente recibe el mismo aviso que la contraseña incorrecta",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo se pudo iniciar sesión con estos datos.",
+        "No se pudo iniciar sesión con estos datos."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-usuario-inexistente",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_firefox_1366x768_ingreso-usuario-inexistente.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-usuario-inexistente",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP004_C2_firefox_1920x1080_ingreso-usuario-inexistente.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP001",
+      "paso": "administrador ingresa y llega al panel",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en panel-administrador",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP001_C2_firefox_1366x768_panel-administrador.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en panel-administrador",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP001_C2_firefox_1920x1080_panel-administrador.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP009",
+      "paso": "registro de técnico",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en tecnico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP009_C2_firefox_1366x768_tecnico-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en tecnico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP009_C2_firefox_1920x1080_tecnico-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP011",
+      "paso": "identificación de técnico repetida",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nLa identificación ya está registrada.",
+        "La identificación ya está registrada."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en tecnico-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP011_C2_firefox_1366x768_tecnico-repetido.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en tecnico-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP011_C2_firefox_1920x1080_tecnico-repetido.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP013",
+      "paso": "cuenta creada con código de activación y estado pendiente",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en cuenta-creada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP013_C2_firefox_1366x768_cuenta-creada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en cuenta-creada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP013_C2_firefox_1920x1080_cuenta-creada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP019",
+      "paso": "registro de cliente abre su ficha",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en cliente-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP019_C2_firefox_1366x768_cliente-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en cliente-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP019_C2_firefox_1920x1080_cliente-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP021",
+      "paso": "cliente repetido avisa y ofrece la ficha",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nLa identificación ya está registrada.",
+        "Este cliente ya existe: Cliente FF 277b59. Ver ficha",
+        "La identificación ya está registrada."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en cliente-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP021_C2_firefox_1366x768_cliente-repetido.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en cliente-repetido",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP021_C2_firefox_1920x1080_cliente-repetido.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP023",
+      "paso": "registro de equipo con código automático",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en equipo-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP023_C2_firefox_1366x768_equipo-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en equipo-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP023_C2_firefox_1920x1080_equipo-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP026",
+      "paso": "servicio registrado pendiente con códigos",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP070",
+      "paso": "botones de Servicio registrado separados en 1366x768",
+      "ok": true,
+      "nota": "8px"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP070",
+      "paso": "botones de Servicio registrado separados en 1920x1080",
+      "ok": true,
+      "nota": "8px"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en servicio-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP026_C2_firefox_1366x768_servicio-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en servicio-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP026_C2_firefox_1920x1080_servicio-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP053",
+      "paso": "filtro sin técnico muestra el servicio nuevo",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en supervision-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_firefox_1366x768_supervision-sin-tecnico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en supervision-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_firefox_1920x1080_supervision-sin-tecnico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP032",
+      "paso": "asignar sin técnico muestra aviso",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCompleta este campo.",
+        "Al cambiar de técnico se conservan el estado, los diagnósticos, las actividades y los repuestos registrados.",
+        "Completa este campo."
+      ],
+      "mockup": "Falta elegir un técnico",
+      "coincide_mockup": false
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en asignar-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP032_C2_firefox_1366x768_asignar-sin-tecnico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en asignar-sin-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP032_C2_firefox_1920x1080_asignar-sin-tecnico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP031",
+      "paso": "asignación de técnico",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en servicio-asignado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP031_C2_firefox_1366x768_servicio-asignado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en servicio-asignado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP031_C2_firefox_1920x1080_servicio-asignado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP053",
+      "paso": "filtros sin resultados muestran aviso",
+      "ok": true,
+      "mensajes": [
+        "No hay servicios con esos filtros. Cambia o limpia el filtro."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en supervision-sin-resultados",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_firefox_1366x768_supervision-sin-resultados.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en supervision-sin-resultados",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP053_C2_firefox_1920x1080_supervision-sin-resultados.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP006",
+      "paso": "cerrar sesión vuelve al ingreso",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP006",
+      "paso": "después de salir el panel pide ingresar",
+      "ok": true,
+      "nota": "200"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP005",
+      "paso": "cuenta sin activar no ingresa",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo se pudo iniciar sesión con estos datos.",
+        "No se pudo iniciar sesión con estos datos."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP005",
+      "paso": "tras el rechazo se muestra la guía con enlace a /activar",
+      "ok": true,
+      "guia": "Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.",
+      "enlace": "https://valtraza.test/activar"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP005",
+      "paso": "la respuesta no distingue la cuenta sin activar del usuario inexistente",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP005",
+      "paso": "la respuesta no distingue la cuenta sin activar de la contraseña incorrecta",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en ingreso-sin-activar",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP005_C2_firefox_1366x768_ingreso-sin-activar.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en ingreso-sin-activar",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP005_C2_firefox_1920x1080_ingreso-sin-activar.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP005",
+      "paso": "el enlace de la guía abre el formulario de activación",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP017",
+      "paso": "contraseña de menos de 8 caracteres es rechazada",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nEl campo contraseña debe tener al menos 8 caracteres.",
+        "El campo contraseña debe tener al menos 8 caracteres."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en activacion-corta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP017_C2_firefox_1366x768_activacion-corta.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en activacion-corta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP017_C2_firefox_1920x1080_activacion-corta.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP015",
+      "paso": "activación con código válido",
+      "ok": true,
+      "mensajes": [
+        "Cuenta activada. Ya puedes ingresar."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en activacion-correcta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP015_C2_firefox_1366x768_activacion-correcta.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en activacion-correcta",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP015_C2_firefox_1920x1080_activacion-correcta.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP016",
+      "paso": "el código ya usado es rechazado",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCódigo inválido o ya utilizado.",
+        "Código inválido o ya utilizado."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en activacion-reutilizada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP016_C2_firefox_1366x768_activacion-reutilizada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en activacion-reutilizada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP016_C2_firefox_1920x1080_activacion-reutilizada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP002",
+      "paso": "técnico ingresa y llega al panel",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en panel-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP002_C2_firefox_1366x768_panel-tecnico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en panel-tecnico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP002_C2_firefox_1920x1080_panel-tecnico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP035",
+      "paso": "mis servicios muestra el asignado",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en mis-servicios",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP035_C2_firefox_1366x768_mis-servicios.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en mis-servicios",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP035_C2_firefox_1920x1080_mis-servicios.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP036",
+      "paso": "filtro sin resultados del técnico",
+      "ok": true,
+      "mensajes": [
+        "No hay servicios con ese filtro. Prueba con otro estado."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en mis-servicios-filtro-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP036_C2_firefox_1366x768_mis-servicios-filtro-vacio.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en mis-servicios-filtro-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP036_C2_firefox_1920x1080_mis-servicios-filtro-vacio.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP048",
+      "paso": "completar sin diagnóstico es rechazado",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo puedes completar el servicio sin registrar al menos un diagnóstico.",
+        "Para completar el servicio debes registrar al menos un diagnóstico. Registrar diagnóstico",
+        "No puedes completar el servicio sin registrar al menos un diagnóstico."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en estado-sin-diagnostico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP048_C2_firefox_1366x768_estado-sin-diagnostico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en estado-sin-diagnostico",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP048_C2_firefox_1920x1080_estado-sin-diagnostico.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP040",
+      "paso": "diagnóstico sin resultado muestra aviso",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nCompleta este campo.",
+        "Completa este campo."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en diagnostico-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP040_C2_firefox_1366x768_diagnostico-vacio.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en diagnostico-vacio",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP040_C2_firefox_1920x1080_diagnostico-vacio.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP039",
+      "paso": "diagnóstico registrado",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en diagnostico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP039_C2_firefox_1366x768_diagnostico-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en diagnostico-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP039_C2_firefox_1920x1080_diagnostico-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP043",
+      "paso": "reparación registrada",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en actividad-registrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP043_C2_firefox_1366x768_actividad-registrada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en actividad-registrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP043_C2_firefox_1920x1080_actividad-registrada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP046",
+      "paso": "cantidad cero es rechazada",
+      "ok": true,
+      "mensajes": [
+        "Repuestos registrados."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en repuesto-cantidad-cero",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP046_C2_firefox_1366x768_repuesto-cantidad-cero.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en repuesto-cantidad-cero",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP046_C2_firefox_1920x1080_repuesto-cantidad-cero.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP045",
+      "paso": "repuesto registrado",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en repuesto-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP045_C2_firefox_1366x768_repuesto-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en repuesto-registrado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP045_C2_firefox_1920x1080_repuesto-registrado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP049",
+      "paso": "completar con diagnóstico",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en estado-completado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP049_C2_firefox_1366x768_estado-completado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en estado-completado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP049_C2_firefox_1920x1080_estado-completado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP063",
+      "paso": "técnico bloqueado por URL directa en supervisión",
+      "ok": true,
+      "nota": "403"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en acceso-no-autorizado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP063_C2_firefox_1366x768_acceso-no-autorizado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en acceso-no-autorizado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP063_C2_firefox_1920x1080_acceso-no-autorizado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP056",
+      "paso": "consulta pública con código válido",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP057",
+      "paso": "consulta pública sin datos personales ni detalles técnicos",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP059",
+      "paso": "el código no aparece en la dirección",
+      "ok": true
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en consulta-resultado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_firefox_1366x768_consulta-resultado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en consulta-resultado",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP056_C2_firefox_1920x1080_consulta-resultado.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP058",
+      "paso": "código inexistente muestra aviso",
+      "ok": true,
+      "mensajes": [
+        "Revisa la información antes de continuar.\n\nNo encontramos un servicio con ese código.",
+        "No encontramos un servicio con ese código."
+      ]
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP076",
+      "paso": "sin desplazamiento horizontal en consulta-no-encontrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP058_C2_firefox_1366x768_consulta-no-encontrada.png"
+    },
+    {
+      "navegador": "firefox",
+      "cp": "CP077",
+      "paso": "sin desplazamiento horizontal en consulta-no-encontrada",
+      "ok": true,
+      "nota": "0px",
+      "archivo": "CP058_C2_firefox_1920x1080_consulta-no-encontrada.png"
+    }
+  ]
+}

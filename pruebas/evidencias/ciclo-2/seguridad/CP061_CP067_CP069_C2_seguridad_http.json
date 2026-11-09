@@ -1,0 +1,150 @@
+{
+  "fecha": "2026-11-09T19:49:32.488Z",
+  "destino": "https://valtraza.test",
+  "resultados": [
+    {
+      "cp": "CP061",
+      "comprobacion": "HTTP redirige a HTTPS",
+      "ok": true,
+      "obtenido": "301 -> https://valtraza.test/ingresar"
+    },
+    {
+      "cp": "CP061",
+      "comprobacion": "el formulario de ingreso envía a una dirección HTTPS",
+      "ok": true,
+      "obtenido": "https://valtraza.test/ingresar"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "cookie de sesión Secure",
+      "ok": true,
+      "obtenido": "valtraza_session=<oculto>; expires=Mon, 09 Nov 2026 21:49:30 GMT; Max-Age=7200; path=/; secure; httponly; samesite=lax"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "cookie de sesión HttpOnly",
+      "ok": true,
+      "obtenido": "httponly"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "cookie de sesión SameSite=Lax",
+      "ok": true,
+      "obtenido": "samesite=lax"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "la sesión expira a las 2 horas de inactividad (SESSION_LIFETIME=120)",
+      "ok": true,
+      "obtenido": "120 minutos"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "cabecera x-frame-options",
+      "ok": true,
+      "obtenido": "DENY"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "cabecera x-content-type-options",
+      "ok": true,
+      "obtenido": "nosniff"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "cabecera cache-control",
+      "ok": true,
+      "obtenido": "no-store, private"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "cabecera content-security-policy",
+      "ok": true,
+      "obtenido": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'"
+    },
+    {
+      "cp": "CP067",
+      "comprobacion": "ingreso sin token CSRF es rechazado",
+      "ok": true,
+      "obtenido": "419"
+    },
+    {
+      "cp": "CP067",
+      "comprobacion": "token CSRF de otra sesión es rechazado",
+      "ok": true,
+      "obtenido": "419"
+    },
+    {
+      "cp": "CP067",
+      "comprobacion": "consulta pública sin token CSRF es rechazada",
+      "ok": true,
+      "obtenido": "419"
+    },
+    {
+      "cp": "CP067",
+      "comprobacion": "la página 419 explica que la sesión expiró",
+      "ok": true,
+      "obtenido": "Tu sesión venció"
+    },
+    {
+      "cp": "CP001",
+      "comprobacion": "ingreso real del administrador",
+      "ok": true,
+      "obtenido": "302 -> https://valtraza.test/panel"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "el ingreso renueva el identificador de sesión",
+      "ok": true,
+      "obtenido": "identificador distinto"
+    },
+    {
+      "cp": "CP006",
+      "comprobacion": "la cookie anterior al cierre de sesión ya no abre el panel",
+      "ok": true,
+      "obtenido": "302 -> https://valtraza.test/ingresar"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "archivo interno no expuesto /.env",
+      "ok": true,
+      "obtenido": "404"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "archivo interno no expuesto /../.env",
+      "ok": true,
+      "obtenido": "404"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "archivo interno no expuesto /composer.json",
+      "ok": true,
+      "obtenido": "404"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "archivo interno no expuesto /storage/logs/laravel.log",
+      "ok": true,
+      "obtenido": "403"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "archivo interno no expuesto /database/sql/esquema_valtraza.sql",
+      "ok": true,
+      "obtenido": "404"
+    },
+    {
+      "cp": "CP069",
+      "comprobacion": "archivo interno no expuesto /vendor/autoload.php",
+      "ok": true,
+      "obtenido": "404"
+    },
+    {
+      "cp": "CP008",
+      "comprobacion": "el sexto intento fallido seguido recibe 429",
+      "ok": true,
+      "obtenido": "302,302,302,302,302,429"
+    }
+  ]
+}
