@@ -1,0 +1,12 @@
+{
+  "name": "valtraza-pruebas-navegadores",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "recorridos": "node recorridos.mjs",
+    "carga": "node carga.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "24.10.0"
+  }
+}
