@@ -1,25 +1,13 @@
 'use strict';
 
 const fs = require('node:fs');
-const http = require('node:http');
 const path = require('node:path');
+const { crearServidor } = require('./vista-previa.cjs');
 const puppeteer = require(path.join(process.env.GITBOOK_BROWSER_MODULES, 'puppeteer-core'));
 const root = path.resolve(__dirname, '../..');
 const book = path.join(root, '_book');
 const destination = process.env.GITBOOK_QA_OUTPUT || path.join(root, '_verificacion_gitbook');
-const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'application/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff': 'font/woff', '.woff2': 'font/woff2', '.ttf': 'font/ttf' };
-
-const server = http.createServer((request, response) => {
-    let pathname;
-    try { pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname); }
-    catch { response.writeHead(400); response.end(); return; }
-    let target = path.resolve(book, '.' + pathname);
-    if (!target.startsWith(book + path.sep) && target !== book) { response.writeHead(403); response.end(); return; }
-    if (fs.existsSync(target) && fs.statSync(target).isDirectory()) target = path.join(target, 'index.html');
-    if (!fs.existsSync(target) || !fs.statSync(target).isFile()) { response.writeHead(404); response.end(); return; }
-    response.setHeader('Content-Type', types[path.extname(target)] || 'application/octet-stream');
-    fs.createReadStream(target).pipe(response);
-});
+const server = crearServidor(book);
 
 async function run() {
     fs.mkdirSync(destination, { recursive: true });

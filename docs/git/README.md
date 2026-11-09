@@ -24,6 +24,8 @@ El workflow **Revisar GitBook** comprueba fuentes y enlaces internos, compila el
 
 Si termina correctamente, en la ejecución de GitHub Actions aparece el artefacto **gitbook-vista-previa-SHA**, que contiene el sitio estático, y el artefacto de validación. Para abrir la vista previa, extraer el sitio en una carpeta y servirla con un servidor HTTP local; la búsqueda y la navegación del tema no deben evaluarse mediante `file://`.
 
+En Windows, con Node.js 18 o posterior, extrae todo el ZIP y abre **ABRIR-GITBOOK.cmd**. El iniciador utiliza un puerto local disponible, abre el navegador y conserva el servidor mientras la ventana permanezca abierta. No requiere instalar GitBook ni sus dependencias. También se puede ejecutar `node abrir-vista-previa.cjs` desde la carpeta extraída.
+
 ### Construcción local en un entorno aislado
 
 Con Node 10.24.1 y npm 6 disponibles únicamente para esta herramienta:
