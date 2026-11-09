@@ -1,0 +1,73 @@
+name: Comprobar instalación nueva
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: instalacion-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  instalacion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: valtraza_install
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: valtraza_install_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d valtraza_install"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'false'
+      APP_URL: http://127.0.0.1:8000
+      DB_CONNECTION: pgsql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_DATABASE: valtraza_install
+      DB_USERNAME: postgres
+      DB_PASSWORD: valtraza_install_ci
+      CACHE_STORE: file
+      SESSION_DRIVER: file
+      SESSION_SECURE_COOKIE: 'false'
+    steps:
+      - name: Descargar una copia independiente
+        uses: actions/checkout@v6
+      - name: Preparar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_pgsql
+          coverage: none
+          tools: composer:v2
+      - name: Instalar desde el lock y preparar un entorno nuevo
+        run: |
+          cp .env.example .env
+          composer install --no-interaction --prefer-dist --no-progress
+          php artisan key:generate --force
+          php artisan migrate --force
+          php artisan db:seed --force > "$RUNNER_TEMP/seed-inicial.txt"
+          php artisan db:seed --force > "$RUNNER_TEMP/seed-repetido.txt"
+          php artisan migrate:status
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+      - name: Comprobar el arranque HTTP de la instalación
+        env:
+          VALTRAZA_INSTALACION_LOG: ${{ runner.temp }}/instalacion-servidor.log
+        run: python3 herramientas/verificar-instalacion.py
