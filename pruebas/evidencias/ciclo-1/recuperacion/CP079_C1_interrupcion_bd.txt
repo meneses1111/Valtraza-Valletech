@@ -1,0 +1,14 @@
+Prueba de interrupción y recuperación (bd) · ciclo 1 · 09-11-2026 13:29:55
+SHA probado: 4f957b960093f8b7032264717126d1ab5e819562
+Antes: inicio HTTP 200 · datos: 303 clientes, 1203 servicios, 803 diagnosticos
+1. Se espera la detención del servicio postgresql-x64-18 (ventana elevada aprobada por el usuario)
+   Servicio:  ESTADO : 1 STOPPED 
+   Durante la caída: inicio pública HTTP 200 (no consulta la base)
+   Durante la caída: consulta pública que sí usa la base HTTP 500
+   La página de error expone detalles internos
+   Título mostrado: Illuminate\Database\QueryException
+2. Se espera el reinicio del servicio (sin reinstalar ni recrear tablas)
+   Disponible otra vez tras 16 s · consulta pública HTTP 200
+Después: datos: 303 clientes, 1203 servicios, 803 diagnosticos
+
+Nota del responsable de pruebas: este entorno usa la configuración local documentada (.env.example con APP_ENV=local y APP_DEBUG=true), por eso la caída mostró la página de depuración de Laravel. La misma caída con APP_ENV=production y APP_DEBUG=false muestra una página 500 genérica sin detalles internos: ver CP079_C1_error_bd_configuracion_produccion.txt.
