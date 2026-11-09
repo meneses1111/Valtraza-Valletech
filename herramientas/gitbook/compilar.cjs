@@ -16,6 +16,17 @@ var build = gitbook.commands.filter(function(command) { return command.name === 
 console.log('Compilando con GitBook ' + version + ' / Node ' + process.versions.node);
 build.exec([path.join(root, 'docs'), path.join(root, '_book')], { format: 'website', log: 'info' })
     .then(function() {
+        function prepararHTML(directory) {
+            fs.readdirSync(directory).forEach(function(name) {
+                var file = path.join(directory, name);
+                if (fs.statSync(file).isDirectory()) return prepararHTML(file);
+                if (!name.endsWith('.html')) return;
+                var html = fs.readFileSync(file, 'utf8');
+                var canonical = "<script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>";
+                fs.writeFileSync(file, html.replace('<head>', '<head>' + canonical));
+            });
+        }
+        prepararHTML(path.join(root, '_book'));
         fs.copyFileSync(path.join(__dirname, 'vista-previa.cjs'), path.join(root, '_book', 'abrir-vista-previa.cjs'));
         fs.copyFileSync(path.join(__dirname, 'ABRIR-GITBOOK.cmd'), path.join(root, '_book', 'ABRIR-GITBOOK.cmd'));
         console.log('GitBook generado en _book, con iniciador de vista previa.');
