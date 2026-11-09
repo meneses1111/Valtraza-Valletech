@@ -1,0 +1,22 @@
+Prueba de copia y restauración · ciclo 1 · 09-11-2026 13:27:55
+SHA probado: 4f957b960093f8b7032264717126d1ab5e819562
+PostgreSQL: pg_dump (PostgreSQL) 18.6
+Base de origen: valtraza_pruebas (datos ficticios)
+
+1. Conteos y huella antes de la copia
+   cliente=303 diagnostico=803 equipo=453 repuesto=805 servicio=1203 tecnico=15 trabajo=803 usuario=14
+   huella servicios: f718990156b9bc3aebb5919f68eb567f
+2. Copia con pg_dump en formato personalizado (ubicación privada fuera del repositorio)
+   código de salida: 0 · tamaño: 91870 bytes
+3. Base de restauración vacía e independiente
+NOTICE:  no existe la base de datos «valtraza_restauracion», omitiendo
+   pg_restore código de salida: 0
+4. Comparación de conteos y huella
+   cliente=303 diagnostico=803 equipo=453 repuesto=805 servicio=1203 tecnico=15 trabajo=803 usuario=14
+   huella servicios: f718990156b9bc3aebb5919f68eb567f
+   RESULTADO: coinciden
+5. La aplicación funciona apuntada a la base restaurada (copia en http://127.0.0.1:8099)
+   consulta pública en la copia: HTTP 200
+   RESULTADO: la copia muestra el servicio restaurado (Servicio FF aab577, Completado)
+6. Limpieza: se elimina solo la base de restauración de prueba; la base de origen no se modificó
+   conteos de origen al final: cliente=303 diagnostico=803 equipo=453 repuesto=805 servicio=1203 tecnico=15 trabajo=803 usuario=14

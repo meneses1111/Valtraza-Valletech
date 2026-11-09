@@ -1,0 +1,8 @@
+Prueba de interrupción y recuperación (web) · ciclo 1 · 09-11-2026 13:28:48
+SHA probado: 4f957b960093f8b7032264717126d1ab5e819562
+Antes: inicio HTTP 200 · datos: 303 clientes, 1203 servicios, 803 diagnosticos
+1. Se detienen Nginx y PHP de Herd (simula caída del servidor web)
+   Durante la caída: inicio HTTP 000 (000 = sin respuesta)
+2. Se inician de nuevo los servicios, sin reinstalar ni recrear tablas
+   Disponible otra vez tras 2 s · inicio HTTP 200 · ingresar HTTP 200
+Después: datos: 303 clientes, 1203 servicios, 803 diagnosticos
