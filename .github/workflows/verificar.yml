@@ -2,9 +2,13 @@ name: Verificar Valtraza
 
 on:
   push:
-    branches: [develop, pruebas, 'feature/**', 'correccion/**']
+    branches: [develop, pruebas]
   pull_request:
     branches: [develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -49,6 +53,8 @@ jobs:
           extensions: mbstring, pdo_pgsql
           coverage: none
           tools: composer:v2
+      - name: Preparar la configuración de pruebas
+        run: cp .env.example .env
       - name: Instalar dependencias
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Comprobar el formato

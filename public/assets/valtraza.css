@@ -1,0 +1,21 @@
+body { background: #f5f7fb; color: #17243b; }
+.cabecera { background: #fff; border-bottom: 1px solid #dde4ef; }
+.cabecera .navbar-brand { color: #1749a8; font-size: 1.45rem; font-weight: 750; text-decoration: none; }
+.cabecera .nav-link { color: #33496a; padding: .6rem .8rem; border-radius: .5rem; }
+.cabecera .nav-link:hover, .cabecera .nav-link:focus-visible { color: #1749a8; background: #edf3ff; }
+.cabecera-pagina { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: .5rem 0 1.5rem; }
+h1 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700; }
+.card { border-color: #e1e7f0; border-radius: .8rem; box-shadow: 0 3px 14px rgb(30 65 110 / 4%); }
+.card-body { padding: 1.5rem; }
+.formulario-centrado { max-width: 820px; margin-inline: auto; }
+.selector-cliente { flex: 1 1 260px; width: auto; }
+.form-label, dt { font-weight: 600; }
+.table th { color: #52647e; font-size: .86rem; background: #f6f8fc; }
+.table td { overflow-wrap: anywhere; max-width: 24rem; }
+.table caption { caption-side: top; font-size: .85rem; }
+.texto-multilinea { white-space: pre-wrap; overflow-wrap: anywhere; }
+.codigo-seguimiento { font-family: ui-monospace, monospace; font-size: 1.1rem; overflow-wrap: anywhere; user-select: all; }
+.alert, .invalid-feedback { overflow-wrap: anywhere; }
+.nav-tabs { row-gap: .25rem; }
+.nav-tabs .nav-link { white-space: normal; }
+@media (max-width: 575px) { .card-body { padding: 1rem; } .cabecera .nav-link { padding: .5rem .6rem; } }

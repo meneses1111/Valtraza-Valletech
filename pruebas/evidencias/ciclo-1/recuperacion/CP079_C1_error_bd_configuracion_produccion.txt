@@ -1,0 +1,11 @@
+Página de error con la base inalcanzable en configuración de producción · ciclo 1 · 09-11-2026 13:30:49
+SHA probado: 4f957b960093f8b7032264717126d1ab5e819562
+Configuración temporal: APP_ENV=production, APP_DEBUG=false, DB_PORT=5999 (puerto cerrado que simula la base caída)
+Consulta pública: HTTP 500
+Título: No se pudo completar la operación
+Mensaje: Ocurrió un problema al procesar la solicitud. Intenta nuevamente más tarde.
+Exposición de detalles internos: NO
+Cabecera HSTS en producción: Strict-Transport-Security: max-age=31536000; includeSubDomains
+Configuración local restaurada. Consulta tras restaurar: HTTP 200
+Registro de la aplicación (sin SQL ni parámetros):
+[2026-11-09 18:30:51] production.ERROR: Error de persistencia. {"estado":"08006"} 

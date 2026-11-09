@@ -10,7 +10,18 @@ class ActivarCuentaRequest extends FormRequest
     {
         return [
             'codigo_activacion' => ['required', 'string', 'max:64'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'bail', 'required', 'string', 'min:8', 'confirmed',
+                function (string $attribute, mixed $value, \Closure $fail): void {
+                    if (strlen($value) > 72) {
+                        $fail('La contraseña es demasiado larga. Usa una más corta.');
+                    }
+
+                    if (str_contains($value, "\0")) {
+                        $fail('Escribe una contraseña válida.');
+                    }
+                },
+            ],
         ];
     }
 }
