@@ -5,6 +5,7 @@
     * [Requisitos y alcance](requisitos/README.md)
 * [Arquitectura y patrones](arquitectura/README.md)
     * [Base de datos](base-de-datos/modelo.md)
+    * [Análisis de GitDiagram](arquitectura/analisis-gitdiagram.md)
 * [Instalación y operación](instalacion/README.md)
     * [Solución de problemas](instalacion/solucion-de-problemas.md)
 * [Guía de uso por rol](uso/README.md)

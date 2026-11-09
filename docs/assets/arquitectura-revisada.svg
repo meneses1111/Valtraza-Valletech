@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 1470" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Valtraza: actores, módulos y persistencia corregidos</title>
+<desc id="descripcion">Administrador registra cuentas, técnicos, clientes, equipos y servicios, y supervisa. Técnico ingresa y trabaja en servicios asignados. Cliente consulta por código sin cuenta. Ocho modelos persisten en PostgreSQL.</desc>
+<rect width="1560" height="1470" fill="#f4f7fb"/>
+<text x="40" y="53" font-family="Segoe UI,Arial,sans-serif" font-size="34" font-weight="700" fill="#18354d">Valtraza: actores, módulos y persistencia</text>
+<text x="40" y="89" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#476176">Vista corregida de apoyo al análisis de GitDiagram · ERS definitiva 1.1</text>
+<text x="40" y="118" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" fill="#647b8f">Revisión manual del código: main 55fe5b5 · 09 de noviembre de 2026</text>
+<rect x="36" y="140" width="480" height="715" rx="16" fill="#ebf1f7"/>
+<rect x="84" y="158" width="424" height="72" rx="14" fill="#173f62"/>
+<text x="106" y="189" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="700" fill="#ffffff">Administrador</text>
+<text x="106" y="216" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" fill="#d9e7f4">Cuenta activada</text>
+<rect x="540" y="140" width="480" height="715" rx="16" fill="#ebf1f7"/>
+<rect x="588" y="158" width="424" height="72" rx="14" fill="#173f62"/>
+<text x="610" y="189" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="700" fill="#ffffff">Técnico</text>
+<text x="610" y="216" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" fill="#d9e7f4">Cuenta activada</text>
+<rect x="1044" y="140" width="480" height="715" rx="16" fill="#ebf1f7"/>
+<rect x="1092" y="158" width="424" height="72" rx="14" fill="#173f62"/>
+<text x="1114" y="189" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="700" fill="#ffffff">Cliente</text>
+<text x="1114" y="216" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" fill="#d9e7f4">Consulta pública, sin cuenta</text>
+<polyline points="296,230 296,246 60,246 60,315 84,315" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="84.00,315.00 75.00,319.35 75.00,310.65" fill="#6d8294"/>
+<rect x="84" y="268" width="424" height="94" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="84" y="268" width="7" height="94" rx="3" fill="#3b77ad"/>
+<text x="106" y="299" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Cuentas y acceso</text>
+<text x="106" y="328" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Gestiona cuentas y códigos de activación.</text>
+<polyline points="296,230 296,246 60,246 60,429 84,429" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="84.00,429.00 75.00,433.35 75.00,424.65" fill="#6d8294"/>
+<rect x="84" y="382" width="424" height="94" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="84" y="382" width="7" height="94" rx="3" fill="#b18a12"/>
+<text x="106" y="413" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Técnicos</text>
+<text x="106" y="442" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Registra y consulta técnicos.</text>
+<polyline points="296,230 296,246 60,246 60,543 84,543" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="84.00,543.00 75.00,547.35 75.00,538.65" fill="#6d8294"/>
+<rect x="84" y="496" width="424" height="94" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="84" y="496" width="7" height="94" rx="3" fill="#b18a12"/>
+<text x="106" y="527" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Clientes y equipos</text>
+<text x="106" y="556" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Registra clientes y computadores.</text>
+<polyline points="296,230 296,246 60,246 60,657 84,657" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="84.00,657.00 75.00,661.35 75.00,652.65" fill="#6d8294"/>
+<rect x="84" y="610" width="424" height="94" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="84" y="610" width="7" height="94" rx="3" fill="#c27520"/>
+<text x="106" y="641" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Servicios</text>
+<text x="106" y="670" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Registra, asigna y reasigna servicios.</text>
+<polyline points="296,230 296,246 60,246 60,771 84,771" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="84.00,771.00 75.00,775.35 75.00,766.65" fill="#6d8294"/>
+<rect x="84" y="724" width="424" height="94" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="84" y="724" width="7" height="94" rx="3" fill="#8254aa"/>
+<text x="106" y="755" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Consulta y seguimiento</text>
+<text x="106" y="784" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Supervisa servicios y sus avances.</text>
+<polyline points="800,230 800,246 564,246 564,315.0 588,315.0" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="588.00,315.00 579.00,319.35 579.00,310.65" fill="#6d8294"/>
+<polyline points="800,230 800,246 564,246 564,494.5 588,494.5" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="588.00,494.50 579.00,498.85 579.00,490.15" fill="#6d8294"/>
+<rect x="588" y="268" width="424" height="94" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="588" y="268" width="7" height="94" rx="3" fill="#3b77ad"/>
+<text x="610" y="299" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Cuentas y acceso</text>
+<text x="610" y="328" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Activa su cuenta e inicia sesión.</text>
+<rect x="588" y="382" width="424" height="225" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="588" y="382" width="7" height="225" rx="3" fill="#24875b"/>
+<text x="610" y="413" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Mantenimientos y reparaciones</text>
+<text x="610" y="442" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Consulta sus servicios asignados.</text>
+<text x="610" y="472" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Registra diagnósticos.</text>
+<text x="610" y="502" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Registra mantenimientos y reparaciones.</text>
+<text x="610" y="532" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Registra repuestos y cambia el estado.</text>
+<rect x="588" y="640" width="424" height="178" rx="12" fill="#e1efe6" stroke="#b9d9c4" stroke-width="1.5"/>
+<text x="610" y="674" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#205d40">Reglas del trabajo técnico</text>
+<text x="610" y="710" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#315b45">Solo opera servicios que tiene asignados.</text>
+<text x="610" y="739" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#315b45">Completar un servicio exige al menos un</text>
+<text x="610" y="768" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#315b45">diagnóstico.</text>
+<polyline points="1304,230 1304,268" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1304.00,268.00 1299.65,259.00 1308.35,259.00" fill="#6d8294"/>
+<rect x="1092" y="268" width="424" height="148" rx="12" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<rect x="1092" y="268" width="7" height="148" rx="3" fill="#8254aa"/>
+<text x="1114" y="299" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#18354d">Consulta y seguimiento</text>
+<text x="1114" y="328" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Consulta pública mediante un código.</text>
+<text x="1114" y="358" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">No registra clientes ni computadores.</text>
+<rect x="1092" y="450" width="424" height="194" rx="12" fill="#eee8f6" stroke="#d6c6e7" stroke-width="1.5"/>
+<text x="1114" y="485" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#5b387d">Información pública</text>
+<text x="1114" y="521" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#624a78">Ve el servicio, el equipo, el estado y un</text>
+<text x="1114" y="550" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#624a78">resumen del avance. Los detalles técnicos</text>
+<text x="1114" y="579" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#624a78">y los datos personales quedan</text>
+<text x="1114" y="608" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#624a78">restringidos.</text>
+<text x="40" y="891" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#476176">Las flechas indican acceso por rol; no representan el orden de las operaciones.</text>
+<rect x="36" y="924" width="1488" height="342" rx="16" fill="#ffffff" stroke="#cad7e2" stroke-width="1.5"/>
+<text x="60" y="964" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#18354d">Ocho modelos Eloquent sobre una sola base de datos</text>
+<rect x="60" y="992" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="78" y="1024" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Usuario.php</text>
+<text x="78" y="1056" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: usuario</text>
+<rect x="426" y="992" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="444" y="1024" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Cliente.php</text>
+<text x="444" y="1056" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: cliente</text>
+<rect x="792" y="992" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="810" y="1024" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Equipo.php</text>
+<text x="810" y="1056" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: equipo</text>
+<rect x="1158" y="992" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="1176" y="1024" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Tecnico.php</text>
+<text x="1176" y="1056" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: tecnico</text>
+<rect x="60" y="1110" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="78" y="1142" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Servicio.php</text>
+<text x="78" y="1174" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: servicio</text>
+<rect x="426" y="1110" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="444" y="1142" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Diagnostico.php</text>
+<text x="444" y="1174" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: diagnostico</text>
+<rect x="792" y="1110" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="810" y="1142" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Trabajo.php</text>
+<text x="810" y="1174" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: trabajo</text>
+<rect x="1158" y="1110" width="340" height="94" rx="12" fill="#f2f6fa" stroke="#c9d8e5" stroke-width="1.5"/>
+<text x="1176" y="1142" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700" fill="#18354d">Repuesto.php</text>
+<text x="1176" y="1174" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Tabla: repuesto</text>
+<polyline points="780,1266 780,1302" fill="none" stroke="#6d8294" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="780.00,1302.00 775.65,1293.00 784.35,1293.00" fill="#6d8294"/>
+<rect x="584" y="1304" width="392" height="73" rx="22" fill="#dfebf5" stroke="#87a7c3" stroke-width="1.5"/>
+<text x="672" y="1349" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#18354d">PostgreSQL 18</text>
+<text x="40" y="1421" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#476176">Las relaciones entre modelos se detallan en la vista de datos del GitBook.</text>
+<text x="40" y="1450" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" fill="#647b8f">Revisión documental: esta imagen no sustituye ni modifica el resultado almacenado por GitDiagram.</text>
+</svg>
