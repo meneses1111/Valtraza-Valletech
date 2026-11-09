@@ -1,0 +1,65 @@
+name: Revisar GitBook
+
+on:
+  push:
+    branches: [develop]
+    paths: ['docs/**', 'herramientas/gitbook/**', '.github/workflows/gitbook.yml', 'README.md', '.gitignore']
+  pull_request:
+    branches: [develop]
+    paths: ['docs/**', 'herramientas/gitbook/**', '.github/workflows/gitbook.yml', 'README.md', '.gitignore']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gitbook-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  libro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Descargar fuentes
+        uses: actions/checkout@v6
+      - name: Comprobar contenido e �ndice
+        run: python3 herramientas/gitbook/verificar.py
+      - name: Preparar Node exclusivo para GitBook
+        uses: actions/setup-node@v6
+        with:
+          node-version: '10.24.1'
+      - name: Instalar el generador fijado
+        run: npm install --prefix herramientas/gitbook --ignore-scripts --no-audit
+      - name: Compilar GitBook 3.2.2
+        run: node herramientas/gitbook/compilar.cjs
+      - name: Comprobar HTML y recursos generados
+        run: python3 herramientas/gitbook/verificar.py --html _book
+      - name: Preparar Node para revisar el navegador
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Preparar revisi�n en Chrome
+        run: |
+          npm install --prefix "$RUNNER_TEMP/gitbook-browser" --ignore-scripts --no-audit --no-fund puppeteer-core@24.10.0
+          echo "GITBOOK_BROWSER_MODULES=$RUNNER_TEMP/gitbook-browser/node_modules" >> "$GITHUB_ENV"
+          echo "GITBOOK_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Revisar p�ginas y navegaci�n en dos resoluciones
+        env:
+          GITBOOK_QA_OUTPUT: ${{ runner.temp }}/gitbook-qa
+        run: node herramientas/gitbook/revisar-navegador.cjs
+      - name: Conservar vista previa
+        uses: actions/upload-artifact@v4
+        with:
+          name: gitbook-vista-previa-${{ github.sha }}
+          path: _book/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Conservar informe de revisi�n
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gitbook-validacion-${{ github.sha }}
+          path: ${{ runner.temp }}/gitbook-qa/
+          if-no-files-found: ignore
+          retention-days: 30
