@@ -26,4 +26,4 @@ La corrección de la [Issue #14](https://github.com/meneses1111/Valtraza-Vallete
 
 AvisoActivacionLoginTest comprueba la presencia inicial de la ayuda y los tres tipos de ingreso rechazado. La separación de los botones de confirmación de servicio atiende únicamente el ajuste visual CP070 de la Issue #15; los textos de CP004 y CP032 se conservan.
 
-Estos cambios no modifican la matriz ni las evidencias del ciclo 1. Luis debe registrar el SHA integrado y ejecutar el ciclo 2: CP005, regresiones CP001–CP008 y CP070, y la suite completa. La Issue #14 permanece abierta hasta que Luis compruebe el resultado.
+Luis completó el ciclo 2 sobre develop 90fa6a2 y ejecutó pruebas 6fc7b13. CP001–CP008, CP026 y CP070 quedaron aprobados; se conservaron la matriz y las evidencias del ciclo 1. El PR #18 incorporó sus resultados y cuatro pruebas nuevas: la suite pasó 376 pruebas y 727 aserciones dos veces en CI. Luis cerró la Issue #14 tras comprobar la corrección. Consulta el [estado y las evidencias](estado-y-evidencias.md).

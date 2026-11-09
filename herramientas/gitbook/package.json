@@ -1,0 +1,12 @@
+{
+  "name": "valtraza-gitbook",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Generador aislado de documentación de Valtraza",
+  "engines": {
+    "node": "10.24.1"
+  },
+  "dependencies": {
+    "gitbook": "3.2.2"
+  }
+}

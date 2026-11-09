@@ -14,18 +14,40 @@ Antes de subir: revisar el diff, excluir credenciales/contexto/caches, comprobar
 
 Los reportes de Luis originan correcciones trazables: requisito/CP, Issue, commit que corrige y ejecución del segundo ciclo. Su rama y resultados no se completan en nombre del programador.
 
-## GitBook
+## Construcción del GitBook
 
-El contenido del libro está en `docs`, con README, SUMMARY, book.json y un directorio por tema. El generador previsto es GitBook 3.2.2; su CLI utiliza Node.js de una generación anterior. En un entorno compatible instalar `gitbook-cli@2.3.2`, seleccionar GitBook 3.2.2 e instalar las dependencias del libro:
+Las fuentes están en `docs`. `SUMMARY.md` define la navegación y `book.json` fija GitBook 3.2.2. El Node de esta herramienta está separado del entorno PHP de la aplicación.
+
+### Comprobación automática
+
+El workflow **Revisar GitBook** comprueba fuentes y enlaces internos, compila el libro con GitBook 3.2.2 y Node 10.24.1 y revisa el HTML generado. Después abre las páginas con Chrome en 1366 × 768 y 1920 × 1080 y guarda el informe de navegación.
+
+Si termina correctamente, en la ejecución de GitHub Actions aparece el artefacto **gitbook-vista-previa-SHA**, que contiene el sitio estático, y el artefacto de validación. Para abrir la vista previa, extraer el sitio en una carpeta y servirla con un servidor HTTP local; la búsqueda y la navegación del tema no deben evaluarse mediante `file://`.
+
+En Windows, con Node.js 18 o posterior, extrae todo el ZIP y abre **ABRIR-GITBOOK.cmd**. El iniciador utiliza un puerto local disponible, abre el navegador y conserva el servidor mientras la ventana permanezca abierta. No requiere instalar GitBook ni sus dependencias. También se puede ejecutar `node abrir-vista-previa.cjs` desde la carpeta extraída.
+
+### Construcción local en un entorno aislado
+
+Con Node 10.24.1 y npm 6 disponibles únicamente para esta herramienta:
 
 ```text
-gitbook fetch 3.2.2
-gitbook install docs
-gitbook build docs _book --gitbook=3.2.2
+npm install --prefix herramientas/gitbook --ignore-scripts --no-audit
+node herramientas/gitbook/compilar.cjs
+python herramientas/gitbook/verificar.py --html _book
 ```
 
-Si el CLI falla por incompatibilidad de Node.js, usar un entorno aislado con una versión compatible mediante nvm; no sustituir el generador sin acordarlo. La vista local debe revisarse después de generar el libro. `_book` es salida generada y se mantiene fuera de las ramas de desarrollo.
+La comprobación de las fuentes se puede ejecutar sin instalar GitBook:
 
-En el cierre se publica únicamente el contenido generado en `gh-pages` y se activa GitHub Pages sobre esa rama. Después de comprobar la URL pública se añade el enlace al README. No publicar credenciales ni documentos de trabajo. La existencia de docs no equivale a una publicación realizada.
+```text
+python herramientas/gitbook/verificar.py
+```
 
-El análisis de GitDiagram se produce sobre la versión final del repositorio. Comparar el grafo con los seis módulos y sus dependencias, registrar la versión analizada y explicar cualquier diferencia. No presentar una imagen o enlace como evidencia de un análisis que no se haya ejecutado.
+El generador utiliza la biblioteca oficial GitBook 3.2.2; no se reemplaza por otro motor ni se instala de forma global. `_book` es salida generada y se mantiene fuera de las ramas de desarrollo. El workflow de revisión no despliega el sitio ni modifica la base de datos.
+
+### Publicación de la entrega
+
+Al cerrar la entrega se publica únicamente el contenido generado en `gh-pages` y se activa GitHub Pages sobre esa rama. Después de comprobar la URL pública se añade el enlace al README. La vista previa y los archivos de `docs` no equivalen a una publicación estable. La aceptación del ciclo 2 se registra antes del cierre de la versión de entrega.
+
+## GitDiagram
+
+El análisis de GitDiagram se produce sobre la versión final del repositorio. Comparar el grafo con los seis módulos y sus dependencias, registrar la rama y el SHA analizados y explicar cualquier diferencia. No presentar la vista documental de módulos como una ejecución de GitDiagram.
