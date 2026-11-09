@@ -1,0 +1,631 @@
+
+<!DOCTYPE HTML>
+<html lang="es" >
+    <head><script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Arquitectura y patrones · Valtraza | Documentación técnica y guía de uso</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="author" content="Equipo ValleTech">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../base-de-datos/modelo.html" />
+    
+    
+    <link rel="prev" href="../requisitos/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Escribe para buscar" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Bienvenida a Valtraza
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../inicio/primeros-pasos.html">
+            
+                <a href="../inicio/primeros-pasos.html">
+            
+                    
+                    Primeros pasos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../requisitos/">
+            
+                <a href="../requisitos/">
+            
+                    
+                    Requisitos y alcance
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Arquitectura y patrones
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../base-de-datos/modelo.html">
+            
+                <a href="../base-de-datos/modelo.html">
+            
+                    
+                    Base de datos
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../instalacion/">
+            
+                <a href="../instalacion/">
+            
+                    
+                    Instalación y operación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../instalacion/solucion-de-problemas.html">
+            
+                <a href="../instalacion/solucion-de-problemas.html">
+            
+                    
+                    Solución de problemas
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../uso/">
+            
+                <a href="../uso/">
+            
+                    
+                    Guía de uso por rol
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../uso/acceso-y-cuentas.html">
+            
+                <a href="../uso/acceso-y-cuentas.html">
+            
+                    
+                    Acceso y cuentas
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../uso/tecnicos.html">
+            
+                <a href="../uso/tecnicos.html">
+            
+                    
+                    Técnicos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../uso/clientes-y-equipos.html">
+            
+                <a href="../uso/clientes-y-equipos.html">
+            
+                    
+                    Clientes y equipos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../uso/servicios.html">
+            
+                <a href="../uso/servicios.html">
+            
+                    
+                    Registro y asignación de servicios
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../uso/trabajo-tecnico.html">
+            
+                <a href="../uso/trabajo-tecnico.html">
+            
+                    
+                    Trabajo del técnico
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../uso/supervision.html">
+            
+                <a href="../uso/supervision.html">
+            
+                    
+                    Supervisión administrativa
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../uso/consulta-publica.html">
+            
+                <a href="../uso/consulta-publica.html">
+            
+                    
+                    Consulta pública
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../seguridad/">
+            
+                <a href="../seguridad/">
+            
+                    
+                    Seguridad
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+            
+                <a href="../pruebas/">
+            
+                    
+                    Pruebas y entrega de resultados
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+            
+                <a href="../pruebas/estado-y-evidencias.html">
+            
+                    
+                    Estado y evidencias
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../git/">
+            
+                <a href="../git/">
+            
+                    
+                    Git, GitHub y documentación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../preguntas-frecuentes.html">
+            
+                <a href="../preguntas-frecuentes.html">
+            
+                    
+                    Preguntas frecuentes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../referencias/">
+            
+                <a href="../referencias/">
+            
+                    
+                    Referencias y licencias
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publicado con GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Arquitectura y patrones</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="arquitectura-y-patrones">Arquitectura y patrones</h1>
+<p>Valtraza es un monolito modular con una sola base PostgreSQL. Nginx recibe la solicitud, <code>public/index.php</code> inicia Laravel y las rutas despachan a controladores. Blade presenta el resultado; los controladores coordinan la validaci&#xF3;n y los servicios; Eloquent conserva los datos.</p>
+<table>
+<thead>
+<tr>
+<th>Capa</th>
+<th>Ubicaci&#xF3;n y funci&#xF3;n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Presentaci&#xF3;n</td>
+<td><code>resources/views</code>, componentes Blade y recursos de <code>public/assets</code></td>
+</tr>
+<tr>
+<td>Control</td>
+<td><code>routes</code>, <code>app/Http/Controllers</code>, middleware y Form Requests</td>
+</tr>
+<tr>
+<td>L&#xF3;gica de negocio</td>
+<td><code>app/Services</code>, <code>app/States</code>, observers y reglas de la operaci&#xF3;n</td>
+</tr>
+<tr>
+<td>Acceso a datos</td>
+<td>Modelos Eloquent de <code>app/Models</code> y consultas encapsuladas</td>
+</tr>
+<tr>
+<td>Datos</td>
+<td>PostgreSQL; esquema, restricciones e &#xED;ndices de <code>database</code></td>
+</tr>
+</tbody>
+</table>
+<p>Las capas de l&#xF3;gica y acceso a datos forman el modelo de MVC. La autorizaci&#xF3;n se exige en rutas y solicitudes; las operaciones sobre un servicio vuelven a comprobar al encargado dentro de la transacci&#xF3;n.</p>
+<table>
+<thead>
+<tr>
+<th>M&#xF3;dulo</th>
+<th>Responsabilidad e interfaces utilizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clientes y equipos</td>
+<td>Clientes, computadores e historial; ofrece RegistroClientesEquipos</td>
+</tr>
+<tr>
+<td>T&#xE9;cnicos</td>
+<td>Registro de t&#xE9;cnicos; ofrece RegistroTecnicos</td>
+</tr>
+<tr>
+<td>Cuentas y acceso</td>
+<td>Usuarios, activaci&#xF3;n y sesi&#xF3;n; utiliza RegistroTecnicos</td>
+</tr>
+<tr>
+<td>Servicios</td>
+<td>Registro, c&#xF3;digos, asignaci&#xF3;n y pertenencia; utiliza Clientes y equipos y T&#xE9;cnicos</td>
+</tr>
+<tr>
+<td>Mantenimientos y reparaciones</td>
+<td>Diagn&#xF3;sticos, actividades, repuestos y cambio de estado; utiliza Servicios</td>
+</tr>
+<tr>
+<td>Consulta y seguimiento</td>
+<td>SupervisionServicios y ConsultaPublica agregan lecturas de Servicios y LecturaAvance</td>
+</tr>
+</tbody>
+</table>
+<p>Servicios no depende de Mantenimientos y reparaciones. La condici&#xF3;n de completar con diagn&#xF3;stico se resuelve en la operaci&#xF3;n de trabajo t&#xE9;cnico, evitando una dependencia circular. La consulta p&#xFA;blica construye una salida con campos permitidos, sin entregar modelos completos a la vista.</p>
+<table>
+<thead>
+<tr>
+<th>Patr&#xF3;n</th>
+<th>Aplicaci&#xF3;n concreta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MVC</td>
+<td>Separaci&#xF3;n de vistas, controladores y modelo</td>
+</tr>
+<tr>
+<td>Controlador frontal</td>
+<td>Entrada por <code>public/index.php</code></td>
+</tr>
+<tr>
+<td>Plantilla maestra</td>
+<td>Layouts base, administrador, t&#xE9;cnico y p&#xFA;blico</td>
+</tr>
+<tr>
+<td>Cadena de filtros</td>
+<td>Middleware de sesi&#xF3;n, autenticaci&#xF3;n, rol, CSRF y cabeceras</td>
+</tr>
+<tr>
+<td>Validaci&#xF3;n de formularios</td>
+<td>Form Requests con reglas y mensajes en espa&#xF1;ol</td>
+</tr>
+<tr>
+<td>Active Record</td>
+<td>Modelos Eloquent con sus claves y relaciones</td>
+</tr>
+<tr>
+<td>Capa de servicios</td>
+<td>RegistroClientesEquipos, GestionServicios, RegistroTrabajoTecnico y servicios de consulta</td>
+</tr>
+<tr>
+<td>Observador</td>
+<td>Generaci&#xF3;n de c&#xF3;digos y notificaci&#xF3;n de nuevos registros de avance</td>
+</tr>
+<tr>
+<td>Estado</td>
+<td>Clases Pendiente, EnCurso y Completado para aplicar el estado del servicio</td>
+</tr>
+</tbody>
+</table>
+<p>Los detalles del cambio de estado y la asignaci&#xF3;n est&#xE1;n descritos en <a href="../uso/trabajo-tecnico.html">Trabajo t&#xE9;cnico</a>. La revisi&#xF3;n final del grafo del repositorio con GitDiagram se realiza sobre la versi&#xF3;n de entrega y se contrasta con estas dependencias; no debe registrarse como realizada sin conservar su evidencia.</p>
+<h2 id="vista-de-m&#xF3;dulos">Vista de m&#xF3;dulos</h2>
+<p><img src="../assets/modulos.svg" alt="Seis m&#xF3;dulos y sus dependencias de consumo"></p>
+<p>La vista resume las dependencias entre los servicios de los seis m&#xF3;dulos. No sustituye el an&#xE1;lisis final con GitDiagram ni representa cada llamada a un controlador o modelo. Los tres actores ingresan por rutas con los permisos correspondientes.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../requisitos/" class="navigation navigation-prev " aria-label="Previous page: Requisitos y alcance">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../base-de-datos/modelo.html" class="navigation navigation-next " aria-label="Next page: Base de datos">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Arquitectura y patrones","level":"1.2","depth":1,"next":{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},"previous":{"title":"Requisitos y alcance","level":"1.1.2","depth":2,"path":"requisitos/README.md","ref":"requisitos/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"arquitectura/README.md","mtime":"2026-11-09T20:48:43.794Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T20:48:56.817Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
