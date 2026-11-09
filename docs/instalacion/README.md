@@ -11,11 +11,14 @@ Usar una consola normal de PowerShell, con PHP, Composer y PostgreSQL disponible
 ```powershell
 git clone https://github.com/meneses1111/Valtraza-Valletech.git
 cd Valtraza-Valletech
-git switch develop
+git switch main
+git rev-parse HEAD
 composer install
 Copy-Item .env.example .env
 php artisan key:generate
 ```
+
+La entrega estable se instala desde `main`; registrar el SHA mostrado para identificar la versión utilizada.
 
 La copia del entorno se hace solo cuando `.env` no existe; una instalación existente conserva su archivo y su APP_KEY. Editar `.env` con los datos locales de PostgreSQL y la URL HTTPS. No subir este archivo. Crear una base vacía `valtraza` con UTF8 y configurar DB_DATABASE, DB_USERNAME y DB_PASSWORD. No reutilizar bases de otros proyectos.
 
