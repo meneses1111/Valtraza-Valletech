@@ -12,6 +12,7 @@
                         <tr><td colspan="3" class="text-body-secondary py-4">Todavía no hay técnicos registrados.</td></tr>
                     @endforelse
                 </tbody></table></div>
+                {{ $tecnicos->links() }}
             </div></div>
         </section>
         <section class="col-lg-5" aria-labelledby="nuevo-tecnico">

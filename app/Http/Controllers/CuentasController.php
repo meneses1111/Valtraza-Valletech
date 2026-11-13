@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CrearCuentaRequest;
+use App\Http\Requests\SolicitudAdministrador;
 use App\Services\Cuentas\Acceso;
 use App\Services\Tecnicos\RegistroTecnicos;
 use Illuminate\Http\RedirectResponse;
@@ -10,7 +11,7 @@ use Illuminate\View\View;
 
 class CuentasController extends Controller
 {
-    public function crear(RegistroTecnicos $tecnicos, Acceso $acceso): View
+    public function crear(SolicitudAdministrador $request, RegistroTecnicos $tecnicos, Acceso $acceso): View
     {
         return view('acceso.crear-cuenta', ['tecnicos' => $tecnicos->listar(), 'cuentas' => $acceso->listarCuentas()]);
     }
