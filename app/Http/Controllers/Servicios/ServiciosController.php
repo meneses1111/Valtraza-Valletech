@@ -21,10 +21,16 @@ class ServiciosController extends Controller
     public function crear(SeleccionarClienteRequest $request, RegistroClientesEquipos $clientes): View
     {
         $idCliente = $request->validated('id_cliente') ?? EntradaFormulario::identificador(old('id_cliente'));
+        $cliente = $clientes->seleccionar($idCliente ? (int) $idCliente : null);
+        $equipos = $cliente ? $clientes->equipos($cliente->id_cliente) : null;
+        $idEquipo = $request->validated('id_equipo') ?? EntradaFormulario::identificador(old('id_equipo'));
+        $equipoElegido = $cliente && $idEquipo ? $clientes->seleccionarEquipo((int) $idEquipo, $cliente->id_cliente) : null;
 
         return view('servicios.crear', [
             'clientes' => $clientes->listar(),
-            'cliente' => $idCliente ? $clientes->obtener((int) $idCliente) : null,
+            'cliente' => $cliente,
+            'equipos' => $equipos,
+            'equipoElegido' => $equipoElegido,
         ]);
     }
 

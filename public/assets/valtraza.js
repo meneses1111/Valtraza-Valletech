@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const pestana = ['#diagnosticos', '#trabajos', '#repuestos', '#historial'].includes(window.location.hash)
+        ? document.querySelector(`[data-bs-target="${window.location.hash}"]`)
+        : null;
+    if (pestana && window.bootstrap) bootstrap.Tab.getOrCreateInstance(pestana).show();
     const ventana = document.getElementById('confirmacion');
     const titulo = document.getElementById('confirmacion-titulo');
     const confirmar = (mensaje) => {

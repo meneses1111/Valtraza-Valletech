@@ -6,6 +6,7 @@ use App\Models\Servicio;
 use App\Models\Usuario;
 use App\Services\ClientesEquipos\RegistroClientesEquipos;
 use App\Services\Tecnicos\RegistroTecnicos;
+use App\Support\EntradaFormulario;
 use App\Support\GuardarRegistro;
 use Closure;
 use Illuminate\Database\QueryException;
@@ -26,7 +27,7 @@ class GestionServicios
             ->when($asignacion === 'con_tecnico', fn ($consulta) => $consulta->whereNotNull('id_tecnico'))
             ->when($estado, fn ($consulta) => $consulta->where('estado', $estado))
             ->when($idTecnico, fn ($consulta) => $consulta->where('id_tecnico', $idTecnico))
-            ->orderByDesc('fecha')->orderByDesc('id_servicio')->paginate(20)->withQueryString();
+            ->orderByDesc('fecha')->orderByDesc('id_servicio')->paginate(EntradaFormulario::POR_PAGINA)->withQueryString();
     }
 
     public function obtener(int $id): Servicio
@@ -104,7 +105,7 @@ class GestionServicios
         return Servicio::query()->with('equipo')
             ->where('id_tecnico', $usuario->id_tecnico)
             ->when($estado, fn ($consulta) => $consulta->where('estado', $estado))
-            ->orderByDesc('fecha')->orderByDesc('id_servicio')->paginate(20)->withQueryString();
+            ->orderByDesc('fecha')->orderByDesc('id_servicio')->paginate(EntradaFormulario::POR_PAGINA)->withQueryString();
     }
 
     public function asignado(int $idServicio, Usuario $usuario): Servicio
@@ -119,18 +120,24 @@ class GestionServicios
     {
         return GuardarRegistro::ejecutar(function () use ($idServicio, $usuario, $operacion) {
             $servicio = Servicio::query()->lockForUpdate()->findOrFail($idServicio);
-            $this->comprobarEncargado($servicio, $usuario);
+            $actual = Usuario::query()->lockForUpdate()->find($usuario->getAuthIdentifier());
+            abort_unless($actual?->activado, 403);
+            $this->comprobarEncargado($servicio, $actual);
 
             return $operacion($servicio);
         });
     }
 
-    public function historialRelacionado(Servicio $servicio): mixed
+    public function historialRelacionado(Servicio $servicio, Usuario $usuario): mixed
     {
-        return Servicio::query()->with('trabajos')
+        $this->comprobarEncargado($servicio, $usuario);
+
+        return Servicio::query()->withCount('trabajos')
+            ->where('id_tecnico', $usuario->id_tecnico)
             ->where('id_equipo', $servicio->id_equipo)->where('estado', 'completado')
             ->where('id_servicio', '<>', $servicio->id_servicio)
-            ->orderByDesc('fecha')->orderByDesc('id_servicio')->get();
+            ->orderByDesc('fecha')->orderByDesc('id_servicio')
+            ->paginate(EntradaFormulario::POR_PAGINA, ['*'], 'historial_pagina')->withQueryString();
     }
 
     private function comprobarEncargado(Servicio $servicio, Usuario $usuario): void

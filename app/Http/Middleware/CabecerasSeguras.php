@@ -10,9 +10,13 @@ class CabecerasSeguras
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $response = $next($request);
-        $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'");
-        $response->headers->set('X-Frame-Options', 'DENY');
+        return self::aplicar($next($request), $request);
+    }
+
+    public static function aplicar(Response $response, Request $request): Response
+    {
+        $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'");
+        $response->headers->set('X-Frame-Options', 'SAMEORIGIN');
         $response->headers->set('X-Content-Type-Options', 'nosniff');
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');

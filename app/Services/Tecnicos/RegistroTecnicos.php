@@ -3,14 +3,16 @@
 namespace App\Services\Tecnicos;
 
 use App\Models\Tecnico;
+use App\Support\EntradaFormulario;
 use App\Support\GuardarRegistro;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class RegistroTecnicos
 {
-    public function listar(): Collection
+    public function listar(): LengthAwarePaginator
     {
-        return Tecnico::query()->orderBy('nombre')->get();
+        return Tecnico::query()->orderBy('nombre')->orderBy('id_tecnico')
+            ->paginate(EntradaFormulario::POR_PAGINA, ['*'], 'tecnicos_pagina')->withQueryString();
     }
 
     public function obtener(int $id): Tecnico

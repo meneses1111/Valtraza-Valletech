@@ -6,6 +6,7 @@ use App\Http\Requests\ActivarCuentaRequest;
 use App\Http\Requests\IniciarSesionRequest;
 use App\Models\Usuario;
 use App\Services\Cuentas\Acceso;
+use App\Support\AuditoriaSeguridad;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,7 @@ class AccesoController extends Controller
 
         if (! $usuario || ! $acceso->verificar($usuario, $datos['password'])) {
             RateLimiter::hit($clave, 60);
+            AuditoriaSeguridad::registrar('login_fallido', $request, ['cuenta_id' => $usuario?->getKey()]);
 
             return back()->withErrors(['nombre_usuario' => 'No se pudo iniciar sesión con estos datos.']);
         }
@@ -60,6 +62,7 @@ class AccesoController extends Controller
 
         if (! $acceso->activar($datos['codigo_activacion'], $datos['password'])) {
             RateLimiter::hit($clave, 60);
+            AuditoriaSeguridad::registrar('activacion_fallida', $request);
 
             return back()->withErrors(['codigo_activacion' => 'Código inválido o ya utilizado.']);
         }

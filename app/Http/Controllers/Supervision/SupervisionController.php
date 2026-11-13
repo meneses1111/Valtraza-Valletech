@@ -16,6 +16,7 @@ class SupervisionController extends Controller
         return view('servicios.index', [
             'servicios' => $supervision->listar($request->user(), $request->validated()),
             'tecnicos' => $tecnicos->listar(),
+            'tecnicoElegido' => $request->validated('id_tecnico') ? $tecnicos->obtener((int) $request->validated('id_tecnico')) : null,
         ]);
     }
 
