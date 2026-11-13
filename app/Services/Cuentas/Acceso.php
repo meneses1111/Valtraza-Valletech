@@ -3,6 +3,7 @@
 namespace App\Services\Cuentas;
 
 use App\Models\Usuario;
+use App\Support\EntradaFormulario;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,8 @@ class Acceso
     public function listarCuentas(): mixed
     {
         return Usuario::query()->select(['id_usuario', 'nombre_usuario', 'rol', 'activado', 'id_tecnico'])
-            ->orderBy('nombre_usuario')->get();
+            ->with('tecnico:id_tecnico,nombre')->orderBy('nombre_usuario')
+            ->paginate(EntradaFormulario::POR_PAGINA, ['*'], 'cuentas_pagina')->withQueryString();
     }
 
     public function verificar(Usuario $usuario, string $contrasena): bool
@@ -66,12 +68,14 @@ class Acceso
             try {
                 return DB::transaction(function () use ($datos): string {
                     $codigo = Str::random(32);
-                    Usuario::query()->create([
+                    $usuario = new Usuario([
                         'nombre_usuario' => $datos['nombre_usuario'],
                         'id_tecnico' => $datos['id_tecnico'],
+                    ]);
+                    $usuario->forceFill([
                         'rol' => 'tecnico',
                         'codigo_activacion' => $codigo,
-                    ]);
+                    ])->save();
 
                     return $codigo;
                 }, 3);

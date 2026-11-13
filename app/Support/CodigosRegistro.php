@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CodigosRegistro
 {
@@ -24,6 +25,6 @@ class CodigosRegistro
 
     public function seguimiento(): string
     {
-        return bin2hex(random_bytes(16));
+        return Str::random(32);
     }
 }
