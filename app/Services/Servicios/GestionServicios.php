@@ -132,8 +132,8 @@ class GestionServicios
     {
         $this->comprobarEncargado($servicio, $usuario);
 
+        // RF08: el encargado consulta, en solo lectura, los servicios completados del mismo computador.
         return Servicio::query()->withCount('trabajos')
-            ->where('id_tecnico', $usuario->id_tecnico)
             ->where('id_equipo', $servicio->id_equipo)->where('estado', 'completado')
             ->where('id_servicio', '<>', $servicio->id_servicio)
             ->orderByDesc('fecha')->orderByDesc('id_servicio')

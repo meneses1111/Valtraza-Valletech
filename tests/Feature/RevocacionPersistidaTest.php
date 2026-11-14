@@ -41,16 +41,20 @@ class RevocacionPersistidaTest extends TestCase
         $this->get('/clientes?page=2')->assertOk()->assertSee('Cliente 15');
     }
 
-    public function test_el_historial_no_filtra_ordenes_completadas_de_otro_tecnico_del_mismo_equipo(): void
+    public function test_el_historial_de_otro_tecnico_solo_muestra_sus_actividades_completadas(): void
     {
         $usuario = $this->cuentaTecnico();
         $equipo = $this->equipo();
-        $ajeno = $this->servicio($equipo, $this->tecnico('Otro'), 'completado', ['nombre' => 'Servicio reservado ajeno']);
-        $this->trabajo($ajeno, 'reparacion', 'Detalle reservado ajeno');
+        $anterior = $this->servicio($equipo, $this->tecnico('Tecnico Anterior Reservado'), 'completado', ['nombre' => 'Servicio anterior del equipo']);
+        $this->trabajo($anterior, 'reparacion', 'Cambio de disco del servicio anterior');
+        $this->diagnostico($anterior, 'Diagnostico reservado anterior');
+        $this->repuesto($anterior, 'Repuesto reservado anterior');
         $actual = $this->servicio($equipo, $this->tecnicoDe($usuario));
 
-        $this->actingAs($usuario)->get('/mis-servicios/'.$actual->id_servicio)
-            ->assertOk()->assertDontSee('Servicio reservado ajeno')->assertDontSee('Detalle reservado ajeno');
+        $this->actingAs($usuario)->get('/mis-servicios/'.$actual->id_servicio)->assertOk()
+            ->assertSee('Servicio anterior del equipo')->assertSee('Cambio de disco del servicio anterior')
+            ->assertDontSee('Diagnostico reservado anterior')->assertDontSee('Repuesto reservado anterior')
+            ->assertDontSee('Tecnico Anterior Reservado');
     }
 
     public function test_la_transaccion_revalida_una_cuenta_aunque_la_instancia_este_desactualizada(): void
