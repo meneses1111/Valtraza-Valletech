@@ -15,7 +15,7 @@
         @guest
             <p class="text-body-secondary">Administrador y técnicos registrados.</p>
             <form method="post" action="{{ route('login.iniciar') }}">@csrf
-                <x-campo nombre="nombre_usuario" etiqueta="Usuario *" maxlength="50" autocomplete="username" required />
+                <x-campo nombre="nombre_usuario" etiqueta="Usuario *" maxlength="50" autocomplete="username" autocapitalize="none" spellcheck="false" required />
                 <x-campo nombre="password" etiqueta="Contraseña *" tipo="password" autocomplete="current-password" required />
                 <button class="btn btn-primary" type="submit">Ingresar</button>
             </form>

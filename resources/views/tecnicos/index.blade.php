@@ -19,8 +19,8 @@
             <div class="card"><div class="card-body"><h2 id="nuevo-tecnico" class="h5 mb-3">Nuevo técnico</h2>
                 <form method="post" action="{{ route('tecnicos.guardar') }}">@csrf
                     <x-campo nombre="nombre" etiqueta="Nombre *" required maxlength="100" />
-                    <x-campo nombre="numero_identificacion" etiqueta="Número de identificación *" required maxlength="20" />
-                    <x-campo nombre="correo" etiqueta="Correo electrónico (opcional)" tipo="email" maxlength="100" />
+                    <x-campo nombre="numero_identificacion" etiqueta="Número de identificación *" required maxlength="20" autocomplete="off" spellcheck="false" />
+                    <x-campo nombre="correo" etiqueta="Correo electrónico (opcional)" tipo="email" maxlength="100" autocomplete="off" autocapitalize="none" spellcheck="false" />
                     <button class="btn btn-primary" type="submit">Registrar técnico</button>
                 </form>
             </div></div>
