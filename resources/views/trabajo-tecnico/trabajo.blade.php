@@ -4,8 +4,8 @@
 
 @section('formulario')
 <form method="post" action="{{ route('trabajos.guardar', $servicio->id_servicio) }}">@csrf
-    <div class="mb-3"><label class="form-label" for="tipo">Tipo de actividad *</label><select id="tipo" name="tipo" @class(['form-select', 'is-invalid' => $errors->has('tipo')]) required><option value="">Selecciona una actividad</option>@foreach(\App\Enums\TipoTrabajo::cases() as $tipo)<option value="{{ $tipo->value }}" @selected(old('tipo') === $tipo->value)>{{ $tipo->etiqueta() }}</option>@endforeach</select>@error('tipo')<div class="invalid-feedback">{{ $message }}</div>@enderror</div>
-    <x-campo nombre="descripcion" etiqueta="Descripción del trabajo *" tipo="textarea" required />
+    <div class="mb-3"><label class="form-label" for="tipo">Tipo de actividad *</label><select id="tipo" name="tipo" @class(['form-select', 'is-invalid' => $errors->has('tipo')]) data-mensaje-requerido="Falta indicar si es un mantenimiento o una reparación." required><option value="">Selecciona una actividad</option>@foreach(\App\Enums\TipoTrabajo::cases() as $tipo)<option value="{{ $tipo->value }}" @selected(old('tipo') === $tipo->value)>{{ $tipo->etiqueta() }}</option>@endforeach</select>@error('tipo')<div id="tipo-error" class="invalid-feedback">{{ $message }}</div>@enderror</div>
+    <x-campo nombre="descripcion" etiqueta="Descripción del trabajo *" tipo="textarea" data-mensaje-requerido="Describe el trabajo realizado." required />
     <x-campo nombre="observaciones" etiqueta="Observaciones (opcional)" tipo="textarea" />
     <button class="btn btn-primary" type="submit">Guardar actividad</button>
 </form>

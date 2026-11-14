@@ -15,16 +15,17 @@
         @if($cliente)
             <form method="post" action="{{ route('servicios.guardar') }}">@csrf
                 <input type="hidden" name="id_cliente" value="{{ $cliente->id_cliente }}">
-                <div class="mb-3"><label for="id_equipo" class="form-label">Computador de {{ $cliente->nombre }} *</label><select id="id_equipo" name="id_equipo" @class(['form-select', 'is-invalid' => $errors->has('id_equipo')]) required><option value="">Selecciona un computador</option>
+                <div class="mb-3"><label for="id_equipo" class="form-label">Computador de {{ $cliente->nombre }} *</label><select id="id_equipo" name="id_equipo" @class(['form-select', 'is-invalid' => $errors->has('id_equipo')]) data-mensaje-requerido="Falta elegir un computador." required><option value="">Selecciona un computador</option>
                     @if($equipoElegido && ! $equipos->getCollection()->contains('id_equipo', $equipoElegido->id_equipo))<option value="{{ $equipoElegido->id_equipo }}" selected>{{ $equipoElegido->codigo_equipo }} · {{ $equipoElegido->modelo ?: 'Modelo no registrado' }}</option>@endif
                     @foreach($equipos as $equipo)<option value="{{ $equipo->id_equipo }}" @selected($equipoElegido?->id_equipo === $equipo->id_equipo)>{{ $equipo->codigo_equipo }} · {{ $equipo->modelo ?: 'Modelo no registrado' }}</option>@endforeach
-                </select>@error('id_equipo')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </select>@error('id_equipo')<div id="id_equipo-error" class="invalid-feedback">{{ $message }}</div>@enderror
                     <a class="small d-inline-block mt-2" href="{{ route('clientes.ver', $cliente->id_cliente) }}">Registrar un computador nuevo</a>
                 </div>
                 <x-campo nombre="fecha" etiqueta="Fecha del servicio *" tipo="date" :valor="now()->timezone('America/Bogota')->toDateString()" required />
                 <x-campo nombre="nombre" etiqueta="Nombre del servicio *" required maxlength="100" />
                 <x-campo nombre="descripcion_problema" etiqueta="Descripción del problema *" tipo="textarea" required />
-                <button class="btn btn-primary" type="submit" @disabled($equipos->total() === 0)>Registrar servicio</button>
+                @if($equipos->total() === 0)<p class="falta-para-continuar" id="falta-registrar-servicio">Para registrar el servicio, primero registra un computador de este cliente.</p>@endif
+                <button class="btn btn-primary" type="submit" @disabled($equipos->total() === 0) @if($equipos->total() === 0) aria-describedby="falta-registrar-servicio" @endif>Registrar servicio</button>
             </form>
             {{ $equipos->links() }}
         @else

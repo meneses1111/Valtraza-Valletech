@@ -14,9 +14,10 @@
     <section class="col-lg-5" aria-labelledby="cuenta-nueva"><div class="card"><div class="card-body">
         <h2 class="h5" id="cuenta-nueva">Crear cuenta de técnico</h2><p class="text-body-secondary small">La cuenta tendrá permisos de técnico. Cada técnico puede tener una sola cuenta.</p>
         <form method="post" action="{{ route('cuentas.guardar') }}">@csrf
-            <div class="mb-3"><label class="form-label" for="id_tecnico">Técnico registrado *</label><select class="form-select" id="id_tecnico" name="id_tecnico" required><option value="">Selecciona un técnico</option>@foreach($tecnicos as $tecnico)<option value="{{ $tecnico->id_tecnico }}" @selected(\App\Support\EntradaFormulario::texto(old('id_tecnico')) === (string) $tecnico->id_tecnico)>{{ $tecnico->nombre }}</option>@endforeach</select>@error('id_tecnico')<p class="text-danger small">{{ $message }}</p>@enderror</div>
-            <x-campo nombre="nombre_usuario" etiqueta="Nombre de usuario *" maxlength="50" autocomplete="off" required />
-            <button class="btn btn-primary" type="submit" @disabled($tecnicos->isEmpty())>Crear cuenta</button>
+            <div class="mb-3"><label class="form-label" for="id_tecnico">Técnico registrado *</label><select @class(['form-select', 'is-invalid' => $errors->has('id_tecnico')]) id="id_tecnico" name="id_tecnico" data-mensaje-requerido="Falta elegir un técnico." required><option value="">Selecciona un técnico</option>@foreach($tecnicos as $tecnico)<option value="{{ $tecnico->id_tecnico }}" @selected(\App\Support\EntradaFormulario::texto(old('id_tecnico')) === (string) $tecnico->id_tecnico)>{{ $tecnico->nombre }}</option>@endforeach</select>@error('id_tecnico')<div id="id_tecnico-error" class="invalid-feedback">{{ $message }}</div>@enderror</div>
+            <x-campo nombre="nombre_usuario" etiqueta="Nombre de usuario *" maxlength="50" autocomplete="off" autocapitalize="none" spellcheck="false" required />
+            @if($tecnicos->isEmpty())<p class="falta-para-continuar" id="falta-crear-cuenta">Para crear una cuenta, primero registra un técnico desde el menú Técnicos.</p>@endif
+            <button class="btn btn-primary" type="submit" @disabled($tecnicos->isEmpty()) @if($tecnicos->isEmpty()) aria-describedby="falta-crear-cuenta" @endif>Crear cuenta</button>
         </form>
         {{ $tecnicos->links() }}
     </div></div></section>

@@ -26,8 +26,8 @@
                 @endif
                 <form method="post" action="{{ route('clientes.guardar') }}">@csrf
                     <x-campo nombre="nombre" etiqueta="Nombre *" required maxlength="100" />
-                    <x-campo nombre="numero_identificacion" etiqueta="Número de identificación *" required maxlength="20" />
-                    <x-campo nombre="correo" etiqueta="Correo electrónico (opcional)" tipo="email" maxlength="100" />
+                    <x-campo nombre="numero_identificacion" etiqueta="Número de identificación *" required maxlength="20" autocomplete="off" spellcheck="false" />
+                    <x-campo nombre="correo" etiqueta="Correo electrónico (opcional)" tipo="email" maxlength="100" autocomplete="off" autocapitalize="none" spellcheck="false" />
                     <button class="btn btn-primary" type="submit">Registrar cliente</button>
                 </form>
             </div></div>

@@ -18,4 +18,11 @@ h1 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700; }
 .alert, .invalid-feedback { overflow-wrap: anywhere; }
 .nav-tabs { row-gap: .25rem; }
 .nav-tabs .nav-link { white-space: normal; }
+.reglas-contrasena { list-style: none; padding: 0; margin: .5rem 0 0; font-size: .875rem; color: #52647e; }
+.reglas-contrasena li { display: flex; align-items: center; gap: .45rem; margin-bottom: .2rem; }
+.reglas-contrasena li::before { content: ""; flex: 0 0 1rem; height: 1rem; border: 1.5px solid #9aa8bc; border-radius: 50%; }
+.reglas-contrasena li.cumple { color: #146c43; }
+.reglas-contrasena li.cumple::before { content: "✓"; border-color: #198754; background: #198754; color: #fff; font-size: .7rem; line-height: 1; display: grid; place-items: center; }
+.falta-para-continuar { font-size: .875rem; color: #52647e; margin: 0 0 .5rem; }
+.falta-para-continuar[hidden] { display: none; }
 @media (max-width: 575px) { .card-body { padding: 1rem; } .cabecera .nav-link { padding: .5rem .6rem; } }
