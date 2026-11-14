@@ -82,7 +82,7 @@ class InicioSesionTest extends TestCase
         $this->administrador();
 
         $this->followingRedirects()->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada'])
-            ->assertSee('No se pudo iniciar sesión con estos datos.');
+            ->assertSee('Usuario o contraseña incorrectos.');
     }
 
     public function test_una_cuenta_sin_activar_no_inicia_sesion(): void
@@ -203,7 +203,7 @@ class InicioSesionTest extends TestCase
         $this->cuentaTecnico(nombreUsuario: 'pendiente1', activa: false);
 
         $this->followingRedirects()->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'pendiente1', 'password' => $this->contrasenaDePrueba])
-            ->assertSeeText('No se pudo iniciar sesión con estos datos.')
+            ->assertSeeText('Usuario o contraseña incorrectos.')
             ->assertSeeText('Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.');
 
         $this->assertGuest();
@@ -213,7 +213,7 @@ class InicioSesionTest extends TestCase
     {
         $html = $this->followingRedirects()->from('/ingresar')
             ->post('/ingresar', ['nombre_usuario' => $nombreUsuario, 'password' => 'Clave-equivocada'])
-            ->assertOk()->assertSeeText('No se pudo iniciar sesión con estos datos.')->getContent();
+            ->assertOk()->assertSeeText('Usuario o contraseña incorrectos.')->getContent();
 
         return preg_replace('/name="_token" value="[^"]*"/', '', str_replace($nombreUsuario, '[usuario]', $html));
     }

@@ -38,12 +38,12 @@ class AvisoActivacionLoginTest extends TestCase
             'nombre_usuario' => $nombreUsuario,
             'password' => 'Clave-equivocada',
         ])->assertRedirect('/ingresar')->assertSessionHasErrors([
-            'nombre_usuario' => 'No se pudo iniciar sesión con estos datos.',
+            'nombre_usuario' => 'Usuario o contraseña incorrectos.',
         ]);
 
         $this->assertGuest();
         $this->get('/ingresar')->assertOk()
-            ->assertSeeText('No se pudo iniciar sesión con estos datos.')
+            ->assertSeeText('Usuario o contraseña incorrectos.')
             ->assertSeeText('Si todavía no activas tu cuenta, usa')
             ->assertSeeText('con el código que te entregó el administrador.')
             ->assertSee('href="'.route('activar').'"', false);
