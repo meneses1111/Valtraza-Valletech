@@ -66,7 +66,7 @@ class RegistroServiciosTest extends TestCase
     {
         $this->registrar($this->datos());
 
-        $this->assertMatchesRegularExpression('/^[0-9a-f]{32}$/', Servicio::query()->first()->codigo_seguimiento);
+        $this->assertMatchesRegularExpression('/^[A-Za-z0-9]{32}$/', Servicio::query()->first()->codigo_seguimiento);
     }
 
     public function test_dos_servicios_tienen_codigos_distintos(): void

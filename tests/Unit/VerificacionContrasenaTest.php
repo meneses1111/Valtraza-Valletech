@@ -11,7 +11,7 @@ class VerificacionContrasenaTest extends TestCase
 {
     private function usuario(string $contrasena, bool $activado = true): Usuario
     {
-        $usuario = new Usuario(['nombre_usuario' => 'ficticio', 'rol' => 'administrador']);
+        $usuario = (new Usuario)->forceFill(['nombre_usuario' => 'ficticio', 'rol' => 'administrador']);
         $usuario->activado = $activado;
         $usuario->contrasena_hash = Hash::make($contrasena);
 
@@ -47,7 +47,7 @@ class VerificacionContrasenaTest extends TestCase
 
     public function test_una_cuenta_sin_contrasena_guardada_es_rechazada(): void
     {
-        $usuario = new Usuario(['nombre_usuario' => 'ficticio', 'rol' => 'administrador']);
+        $usuario = (new Usuario)->forceFill(['nombre_usuario' => 'ficticio', 'rol' => 'administrador']);
         $usuario->activado = true;
 
         $this->assertFalse((new Acceso)->verificar($usuario, ''));

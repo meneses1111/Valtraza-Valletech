@@ -14,7 +14,7 @@ class AccesoTest extends TestCase
 
     public function test_una_cuenta_activa_inicia_sesion_y_abre_el_panel(): void
     {
-        $usuario = Usuario::query()->create([
+        $usuario = Usuario::query()->forceCreate([
             'nombre_usuario' => 'admin', 'rol' => 'administrador', 'codigo_activacion' => 'ACT-1',
         ]);
         $usuario->activado = true;
@@ -30,7 +30,7 @@ class AccesoTest extends TestCase
 
     public function test_una_cuenta_inactiva_no_puede_iniciar_sesion(): void
     {
-        Usuario::query()->create(['nombre_usuario' => 'admin', 'rol' => 'administrador', 'codigo_activacion' => 'ACT-1']);
+        Usuario::query()->forceCreate(['nombre_usuario' => 'admin', 'rol' => 'administrador', 'codigo_activacion' => 'ACT-1']);
 
         $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'contrasena123'])
             ->assertSessionHasErrors('nombre_usuario');
@@ -40,7 +40,7 @@ class AccesoTest extends TestCase
 
     public function test_el_codigo_de_activacion_solo_funciona_una_vez(): void
     {
-        Usuario::query()->create(['nombre_usuario' => 'admin', 'rol' => 'administrador', 'codigo_activacion' => 'ACT-1']);
+        Usuario::query()->forceCreate(['nombre_usuario' => 'admin', 'rol' => 'administrador', 'codigo_activacion' => 'ACT-1']);
         $datos = ['codigo_activacion' => 'ACT-1', 'password' => 'contrasena123', 'password_confirmation' => 'contrasena123'];
 
         $this->post('/activar', $datos)->assertRedirect('/ingresar');
@@ -52,7 +52,7 @@ class AccesoTest extends TestCase
     public function test_un_tecnico_no_puede_crear_cuentas(): void
     {
         $tecnico = Tecnico::query()->create(['nombre' => 'Ana', 'numero_identificacion' => '1001']);
-        $usuario = Usuario::query()->create([
+        $usuario = Usuario::query()->forceCreate([
             'nombre_usuario' => 'ana', 'rol' => 'tecnico', 'id_tecnico' => $tecnico->id_tecnico,
             'codigo_activacion' => 'ACT-ANA',
         ]);

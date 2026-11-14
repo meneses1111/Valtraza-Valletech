@@ -3,6 +3,8 @@
 namespace App\Http\Requests\TrabajoTecnico;
 
 use App\Enums\TipoTrabajo;
+use App\Rules\TextoValido;
+use App\Support\EntradaFormulario;
 use Illuminate\Validation\Rule;
 
 class RegistrarTrabajoRequest extends SolicitudTecnico
@@ -11,8 +13,8 @@ class RegistrarTrabajoRequest extends SolicitudTecnico
     {
         return [
             'tipo' => ['required', Rule::enum(TipoTrabajo::class)],
-            'descripcion' => ['required', 'string'],
-            'observaciones' => ['nullable', 'string'],
+            'descripcion' => ['bail', 'required', 'string', new TextoValido, 'max:'.EntradaFormulario::MAX_TEXTO],
+            'observaciones' => ['bail', 'nullable', 'string', new TextoValido, 'max:'.EntradaFormulario::MAX_TEXTO],
         ];
     }
 }

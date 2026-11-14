@@ -25,7 +25,7 @@ trait DatosDePrueba
             return $existente;
         }
 
-        $usuario = Usuario::query()->create([
+        $usuario = Usuario::query()->forceCreate([
             'nombre_usuario' => $nombre,
             'rol' => 'administrador',
             'codigo_activacion' => Str::random(32),
@@ -48,7 +48,7 @@ trait DatosDePrueba
     protected function cuentaTecnico(?Tecnico $tecnico = null, ?string $nombreUsuario = null, bool $activa = true): Usuario
     {
         $tecnico ??= $this->tecnico();
-        $usuario = Usuario::query()->create([
+        $usuario = Usuario::query()->forceCreate([
             'nombre_usuario' => $nombreUsuario ?? 'tec'.$tecnico->id_tecnico,
             'rol' => 'tecnico',
             'id_tecnico' => $tecnico->id_tecnico,
