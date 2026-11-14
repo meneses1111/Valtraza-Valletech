@@ -17,4 +17,12 @@ class RegistrarTrabajoRequest extends SolicitudTecnico
             'observaciones' => ['bail', 'nullable', 'string', new TextoValido, 'max:'.EntradaFormulario::MAX_TEXTO],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'tipo.required' => 'Falta indicar si es un mantenimiento o una reparación.',
+            'descripcion.required' => 'Describe el trabajo realizado.',
+        ] + parent::messages();
+    }
 }

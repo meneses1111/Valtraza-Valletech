@@ -122,7 +122,7 @@ class RegistroServiciosTest extends TestCase
 
     public function test_el_computador_es_obligatorio(): void
     {
-        $this->registrar($this->datos(['id_equipo' => '']))->assertSessionHasErrors('id_equipo');
+        $this->registrar($this->datos(['id_equipo' => '']))->assertSessionHasErrors(['id_equipo' => 'Falta elegir un computador.']);
     }
 
     public function test_un_computador_de_otro_cliente_es_rechazado(): void

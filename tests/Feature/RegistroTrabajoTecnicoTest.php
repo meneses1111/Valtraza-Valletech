@@ -53,6 +53,38 @@ class RegistroTrabajoTecnicoTest extends TestCase
         $this->assertDatabaseHas('diagnostico', ['id_servicio' => $this->servicio->id_servicio, 'resultado' => 'No se encontraron fallas', 'fallas_identificadas' => null]);
     }
 
+    public static function camposObligatorios(): array
+    {
+        return [
+            'estado' => ['estado', [], 'estado', 'Falta elegir un estado.'],
+            'tipo de trabajo' => ['trabajos', ['descripcion' => 'Limpieza'], 'tipo', 'Falta indicar si es un mantenimiento o una reparación.'],
+            'descripción del trabajo' => ['trabajos', ['tipo' => 'mantenimiento'], 'descripcion', 'Describe el trabajo realizado.'],
+            'resultado del diagnóstico' => ['diagnosticos', [], 'resultado', 'Describe el resultado o marca que no se encontraron fallas.'],
+        ];
+    }
+
+    #[DataProvider('camposObligatorios')]
+    public function test_cada_campo_obligatorio_explica_que_falta(string $seccion, array $datos, string $campo, string $mensaje): void
+    {
+        $this->enviar($seccion, $datos)->assertSessionHasErrors([$campo => $mensaje]);
+    }
+
+    public function test_las_fallas_identificadas_se_guardan_aparte_del_resultado(): void
+    {
+        $this->enviar('diagnosticos', ['resultado' => 'Equipo revisado', 'fallas_identificadas' => 'Disco con sectores dañados'])->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('diagnostico', ['resultado' => 'Equipo revisado', 'fallas_identificadas' => 'Disco con sectores dañados']);
+        $this->actingAs($this->cuenta)->get('/mis-servicios/'.$this->servicio->id_servicio)
+            ->assertSee('Fallas identificadas:')->assertSee('Disco con sectores dañados');
+    }
+
+    public function test_sin_fallas_descarta_las_fallas_identificadas(): void
+    {
+        $this->enviar('diagnosticos', ['sin_fallas' => '1', 'fallas_identificadas' => 'Texto que no aplica'])->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('diagnostico', ['resultado' => 'No se encontraron fallas', 'fallas_identificadas' => null]);
+    }
+
     public function test_un_segundo_diagnostico_no_reemplaza_el_primero(): void
     {
         $this->enviar('diagnosticos', ['resultado' => 'Primera revisión']);

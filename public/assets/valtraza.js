@@ -154,12 +154,27 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmacion.addEventListener('input', evaluar);
         evaluar();
     }
+    const cuentaAtras = document.querySelector('[data-cuenta-atras]');
+    if (cuentaAtras) {
+        let restantes = Number(cuentaAtras.dataset.cuentaAtras) || 0;
+        const reloj = setInterval(() => {
+            restantes -= 1;
+            if (restantes <= 0) {
+                clearInterval(reloj);
+                cuentaAtras.closest('p').textContent = 'Ya puedes volver a intentarlo.';
+                return;
+            }
+            cuentaAtras.textContent = `${restantes} ${restantes === 1 ? 'segundo' : 'segundos'}`;
+        }, 1000);
+    }
+    document.querySelectorAll('[data-imprimir]').forEach((boton) => boton.addEventListener('click', () => window.print()));
     const sinFallas = document.querySelector('[data-sin-fallas]');
     const resultado = document.getElementById('resultado');
     if (sinFallas && resultado) {
         const actualizar = () => {
             resultado.disabled = sinFallas.checked;
             resultado.required = !sinFallas.checked;
+            document.querySelectorAll('[data-sin-fallas-oculta]').forEach((campo) => { campo.disabled = sinFallas.checked; });
             if (sinFallas.checked) {
                 resultado.classList.remove('is-invalid');
                 document.getElementById('resultado-error')?.replaceChildren();

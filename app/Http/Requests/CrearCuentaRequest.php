@@ -15,4 +15,11 @@ class CrearCuentaRequest extends SolicitudAdministrador
             'id_tecnico' => ['bail', 'required', 'integer', 'min:1', 'max:'.EntradaFormulario::MAX_IDENTIFICADOR, Rule::exists('tecnico', 'id_tecnico'), Rule::unique('usuario', 'id_tecnico')],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'id_tecnico.required' => 'Falta elegir un técnico.',
+        ] + parent::messages();
+    }
 }

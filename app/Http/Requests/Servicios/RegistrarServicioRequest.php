@@ -19,4 +19,11 @@ class RegistrarServicioRequest extends SolicitudAdministrador
             'descripcion_problema' => ['bail', 'required', 'string', new TextoValido, 'max:'.EntradaFormulario::MAX_TEXTO],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'id_equipo.required' => 'Falta elegir un computador.',
+        ] + parent::messages();
+    }
 }
