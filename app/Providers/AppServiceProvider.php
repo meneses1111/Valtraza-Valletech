@@ -60,7 +60,18 @@ class AppServiceProvider extends ServiceProvider
         }
 
         RateLimiter::for('consulta-publica', fn (Request $request) => Limit::perMinute(10)->by($request->ip()));
-        RateLimiter::for('acceso', fn (Request $request) => Limit::perMinute(5)->by($request->ip()));
+        // Ingreso: 5 intentos por cuenta e IP frenan la fuerza bruta; 20 por IP frenan el barrido de cuentas.
+        RateLimiter::for('ingreso', function (Request $request) {
+            $usuario = $request->input('nombre_usuario');
+            $cuenta = hash('sha256', is_string($usuario) ? mb_strtolower(trim($usuario)) : '');
+
+            return [
+                Limit::perMinute(5)->by('ingreso-cuenta:'.$cuenta.'|'.$request->ip()),
+                Limit::perMinute(20)->by('ingreso-ip:'.$request->ip()),
+            ];
+        });
+        // Activación con contador propio: los errores de activación no bloquean el ingreso.
+        RateLimiter::for('activacion', fn (Request $request) => Limit::perMinute(5)->by('activacion:'.$request->ip()));
         Usuario::observe(UsuarioObserver::class);
         Equipo::observe(EquipoObserver::class);
         Servicio::observe(ServicioObserver::class);

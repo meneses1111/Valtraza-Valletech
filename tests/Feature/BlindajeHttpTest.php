@@ -32,11 +32,11 @@ class BlindajeHttpTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_el_sexto_intento_de_login_se_bloquea_por_ip_aunque_cambie_el_usuario(): void
+    public function test_el_intento_21_de_login_se_bloquea_por_ip_aunque_cambie_el_usuario(): void
     {
         $this->withServerVariables(['REMOTE_ADDR' => '192.0.2.51']);
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $this->withHeader('X-Forwarded-For', '203.0.113.'.($i + 1))
                 ->postJson('/ingresar', ['nombre_usuario' => 'usuario'.$i, 'password' => []])->assertUnprocessable();
         }
