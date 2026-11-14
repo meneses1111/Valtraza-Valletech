@@ -26,7 +26,7 @@ jobs:
       - name: Comprobar contenido e índice
         run: python3 herramientas/gitbook/verificar.py
       - name: Preparar Node exclusivo para GitBook
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: '10.24.1'
       - name: Instalar el generador fijado
@@ -36,7 +36,7 @@ jobs:
       - name: Comprobar HTML y recursos generados
         run: python3 herramientas/gitbook/verificar.py --html _book
       - name: Preparar Node para revisar el navegador
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: '24'
       - name: Preparar revisión en Chrome
