@@ -62,7 +62,7 @@ class CuentasTecnicosTest extends TestCase
 
     public function test_el_tecnico_es_obligatorio(): void
     {
-        $this->crear(['nombre_usuario' => 'laura'])->assertSessionHasErrors('id_tecnico');
+        $this->crear(['nombre_usuario' => 'laura'])->assertSessionHasErrors(['id_tecnico' => 'Falta elegir un técnico.']);
 
         $this->assertDatabaseMissing('usuario', ['nombre_usuario' => 'laura']);
     }

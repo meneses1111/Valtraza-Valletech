@@ -39,7 +39,7 @@ class RegistroTrabajoTecnico
             Diagnostico::query()->create([
                 'id_servicio' => $servicio->id_servicio,
                 'resultado' => $sinFallas ? 'No se encontraron fallas' : $datos['resultado'],
-                'fallas_identificadas' => $sinFallas ? null : $datos['resultado'],
+                'fallas_identificadas' => $sinFallas ? null : ($datos['fallas_identificadas'] ?? null),
                 'pruebas_realizadas' => $datos['pruebas_realizadas'] ?? null,
                 'observaciones' => $datos['observaciones'] ?? null,
             ]);

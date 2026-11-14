@@ -25,4 +25,12 @@ h1 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700; }
 .reglas-contrasena li.cumple::before { content: "✓"; border-color: #198754; background: #198754; color: #fff; font-size: .7rem; line-height: 1; display: grid; place-items: center; }
 .falta-para-continuar { font-size: .875rem; color: #52647e; margin: 0 0 .5rem; }
 .falta-para-continuar[hidden] { display: none; }
+.cuenta-atras { font-variant-numeric: tabular-nums; }
+@media print {
+    body { background: #fff; }
+    .cabecera, .modal, .alert { display: none !important; }
+    main.container { padding: 0 !important; max-width: none; }
+    .comprobante { border: 1px solid #000; box-shadow: none; max-width: none; }
+    .comprobante .bg-body-tertiary { background: #fff !important; border: 1px dashed #000; }
+}
 @media (max-width: 575px) { .card-body { padding: 1rem; } .cabecera .nav-link { padding: .5rem .6rem; } }

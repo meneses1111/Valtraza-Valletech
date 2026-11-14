@@ -193,7 +193,11 @@ class InicioSesionTest extends TestCase
             $this->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada']);
         }
 
-        $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada'])->assertHeader('Retry-After');
+        $respuesta = $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada'])->assertHeader('Retry-After');
+        $segundos = (int) $respuesta->headers->get('Retry-After');
+
+        $this->assertGreaterThan(0, $segundos);
+        $respuesta->assertSee('Podrás intentarlo de nuevo en', false)->assertSee('data-cuenta-atras="'.$segundos.'"', false);
     }
 
     public function test_el_bloqueo_temporal_termina_despues_de_un_minuto(): void
