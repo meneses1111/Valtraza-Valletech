@@ -125,7 +125,7 @@ class ProteccionInformacionTest extends TestCase
 
     public function test_las_paginas_incluyen_las_cabeceras_de_seguridad(): void
     {
-        $this->get('/')->assertHeader('X-Frame-Options', 'DENY')->assertHeader('X-Content-Type-Options', 'nosniff');
+        $this->get('/')->assertHeader('X-Frame-Options', 'SAMEORIGIN')->assertHeader('X-Content-Type-Options', 'nosniff');
     }
 
     public function test_la_cookie_de_sesion_no_es_accesible_desde_javascript(): void

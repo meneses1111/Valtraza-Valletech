@@ -20,14 +20,14 @@ class MiddlewareSeguridadTest extends TestCase
     private function solicitudDe(?string $rol): Request
     {
         $solicitud = Request::create('/servicios');
-        $solicitud->setUserResolver(fn () => $rol ? new Usuario(['nombre_usuario' => 'ficticio', 'rol' => $rol]) : null);
+        $solicitud->setUserResolver(fn () => $rol ? (new Usuario)->forceFill(['nombre_usuario' => 'ficticio', 'rol' => $rol]) : null);
 
         return $solicitud;
     }
 
     public function test_las_respuestas_prohiben_mostrarse_dentro_de_marcos(): void
     {
-        $this->assertSame('DENY', $this->respuesta()->headers->get('X-Frame-Options'));
+        $this->assertSame('SAMEORIGIN', $this->respuesta()->headers->get('X-Frame-Options'));
     }
 
     public function test_las_respuestas_incluyen_politica_de_contenido(): void

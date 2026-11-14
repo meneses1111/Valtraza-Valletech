@@ -16,7 +16,7 @@ class PanelTest extends TestCase
     #[DataProvider('roles')]
     public function test_un_usuario_autenticado_que_abre_ingresar_es_redirigido_al_panel(string $rol): void
     {
-        $usuario = new Usuario(['nombre_usuario' => 'prueba', 'rol' => $rol]);
+        $usuario = (new Usuario)->forceFill(['nombre_usuario' => 'prueba', 'rol' => $rol, 'activado' => true]);
 
         $this->actingAs($usuario);
 
@@ -26,7 +26,7 @@ class PanelTest extends TestCase
     #[DataProvider('roles')]
     public function test_un_usuario_autenticado_que_abre_activar_es_redirigido_al_panel(string $rol): void
     {
-        $usuario = new Usuario(['nombre_usuario' => 'prueba', 'rol' => $rol]);
+        $usuario = (new Usuario)->forceFill(['nombre_usuario' => 'prueba', 'rol' => $rol, 'activado' => true]);
 
         $this->actingAs($usuario);
 
@@ -36,7 +36,7 @@ class PanelTest extends TestCase
     #[DataProvider('roles')]
     public function test_un_usuario_autenticado_puede_ver_el_panel(string $rol): void
     {
-        $usuario = new Usuario(['nombre_usuario' => 'prueba', 'rol' => $rol]);
+        $usuario = (new Usuario)->forceFill(['nombre_usuario' => 'prueba', 'rol' => $rol, 'activado' => true]);
 
         $this->actingAs($usuario);
 
