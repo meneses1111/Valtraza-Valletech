@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class CodigoSeguimientoTest extends TestCase
 {
-    public function test_el_codigo_de_seguimiento_tiene_32_caracteres_hexadecimales(): void
+    public function test_el_codigo_de_seguimiento_tiene_32_caracteres_alfanumericos_aleatorios(): void
     {
-        $this->assertMatchesRegularExpression('/^[0-9a-f]{32}$/', (new CodigosRegistro)->seguimiento());
+        $this->assertMatchesRegularExpression('/^[A-Za-z0-9]{32}$/', (new CodigosRegistro)->seguimiento());
     }
 
     public function test_los_codigos_de_seguimiento_no_se_repiten(): void

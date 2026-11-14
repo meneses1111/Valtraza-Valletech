@@ -80,11 +80,11 @@ class ServiciosAsignadosTest extends TestCase
         $this->actingAs($cuenta)->get('/mis-servicios/'.$servicio->id_servicio)->assertSee('Memoria defectuosa')->assertSee('Reemplazo de memoria')->assertSee('Módulo RAM 8 GB');
     }
 
-    public function test_el_historial_muestra_servicios_completados_anteriores_del_computador(): void
+    public function test_el_historial_muestra_servicios_completados_del_computador_asignados_al_mismo_tecnico(): void
     {
         $cuenta = $this->cuentaTecnico();
         $equipo = $this->equipo();
-        $anterior = $this->servicio($equipo, $this->tecnico('Anterior'), 'completado', ['nombre' => 'Limpieza de 2025', 'fecha' => '2025-05-01']);
+        $anterior = $this->servicio($equipo, $this->tecnicoDe($cuenta), 'completado', ['nombre' => 'Limpieza de 2025', 'fecha' => '2025-05-01']);
         $this->trabajo($anterior, 'mantenimiento', 'Limpieza y pasta térmica');
         $actual = $this->servicio($equipo, $this->tecnicoDe($cuenta), 'en_curso');
 
