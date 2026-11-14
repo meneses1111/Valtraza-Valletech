@@ -36,7 +36,7 @@ class AccesoController extends Controller
             RateLimiter::hit($clave, 60);
             AuditoriaSeguridad::registrar('login_fallido', $request, ['cuenta_id' => $usuario?->getKey()]);
 
-            return back()->withErrors(['nombre_usuario' => 'No se pudo iniciar sesión con estos datos.']);
+            return back()->withErrors(['nombre_usuario' => 'Usuario o contraseña incorrectos.']);
         }
 
         RateLimiter::clear($clave);

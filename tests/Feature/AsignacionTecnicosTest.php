@@ -38,7 +38,7 @@ class AsignacionTecnicosTest extends TestCase
     {
         $servicio = $this->servicio();
 
-        $this->asignar($servicio->id_servicio, ['id_tecnico' => ''])->assertSessionHasErrors('id_tecnico');
+        $this->asignar($servicio->id_servicio, ['id_tecnico' => ''])->assertSessionHasErrors(['id_tecnico' => 'Falta elegir un técnico.']);
 
         $this->assertNull($servicio->fresh()->id_tecnico);
     }
