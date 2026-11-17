@@ -170,6 +170,49 @@ function contiene(lista, texto) {
     return lista.some((linea) => linea.includes(texto));
 }
 
+async function estadoCuenta(pagina, usuario) {
+    for (let numero = 1; numero <= 50; numero++) {
+        await ir(pagina, `/cuentas/nueva?cuentas_pagina=${numero}`);
+        const estado = await pagina.evaluate((nombre) => Array.from(document.querySelectorAll('table tbody tr'))
+            .find((fila) => fila.cells[0]?.textContent.trim() === nombre)?.cells[3]?.textContent.trim() ?? null, usuario);
+        if (estado !== null || !(await pagina.$('a[rel="next"]'))) {
+            return estado;
+        }
+    }
+
+    return null;
+}
+
+const esperasLimite = [];
+
+async function esperaPorLimite(pagina) {
+    return pagina.evaluate(() => {
+        if (!document.body.innerText.includes('Demasiados intentos')) {
+            return null;
+        }
+
+        return Number(document.querySelector('[data-cuenta-atras]')?.dataset.cuentaAtras ?? 60);
+    });
+}
+
+async function enviarActivacion(navegador, pagina, cp, campos, { sinNativa = false } = {}) {
+    for (let intento = 1; intento <= 3; intento++) {
+        await llenar(pagina, campos);
+        if (sinNativa) {
+            await sinValidacionNativa(pagina);
+        }
+        await enviar(pagina);
+        const espera = await esperaPorLimite(pagina);
+        if (espera === null) {
+            return;
+        }
+        esperasLimite.push({ navegador, cp, segundos: espera });
+        console.log(`LÍMITE [${navegador}] ${cp} 429 Demasiados intentos · espera de ${espera} s`);
+        await new Promise((r) => setTimeout(r, (espera + 1) * 1000));
+        await ir(pagina, '/activar');
+    }
+}
+
 async function activarAdministrador(navegador, pagina) {
     await ir(pagina, '/activar');
     await llenar(pagina, { '#codigo_activacion': ADMIN_CODIGO, '#password': ADMIN_CLAVE, '#password_confirmation': ADMIN_CLAVE });
@@ -247,8 +290,9 @@ async function recorrido(navegador) {
         await llenar(pagina, { '#nombre_usuario': `tec${pref.toLowerCase()}${sufijo}` });
         await enviar(pagina);
         const codigoActivacion = await pagina.$eval('.alert .codigo-seguimiento', (nodo) => nodo.textContent.trim()).catch(() => null);
-        registrar(navegador, 'CP013', 'cuenta creada con código de activación y estado pendiente', Boolean(codigoActivacion) && (await pagina.content()).includes('Pendiente de activar'));
         await capturar(navegador, pagina, 'cuenta-creada', 'CP013');
+        const estadoNueva = await estadoCuenta(pagina, `tec${pref.toLowerCase()}${sufijo}`);
+        registrar(navegador, 'CP013', 'cuenta creada con código de activación y estado pendiente', Boolean(codigoActivacion) && estadoNueva === 'Pendiente de activar', { nota: estadoNueva ?? 'cuenta no encontrada en el listado' });
 
         await ir(pagina, '/clientes');
         await llenar(pagina, { '#nombre': `Cliente ${pref} ${sufijo}`, '#numero_identificacion': `${pref}C${sufijo}`, '#correo': `cliente.${sufijo}@ejemplo.test` });
@@ -324,19 +368,15 @@ async function recorrido(navegador) {
 
         await Promise.all([pagina.waitForNavigation({ waitUntil: 'load' }), pagina.click('main p a[href$="/activar"]')]);
         registrar(navegador, 'CP005', 'el enlace de la guía abre el formulario de activación', pagina.url() === BASE + '/activar' && Boolean(await pagina.$('#codigo_activacion')));
-        await llenar(pagina, { '#codigo_activacion': codigoActivacion, '#password': 'corta1', '#password_confirmation': 'corta1' });
-        await sinValidacionNativa(pagina);
-        await enviar(pagina);
+        await enviarActivacion(navegador, pagina, 'CP017', { '#codigo_activacion': codigoActivacion, '#password': 'corta1', '#password_confirmation': 'corta1' }, { sinNativa: true });
         const avisoCorta = await textos(pagina);
         registrar(navegador, 'CP017', 'contraseña de menos de 8 caracteres es rechazada', avisoCorta.length > 0 && pagina.url().endsWith('/activar'), { mensajes: avisoCorta });
         await capturar(navegador, pagina, 'activacion-corta', 'CP017');
-        await llenar(pagina, { '#codigo_activacion': codigoActivacion, '#password': claveTecnico, '#password_confirmation': claveTecnico });
-        await enviar(pagina);
+        await enviarActivacion(navegador, pagina, 'CP015', { '#codigo_activacion': codigoActivacion, '#password': claveTecnico, '#password_confirmation': claveTecnico });
         registrar(navegador, 'CP015', 'activación con código válido', pagina.url().endsWith('/ingresar'), { mensajes: await textos(pagina) });
         await capturar(navegador, pagina, 'activacion-correcta', 'CP015');
         await ir(pagina, '/activar');
-        await llenar(pagina, { '#codigo_activacion': codigoActivacion, '#password': claveTecnico, '#password_confirmation': claveTecnico });
-        await enviar(pagina);
+        await enviarActivacion(navegador, pagina, 'CP016', { '#codigo_activacion': codigoActivacion, '#password': claveTecnico, '#password_confirmation': claveTecnico });
         const avisoReuso = await textos(pagina);
         registrar(navegador, 'CP016', 'el código ya usado es rechazado', contiene(avisoReuso, 'ya utilizado'), { mensajes: avisoReuso });
         await capturar(navegador, pagina, 'activacion-reutilizada', 'CP016');
@@ -442,7 +482,7 @@ const versiones = [];
 for (const navegador of SOLO) {
     versiones.push(await recorrido(navegador));
 }
-await writeFile(path.join(SALIDA, `resultados_C${CICLO}.json`), JSON.stringify({ fecha: new Date().toISOString(), base: BASE, versiones: versiones.map(({ navegador, version }) => ({ navegador, version })), avisos_confirmacion: [...new Set(avisosConfirmacion)], resultados }, null, 2));
+await writeFile(path.join(SALIDA, `resultados_C${CICLO}.json`), JSON.stringify({ fecha: new Date().toISOString(), base: BASE, versiones: versiones.map(({ navegador, version }) => ({ navegador, version })), avisos_confirmacion: [...new Set(avisosConfirmacion)], esperas_limite: esperasLimite, resultados }, null, 2));
 const fallas = resultados.filter((r) => !r.ok).length;
 console.log(`\n${resultados.length - fallas} comprobaciones correctas, ${fallas} fallidas.`);
 process.exit(fallas ? 1 : 0);

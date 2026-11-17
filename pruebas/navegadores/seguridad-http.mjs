@@ -60,10 +60,14 @@ registrar('CP069', 'cookie de sesión SameSite=Lax', /;\s*samesite=lax/i.test(co
 const expira = new Date(cookieSesion.match(/expires=([^;]+)/i)?.[1]);
 const minutos = Math.round((expira - Date.now()) / 60000);
 registrar('CP069', 'la sesión expira a las 2 horas de inactividad (SESSION_LIFETIME=120)', minutos >= 118 && minutos <= 121, `${minutos} minutos`);
-for (const [cabecera, esperado] of [['x-frame-options', 'DENY'], ['x-content-type-options', 'nosniff'], ['cache-control', 'no-store'], ['content-security-policy', "frame-ancestors 'none'"]]) {
-    const valor = ingreso.cabeceras.get(cabecera) ?? '';
-    registrar('CP069', `cabecera ${cabecera}`, valor.includes(esperado), valor);
-}
+const cabecera = (nombre) => ingreso.cabeceras.get(nombre) ?? '';
+const csp = cabecera('content-security-policy');
+const directiva = (nombre) => csp.split(';').map((parte) => parte.trim()).find((parte) => parte.split(/\s+/)[0] === nombre)?.slice(nombre.length).trim() ?? null;
+registrar('CP069', 'cabecera x-frame-options impide enmarcar desde otros sitios', /^(DENY|SAMEORIGIN)$/i.test(cabecera('x-frame-options').trim()), cabecera('x-frame-options'));
+registrar('CP069', 'cabecera x-content-type-options', cabecera('x-content-type-options').includes('nosniff'), cabecera('x-content-type-options'));
+registrar('CP069', 'cabecera cache-control', cabecera('cache-control').includes('no-store'), cabecera('cache-control'));
+registrar('CP069', 'la CSP solo permite enmarcar desde el propio sitio', ["'none'", "'self'"].includes(directiva('frame-ancestors')), `frame-ancestors ${directiva('frame-ancestors')}`);
+registrar('CP069', 'la CSP no permite scripts en línea ni eval', directiva('script-src') !== null && !/unsafe-inline|unsafe-eval|\*/.test(directiva('script-src')), `script-src ${directiva('script-src')}`);
 
 const sinToken = await new Sesion().formulario('/ingresar', { nombre_usuario: ADMIN, password: CLAVE });
 registrar('CP067', 'ingreso sin token CSRF es rechazado', sinToken.estado === 419, String(sinToken.estado));

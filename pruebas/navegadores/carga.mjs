@@ -62,14 +62,16 @@ class Sesion {
 }
 
 function resumen(nombre, muestras) {
-    const tiempos = muestras.map((m) => m.ms).sort((a, b) => a - b);
+    const atendidas = muestras.filter((m) => m.estado !== 429);
+    const tiempos = (atendidas.length ? atendidas : muestras).map((m) => m.ms).sort((a, b) => a - b);
     const percentil = (p) => tiempos[Math.min(tiempos.length - 1, Math.ceil((p / 100) * tiempos.length) - 1)];
-    const errores = muestras.filter((m) => !m.ok).length;
+    const errores = atendidas.filter((m) => !m.ok).length;
 
     return {
         consulta: nombre,
-        solicitudes: tiempos.length,
+        solicitudes: muestras.length,
         errores,
+        limitadas_429: muestras.length - atendidas.length,
         min_ms: +tiempos[0].toFixed(1),
         p50_ms: +percentil(50).toFixed(1),
         p95_ms: +percentil(95).toFixed(1),
@@ -83,7 +85,7 @@ async function medir(sesion, ruta, esperado, repeticiones = REPETICIONES) {
     const muestras = [];
     for (let i = 0; i < repeticiones; i++) {
         const r = await sesion.pedir(ruta);
-        muestras.push({ ms: r.ms, ok: r.estado === 200 && r.cuerpo.includes(esperado) });
+        muestras.push({ ms: r.ms, ok: r.estado === 200 && r.cuerpo.includes(esperado), estado: r.estado });
     }
 
     return muestras;
@@ -123,7 +125,7 @@ simples.push(resumen('GET /mis-servicios/{id} (detalle técnico)', await medir(t
 const consultasSecuenciales = [];
 for (const codigo of codigos.slice(0, 10)) {
     const r = await new Sesion().consultar(codigo);
-    consultasSecuenciales.push({ ms: r.ms, ok: r.estado === 200 && r.cuerpo.includes('Resumen del avance') });
+    consultasSecuenciales.push({ ms: r.ms, ok: r.estado === 200 && r.cuerpo.includes('Resumen del avance'), estado: r.estado });
 }
 simples.push(resumen('POST /consultar (consulta pública por código)', consultasSecuenciales));
 
@@ -181,11 +183,11 @@ const informe = {
     },
     limitaciones: [
         'Cliente y servidor comparten el mismo equipo; no se mide la latencia de red real.',
-        'Todas las solicitudes salen de la misma IP; la consulta pública admite 30 solicitudes por minuto por IP, por eso la ráfaga pública usa una consulta por visitante y se espera un minuto antes de la prueba simultánea.',
+        'Todas las solicitudes salen de la misma IP. La consulta pública admite 10 solicitudes por minuto por IP como protección contra la adivinación de códigos; se espera un minuto antes de la ráfaga simultánea, y las solicitudes que superan ese límite reciben 429 y se cuentan como limitadas, no como errores ni dentro de los tiempos. Con visitantes reales, cada IP tiene su propio límite.',
         'Se usa el entorno local de pruebas (APP_ENV=local, APP_DEBUG=true) con datos ficticios.',
     ],
 };
 
 await writeFile(path.join(SALIDA, `CP071_CP072_C${CICLO}_rendimiento.json`), JSON.stringify(informe, null, 2));
-console.table(simples.map(({ consulta, solicitudes, errores, p50_ms, p95_ms, max_ms }) => ({ consulta, solicitudes, errores, p50_ms, p95_ms, max_ms })));
-console.table([informe.concurrencia.consultas_publicas_simultaneas, informe.concurrencia.consultas_autenticadas_simultaneas].map(({ consulta, solicitudes, errores, p50_ms, p95_ms, max_ms, duracion_total_ms }) => ({ consulta, solicitudes, errores, p50_ms, p95_ms, max_ms, duracion_total_ms })));
+console.table(simples.map(({ consulta, solicitudes, errores, limitadas_429, p50_ms, p95_ms, max_ms }) => ({ consulta, solicitudes, errores, limitadas_429, p50_ms, p95_ms, max_ms })));
+console.table([informe.concurrencia.consultas_publicas_simultaneas, informe.concurrencia.consultas_autenticadas_simultaneas].map(({ consulta, solicitudes, errores, limitadas_429, p50_ms, p95_ms, max_ms, duracion_total_ms }) => ({ consulta, solicitudes, errores, limitadas_429, p50_ms, p95_ms, max_ms, duracion_total_ms })));
