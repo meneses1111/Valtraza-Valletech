@@ -32,16 +32,16 @@ Para `main` y `develop`, configurar en GitHub reglas que exijan PR y las comprob
 
 GitHub Actions ejecuta las comprobaciones y la publicación configuradas. No organiza, integra ni cierra por sí solo todas las ramas del equipo. La eliminación automática de ramas al integrar PR debe mantenerse desactivada mientras el cierre y respaldo sigan siendo manuales; no afecta de forma retroactiva a las ramas antiguas.
 
-### Estado verificado el 17 de noviembre de 2026
+### Integraciones del ciclo 3
 
 | Rama | Qué contiene |
 | --- | --- |
-| `main` | `2ac93f3`, última versión estable antes de integrar los resultados del ciclo 3. |
-| `develop` | Incluye el ciclo 3 desde `3fee798`. Luis probó el código de `300ed7b`. |
-| `pruebas` | `f4eaf4c`, con plan, informe, scripts y evidencias del ciclo 3. |
+| `main` | Versión estable previa al cierre del ciclo 3: `2ac93f3`. |
+| `develop` | Primera entrega de pruebas en `3fee798` y resultados finales en `98521f8`. Luis probó `300ed7b` y `73b5190`. |
+| `pruebas` | `c9b8b12`, con el plan actualizado, el informe, los scripts y las evidencias del ciclo 3. |
 | `gh-pages` | Salida del GitBook gestionada por GitHub Actions. |
 
-El [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47) incorporó el ciclo 3 desde `pruebas` a `develop` con los controles correctos. El commit de integración es `3fee798`. El [issue #48](https://github.com/meneses1111/Valtraza-Valletech/issues/48) registra la paginación en inglés. El [estado de pruebas](../pruebas/estado-y-evidencias.md) conserva el hallazgo original y permite seguir su corrección por separado.
+El [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47) incorporó la primera entrega y el [PR #49](https://github.com/meneses1111/Valtraza-Valletech/pull/49) incorporó el cierre. Luis cerró el [issue #48](https://github.com/meneses1111/Valtraza-Valletech/issues/48) al verificar la paginación en español. El [estado de pruebas](../pruebas/estado-y-evidencias.md) conserva ambas ejecuciones.
 
 ## Construcción del GitBook
 
