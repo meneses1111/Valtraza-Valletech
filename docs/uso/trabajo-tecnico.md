@@ -1,8 +1,8 @@
 # Trabajo del técnico
 
-RF08 muestra únicamente los servicios asignados al técnico autenticado, del más reciente al más antiguo, con filtro por estado. El detalle reúne diagnósticos, mantenimientos y reparaciones, repuestos e historial. El historial relacionado muestra servicios anteriores completados del mismo computador y sus actividades, en solo lectura.
+RF08 muestra los servicios asignados al técnico autenticado, del más reciente al más antiguo, con filtro por estado. El detalle reúne diagnósticos, mantenimientos y reparaciones, repuestos e historial. Desde ese detalle, el encargado puede consultar en solo lectura las actividades de servicios anteriores completados del mismo computador, incluso si estuvieron asignados a otro técnico. El historial no permite abrir directamente un servicio ajeno ni modificarlo. Los listados y las secciones del detalle se paginan de 15 en 15.
 
-RF09 permite registrar un resultado de diagnóstico o indicar que no se encontraron fallas. Las pruebas realizadas y las observaciones son opcionales. RF10 permite agregar actividades de tipo mantenimiento o reparación con descripción obligatoria. RF11 permite guardar varios repuestos con nombre y cantidad entera positiva; las observaciones son opcionales.
+RF09 permite registrar un resultado de diagnóstico o marcar **No se encontraron fallas**. Las fallas identificadas se registran en un campo opcional separado del resultado. Si se marca que no hubo fallas, el formulario oculta ese campo y el servidor descarta su valor. Las pruebas realizadas y las observaciones son opcionales. RF10 permite agregar actividades de tipo mantenimiento o reparación con descripción obligatoria. RF11 permite guardar varios repuestos con nombre y cantidad entera positiva; las observaciones son opcionales.
 
 Los registros se agregan al servicio y no se ofrecen operaciones para editarlos o borrarlos. Quitar una fila del formulario de repuestos solo retira una fila todavía no guardada.
 

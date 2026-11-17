@@ -24,6 +24,6 @@ Cada integrante configura su propio `.env`. Las pruebas automáticas requieren u
 
 ## Estado y contribuciones
 
-`develop` reúne el avance aceptado. La versión estable se integra a `main` mediante un PR. Luis mantiene la matriz y las evidencias de los ciclos de pruebas; las correcciones funcionales se realizan en ramas propias.
+`develop` reúne el avance del equipo y la versión estable se integra a `main` mediante un PR. Luis mantiene la matriz y las evidencias de los ciclos de pruebas en `pruebas`.
 
-El alcance corresponde a la ERS definitiva 1.1: RF01–RF14 y RNF01–RNF09. Consultar el [estado de pruebas](docs/pruebas/estado-y-evidencias.md) para consultar los resultados de ambos ciclos y las mejoras opcionales registradas.
+El alcance corresponde a la ERS definitiva 1.1, de RF01 a RF14 y de RNF01 a RNF09. El [estado de pruebas](docs/pruebas/estado-y-evidencias.md) reúne los tres ciclos. El [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47) contiene el plan, el informe y la evidencia del ciclo 3.

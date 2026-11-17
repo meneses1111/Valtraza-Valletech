@@ -1,6 +1,6 @@
 # Arquitectura y patrones
 
-Valtraza es un monolito modular con una sola base PostgreSQL. Nginx recibe la solicitud, `public/index.php` inicia Laravel y las rutas despachan a controladores. Blade presenta el resultado; los controladores coordinan la validación y los servicios; Eloquent conserva los datos.
+Valtraza es un monolito modular con Laravel 12, PHP 8.3 y una sola base PostgreSQL. Nginx recibe la solicitud, `public/index.php` inicia Laravel y las rutas despachan al controlador de cada operación. Un módulo puede tener varios controladores. Blade presenta el resultado, los controladores coordinan la validación y los servicios, y Eloquent conserva los datos.
 
 | Capa | Ubicación y función |
 | --- | --- |
@@ -21,7 +21,7 @@ Las capas de lógica y acceso a datos forman el modelo de MVC. La autorización 
 | Mantenimientos y reparaciones | Diagnósticos, actividades, repuestos y cambio de estado; utiliza Servicios |
 | Consulta y seguimiento | SupervisionServicios y ConsultaPublica agregan lecturas de Servicios y LecturaAvance |
 
-Servicios no depende de Mantenimientos y reparaciones. La condición de completar con diagnóstico se resuelve en la operación de trabajo técnico, evitando una dependencia circular. La consulta pública construye una salida con campos permitidos, sin entregar modelos completos a la vista.
+Servicios no depende de Mantenimientos y reparaciones. La condición de completar con diagnóstico se resuelve en la operación de trabajo técnico, evitando una dependencia circular. La consulta pública obtiene el computador mediante la relación del servicio y construye una salida con campos permitidos. En supervisión, el controlador consulta también el listado de técnicos para el filtro. La ficha del cliente combina los datos del equipo con `HistorialEquipos` desde la capa de control.
 
 | Patrón | Aplicación concreta |
 | --- | --- |
@@ -36,6 +36,8 @@ Servicios no depende de Mantenimientos y reparaciones. La condición de completa
 | Estado | Clases Pendiente, EnCurso y Completado para aplicar el estado del servicio |
 
 Los detalles del cambio de estado y la asignación están descritos en [Trabajo técnico](../uso/trabajo-tecnico.md). El resultado de GitDiagram compartido por Johan se contrastó con el código de la entrega. Las diferencias, la versión de referencia y la vista corregida se documentan en el [análisis de GitDiagram](analisis-gitdiagram.md).
+
+Los observers emiten `ServicioActualizado` al confirmar la transacción. La pantalla que guarda redirige al detalle y las demás vistas muestran el estado al volver a consultarse.
 
 ## Vista de módulos
 

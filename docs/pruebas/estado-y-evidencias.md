@@ -1,6 +1,28 @@
 # Estado y evidencias
 
-Esta página distingue lo reportado por Luis en el ciclo 1, la comprobación automática de la corrección y la aceptación del ciclo 2. No reemplaza su matriz ni modifica los resultados originales.
+Esta página resume las ejecuciones de Luis por versión. La matriz y las evidencias originales conservan el resultado de cada ciclo. Las correcciones posteriores tienen su propio registro.
+
+## Ciclo 3, ejecutado por Luis
+
+Luis ejecutó el ciclo el **16 y 17 de noviembre de 2026** sobre `pruebas` `42d7d07`, con código funcional equivalente a `develop` `300ed7b`. Usó Windows 10, PHP 8.3.36, PostgreSQL 18.6 y Herd con HTTPS. Entregó el plan, el informe y las evidencias en el [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47), integrado a `develop` el 17 de noviembre con comprobaciones correctas.
+
+| Comprobación | Resultado |
+| --- | --- |
+| Matriz de 79 casos | **77 exitosos, 1 con defecto y 1 diferido**. CP070 falló por el texto en inglés de la paginación. CP073, sobre mantenibilidad y documentación, se difirió; había aprobado en el ciclo 1. |
+| Pruebas automáticas | **408 pruebas y 912 aserciones**, con 316 pruebas de integración. |
+| Sistema | **224/224** comprobaciones en Chrome 157 y Firefox 160 con Puppeteer, a 1366 × 768 y 1920 × 1080. |
+| Aceptación manual | **8/8**, con el flujo de administrador, técnico y cliente sin cuenta. |
+| Usabilidad manual | **8/9**. U8 quedó fallido por la paginación. |
+| Seguridad | **25/25** controles HTTP del ciclo. |
+| Rendimiento RNF05 | Consulta simple más lenta **245,4 ms**. En 15 sesiones autenticadas: **300/300 respuestas HTTP 200**, p95 **495,1 ms** y máximo **547,7 ms**. Cumple el criterio de 2 segundos de la ERS. |
+| Cuota pública | En 15 consultas públicas desde la misma IP, hubo **10 respuestas 200 y 5 respuestas 429** esperadas por el límite de 10 por minuto. Es un escenario separado de las 15 sesiones autenticadas. |
+| Copia y recuperación | Copia restaurada idéntica. Recuperación del servidor web en **2 s** y de PostgreSQL en **14 s**. |
+
+El [issue #48](https://github.com/meneses1111/Valtraza-Valletech/issues/48) registra CP070/U8. La corrección de desarrollo añade `lang/es.json` para que el paginador muestre «Mostrando 1 a 15 de 20 resultados». Se comprobó el renderizado del resumen en las dos primeras páginas en desarrollo. En la tabla se conserva el resultado de Luis. Queda pendiente que Luis repita U8 sobre una versión que incluya la traducción. CP070 ya había identificado un ajuste visual en el ciclo 2; el hallazgo del ciclo 3 es el idioma del resumen.
+
+Fuentes del ciclo 3: [plan](https://github.com/meneses1111/Valtraza-Valletech/blob/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/plan/Plan_de_pruebas_Valtraza.md), [informe de ejecución](https://github.com/meneses1111/Valtraza-Valletech/blob/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/plan/Informe_ejecucion_pruebas_Valtraza_C3.xlsx), [aceptación](https://github.com/meneses1111/Valtraza-Valletech/blob/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/plan/Aceptacion_ciclo3.md), [usabilidad](https://github.com/meneses1111/Valtraza-Valletech/blob/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/plan/Usabilidad_ciclo3.md) y [evidencias](https://github.com/meneses1111/Valtraza-Valletech/tree/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/evidencias/ciclo-3).
+
+Los tiempos de Luis corresponden a su equipo con cliente y servidor locales y miden hasta recibir el HTML. La meta adicional de 200 ms y los picos de 200 solicitudes pertenecen a [pruebas de fuego](../seguridad/pruebas-de-fuego.md), no al criterio del ciclo 3.
 
 ## Versiones de referencia
 

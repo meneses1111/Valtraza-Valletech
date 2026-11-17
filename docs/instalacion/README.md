@@ -39,6 +39,21 @@ Verificar permisos de escritura de `storage` y `bootstrap/cache`. Si hay configu
 
 En una copia sin cambios locales, descargar la versión acordada y registrar su SHA. Conservar `.env` y APP_KEY. Instalar dependencias desde composer.lock, realizar una copia de seguridad y revisar `php artisan migrate:status` antes de ejecutar `php artisan migrate`. No usar `migrate:fresh` sobre datos que deban conservarse.
 
+## Preparación del servidor antes de recibir tráfico
+
+Después de instalar dependencias y definir el `.env` definitivo, preparar las cachés con los procesos web detenidos o el tráfico apartado. Esto evita que varios procesos compilen la misma vista durante el arranque, especialmente en Windows.
+
+```powershell
+composer dump-autoload --optimize
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+Comprobar el éxito de cada comando antes de iniciar o reiniciar los procesos PHP del sitio. Repetir la preparación después de cambiar configuración, rutas o vistas; reconstruir las cachés desde la versión y carpeta que se van a servir. Con configuración cacheada, editar `.env` requiere reconstruir esa caché. No generar la caché de producción con APP_ENV=testing ni ejecutarla contra la base de pruebas. Con OPcache sin comprobación de fechas es obligatorio reiniciar los procesos PHP después de actualizar el código.
+
+La corrección del buscador de vistas hace que la precompilación y las peticiones usen la misma ruta canónica. La precarga reduce el trabajo de arranque; el dimensionamiento de procesos y recursos debe validarse con las mediciones del entorno de entrega.
+
 ## Pruebas automáticas
 
 Crear una base vacía separada `valtraza_test` y dar acceso al usuario de pruebas. Configurar credenciales de pruebas mediante `.env.testing` privado. `phpunit.xml` selecciona esa base: confirmar la conexión antes de ejecutar. La suite recrea sus tablas y tipos ENUM.
