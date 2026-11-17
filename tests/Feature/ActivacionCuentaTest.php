@@ -158,6 +158,19 @@ class ActivacionCuentaTest extends TestCase
         $this->activar('CODIGO-FICTICIO-1')->assertStatus(429);
     }
 
+    public function test_las_activaciones_fallidas_no_bloquean_el_ingreso(): void
+    {
+        $this->cuentaPendiente();
+        $administrador = $this->administrador();
+
+        foreach (range(1, 5) as $intento) {
+            $this->activar('CODIGO-EQUIVOCADO-'.$intento);
+        }
+
+        $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => $this->contrasenaDePrueba])->assertRedirect('/panel');
+        $this->assertAuthenticatedAs($administrador);
+    }
+
     public function test_el_formulario_de_activacion_no_conserva_el_codigo_tras_un_error(): void
     {
         $this->cuentaPendiente();

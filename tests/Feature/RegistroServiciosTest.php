@@ -66,7 +66,7 @@ class RegistroServiciosTest extends TestCase
     {
         $this->registrar($this->datos());
 
-        $this->assertMatchesRegularExpression('/^[0-9a-f]{32}$/', Servicio::query()->first()->codigo_seguimiento);
+        $this->assertMatchesRegularExpression('/^[A-Za-z0-9]{32}$/', Servicio::query()->first()->codigo_seguimiento);
     }
 
     public function test_dos_servicios_tienen_codigos_distintos(): void
@@ -122,7 +122,7 @@ class RegistroServiciosTest extends TestCase
 
     public function test_el_computador_es_obligatorio(): void
     {
-        $this->registrar($this->datos(['id_equipo' => '']))->assertSessionHasErrors('id_equipo');
+        $this->registrar($this->datos(['id_equipo' => '']))->assertSessionHasErrors(['id_equipo' => 'Falta elegir un computador.']);
     }
 
     public function test_un_computador_de_otro_cliente_es_rechazado(): void

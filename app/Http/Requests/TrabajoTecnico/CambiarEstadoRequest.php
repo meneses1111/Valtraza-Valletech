@@ -13,4 +13,11 @@ class CambiarEstadoRequest extends SolicitudTecnico
             'estado' => ['required', Rule::enum(EstadoServicio::class)],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'estado.required' => 'Falta elegir un estado.',
+        ] + parent::messages();
+    }
 }

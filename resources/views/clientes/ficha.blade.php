@@ -11,16 +11,18 @@
                     <p class="small text-body-secondary">Registrado el {{ \Illuminate\Support\Carbon::parse($equipo->fecha_registro)->format('d/m/Y') }}</p>
                     @if($equipo->otros_datos_tecnicos)<p class="texto-multilinea">{{ $equipo->otros_datos_tecnicos }}</p>@endif
                     <div class="table-responsive"><table class="table table-sm"><caption>Historial de servicios de {{ $equipo->codigo_equipo }}</caption><thead><tr><th>Código</th><th>Servicio</th><th>Fecha</th><th>Estado</th></tr></thead><tbody>
-                        @forelse($historial->get($equipo->id_equipo, collect()) as $servicio)
+                        @forelse($historialAgrupado->get($equipo->id_equipo, collect()) as $servicio)
                             <tr><td>{{ $servicio->codigo_servicio }}</td><td>{{ $servicio->nombre }}</td><td>{{ \Illuminate\Support\Carbon::parse($servicio->fecha)->format('d/m/Y') }}</td><td><x-estado :valor="$servicio->estado" /></td></tr>
                         @empty
-                            <tr><td colspan="4">Este computador todavía no tiene servicios.</td></tr>
+                            <tr><td colspan="4">{{ $equipo->servicios_count > 0 ? 'Consulta las otras páginas del historial para ver los servicios de este computador.' : 'Este computador todavía no tiene servicios.' }}</td></tr>
                         @endforelse
                     </tbody></table></div>
                 </div></article>
             @empty
                 <p class="alert alert-info">Este cliente todavía no tiene computadores registrados.</p>
             @endforelse
+            {{ $equipos->links() }}
+            {{ $historial->links() }}
         </section>
         @if(\Illuminate\Support\Facades\Route::has('equipos.guardar'))
         <section class="col-lg-4" aria-labelledby="nuevo-equipo">

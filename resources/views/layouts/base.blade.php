@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Valtraza</title>
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/valtraza.css') }}">
     <script src="{{ asset('assets/bootstrap.bundle.min.js') }}" defer></script>

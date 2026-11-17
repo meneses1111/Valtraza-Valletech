@@ -132,13 +132,13 @@ class ConsultaPublicaTest extends TestCase
         $this->consultar($servicio->codigo_seguimiento)->assertDontSee('Servicio de otra persona');
     }
 
-    public function test_la_consulta_publica_se_limita_a_treinta_por_minuto(): void
+    public function test_la_consulta_publica_se_limita_a_diez_por_minuto(): void
     {
-        foreach (range(1, 30) as $intento) {
+        foreach (range(1, 10) as $intento) {
             $this->post('/consultar', ['codigo_seguimiento' => 'inexistente'.$intento]);
         }
 
-        $this->post('/consultar', ['codigo_seguimiento' => 'inexistente31'])->assertStatus(429);
+        $this->post('/consultar', ['codigo_seguimiento' => 'inexistente11'])->assertStatus(429);
     }
 
     public function test_un_servicio_sin_avance_lo_indica(): void

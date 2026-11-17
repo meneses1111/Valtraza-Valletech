@@ -82,7 +82,7 @@ class InicioSesionTest extends TestCase
         $this->administrador();
 
         $this->followingRedirects()->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada'])
-            ->assertSee('No se pudo iniciar sesión con estos datos.');
+            ->assertSee('Usuario o contraseña incorrectos.');
     }
 
     public function test_una_cuenta_sin_activar_no_inicia_sesion(): void
@@ -147,6 +147,44 @@ class InicioSesionTest extends TestCase
         $this->assertGuest();
     }
 
+    public function test_una_cuenta_bloqueada_no_bloquea_otra_cuenta_de_la_misma_ip(): void
+    {
+        $this->administrador();
+        $tecnico = $this->cuentaTecnico(nombreUsuario: 'tecnica1');
+
+        foreach (range(1, 5) as $intento) {
+            $this->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada']);
+        }
+
+        $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => $this->contrasenaDePrueba])->assertStatus(429);
+        $this->post('/ingresar', ['nombre_usuario' => 'tecnica1', 'password' => $this->contrasenaDePrueba])->assertRedirect('/panel');
+        $this->assertAuthenticatedAs($tecnico);
+    }
+
+    public function test_el_limite_por_cuenta_no_distingue_mayusculas(): void
+    {
+        $this->administrador();
+
+        foreach (['admin', 'ADMIN', 'Admin', ' admin', 'aDmIn'] as $variante) {
+            $this->from('/ingresar')->post('/ingresar', ['nombre_usuario' => $variante, 'password' => 'Clave-equivocada']);
+        }
+
+        $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => $this->contrasenaDePrueba])->assertStatus(429);
+        $this->assertGuest();
+    }
+
+    public function test_veinte_intentos_desde_una_ip_bloquean_el_barrido_de_cuentas(): void
+    {
+        $this->administrador();
+
+        foreach (range(1, 20) as $intento) {
+            $this->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'nadie'.$intento, 'password' => 'Clave-equivocada'])->assertRedirect('/ingresar');
+        }
+
+        $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => $this->contrasenaDePrueba])->assertStatus(429);
+        $this->assertGuest();
+    }
+
     public function test_el_bloqueo_temporal_indica_cuando_reintentar(): void
     {
         $this->administrador();
@@ -155,7 +193,11 @@ class InicioSesionTest extends TestCase
             $this->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada']);
         }
 
-        $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada'])->assertHeader('Retry-After');
+        $respuesta = $this->post('/ingresar', ['nombre_usuario' => 'admin', 'password' => 'Clave-equivocada'])->assertHeader('Retry-After');
+        $segundos = (int) $respuesta->headers->get('Retry-After');
+
+        $this->assertGreaterThan(0, $segundos);
+        $respuesta->assertSee('Podrás intentarlo de nuevo en', false)->assertSee('data-cuenta-atras="'.$segundos.'"', false);
     }
 
     public function test_el_bloqueo_temporal_termina_despues_de_un_minuto(): void
@@ -203,7 +245,7 @@ class InicioSesionTest extends TestCase
         $this->cuentaTecnico(nombreUsuario: 'pendiente1', activa: false);
 
         $this->followingRedirects()->from('/ingresar')->post('/ingresar', ['nombre_usuario' => 'pendiente1', 'password' => $this->contrasenaDePrueba])
-            ->assertSeeText('No se pudo iniciar sesión con estos datos.')
+            ->assertSeeText('Usuario o contraseña incorrectos.')
             ->assertSeeText('Si todavía no activas tu cuenta, usa Activar mi cuenta con el código que te entregó el administrador.');
 
         $this->assertGuest();
@@ -213,7 +255,7 @@ class InicioSesionTest extends TestCase
     {
         $html = $this->followingRedirects()->from('/ingresar')
             ->post('/ingresar', ['nombre_usuario' => $nombreUsuario, 'password' => 'Clave-equivocada'])
-            ->assertOk()->assertSeeText('No se pudo iniciar sesión con estos datos.')->getContent();
+            ->assertOk()->assertSeeText('Usuario o contraseña incorrectos.')->getContent();
 
         return preg_replace('/name="_token" value="[^"]*"/', '', str_replace($nombreUsuario, '[usuario]', $html));
     }
