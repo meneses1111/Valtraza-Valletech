@@ -6,13 +6,13 @@ La línea base funcional es la ERS 1.1. Los tres actores son administrador, téc
 | --- | --- |
 | RF01 | Ingreso único para administrador y técnico; cierre de sesión |
 | RF02 | Registro y consulta de técnicos |
-| RF03 | Creación de cuentas de técnicos y activación por código |
+| RF03 | Creación de cuentas con rol fijo de técnico y activación por código de un solo uso |
 | RF04 | Registro y consulta de clientes |
 | RF05 | Registro de computadores e historial por equipo |
 | RF06 | Registro de servicios y generación de códigos |
 | RF07 | Asignación y reasignación de técnico |
-| RF08 | Consulta del técnico de sus servicios asignados y su historial relacionado |
-| RF09 | Registro de diagnósticos |
+| RF08 | Consulta de los servicios asignados y lectura de actividades anteriores completadas del mismo computador, incluidas las de otro técnico |
+| RF09 | Registro de diagnósticos con resultado y campo opcional para fallas identificadas |
 | RF10 | Registro de actividades de mantenimiento o reparación |
 | RF11 | Registro de repuestos utilizados |
 | RF12 | Cambio a pendiente, en curso o completado |

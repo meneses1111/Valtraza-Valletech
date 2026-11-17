@@ -2,6 +2,8 @@
 
 Responsable: Luis Eduardo Ramos Giraldo, responsable de pruebas de software (equipo ValleTech).
 
+El [estado y evidencias](../docs/pruebas/estado-y-evidencias.md) reúne los tres ciclos. El [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47), integrado a `develop`, contiene el plan, los resultados y los scripts actualizados del ciclo 3. Las secciones de los ciclos 1 y 2 conservan el ambiente y el resultado que se registraron en su momento.
+
 ## Versión probada
 
 | Ciclo | Base de `develop` | SHA de `pruebas` ejecutado | Fecha |
@@ -131,6 +133,6 @@ El script conserva la hoja, las columnas y los estilos del formato original, ree
 
 ## Límites de las mediciones
 
-- Rendimiento: cliente y servidor en el mismo equipo y una sola IP de origen. La consulta pública admite 30 solicitudes por minuto por IP, por eso la ráfaga simultánea usa una consulta por visitante.
+- Rendimiento: cliente y servidor en el mismo equipo y una sola IP de origen. Durante los ciclos 1 y 2, el límite de consulta pública era de 30 solicitudes por minuto e IP. Desde el ciclo 3 es de 10 por minuto e IP. Los rechazos 429 esperados en la ráfaga pública se registran aparte de las consultas autenticadas de RNF05.
 - Recuperación de la base: se reinició el servicio local de PostgreSQL. La página de error genérica se comprobó con `APP_ENV=production` y `APP_DEBUG=false`; en local aparece la página de depuración de Laravel.
 - La barra «Edit with Herd» que se ve en las capturas pertenece al entorno local de Herd, no a la aplicación.

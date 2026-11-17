@@ -1,0 +1,12 @@
+Prueba de interrupción y recuperación (bd) · ciclo 3 · 17-11-2026 14:50:18
+SHA probado: 42d7d07fe7e309873bc198df03cdd49515ac0c73
+Antes: inicio HTTP 200 · datos: 311 clientes, 1210 servicios, 810 diagnosticos
+1. Se espera la detención del servicio postgresql-x64-18 (ventana elevada aprobada por el usuario)
+   Servicio:  ESTADO : 1 STOPPED 
+   Durante la caída: inicio pública HTTP 200 (no consulta la base)
+   Durante la caída: consulta pública que sí usa la base HTTP 503
+   La página de error no expone SQL, credenciales ni trazas
+   Título mostrado: El sistema está temporalmente en mantenimiento
+2. Se espera el reinicio del servicio (sin reinstalar ni recrear tablas)
+   Disponible otra vez tras 14 s · consulta pública HTTP 200
+Después: datos: 311 clientes, 1210 servicios, 810 diagnosticos

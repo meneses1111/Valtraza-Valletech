@@ -7,12 +7,41 @@
 | feature/<modulo> | Construcción de cada módulo desde develop |
 | correccion/<tema> | Correcciones desde develop |
 | pruebas | Casos, automatización y resultados a cargo de Luis |
+| docs/<tema> | Documentación de una tarea concreta desde develop |
+| gh-pages | Salida generada del libro; gestionada por Actions |
 
-No programar directamente en main, develop o pruebas. Cada rama funcional parte del develop que contiene los módulos previos necesarios. Hacer commits pequeños, naturales, en primera persona y en español; por ejemplo, `Agrego los filtros de supervisión`. Separar cambios de documentación y código cuando sea posible. No cambiar fechas ni reescribir el historial para simular una jornada de trabajo.
+`develop` reúne las correcciones de aplicación según el flujo acordado por el equipo. Una rama temporal, cuando corresponde, parte de un `develop` actualizado y se asocia a una tarea. Luis entrega sus ciclos desde `pruebas` a `develop` mediante PR. La entrega estable se integra a `main` con su propio PR. Hacer commits pequeños, naturales, en primera persona y en español; por ejemplo, `Agrego los filtros de supervisión`. Separar cambios de documentación y código cuando sea posible. No cambiar fechas ni reescribir el historial para simular una jornada de trabajo.
 
 Antes de subir: revisar el diff, excluir credenciales/contexto/caches, comprobar formato y ejecutar la validación apropiada. Abrir PR hacia develop, esperar las comprobaciones y resolver los conflictos sobre la rama de trabajo. Integrar con merge sin squash para conservar commits y la relación de ramas. Mantener main para el cierre de la versión estable.
 
-Los reportes de Luis originan correcciones trazables: requisito/CP, Issue, commit que corrige y ejecución del segundo ciclo. Su rama y resultados no se completan en nombre del programador.
+Los reportes de Luis originan correcciones trazables: requisito y caso, issue, commit que corrige y ejecución de verificación. Su rama y resultados no se completan en nombre del programador.
+
+## Cierre y mantenimiento de ramas
+
+Se conservan cuatro ramas permanentes: `main`, `develop`, `pruebas` y `gh-pages`. Las demás duran lo que dure su tarea. Evitar varias ramas abiertas para la misma tarea y mantener solo las temporales que tengan trabajo activo. La cantidad de módulos de la aplicación no obliga a mantener una rama por módulo después de integrar su desarrollo.
+
+Antes de cerrar una rama temporal:
+
+1. Confirmar con su responsable que no conserva trabajo local pendiente ni un nuevo ciclo en curso.
+2. Comprobar que su punta actual está contenida en `develop` y en la versión de entrega, y que su PR está integrado. No basta con que sus archivos parezcan iguales ni con que no haya PR abiertos.
+3. Guardar un respaldo actualizado fuera del remoto y el SHA de la punta. El inventario de SHA permite identificar commits, pero no sustituye el respaldo de sus objetos Git.
+4. Retirar la referencia remota solo después del cierre y la autorización correspondiente. Los commits integrados y el PR conservan el historial del trabajo.
+5. Actualizar las referencias locales con `git fetch --prune`. No usar `reset --hard` para esta limpieza ni descartar cambios locales sin revisar.
+
+Para `main` y `develop`, configurar en GitHub reglas que exijan PR y las comprobaciones aplicables de Actions, y bloqueen force push y eliminación. La revisión por otra persona debe ajustarse a los permisos y disponibilidad reales del equipo. El nombre exacto de cada comprobación requerida se obtiene de una ejecución correcta; no exigir un workflow condicionado por rutas si eso impide integrar PR donde ese workflow no se ejecuta. Los cambios de estas reglas requieren permisos de administración y todavía no se han aplicado.
+
+GitHub Actions ejecuta las comprobaciones y la publicación configuradas. No organiza, integra ni cierra por sí solo todas las ramas del equipo. La eliminación automática de ramas al integrar PR debe mantenerse desactivada mientras el cierre y respaldo sigan siendo manuales; no afecta de forma retroactiva a las ramas antiguas.
+
+### Integraciones del ciclo 3
+
+| Rama | Qué contiene |
+| --- | --- |
+| `main` | Versión estable previa al cierre del ciclo 3: `2ac93f3`. |
+| `develop` | Primera entrega de pruebas en `3fee798` y resultados finales en `98521f8`. Luis probó `300ed7b` y `73b5190`. |
+| `pruebas` | `c9b8b12`, con el plan actualizado, el informe, los scripts y las evidencias del ciclo 3. |
+| `gh-pages` | Salida del GitBook gestionada por GitHub Actions. |
+
+El [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47) incorporó la primera entrega y el [PR #49](https://github.com/meneses1111/Valtraza-Valletech/pull/49) incorporó el cierre. Luis cerró el [issue #48](https://github.com/meneses1111/Valtraza-Valletech/issues/48) al verificar la paginación en español. El [estado de pruebas](../pruebas/estado-y-evidencias.md) conserva ambas ejecuciones.
 
 ## Construcción del GitBook
 

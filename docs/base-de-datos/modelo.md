@@ -1,6 +1,8 @@
 # Base de datos
 
-PostgreSQL guarda ocho tablas: cliente, tecnico, usuario, equipo, servicio, diagnostico, trabajo y repuesto. El cliente de un servicio se obtiene mediante su equipo.
+PostgreSQL guarda ocho tablas de negocio: cliente, tecnico, usuario, equipo, servicio, diagnostico, trabajo y repuesto. El cliente de un servicio se obtiene mediante su equipo.
+
+La configuración de referencia (`.env.example`) usa `SESSION_DRIVER=file` y guarda las sesiones cifradas en `storage/framework/sessions`. La migración también crea la tabla técnica `sessions`. Laravel la utiliza al configurar `SESSION_DRIVER=database` con PostgreSQL. En ese modo guarda el identificador, el usuario opcional, los metadatos, el contenido cifrado y la última actividad. El vínculo con `usuario` elimina las sesiones de la cuenta al borrarla.
 
 ![Relaciones principales entre las ocho tablas](../assets/relaciones-datos.svg)
 
@@ -23,4 +25,6 @@ Las claves primarias son enteros de identidad. Un cliente tiene varios equipos; 
 
 El archivo SQL versionado contiene los tipos, longitudes, nulabilidad y restricciones completas. La segunda migración incorpora ocho índices operativos: equipo por cliente; servicio por equipo; diagnóstico, trabajo y repuesto por servicio; servicio por técnico/estado/fecha y por estado/fecha; y el índice parcial de servicios sin técnico. Su creación usa IF NOT EXISTS para admitir índices previamente existentes; el rollback de esa migración retira los índices con esos nombres, incluso si ya existían. No hacer rollback en una base compartida sin revisar su efecto y tener copia.
 
-Las comprobaciones automáticas utilizan una base separada llamada valtraza_test. RefreshDatabase elimina también los tipos ENUM antes de volver a migrar. EsquemaTest comprueba los valores permitidos y el rechazo de valores desconocidos. Nunca debe ejecutarse esa suite sobre una base con información que se necesite conservar. Los casos, la matriz y los ciclos del responsable de pruebas se realizan por separado.
+Una tercera migración añade seis índices compuestos para listados e historial. La cuarta incorpora `sessions`. Las ocho tablas del modelo de negocio se mantienen.
+
+Las comprobaciones automáticas utilizan la base exclusiva `valtraza_test`. `RefreshDatabase` elimina también los tipos ENUM antes de volver a migrar. `EsquemaTest` comprueba los valores permitidos y el rechazo de valores desconocidos. Ejecuta las pruebas únicamente sobre una base que se pueda recrear. Los casos y ciclos de Luis tienen su propio [registro de resultados](../pruebas/estado-y-evidencias.md).

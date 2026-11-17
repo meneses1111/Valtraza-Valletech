@@ -34,7 +34,7 @@ Recarga el formulario si aparece **419 / Tu sesión venció**. Las peticiones PO
 
 Revisa que hayas activado la cuenta. En **Activar mi cuenta** debes usar el código entregado por el administrador y definir tu propia contraseña. Un código ya consumido no vuelve a funcionar.
 
-La guía de activación se muestra siempre. El aviso de credenciales es genérico para no confirmar qué cuentas existen. Después de cinco intentos fallidos por usuario e IP, espera el intervalo indicado antes de reintentar.
+La guía de activación se muestra siempre. El aviso de credenciales es genérico. Ingreso admite hasta cinco solicitudes por cuenta e IP y veinte por IP en un minuto. Activación tiene un cupo propio de cinco por minuto e IP. Si aparece el aviso de demasiados intentos, espera a que termine la cuenta atrás.
 
 El seeder no reemplaza una cuenta `admin` existente. Volver a ejecutar `db:seed` no restablece su contraseña. La aplicación no incluye recuperación de contraseñas en esta versión.
 

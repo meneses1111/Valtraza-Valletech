@@ -16,6 +16,14 @@ El cliente consulta con un código de seguimiento y no necesita cuenta. Administ
 
 El GitBook está publicado en GitHub Pages. El workflow **Revisar GitBook** comprueba las páginas, la navegación y los recursos antes de desplegar desde `main`; después verifica por HTTPS las páginas públicas y sus recursos. Las ejecuciones también conservan una vista previa descargable.
 
+## Arquitectura
+
+El sistema se organiza en seis módulos: Clientes y equipos, Técnicos, Cuentas y acceso, Servicios, Mantenimientos y reparaciones, y Consulta y seguimiento.
+
+`CuentasController` usa `Acceso` para crear cuentas de técnicos. `RegistroTecnicos` registra a las personas y Servicios consulta ese registro para asignarlas. `FichaClienteController` usa `HistorialEquipos` para la ficha administrativa. El técnico modifica sus servicios asignados y puede leer las actividades completadas del mismo equipo. Diagnósticos, trabajos y repuestos se guardan en modelos Eloquent distintos.
+
+Consulta el [diagrama revisado y la comparación con GitDiagram](docs/arquitectura/analisis-gitdiagram.md).
+
 ## Entorno de la aplicación
 
 Laravel 12, PHP 8.3, PostgreSQL 18, Blade y Bootstrap 5.3. El entorno de pruebas de referencia usa Nginx con HTTPS (Herd en Windows). Los recursos de interfaz están incluidos en `public/assets`; no hace falta compilar JavaScript para iniciar la aplicación.
@@ -24,6 +32,6 @@ Cada integrante configura su propio `.env`. Las pruebas automáticas requieren u
 
 ## Estado y contribuciones
 
-`develop` reúne el avance aceptado. La versión estable se integra a `main` mediante un PR. Luis mantiene la matriz y las evidencias de los ciclos de pruebas; las correcciones funcionales se realizan en ramas propias.
+`develop` reúne el avance del equipo y la versión estable se integra a `main` mediante un PR. Luis mantiene la matriz y las evidencias de los ciclos de pruebas en `pruebas`.
 
-El alcance corresponde a la ERS definitiva 1.1: RF01–RF14 y RNF01–RNF09. Consultar el [estado de pruebas](docs/pruebas/estado-y-evidencias.md) para consultar los resultados de ambos ciclos y las mejoras opcionales registradas.
+El alcance corresponde a la ERS definitiva 1.1, de RF01 a RF14 y de RNF01 a RNF09. El [estado de pruebas](docs/pruebas/estado-y-evidencias.md) reúne los tres ciclos. El [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47) contiene el plan, el informe y la evidencia del ciclo 3.

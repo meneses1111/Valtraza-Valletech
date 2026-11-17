@@ -1,6 +1,41 @@
 # Estado y evidencias
 
-Esta página distingue lo reportado por Luis en el ciclo 1, la comprobación automática de la corrección y la aceptación del ciclo 2. No reemplaza su matriz ni modifica los resultados originales.
+Esta página resume las ejecuciones de Luis por versión. La matriz y las evidencias originales conservan el resultado de cada ciclo. Las correcciones posteriores tienen su propio registro.
+
+## Ciclo 3, primera ejecución
+
+Luis ejecutó el ciclo el **16 y 17 de noviembre de 2026** sobre `pruebas` `42d7d07`, con código funcional equivalente a `develop` `300ed7b`. Usó Windows 10, PHP 8.3.36, PostgreSQL 18.6 y Herd con HTTPS. Entregó el plan, el informe y las evidencias en el [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47), integrado a `develop` el 17 de noviembre con comprobaciones correctas.
+
+| Comprobación | Resultado |
+| --- | --- |
+| Matriz de 79 casos | **77 exitosos, 1 con defecto y 1 diferido**. CP070 falló por el texto en inglés de la paginación. CP073, sobre mantenibilidad y documentación, se difirió; había aprobado en el ciclo 1. |
+| Pruebas automáticas | **408 pruebas y 912 aserciones**, con 316 pruebas de integración. |
+| Sistema | **224/224** comprobaciones en Chrome 157 y Firefox 160 con Puppeteer, a 1366 × 768 y 1920 × 1080. |
+| Aceptación manual | **8/8**, con el flujo de administrador, técnico y cliente sin cuenta. |
+| Usabilidad manual | **8/9**. U8 quedó fallido por la paginación. |
+| Seguridad | **25/25** controles HTTP del ciclo. |
+| Rendimiento RNF05 | Consulta simple más lenta **245,4 ms**. En 15 sesiones autenticadas: **300/300 respuestas HTTP 200**, p95 **495,1 ms** y máximo **547,7 ms**. Cumple el criterio de 2 segundos de la ERS. |
+| Cuota pública | En 15 consultas públicas desde la misma IP, hubo **10 respuestas 200 y 5 respuestas 429** esperadas por el límite de 10 por minuto. Es un escenario separado de las 15 sesiones autenticadas. |
+| Copia y recuperación | Copia restaurada idéntica. Recuperación del servidor web en **2 s** y de PostgreSQL en **14 s**. |
+
+El [issue #48](https://github.com/meneses1111/Valtraza-Valletech/issues/48) registra el hallazgo de CP070/U8. La corrección añadió `lang/es.json` en `4e82396`. CP070 también había identificado un ajuste visual en el ciclo 2.
+
+Fuentes de la primera ejecución: [plan](https://github.com/meneses1111/Valtraza-Valletech/blob/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/plan/Plan_de_pruebas_Valtraza.md), [informe](https://github.com/meneses1111/Valtraza-Valletech/blob/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/plan/Informe_ejecucion_pruebas_Valtraza_C3.xlsx) y [evidencias](https://github.com/meneses1111/Valtraza-Valletech/tree/f4eaf4c26de821481f0874a929dd43b9e3e38e62/pruebas/evidencias/ciclo-3).
+
+## Ciclo 3, resultado final
+
+El 17 de noviembre Luis volvió a probar sobre `develop` `73b5190`. El [PR #49](https://github.com/meneses1111/Valtraza-Valletech/pull/49) incorporó el plan actualizado, el informe y las evidencias. El resultado acumulado fue **79/79 casos exitosos**.
+
+| Comprobación complementaria | Resultado |
+| --- | --- |
+| CP070 / U8 | Paginación en español en Cuentas y Clientes. Usabilidad **9/9**. Luis cerró el issue #48. |
+| CP073 | Documentación y estado de migraciones aprobados. La observación sobre `SESSION_DRIVER` se aclaró en el [modelo de datos](../base-de-datos/modelo.md). |
+| Regresión | **408 pruebas y 912 aserciones**. |
+| CP071 / CP072 | Consulta simple más lenta **232,5 ms**. En 15 sesiones autenticadas, **300/300 HTTP 200**, p95 **577,6 ms** y máximo **675,9 ms**. En 10 consultas públicas simultáneas, **10/10 HTTP 200**, sin limitación y con máximo **351,7 ms**. |
+
+Fuentes del cierre: [plan v1.2](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/plan/Plan_de_pruebas_Valtraza.md), [informe con detalle por caso](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/plan/Informe_ejecucion_pruebas_Valtraza_C3.xlsx), [usabilidad](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/plan/Usabilidad_ciclo3.md) y [medición complementaria](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/evidencias/ciclo-3/rendimiento/complementaria/CP071_CP072_C3_rendimiento.json).
+
+Los tiempos de Luis corresponden a su equipo con cliente y servidor locales y miden hasta recibir el HTML. La meta adicional de 200 ms y los picos de 200 solicitudes pertenecen a [pruebas de fuego](../seguridad/pruebas-de-fuego.md), no al criterio del ciclo 3.
 
 ## Versiones de referencia
 

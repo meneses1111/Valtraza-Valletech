@@ -17,6 +17,8 @@
     * [Supervisión administrativa](uso/supervision.md)
     * [Consulta pública](uso/consulta-publica.md)
 * [Seguridad](seguridad/README.md)
+    * [Auditoría local y verificaciones](seguridad/auditoria-local.md)
+    * [Resultado de las pruebas de fuego](seguridad/pruebas-de-fuego.md)
     * [Pruebas y entrega de resultados](pruebas/README.md)
     * [Estado y evidencias](pruebas/estado-y-evidencias.md)
 * [Git, GitHub y documentación](git/README.md)
