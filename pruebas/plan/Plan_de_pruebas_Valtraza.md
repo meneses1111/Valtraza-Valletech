@@ -6,6 +6,7 @@
 | --- | --- | --- | --- |
 | 1.0 | 16-11-2026 | Luis Eduardo Ramos Giraldo | Versión inicial del plan para el ciclo 3 |
 | 1.1 | 17-11-2026 | Luis Eduardo Ramos Giraldo | Ajuste a las secciones de la plantilla de pmoinformatica y resultados de la ejecución |
+| 1.2 | 17-11-2026 | Luis Eduardo Ramos Giraldo | Ajustes por la revisión del analista: nuevo SHA `73b5190` con la corrección de la Issue #48, nueva prueba de CP070, ejecución de CP073, prueba complementaria de CP072, salida de PHPUnit guardada, detalle por caso y enlaces |
 
 ## Ficha del proyecto
 
@@ -16,7 +17,7 @@
 | Líder del proyecto | Dxien Antonio Valencia Páramo |
 | Patrocinador | Jair Enrique Sanclemente Castro, profesor de la asignatura |
 | Líder de pruebas | Luis Eduardo Ramos Giraldo (responsable de pruebas) |
-| Versión del sistema probada | rama `pruebas` (develop `300ed7b`), SHA `42d7d07` |
+| Versión del sistema probada | rama `pruebas`: SHA `42d7d07` (develop `300ed7b`) y, para la nueva prueba y la regresión, SHA `73b5190` (develop con la corrección de la Issue #48) |
 | Ciclo | Ciclo 3 (16 y 17-11-2026) |
 
 ## Aprobaciones
@@ -65,13 +66,14 @@ Todo lo demás se vuelve a probar con las suites completas: PHPUnit (408 pruebas
 
 Como el programador cambió la configuración de la base de datos (tiempos de espera) y la gestión de sesiones, también se repiten la copia y restauración de la base (CP066) y la recuperación tras la caída del servidor web (CP078) y de la base de datos (CP079).
 
+Si `develop` recibe una corrección durante el ciclo, se registra el nuevo SHA y se repiten el caso afectado y la regresión (criterio 3.3). Así ocurrió con la Issue #48: en `73b5190` se repitieron CP070, la suite completa de PHPUnit, la carga (CP071 y CP072) y CP073.
+
 El ciclo usa como unidad de medida los 79 casos de la matriz oficial (CP001–CP079).
 
 ### 2.4 Funcionalidades a no probar
 
 | Qué | Por qué | Riesgo |
 | --- | --- | --- |
-| RNF06: mantenibilidad (MVC y documentación) | No cambió; se aprobó en el ciclo 1 (CP073) | Bajo |
 | Navegadores distintos de Chrome y Firefox, y celulares | La ERS no los pide | Bajo |
 | El comprobante impreso en papel | No está en la ERS | Bajo |
 
@@ -121,11 +123,11 @@ Se rechaza la versión si falla un caso principal, si hay un defecto crítico o 
 ## 4. Entregables
 
 1. Este plan de pruebas, en Markdown y PDF.
-2. El informe de ejecución en el Excel de la plantilla.
+2. El informe de ejecución en el Excel de la plantilla, con la hoja «Detalle ciclo 3» (los 79 casos con fecha, versión, herramienta, resultado, estado y evidencia).
 3. Las hojas de aceptación (A1–A8) y de usabilidad (U1–U9).
-4. Las evidencias del ciclo 3: capturas, JSON y TXT.
+4. Las evidencias del ciclo 3: capturas, JSON, TXT y la salida de PHPUnit (JUnit y testdox).
 5. Los scripts de prueba ajustados: Puppeteer, seguridad y carga.
-6. El reporte del defecto U8 (Issue para el programador).
+6. El reporte del defecto U8 (Issue #48) y su verificación después de la corrección.
 
 ## 5. Recursos
 
@@ -219,12 +221,14 @@ _R: responsable, A: aprueba, C: consultado, I: informado._
 | Actividad | Fecha | Responsable |
 | --- | --- | --- |
 | Preparar el ambiente (rama, migraciones y SHA) | 16-11-2026 | Luis |
-| Integración, sistema, seguridad y rendimiento | 16-11-2026 | Luis |
+| Integración (PHPUnit) y sistema (Puppeteer, 22:14) | 16-11-2026 | Luis |
+| Seguridad HTTP (00:20) y rendimiento (02:51) | 17-11-2026 | Luis |
 | Aceptación, usabilidad y recuperación | 17-11-2026 | Luis |
 | Reporte de defectos | 17-11-2026 | Luis |
 | Plan e informe de ejecución | 17-11-2026 | Luis |
+| Revisión del analista | 17-11-2026 | Dxien |
+| Corrección del defecto U8 (15:13) y nueva prueba con regresión (desde las 16:57) | 17-11-2026 | Johan y Luis |
 | Entrega | 17-11-2026, 23:59 | Luis |
-| Corrección del defecto U8 y nueva prueba | Después de la entrega, cuando el programador lo integre | Johan y Luis |
 
 ### 6.4 Premisas
 
@@ -247,13 +251,16 @@ _R: responsable, A: aprueba, C: consultado, I: informado._
 
 ## 7. Referencias
 
-1. Valtraza: Especificación de Requisitos de Software (ERS), versión 1.1.
-2. Valtraza: Mockup y patrones de interfaz.
-3. Valtraza: Arquitectura del sistema y arquitectura de software MVC.
-4. Valtraza: Matriz de pruebas (`pruebas/matriz/Matriz_Pruebas_Valtraza.xlsx`), ciclos 1 y 2.
-5. Valtraza: Hojas de aceptación y usabilidad del ciclo 3 (`pruebas/plan/`).
-6. Repositorio del proyecto: https://github.com/meneses1111/Valtraza-Valletech, rama `pruebas`.
-7. PMOInformatica, «Plantilla del plan de pruebas de software»: https://www.pmoinformatica.com/2014/05/plan-de-pruebas-de-software.html
+1. Valtraza: Especificación de Requisitos de Software (ERS), versión 1.1: https://drive.google.com/file/d/16QrJTRN7Bl9uvE1IO0KTaHA1Q66vNsWw/view
+2. Valtraza: Mockup y patrones de interfaz: https://drive.google.com/file/d/1Rakk1tbUJEyloWoOoCMdHuMjAlCAFkwL/view
+3. Valtraza: Arquitectura del sistema (https://drive.google.com/file/d/1ZzelE_Phl4G1ydPyd47DiINa9cCIak4z/view) y arquitectura de software MVC (https://drive.google.com/file/d/1gzQBSmN-L1IleR85OYAR-cnyCtYzTbri/view).
+4. Valtraza: Matriz de pruebas, ciclos 1 y 2: https://github.com/meneses1111/Valtraza-Valletech/blob/pruebas/pruebas/matriz/Matriz_Pruebas_Valtraza.xlsx. El ciclo 3 está en `pruebas/matriz/casos.json` y en la hoja «Detalle ciclo 3» del informe.
+5. Valtraza: Informe de ejecución del ciclo 3: https://github.com/meneses1111/Valtraza-Valletech/blob/pruebas/pruebas/plan/Informe_ejecucion_pruebas_Valtraza_C3.xlsx
+6. Valtraza: Hojas de aceptación y usabilidad del ciclo 3 (anexos A y B, y `pruebas/plan/`).
+7. Valtraza: Evidencias del ciclo 3: https://github.com/meneses1111/Valtraza-Valletech/tree/pruebas/pruebas/evidencias/ciclo-3
+8. Issue #48, defecto U8: https://github.com/meneses1111/Valtraza-Valletech/issues/48
+9. Repositorio del proyecto: https://github.com/meneses1111/Valtraza-Valletech, rama `pruebas`.
+10. PMOInformatica, «Plantilla del plan de pruebas de software»: https://www.pmoinformatica.com/2014/05/plan-de-pruebas-de-software.html
 
 ## 8. Glosario
 
