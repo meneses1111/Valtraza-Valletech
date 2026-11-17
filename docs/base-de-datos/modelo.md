@@ -1,6 +1,8 @@
 # Base de datos
 
-PostgreSQL guarda ocho tablas de negocio: cliente, tecnico, usuario, equipo, servicio, diagnostico, trabajo y repuesto. El cliente de un servicio se obtiene mediante su equipo. Una migración adicional incorpora la tabla técnica `sessions` para usar el controlador de sesiones PostgreSQL; guarda identificador, usuario opcional, metadatos, payload cifrado y última actividad. No es una entidad adicional del negocio. Su vínculo con usuario elimina las sesiones al borrar una cuenta.
+PostgreSQL guarda ocho tablas de negocio: cliente, tecnico, usuario, equipo, servicio, diagnostico, trabajo y repuesto. El cliente de un servicio se obtiene mediante su equipo.
+
+La configuración de referencia (`.env.example`) usa `SESSION_DRIVER=file` y guarda las sesiones cifradas en `storage/framework/sessions`. La migración también crea la tabla técnica `sessions`. Laravel la utiliza al configurar `SESSION_DRIVER=database` con PostgreSQL. En ese modo guarda el identificador, el usuario opcional, los metadatos, el contenido cifrado y la última actividad. El vínculo con `usuario` elimina las sesiones de la cuenta al borrarla.
 
 ![Relaciones principales entre las ocho tablas](../assets/relaciones-datos.svg)
 
