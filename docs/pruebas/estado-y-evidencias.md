@@ -31,7 +31,7 @@ El 17 de noviembre Luis volvió a probar sobre `develop` `73b5190`. El [PR #49](
 | CP070 / U8 | Paginación en español en Cuentas y Clientes. Usabilidad **9/9**. Luis cerró el issue #48. |
 | CP073 | Documentación y estado de migraciones aprobados. La observación sobre `SESSION_DRIVER` se aclaró en el [modelo de datos](../base-de-datos/modelo.md). |
 | Regresión | **408 pruebas y 912 aserciones**. |
-| CP071 / CP072 | Consulta simple más lenta **245,4 ms**. En 15 sesiones autenticadas, **300/300 HTTP 200**, p95 **577,6 ms** y máximo **675,9 ms**. En 10 consultas públicas simultáneas, **10/10 HTTP 200**, sin limitación y con máximo **351,7 ms**. |
+| CP071 / CP072 | Consulta simple más lenta **232,5 ms**. En 15 sesiones autenticadas, **300/300 HTTP 200**, p95 **577,6 ms** y máximo **675,9 ms**. En 10 consultas públicas simultáneas, **10/10 HTTP 200**, sin limitación y con máximo **351,7 ms**. |
 
 Fuentes del cierre: [plan v1.2](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/plan/Plan_de_pruebas_Valtraza.md), [informe con detalle por caso](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/plan/Informe_ejecucion_pruebas_Valtraza_C3.xlsx), [usabilidad](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/plan/Usabilidad_ciclo3.md) y [medición complementaria](https://github.com/meneses1111/Valtraza-Valletech/blob/c9b8b121ea2a0bf3e684667ae0e9a1b878cdaeb5/pruebas/evidencias/ciclo-3/rendimiento/complementaria/CP071_CP072_C3_rendimiento.json).
 
