@@ -327,7 +327,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+        <li class="chapter " data-level="1.5.1" data-path="../seguridad/auditoria-local.html">
+            
+                <a href="../seguridad/auditoria-local.html">
+            
+                    
+                    Auditoría local y verificaciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../seguridad/pruebas-de-fuego.html">
+            
+                <a href="../seguridad/pruebas-de-fuego.html">
+            
+                    
+                    Resultado de las pruebas de fuego
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../pruebas/">
             
                 <a href="../pruebas/">
             
@@ -340,7 +366,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+        <li class="chapter " data-level="1.5.4" data-path="../pruebas/estado-y-evidencias.html">
             
                 <a href="../pruebas/estado-y-evidencias.html">
             
@@ -449,7 +475,8 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="base-de-datos">Base de datos</h1>
-<p>PostgreSQL guarda ocho tablas: cliente, tecnico, usuario, equipo, servicio, diagnostico, trabajo y repuesto. El cliente de un servicio se obtiene mediante su equipo.</p>
+<p>PostgreSQL guarda ocho tablas de negocio: cliente, tecnico, usuario, equipo, servicio, diagnostico, trabajo y repuesto. El cliente de un servicio se obtiene mediante su equipo.</p>
+<p>La configuraci&#xF3;n de referencia (<code>.env.example</code>) usa <code>SESSION_DRIVER=file</code> y guarda las sesiones cifradas en <code>storage/framework/sessions</code>. La migraci&#xF3;n tambi&#xE9;n crea la tabla t&#xE9;cnica <code>sessions</code>. Laravel la utiliza al configurar <code>SESSION_DRIVER=database</code> con PostgreSQL. En ese modo guarda el identificador, el usuario opcional, los metadatos, el contenido cifrado y la &#xFA;ltima actividad. El v&#xED;nculo con <code>usuario</code> elimina las sesiones de la cuenta al borrarla.</p>
 <p><img src="../assets/relaciones-datos.svg" alt="Relaciones principales entre las ocho tablas"></p>
 <p>El esquema utiliza tres tipos ENUM: rol_usuario (administrador, tecnico), estado_servicio (pendiente, en_curso, completado) y tipo_trabajo (mantenimiento, reparacion). La migraci&#xF3;n lee database/sql/esquema_valtraza.sql. Los modelos conservan las claves propias del dise&#xF1;o y no utilizan created_at ni updated_at.</p>
 <p>Despu&#xE9;s de configurar una base vac&#xED;a llamada valtraza, se ejecuta <code>php artisan migrate</code> y despu&#xE9;s <code>php artisan db:seed</code>. El seeder crea admin sin activar y muestra su c&#xF3;digo de activaci&#xF3;n en consola.</p>
@@ -497,7 +524,8 @@
 </table>
 <p>Las claves primarias son enteros de identidad. Un cliente tiene varios equipos; cada equipo puede tener varios servicios. Cada servicio tiene cero o un t&#xE9;cnico y varios diagn&#xF3;sticos, trabajos y repuestos. Las siete claves for&#xE1;neas usan RESTRICT. La relaci&#xF3;n usuario-t&#xE9;cnico es obligatoria para el rol t&#xE9;cnico y no se permite para administrador. Un servicio sin t&#xE9;cnico solo puede estar pendiente.</p>
 <p>El archivo SQL versionado contiene los tipos, longitudes, nulabilidad y restricciones completas. La segunda migraci&#xF3;n incorpora ocho &#xED;ndices operativos: equipo por cliente; servicio por equipo; diagn&#xF3;stico, trabajo y repuesto por servicio; servicio por t&#xE9;cnico/estado/fecha y por estado/fecha; y el &#xED;ndice parcial de servicios sin t&#xE9;cnico. Su creaci&#xF3;n usa IF NOT EXISTS para admitir &#xED;ndices previamente existentes; el rollback de esa migraci&#xF3;n retira los &#xED;ndices con esos nombres, incluso si ya exist&#xED;an. No hacer rollback en una base compartida sin revisar su efecto y tener copia.</p>
-<p>Las comprobaciones autom&#xE1;ticas utilizan una base separada llamada valtraza_test. RefreshDatabase elimina tambi&#xE9;n los tipos ENUM antes de volver a migrar. EsquemaTest comprueba los valores permitidos y el rechazo de valores desconocidos. Nunca debe ejecutarse esa suite sobre una base con informaci&#xF3;n que se necesite conservar. Los casos, la matriz y los ciclos del responsable de pruebas se realizan por separado.</p>
+<p>Una tercera migraci&#xF3;n a&#xF1;ade seis &#xED;ndices compuestos para listados e historial. La cuarta incorpora <code>sessions</code>. Las ocho tablas del modelo de negocio se mantienen.</p>
+<p>Las comprobaciones autom&#xE1;ticas utilizan la base exclusiva <code>valtraza_test</code>. <code>RefreshDatabase</code> elimina tambi&#xE9;n los tipos ENUM antes de volver a migrar. <code>EsquemaTest</code> comprueba los valores permitidos y el rechazo de valores desconocidos. Ejecuta las pruebas &#xFA;nicamente sobre una base que se pueda recrear. Los casos y ciclos de Luis tienen su propio <a href="../pruebas/estado-y-evidencias.html">registro de resultados</a>.</p>
 
                                 
                                 </section>
@@ -541,7 +569,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Base de datos","level":"1.2.1","depth":2,"next":{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]},"previous":{"title":"Arquitectura y patrones","level":"1.2","depth":1,"path":"arquitectura/README.md","ref":"arquitectura/README.md","articles":[{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"base-de-datos/modelo.md","mtime":"2026-11-09T22:44:05.015Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T22:44:20.258Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Base de datos","level":"1.2.1","depth":2,"next":{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]},"previous":{"title":"Arquitectura y patrones","level":"1.2","depth":1,"path":"arquitectura/README.md","ref":"arquitectura/README.md","articles":[{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"base-de-datos/modelo.md","mtime":"2026-11-17T23:39:51.761Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

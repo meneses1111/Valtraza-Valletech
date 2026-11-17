@@ -327,7 +327,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+        <li class="chapter " data-level="1.5.1" data-path="../seguridad/auditoria-local.html">
+            
+                <a href="../seguridad/auditoria-local.html">
+            
+                    
+                    Auditoría local y verificaciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../seguridad/pruebas-de-fuego.html">
+            
+                <a href="../seguridad/pruebas-de-fuego.html">
+            
+                    
+                    Resultado de las pruebas de fuego
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../pruebas/">
             
                 <a href="../pruebas/">
             
@@ -340,7 +366,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+        <li class="chapter " data-level="1.5.4" data-path="../pruebas/estado-y-evidencias.html">
             
                 <a href="../pruebas/estado-y-evidencias.html">
             
@@ -451,7 +477,7 @@
                                 <h1 id="consulta-p&#xFA;blica">Consulta p&#xFA;blica</h1>
 <p>RF14 est&#xE1; disponible en la p&#xE1;gina de inicio. El cliente introduce el c&#xF3;digo de seguimiento y pulsa Consultar; no necesita cuenta ni sesi&#xF3;n. El c&#xF3;digo distingue may&#xFA;sculas y min&#xFA;sculas. Un c&#xF3;digo desconocido muestra un mensaje y permite intentar nuevamente.</p>
 <p>El resultado contiene &#xFA;nicamente nombre del servicio, identificaci&#xF3;n y modelo del computador, estado y la indicaci&#xF3;n general de si hay diagn&#xF3;sticos, mantenimientos o reparaciones. No muestra datos personales, nombre del t&#xE9;cnico, problema reportado, resultados t&#xE9;cnicos, repuestos ni otros servicios del computador.</p>
-<p>El c&#xF3;digo se env&#xED;a por POST, con protecci&#xF3;n CSRF, para evitar incorporarlo a la direcci&#xF3;n de navegaci&#xF3;n. La respuesta no se debe almacenar en cach&#xE9;. La consulta admite treinta solicitudes por minuto e IP; superar el l&#xED;mite muestra 429. Nueva consulta regresa al inicio.</p>
+<p>El c&#xF3;digo se env&#xED;a por POST, con protecci&#xF3;n CSRF, para mantenerlo fuera de la direcci&#xF3;n de navegaci&#xF3;n. La respuesta no se almacena en cach&#xE9;. La consulta admite diez solicitudes por minuto e IP. Al superar ese l&#xED;mite, la pantalla 429 indica cu&#xE1;ntos segundos esperar. <strong>Nueva consulta</strong> regresa al inicio.</p>
 <p>El c&#xF3;digo permite consultar ese resultado: debe compartirse solo con la persona correspondiente. La aplicaci&#xF3;n no ofrece b&#xFA;squedas p&#xFA;blicas por c&#xE9;dula, cliente o n&#xFA;mero consecutivo de servicio.</p>
 
                                 
@@ -496,7 +522,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Consulta pública","level":"1.4.7","depth":2,"next":{"title":"Seguridad","level":"1.5","depth":1,"path":"seguridad/README.md","ref":"seguridad/README.md","articles":[{"title":"Pruebas y entrega de resultados","level":"1.5.1","depth":2,"path":"pruebas/README.md","ref":"pruebas/README.md","articles":[]},{"title":"Estado y evidencias","level":"1.5.2","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]}]},"previous":{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/consulta-publica.md","mtime":"2026-11-09T22:44:05.017Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T22:44:20.258Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Consulta pública","level":"1.4.7","depth":2,"next":{"title":"Seguridad","level":"1.5","depth":1,"path":"seguridad/README.md","ref":"seguridad/README.md","articles":[{"title":"Auditoría local y verificaciones","level":"1.5.1","depth":2,"path":"seguridad/auditoria-local.md","ref":"seguridad/auditoria-local.md","articles":[]},{"title":"Resultado de las pruebas de fuego","level":"1.5.2","depth":2,"path":"seguridad/pruebas-de-fuego.md","ref":"seguridad/pruebas-de-fuego.md","articles":[]},{"title":"Pruebas y entrega de resultados","level":"1.5.3","depth":2,"path":"pruebas/README.md","ref":"pruebas/README.md","articles":[]},{"title":"Estado y evidencias","level":"1.5.4","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]}]},"previous":{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/consulta-publica.md","mtime":"2026-11-17T23:39:51.763Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

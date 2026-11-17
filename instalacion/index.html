@@ -327,7 +327,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+        <li class="chapter " data-level="1.5.1" data-path="../seguridad/auditoria-local.html">
+            
+                <a href="../seguridad/auditoria-local.html">
+            
+                    
+                    Auditoría local y verificaciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../seguridad/pruebas-de-fuego.html">
+            
+                <a href="../seguridad/pruebas-de-fuego.html">
+            
+                    
+                    Resultado de las pruebas de fuego
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../pruebas/">
             
                 <a href="../pruebas/">
             
@@ -340,7 +366,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+        <li class="chapter " data-level="1.5.4" data-path="../pruebas/estado-y-evidencias.html">
             
                 <a href="../pruebas/estado-y-evidencias.html">
             
@@ -472,6 +498,15 @@ php artisan db:seed
 <p>Verificar permisos de escritura de <code>storage</code> y <code>bootstrap/cache</code>. Si hay configuraci&#xF3;n anterior en cach&#xE9;, ejecutar <code>php artisan config:clear</code>. Comprobar inicio, activaci&#xF3;n, ingreso al panel por rol y consulta p&#xFA;blica con datos ficticios. Para producci&#xF3;n usar APP_ENV=production y APP_DEBUG=false, configurar HTTPS en Nginx y no exponer <code>.env</code>.</p>
 <h2 id="actualizaci&#xF3;n">Actualizaci&#xF3;n</h2>
 <p>En una copia sin cambios locales, descargar la versi&#xF3;n acordada y registrar su SHA. Conservar <code>.env</code> y APP_KEY. Instalar dependencias desde composer.lock, realizar una copia de seguridad y revisar <code>php artisan migrate:status</code> antes de ejecutar <code>php artisan migrate</code>. No usar <code>migrate:fresh</code> sobre datos que deban conservarse.</p>
+<h2 id="preparaci&#xF3;n-del-servidor-antes-de-recibir-tr&#xE1;fico">Preparaci&#xF3;n del servidor antes de recibir tr&#xE1;fico</h2>
+<p>Despu&#xE9;s de instalar dependencias y definir el <code>.env</code> definitivo, preparar las cach&#xE9;s con los procesos web detenidos o el tr&#xE1;fico apartado. Esto evita que varios procesos compilen la misma vista durante el arranque, especialmente en Windows.</p>
+<pre><code class="lang-powershell">composer dump-autoload --optimize
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+</code></pre>
+<p>Comprobar el &#xE9;xito de cada comando antes de iniciar o reiniciar los procesos PHP del sitio. Repetir la preparaci&#xF3;n despu&#xE9;s de cambiar configuraci&#xF3;n, rutas o vistas; reconstruir las cach&#xE9;s desde la versi&#xF3;n y carpeta que se van a servir. Con configuraci&#xF3;n cacheada, editar <code>.env</code> requiere reconstruir esa cach&#xE9;. No generar la cach&#xE9; de producci&#xF3;n con APP_ENV=testing ni ejecutarla contra la base de pruebas. Con OPcache sin comprobaci&#xF3;n de fechas es obligatorio reiniciar los procesos PHP despu&#xE9;s de actualizar el c&#xF3;digo.</p>
+<p>La correcci&#xF3;n del buscador de vistas hace que la precompilaci&#xF3;n y las peticiones usen la misma ruta can&#xF3;nica. La precarga reduce el trabajo de arranque; el dimensionamiento de procesos y recursos debe validarse con las mediciones del entorno de entrega.</p>
 <h2 id="pruebas-autom&#xE1;ticas">Pruebas autom&#xE1;ticas</h2>
 <p>Crear una base vac&#xED;a separada <code>valtraza_test</code> y dar acceso al usuario de pruebas. Configurar credenciales de pruebas mediante <code>.env.testing</code> privado. <code>phpunit.xml</code> selecciona esa base: confirmar la conexi&#xF3;n antes de ejecutar. La suite recrea sus tablas y tipos ENUM.</p>
 <pre><code class="lang-powershell">php vendor/bin/pint --test
@@ -532,7 +567,7 @@ pg_restore -h <span class="hljs-number">127.0</span>.<span class="hljs-number">0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Instalación y operación","level":"1.3","depth":1,"next":{"title":"Solución de problemas","level":"1.3.1","depth":2,"path":"instalacion/solucion-de-problemas.md","ref":"instalacion/solucion-de-problemas.md","articles":[]},"previous":{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"instalacion/README.md","mtime":"2026-11-09T22:44:05.015Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T22:44:20.258Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Instalación y operación","level":"1.3","depth":1,"next":{"title":"Solución de problemas","level":"1.3.1","depth":2,"path":"instalacion/solucion-de-problemas.md","ref":"instalacion/solucion-de-problemas.md","articles":[]},"previous":{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"instalacion/README.md","mtime":"2026-11-17T23:39:51.762Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

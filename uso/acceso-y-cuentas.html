@@ -327,7 +327,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+        <li class="chapter " data-level="1.5.1" data-path="../seguridad/auditoria-local.html">
+            
+                <a href="../seguridad/auditoria-local.html">
+            
+                    
+                    Auditoría local y verificaciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../seguridad/pruebas-de-fuego.html">
+            
+                <a href="../seguridad/pruebas-de-fuego.html">
+            
+                    
+                    Resultado de las pruebas de fuego
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../pruebas/">
             
                 <a href="../pruebas/">
             
@@ -340,7 +366,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+        <li class="chapter " data-level="1.5.4" data-path="../pruebas/estado-y-evidencias.html">
             
                 <a href="../pruebas/estado-y-evidencias.html">
             
@@ -450,8 +476,8 @@
                                 
                                 <h1 id="acceso-y-cuentas">Acceso y cuentas</h1>
 <p>Este bloque implementa RF01 y RF03. El administrador crea la cuenta de un t&#xE9;cnico previamente registrado y le entrega un c&#xF3;digo de activaci&#xF3;n. El t&#xE9;cnico abre /activar, introduce el c&#xF3;digo y define su contrase&#xF1;a, con un m&#xED;nimo de ocho caracteres. Una cuenta ya activada rechaza otro intento de activaci&#xF3;n con ese c&#xF3;digo.</p>
-<p>En /ingresar, administrador y t&#xE9;cnico utilizan su nombre de usuario y contrase&#xF1;a. Una cuenta inactiva no puede iniciar sesi&#xF3;n. Los ingresos rechazados conservan el aviso gen&#xE9;rico &#xAB;No se pudo iniciar sesi&#xF3;n con estos datos.&#xBB;. La p&#xE1;gina ofrece siempre la gu&#xED;a &#xAB;Si todav&#xED;a no activas tu cuenta, usa Activar mi cuenta con el c&#xF3;digo que te entreg&#xF3; el administrador.&#xBB;, con enlace a /activar. Esta ayuda no depende de la existencia ni del estado de la cuenta. El acceso correcto regenera la sesi&#xF3;n y lleva a /panel. Quien ya tiene sesi&#xF3;n tambi&#xE9;n llega al panel al abrir /ingresar o /activar. Un visitante debe iniciar sesi&#xF3;n antes de abrir el panel.</p>
-<p>Las rutas de creaci&#xF3;n de cuentas exigen el rol administrador en el servidor. Las contrase&#xF1;as se guardan como hash. Los formularios utilizan validaci&#xF3;n, protecci&#xF3;n CSRF y l&#xED;mites de intentos para acceso y activaci&#xF3;n.</p>
+<p>En <code>/ingresar</code>, administrador y t&#xE9;cnico utilizan su nombre de usuario y contrase&#xF1;a. Una cuenta inactiva no puede iniciar sesi&#xF3;n. El aviso &#xAB;Usuario o contrase&#xF1;a incorrectos.&#xBB; es el mismo para cuenta inactiva, usuario inexistente o contrase&#xF1;a errada. La p&#xE1;gina ofrece siempre la gu&#xED;a de activaci&#xF3;n con enlace a <code>/activar</code>. El acceso correcto regenera la sesi&#xF3;n y lleva a <code>/panel</code>. Quien ya tiene sesi&#xF3;n tambi&#xE9;n llega al panel al abrir <code>/ingresar</code> o <code>/activar</code>. Un visitante debe iniciar sesi&#xF3;n antes de abrir el panel.</p>
+<p>Las rutas de creaci&#xF3;n de cuentas exigen rol administrador en el servidor. Las cuentas creadas desde <strong>Cuentas</strong> reciben el rol fijo de t&#xE9;cnico. Las contrase&#xF1;as se guardan como hash. Los formularios usan validaci&#xF3;n, protecci&#xF3;n CSRF y cuotas separadas para ingreso y activaci&#xF3;n. Al superar una cuota, la pantalla indica cu&#xE1;ntos segundos faltan para volver a intentar.</p>
 <p>El administrador ve las cuentas registradas, su rol, el t&#xE9;cnico vinculado y si est&#xE1;n activadas. El c&#xF3;digo se entrega al crear la cuenta; la lista no expone c&#xF3;digos, contrase&#xF1;as ni hashes. La activaci&#xF3;n consume el c&#xF3;digo y lo reemplaza por otro valor aleatorio.</p>
 <p>Las contrase&#xF1;as no reaparecen al corregir un formulario. Se rechazan valores que excedan los 72 bytes admitidos por bcrypt, incluidos caracteres multibyte que sobrepasen ese l&#xED;mite.</p>
 <p>AccesoTest verifica activaci&#xF3;n, permisos e inicio de sesi&#xF3;n; PanelTest verifica las redirecciones y el acceso al panel. Las pruebas autom&#xE1;ticas existentes no sustituyen la matriz, los casos ni los ciclos del responsable de pruebas. Cada ejecuci&#xF3;n debe indicar qu&#xE9; versi&#xF3;n del c&#xF3;digo verific&#xF3;.</p>
@@ -498,7 +524,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"next":{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},"previous":{"title":"Guía de uso por rol","level":"1.4","depth":1,"path":"uso/README.md","ref":"uso/README.md","articles":[{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"path":"uso/acceso-y-cuentas.md","ref":"uso/acceso-y-cuentas.md","articles":[]},{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},{"title":"Clientes y equipos","level":"1.4.3","depth":2,"path":"uso/clientes-y-equipos.md","ref":"uso/clientes-y-equipos.md","articles":[]},{"title":"Registro y asignación de servicios","level":"1.4.4","depth":2,"path":"uso/servicios.md","ref":"uso/servicios.md","articles":[]},{"title":"Trabajo del técnico","level":"1.4.5","depth":2,"path":"uso/trabajo-tecnico.md","ref":"uso/trabajo-tecnico.md","articles":[]},{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},{"title":"Consulta pública","level":"1.4.7","depth":2,"path":"uso/consulta-publica.md","ref":"uso/consulta-publica.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/acceso-y-cuentas.md","mtime":"2026-11-09T22:44:05.017Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T22:44:20.258Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"next":{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},"previous":{"title":"Guía de uso por rol","level":"1.4","depth":1,"path":"uso/README.md","ref":"uso/README.md","articles":[{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"path":"uso/acceso-y-cuentas.md","ref":"uso/acceso-y-cuentas.md","articles":[]},{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},{"title":"Clientes y equipos","level":"1.4.3","depth":2,"path":"uso/clientes-y-equipos.md","ref":"uso/clientes-y-equipos.md","articles":[]},{"title":"Registro y asignación de servicios","level":"1.4.4","depth":2,"path":"uso/servicios.md","ref":"uso/servicios.md","articles":[]},{"title":"Trabajo del técnico","level":"1.4.5","depth":2,"path":"uso/trabajo-tecnico.md","ref":"uso/trabajo-tecnico.md","articles":[]},{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},{"title":"Consulta pública","level":"1.4.7","depth":2,"path":"uso/consulta-publica.md","ref":"uso/consulta-publica.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/acceso-y-cuentas.md","mtime":"2026-11-17T23:39:51.763Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

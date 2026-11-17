@@ -327,7 +327,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+        <li class="chapter " data-level="1.5.1" data-path="../seguridad/auditoria-local.html">
+            
+                <a href="../seguridad/auditoria-local.html">
+            
+                    
+                    Auditoría local y verificaciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../seguridad/pruebas-de-fuego.html">
+            
+                <a href="../seguridad/pruebas-de-fuego.html">
+            
+                    
+                    Resultado de las pruebas de fuego
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../pruebas/">
             
                 <a href="../pruebas/">
             
@@ -340,7 +366,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+        <li class="chapter " data-level="1.5.4" data-path="../pruebas/estado-y-evidencias.html">
             
                 <a href="../pruebas/estado-y-evidencias.html">
             
@@ -477,11 +503,59 @@
 <td>pruebas</td>
 <td>Casos, automatizaci&#xF3;n y resultados a cargo de Luis</td>
 </tr>
+<tr>
+<td>docs/<tema></tema></td>
+<td>Documentaci&#xF3;n de una tarea concreta desde develop</td>
+</tr>
+<tr>
+<td>gh-pages</td>
+<td>Salida generada del libro; gestionada por Actions</td>
+</tr>
 </tbody>
 </table>
-<p>No programar directamente en main, develop o pruebas. Cada rama funcional parte del develop que contiene los m&#xF3;dulos previos necesarios. Hacer commits peque&#xF1;os, naturales, en primera persona y en espa&#xF1;ol; por ejemplo, <code>Agrego los filtros de supervisi&#xF3;n</code>. Separar cambios de documentaci&#xF3;n y c&#xF3;digo cuando sea posible. No cambiar fechas ni reescribir el historial para simular una jornada de trabajo.</p>
+<p><code>develop</code> re&#xFA;ne las correcciones de aplicaci&#xF3;n seg&#xFA;n el flujo acordado por el equipo. Una rama temporal, cuando corresponde, parte de un <code>develop</code> actualizado y se asocia a una tarea. Luis entrega sus ciclos desde <code>pruebas</code> a <code>develop</code> mediante PR. La entrega estable se integra a <code>main</code> con su propio PR. Hacer commits peque&#xF1;os, naturales, en primera persona y en espa&#xF1;ol; por ejemplo, <code>Agrego los filtros de supervisi&#xF3;n</code>. Separar cambios de documentaci&#xF3;n y c&#xF3;digo cuando sea posible. No cambiar fechas ni reescribir el historial para simular una jornada de trabajo.</p>
 <p>Antes de subir: revisar el diff, excluir credenciales/contexto/caches, comprobar formato y ejecutar la validaci&#xF3;n apropiada. Abrir PR hacia develop, esperar las comprobaciones y resolver los conflictos sobre la rama de trabajo. Integrar con merge sin squash para conservar commits y la relaci&#xF3;n de ramas. Mantener main para el cierre de la versi&#xF3;n estable.</p>
-<p>Los reportes de Luis originan correcciones trazables: requisito/CP, Issue, commit que corrige y ejecuci&#xF3;n del segundo ciclo. Su rama y resultados no se completan en nombre del programador.</p>
+<p>Los reportes de Luis originan correcciones trazables: requisito y caso, issue, commit que corrige y ejecuci&#xF3;n de verificaci&#xF3;n. Su rama y resultados no se completan en nombre del programador.</p>
+<h2 id="cierre-y-mantenimiento-de-ramas">Cierre y mantenimiento de ramas</h2>
+<p>Se conservan cuatro ramas permanentes: <code>main</code>, <code>develop</code>, <code>pruebas</code> y <code>gh-pages</code>. Las dem&#xE1;s duran lo que dure su tarea. Evitar varias ramas abiertas para la misma tarea y mantener solo las temporales que tengan trabajo activo. La cantidad de m&#xF3;dulos de la aplicaci&#xF3;n no obliga a mantener una rama por m&#xF3;dulo despu&#xE9;s de integrar su desarrollo.</p>
+<p>Antes de cerrar una rama temporal:</p>
+<ol>
+<li>Confirmar con su responsable que no conserva trabajo local pendiente ni un nuevo ciclo en curso.</li>
+<li>Comprobar que su punta actual est&#xE1; contenida en <code>develop</code> y en la versi&#xF3;n de entrega, y que su PR est&#xE1; integrado. No basta con que sus archivos parezcan iguales ni con que no haya PR abiertos.</li>
+<li>Guardar un respaldo actualizado fuera del remoto y el SHA de la punta. El inventario de SHA permite identificar commits, pero no sustituye el respaldo de sus objetos Git.</li>
+<li>Retirar la referencia remota solo despu&#xE9;s del cierre y la autorizaci&#xF3;n correspondiente. Los commits integrados y el PR conservan el historial del trabajo.</li>
+<li>Actualizar las referencias locales con <code>git fetch --prune</code>. No usar <code>reset --hard</code> para esta limpieza ni descartar cambios locales sin revisar.</li>
+</ol>
+<p>Para <code>main</code> y <code>develop</code>, configurar en GitHub reglas que exijan PR y las comprobaciones aplicables de Actions, y bloqueen force push y eliminaci&#xF3;n. La revisi&#xF3;n por otra persona debe ajustarse a los permisos y disponibilidad reales del equipo. El nombre exacto de cada comprobaci&#xF3;n requerida se obtiene de una ejecuci&#xF3;n correcta; no exigir un workflow condicionado por rutas si eso impide integrar PR donde ese workflow no se ejecuta. Los cambios de estas reglas requieren permisos de administraci&#xF3;n y todav&#xED;a no se han aplicado.</p>
+<p>GitHub Actions ejecuta las comprobaciones y la publicaci&#xF3;n configuradas. No organiza, integra ni cierra por s&#xED; solo todas las ramas del equipo. La eliminaci&#xF3;n autom&#xE1;tica de ramas al integrar PR debe mantenerse desactivada mientras el cierre y respaldo sigan siendo manuales; no afecta de forma retroactiva a las ramas antiguas.</p>
+<h3 id="integraciones-del-ciclo-3">Integraciones del ciclo 3</h3>
+<table>
+<thead>
+<tr>
+<th>Rama</th>
+<th>Qu&#xE9; contiene</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>main</code></td>
+<td>Versi&#xF3;n estable previa al cierre del ciclo 3: <code>2ac93f3</code>.</td>
+</tr>
+<tr>
+<td><code>develop</code></td>
+<td>Primera entrega de pruebas en <code>3fee798</code> y resultados finales en <code>98521f8</code>. Luis prob&#xF3; <code>300ed7b</code> y <code>73b5190</code>.</td>
+</tr>
+<tr>
+<td><code>pruebas</code></td>
+<td><code>c9b8b12</code>, con el plan actualizado, el informe, los scripts y las evidencias del ciclo 3.</td>
+</tr>
+<tr>
+<td><code>gh-pages</code></td>
+<td>Salida del GitBook gestionada por GitHub Actions.</td>
+</tr>
+</tbody>
+</table>
+<p>El <a href="https://github.com/meneses1111/Valtraza-Valletech/pull/47" target="_blank">PR #47</a> incorpor&#xF3; la primera entrega y el <a href="https://github.com/meneses1111/Valtraza-Valletech/pull/49" target="_blank">PR #49</a> incorpor&#xF3; el cierre. Luis cerr&#xF3; el <a href="https://github.com/meneses1111/Valtraza-Valletech/issues/48" target="_blank">issue #48</a> al verificar la paginaci&#xF3;n en espa&#xF1;ol. El <a href="../pruebas/estado-y-evidencias.html">estado de pruebas</a> conserva ambas ejecuciones.</p>
 <h2 id="construcci&#xF3;n-del-gitbook">Construcci&#xF3;n del GitBook</h2>
 <p>Las fuentes est&#xE1;n en <code>docs</code>. <code>SUMMARY.md</code> define la navegaci&#xF3;n y <code>book.json</code> fija GitBook 3.2.2. El Node de esta herramienta est&#xE1; separado del entorno PHP de la aplicaci&#xF3;n.</p>
 <h3 id="comprobaci&#xF3;n-autom&#xE1;tica">Comprobaci&#xF3;n autom&#xE1;tica</h3>
@@ -547,7 +621,7 @@ python herramientas/gitbook/verificar.py --html _book
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Git, GitHub y documentación","level":"1.6","depth":1,"next":{"title":"Preguntas frecuentes","level":"1.6.1","depth":2,"path":"preguntas-frecuentes.md","ref":"preguntas-frecuentes.md","articles":[]},"previous":{"title":"Estado y evidencias","level":"1.5.2","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"git/README.md","mtime":"2026-11-09T22:44:05.015Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T22:44:20.258Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Git, GitHub y documentación","level":"1.6","depth":1,"next":{"title":"Preguntas frecuentes","level":"1.6.1","depth":2,"path":"preguntas-frecuentes.md","ref":"preguntas-frecuentes.md","articles":[]},"previous":{"title":"Estado y evidencias","level":"1.5.4","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"git/README.md","mtime":"2026-11-17T23:39:51.761Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

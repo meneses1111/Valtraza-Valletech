@@ -327,7 +327,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../pruebas/">
+        <li class="chapter " data-level="1.5.1" data-path="../seguridad/auditoria-local.html">
+            
+                <a href="../seguridad/auditoria-local.html">
+            
+                    
+                    Auditoría local y verificaciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../seguridad/pruebas-de-fuego.html">
+            
+                <a href="../seguridad/pruebas-de-fuego.html">
+            
+                    
+                    Resultado de las pruebas de fuego
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../pruebas/">
             
                 <a href="../pruebas/">
             
@@ -340,7 +366,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../pruebas/estado-y-evidencias.html">
+        <li class="chapter " data-level="1.5.4" data-path="../pruebas/estado-y-evidencias.html">
             
                 <a href="../pruebas/estado-y-evidencias.html">
             
@@ -449,8 +475,8 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="trabajo-del-t&#xE9;cnico">Trabajo del t&#xE9;cnico</h1>
-<p>RF08 muestra &#xFA;nicamente los servicios asignados al t&#xE9;cnico autenticado, del m&#xE1;s reciente al m&#xE1;s antiguo, con filtro por estado. El detalle re&#xFA;ne diagn&#xF3;sticos, mantenimientos y reparaciones, repuestos e historial. El historial relacionado muestra servicios anteriores completados del mismo computador y sus actividades, en solo lectura.</p>
-<p>RF09 permite registrar un resultado de diagn&#xF3;stico o indicar que no se encontraron fallas. Las pruebas realizadas y las observaciones son opcionales. RF10 permite agregar actividades de tipo mantenimiento o reparaci&#xF3;n con descripci&#xF3;n obligatoria. RF11 permite guardar varios repuestos con nombre y cantidad entera positiva; las observaciones son opcionales.</p>
+<p>RF08 muestra los servicios asignados al t&#xE9;cnico autenticado, del m&#xE1;s reciente al m&#xE1;s antiguo, con filtro por estado. El detalle re&#xFA;ne diagn&#xF3;sticos, mantenimientos y reparaciones, repuestos e historial. Desde ese detalle, el encargado puede consultar en solo lectura las actividades de servicios anteriores completados del mismo computador, incluso si estuvieron asignados a otro t&#xE9;cnico. El historial no permite abrir directamente un servicio ajeno ni modificarlo. Los listados y las secciones del detalle se paginan de 15 en 15.</p>
+<p>RF09 permite registrar un resultado de diagn&#xF3;stico o marcar <strong>No se encontraron fallas</strong>. Las fallas identificadas se registran en un campo opcional separado del resultado. Si se marca que no hubo fallas, el formulario oculta ese campo y el servidor descarta su valor. Las pruebas realizadas y las observaciones son opcionales. RF10 permite agregar actividades de tipo mantenimiento o reparaci&#xF3;n con descripci&#xF3;n obligatoria. RF11 permite guardar varios repuestos con nombre y cantidad entera positiva; las observaciones son opcionales.</p>
 <p>Los registros se agregan al servicio y no se ofrecen operaciones para editarlos o borrarlos. Quitar una fila del formulario de repuestos solo retira una fila todav&#xED;a no guardada.</p>
 <p>RF12 permite cambiar entre pendiente, en curso y completado. Las clases del patr&#xF3;n State aplican el estado seleccionado. La comprobaci&#xF3;n de diagn&#xF3;stico se realiza en la l&#xF3;gica de trabajo t&#xE9;cnico: completar exige al menos un diagn&#xF3;stico y no exige una reparaci&#xF3;n.</p>
 <p>Las operaciones bloquean la fila del servicio y vuelven a comprobar al encargado dentro de la transacci&#xF3;n. Una reasignaci&#xF3;n impide que el t&#xE9;cnico anterior siga guardando informaci&#xF3;n. Los observers notifican los cambios despu&#xE9;s de confirmar la transacci&#xF3;n; las vistas muestran los datos actuales al volver a consultarlos.</p>
@@ -497,7 +523,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Trabajo del técnico","level":"1.4.5","depth":2,"next":{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},"previous":{"title":"Registro y asignación de servicios","level":"1.4.4","depth":2,"path":"uso/servicios.md","ref":"uso/servicios.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/trabajo-tecnico.md","mtime":"2026-11-09T22:44:05.017Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T22:44:20.258Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Trabajo del técnico","level":"1.4.5","depth":2,"next":{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},"previous":{"title":"Registro y asignación de servicios","level":"1.4.4","depth":2,"path":"uso/servicios.md","ref":"uso/servicios.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/trabajo-tecnico.md","mtime":"2026-11-17T23:39:51.763Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

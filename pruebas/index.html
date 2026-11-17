@@ -52,7 +52,7 @@
     <link rel="next" href="estado-y-evidencias.html" />
     
     
-    <link rel="prev" href="../seguridad/" />
+    <link rel="prev" href="../seguridad/pruebas-de-fuego.html" />
     
 
     </head>
@@ -327,7 +327,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.5.1" data-path="./">
+        <li class="chapter " data-level="1.5.1" data-path="../seguridad/auditoria-local.html">
+            
+                <a href="../seguridad/auditoria-local.html">
+            
+                    
+                    Auditoría local y verificaciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../seguridad/pruebas-de-fuego.html">
+            
+                <a href="../seguridad/pruebas-de-fuego.html">
+            
+                    
+                    Resultado de las pruebas de fuego
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.3" data-path="./">
             
                 <a href="./">
             
@@ -340,7 +366,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="estado-y-evidencias.html">
+        <li class="chapter " data-level="1.5.4" data-path="estado-y-evidencias.html">
             
                 <a href="estado-y-evidencias.html">
             
@@ -449,19 +475,19 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="pruebas-y-entrega-de-resultados">Pruebas y entrega de resultados</h1>
-<p>Luis es responsable de planificar los casos, ejecutarlos y conservar las evidencias. Trabaja en <code>pruebas</code> sobre una versi&#xF3;n de <code>develop</code> acordada y registra el SHA que ejecut&#xF3;. Los cambios funcionales y sus correcciones corresponden a Johan en ramas propias.</p>
-<p>La matriz oficial se conserva en una sola hoja y mantiene su formato original. Lleva proyecto, fecha DD-MM-AAAA y autor con rol. Incluye n&#xFA;mero y descripci&#xF3;n del requisito; CP numerados desde CP001; pasos; entradas; resultado esperado; ambiente; usuario, fecha, resultado obtenido y estado de cada uno de los dos ciclos; y observaciones. Un ejemplo del formato no agrega funciones al alcance.</p>
+<p>Luis planifica y ejecuta los casos y conserva las evidencias. Trabaja en <code>pruebas</code> sobre una versi&#xF3;n acordada de <code>develop</code> y registra el SHA que ejecut&#xF3;. Johan prepara las correcciones funcionales e identifica la versi&#xF3;n que Luis debe verificar.</p>
+<p>La matriz oficial conserva su formato original, con requisito, caso, pasos, entradas, resultado esperado, ambiente, resultado observado y estado. El ciclo 3 se documenta en un informe de ejecuci&#xF3;n aparte, con su plan, las hojas de aceptaci&#xF3;n y usabilidad y sus evidencias. Consulta el <a href="estado-y-evidencias.html">estado de los tres ciclos</a>.</p>
 <p>La cobertura debe relacionar RF01&#x2013;RF14 y RNF01&#x2013;RNF09 con casos exitosos, errores, permisos y condiciones de integridad aplicables. No asignar aprobado a casos sin ejecuci&#xF3;n. Un caso bloqueado debe indicar la causa y qu&#xE9; hace falta para repetirlo.</p>
 <p>La suite automatizada integra las pruebas Unit y Feature de Luis incorporadas en el PR #16, junto con EsquemaTest, AccesoTest y PanelTest. El ciclo 1 registr&#xF3; 368 pruebas y 677 aserciones, comprobadas dos veces en CI. El procedimiento para repetirlas y sus l&#xED;mites est&#xE1;n en <a href="https://github.com/meneses1111/Valtraza-Valletech/blob/develop/pruebas/README.md" target="_blank">pruebas/README.md</a>. La aprobaci&#xF3;n de la suite no reemplaza los resultados y las evidencias de los casos de la matriz.</p>
 <h2 id="evidencias-y-defectos">Evidencias y defectos</h2>
 <p>Cada ejecuci&#xF3;n identifica fecha, rol, versi&#xF3;n de PHP/PostgreSQL/navegador, SHA y datos ficticios usados. Nombrar las evidencias con CP y ciclo; retirar contrase&#xF1;as, c&#xF3;digos activos y datos personales de las capturas compartidas. Los resultados de pruebas sobre los scripts de base no se presentan como mediciones de la aplicaci&#xF3;n web.</p>
 <p>Cada defecto se registra con requisito y CP, pasos reproducibles, entradas, resultado esperado y obtenido, gravedad, entorno, SHA y evidencia. Las mejoras de presentaci&#xF3;n se distinguen de incumplimientos y se priorizan antes de cambiar el alcance.</p>
-<h2 id="correcciones-y-segundo-ciclo">Correcciones y segundo ciclo</h2>
-<p>Johan revisa el reporte, corrige en <code>correccion/&lt;tema&gt;</code>, valida y propone integrar a <code>develop</code>. Luis actualiza su rama sin perder sus casos, registra el nuevo SHA y repite el caso junto con las regresiones relacionadas. El ciclo 1 se conserva; el ciclo 2 documenta la nueva ejecuci&#xF3;n y la referencia de la correcci&#xF3;n. Un defecto se cierra cuando la correcci&#xF3;n se ha comprobado.</p>
+<h2 id="correcciones-y-repetici&#xF3;n-de-casos">Correcciones y repetici&#xF3;n de casos</h2>
+<p>Johan revisa el reporte, corrige y valida en <code>develop</code> seg&#xFA;n el flujo acordado. Luis actualiza su rama sin perder sus casos, registra el nuevo SHA y repite el caso junto con las regresiones relacionadas. Cada repetici&#xF3;n indica la versi&#xF3;n y conserva el resultado original. Un defecto se cierra cuando la correcci&#xF3;n se ha comprobado.</p>
 <p>La entrega incluye matriz original diligenciada, evidencias, resumen de aprobados/fallidos/bloqueados/no ejecutados, enlaces a defectos y PR de pruebas, e instrucciones para repetir las pruebas autom&#xE1;ticas. Los resultados de HTTPS, recuperaci&#xF3;n, navegador, resoluciones y rendimiento deben provenir de ejecuciones reales, con sus l&#xED;mites y m&#xE9;todo registrados.</p>
 <h2 id="correcci&#xF3;n-de-cp005-y-preparaci&#xF3;n-del-ciclo-2">Correcci&#xF3;n de CP005 y preparaci&#xF3;n del ciclo 2</h2>
-<p>La correcci&#xF3;n de la <a href="https://github.com/meneses1111/Valtraza-Valletech/issues/14" target="_blank">Issue #14</a> a&#xF1;ade al formulario de ingreso una gu&#xED;a fija con enlace a /activar, visible antes y despu&#xE9;s de un ingreso rechazado. El error sigue siendo &#xAB;No se pudo iniciar sesi&#xF3;n con estos datos.&#xBB; para cuentas sin activar, credenciales incorrectas y usuarios inexistentes; no se revela qu&#xE9; cuenta existe.</p>
-<p>AvisoActivacionLoginTest comprueba la presencia inicial de la ayuda y los tres tipos de ingreso rechazado. La separaci&#xF3;n de los botones de confirmaci&#xF3;n de servicio atiende &#xFA;nicamente el ajuste visual CP070 de la Issue #15; los textos de CP004 y CP032 se conservan.</p>
+<p>La correcci&#xF3;n de la <a href="https://github.com/meneses1111/Valtraza-Valletech/issues/14" target="_blank">Issue #14</a> a&#xF1;adi&#xF3; al formulario de ingreso una gu&#xED;a fija con enlace a <code>/activar</code>, visible antes y despu&#xE9;s de un ingreso rechazado. En el ciclo 2, el error dec&#xED;a &#xAB;No se pudo iniciar sesi&#xF3;n con estos datos.&#xBB;. Desde el PR #36, el aviso es &#xAB;Usuario o contrase&#xF1;a incorrectos.&#xBB; para los mismos casos, de modo que no revela qu&#xE9; cuenta existe.</p>
+<p><code>AvisoActivacionLoginTest</code> comprueba la ayuda y los tres tipos de ingreso rechazado. En el ciclo 2, el ajuste de CP070 separ&#xF3; los botones de confirmaci&#xF3;n. Los textos de CP004 y CP032 se cambiaron posteriormente en el PR #36.</p>
 <p>Luis complet&#xF3; el ciclo 2 sobre develop 90fa6a2 y ejecut&#xF3; pruebas 6fc7b13. CP001&#x2013;CP008, CP026 y CP070 quedaron aprobados; se conservaron la matriz y las evidencias del ciclo 1. El PR #18 incorpor&#xF3; sus resultados y cuatro pruebas nuevas: la suite pas&#xF3; 376 pruebas y 727 aserciones dos veces en CI. Luis cerr&#xF3; la Issue #14 tras comprobar la correcci&#xF3;n. Consulta el <a href="estado-y-evidencias.html">estado y las evidencias</a>.</p>
 
                                 
@@ -490,7 +516,7 @@
 
             
                 
-                <a href="../seguridad/" class="navigation navigation-prev " aria-label="Previous page: Seguridad">
+                <a href="../seguridad/pruebas-de-fuego.html" class="navigation navigation-prev " aria-label="Previous page: Resultado de las pruebas de fuego">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -506,7 +532,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Pruebas y entrega de resultados","level":"1.5.1","depth":2,"next":{"title":"Estado y evidencias","level":"1.5.2","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]},"previous":{"title":"Seguridad","level":"1.5","depth":1,"path":"seguridad/README.md","ref":"seguridad/README.md","articles":[{"title":"Pruebas y entrega de resultados","level":"1.5.1","depth":2,"path":"pruebas/README.md","ref":"pruebas/README.md","articles":[]},{"title":"Estado y evidencias","level":"1.5.2","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"pruebas/README.md","mtime":"2026-11-09T22:44:05.016Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-09T22:44:20.258Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Pruebas y entrega de resultados","level":"1.5.3","depth":2,"next":{"title":"Estado y evidencias","level":"1.5.4","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]},"previous":{"title":"Resultado de las pruebas de fuego","level":"1.5.2","depth":2,"path":"seguridad/pruebas-de-fuego.md","ref":"seguridad/pruebas-de-fuego.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"pruebas/README.md","mtime":"2026-11-17T23:39:51.762Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
