@@ -7,6 +7,7 @@ const CICLO = process.env.VALTRAZA_CICLO ?? '1';
 const SALIDA = path.resolve(process.env.VALTRAZA_EVIDENCIAS ?? `../evidencias/ciclo-${CICLO}/rendimiento`);
 const REPETICIONES = Number(process.env.VALTRAZA_REPETICIONES ?? 20);
 const USUARIOS = 15;
+const PUBLICAS = Number(process.env.VALTRAZA_PUBLICAS ?? USUARIOS);
 const LIMITE_MS = 2000;
 
 class Sesion {
@@ -143,7 +144,7 @@ for (let n = 1; n <= 5; n++) {
     sesiones.push({ s, rol: 'administrador' });
 }
 
-const visitantes = Array.from({ length: USUARIOS }, () => new Sesion());
+const visitantes = Array.from({ length: PUBLICAS }, () => new Sesion());
 const tokens = await Promise.all(visitantes.map((v) => v.token('/')));
 const inicioPublicas = performance.now();
 const publicas = await Promise.all(visitantes.map((v, i) => v.pedir('/consultar', {
@@ -178,7 +179,7 @@ const informe = {
     consultas_simples_un_usuario: simples,
     concurrencia: {
         usuarios_simultaneos: USUARIOS,
-        consultas_publicas_simultaneas: { ...resumen(`${USUARIOS} POST /consultar al mismo tiempo, una por visitante`, publicas), duracion_total_ms: +duracionPublicas.toFixed(1), estados: [...new Set(publicas.map((p) => p.estado))] },
+        consultas_publicas_simultaneas: { ...resumen(`${PUBLICAS} POST /consultar al mismo tiempo, una por visitante`, publicas), duracion_total_ms: +duracionPublicas.toFixed(1), estados: [...new Set(publicas.map((p) => p.estado))] },
         consultas_autenticadas_simultaneas: { ...resumen(`${USUARIOS} sesiones (10 técnicos y 5 administradores) con ${REPETICIONES} consultas cada una en paralelo`, mixtas), duracion_total_ms: +duracionMixtas.toFixed(1), estados: [...new Set(mixtas.map((p) => p.estado))] },
     },
     limitaciones: [
