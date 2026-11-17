@@ -35,7 +35,7 @@ Servicios no depende de Mantenimientos y reparaciones. La condición de completa
 | Observador | Generación de códigos y notificación de nuevos registros de avance |
 | Estado | Clases Pendiente, EnCurso y Completado para aplicar el estado del servicio |
 
-Los detalles del cambio de estado y la asignación están descritos en [Trabajo técnico](../uso/trabajo-tecnico.md). El resultado de GitDiagram compartido por Johan se contrastó con el código de la entrega. Las diferencias, la versión de referencia y la vista corregida se documentan en el [análisis de GitDiagram](analisis-gitdiagram.md).
+Los detalles del cambio de estado, el historial del computador y la asignación están en [Trabajo técnico](../uso/trabajo-tecnico.md). El [análisis de GitDiagram](analisis-gitdiagram.md) compara el grafo público regenerado con estas responsabilidades y contiene la vista de referencia por rol.
 
 Los observers emiten `ServicioActualizado` al confirmar la transacción. La pantalla que guarda redirige al detalle y las demás vistas muestran el estado al volver a consultarse.
 
@@ -43,4 +43,4 @@ Los observers emiten `ServicioActualizado` al confirmar la transacción. La pant
 
 ![Seis módulos y sus dependencias de consumo](../assets/modulos.svg)
 
-La vista resume las dependencias entre los servicios de los seis módulos. No sustituye el análisis final con GitDiagram ni representa cada llamada a un controlador o modelo. Los tres actores ingresan por rutas con los permisos correspondientes.
+La vista resume las dependencias principales entre módulos. La composición de supervisión y de la ficha del cliente se realiza en el controlador. El administrador y el técnico usan rutas autenticadas. El cliente consulta por código en una ruta pública.

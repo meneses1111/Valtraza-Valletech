@@ -16,6 +16,14 @@ El cliente consulta con un código de seguimiento y no necesita cuenta. Administ
 
 El GitBook está publicado en GitHub Pages. El workflow **Revisar GitBook** comprueba las páginas, la navegación y los recursos antes de desplegar desde `main`; después verifica por HTTPS las páginas públicas y sus recursos. Las ejecuciones también conservan una vista previa descargable.
 
+## Arquitectura
+
+El sistema se organiza en seis módulos: Clientes y equipos, Técnicos, Cuentas y acceso, Servicios, Mantenimientos y reparaciones, y Consulta y seguimiento.
+
+`CuentasController` usa `Acceso` para crear cuentas de técnicos. `RegistroTecnicos` registra a las personas y Servicios consulta ese registro para asignarlas. `FichaClienteController` usa `HistorialEquipos` para la ficha administrativa. El técnico modifica sus servicios asignados y puede leer las actividades completadas del mismo equipo. Diagnósticos, trabajos y repuestos se guardan en modelos Eloquent distintos.
+
+Consulta el [diagrama revisado y la comparación con GitDiagram](docs/arquitectura/analisis-gitdiagram.md).
+
 ## Entorno de la aplicación
 
 Laravel 12, PHP 8.3, PostgreSQL 18, Blade y Bootstrap 5.3. El entorno de pruebas de referencia usa Nginx con HTTPS (Herd en Windows). Los recursos de interfaz están incluidos en `public/assets`; no hace falta compilar JavaScript para iniciar la aplicación.

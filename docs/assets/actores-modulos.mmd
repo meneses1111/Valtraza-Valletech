@@ -8,11 +8,31 @@ flowchart TB
     servicios["Servicios"]
     trabajo["Mantenimientos y reparaciones"]
     consulta["Consulta y seguimiento"]
-    administrador -->|"Gestiona cuentas"| cuentas
+    administrador -->|"Ingresa y crea cuentas de técnicos"| cuentas
     administrador -->|"Registra técnicos"| tecnicos
     administrador -->|"Registra clientes y equipos"| clientesEquipos
-    administrador -->|"Registra y asigna"| servicios
+    administrador -->|"Registra, asigna e imprime comprobantes"| servicios
     administrador -->|"Supervisa"| consulta
     tecnico -->|"Activa su cuenta e ingresa"| cuentas
-    tecnico -->|"Opera sus servicios asignados"| trabajo
-    cliente -->|"Consulta pública por código"| consulta
+    tecnico -->|"Opera servicios asignados y lee el historial del equipo"| trabajo
+    cliente -->|"Consulta estado y avance por código"| consulta
+
+    cuentas --> usuario["Usuario"]
+    tecnicos --> registroTecnico["Tecnico"]
+    clientesEquipos --> registroCliente["Cliente"]
+    clientesEquipos --> equipo["Equipo"]
+    servicios --> servicio["Servicio"]
+    trabajo --> diagnostico["Diagnostico"]
+    trabajo --> actividad["Trabajo"]
+    trabajo --> repuesto["Repuesto"]
+    consulta -.->|"GestionServicios"| servicios
+    consulta -.->|"LecturaAvance"| trabajo
+
+    usuario --> postgres[("PostgreSQL 18")]
+    registroTecnico --> postgres
+    registroCliente --> postgres
+    equipo --> postgres
+    servicio --> postgres
+    diagnostico --> postgres
+    actividad --> postgres
+    repuesto --> postgres
