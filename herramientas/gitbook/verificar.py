@@ -96,8 +96,11 @@ def main():
             if target is not None and not target.exists():
                 ERRORS.append(f'Enlace roto en {document.relative_to(DOCS)}: {link}')
     config = json.loads((DOCS / 'book.json').read_text(encoding='utf-8'))
-    if config.get('gitbook') != '3.2.2':
-        ERRORS.append('El libro debe mantener GitBook 3.2.2.')
+    if config.get('gitbook'):
+        ERRORS.append('El libro no debe forzar el runtime retirado de GitBook Legacy.')
+    package = json.loads((ROOT / 'herramientas/gitbook/package.json').read_text(encoding='utf-8'))
+    if package.get('dependencies', {}).get('honkit') != '6.2.5':
+        ERRORS.append('El generador debe mantener la versión HonKit auditada.')
     for svg in (DOCS / 'assets').glob('*.svg'):
         ElementTree.parse(svg)
 

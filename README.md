@@ -6,6 +6,8 @@ El cliente consulta con un código de seguimiento y no necesita cuenta. Administ
 
 ## Documentación
 
+La [ERS definitiva 1.1 y los documentos de diseño](documentacion/README.md) están disponibles en el repositorio para contrastarlos con la implementación.
+
 **[Abrir el GitBook de Valtraza](https://meneses1111.github.io/Valtraza-Valletech/)** — documentación pública con índice y búsqueda.
 
 - [Inicio de la documentación](docs/README.md) y [índice completo](docs/SUMMARY.md).
@@ -20,9 +22,33 @@ El GitBook está publicado en GitHub Pages. El workflow **Revisar GitBook** comp
 
 El sistema se organiza en seis módulos: Clientes y equipos, Técnicos, Cuentas y acceso, Servicios, Mantenimientos y reparaciones, y Consulta y seguimiento.
 
+### Correspondencia entre requisitos y código
+
+Esta tabla identifica los seis módulos del diseño. Los controladores de cuentas y de técnicos tienen responsabilidades diferentes. El cliente no inicia sesión.
+
+| Módulo del diseño | Requisitos | Controladores | Servicios y modelos principales |
+| --- | --- | --- | --- |
+| Clientes y equipos | RF04, RF05 | `ClientesEquipos/ClientesController`, `ClientesEquipos/EquiposController`, `Servicios/FichaClienteController` | `RegistroClientesEquipos`; `Cliente`, `Equipo`. La ficha utiliza `HistorialEquipos` para leer servicios anteriores. |
+| Técnicos | RF02 | `Tecnicos/TecnicosController` | `RegistroTecnicos`; `Tecnico`. Registra personas; no crea cuentas. |
+| Cuentas y acceso | RF01, RF03 | `AccesoController`, `CuentasController` | `Acceso`; `Usuario`. El administrador crea cuentas de técnicos; ambos roles activan e ingresan por el mismo acceso. |
+| Servicios | RF06, RF07 | `Servicios/ServiciosController` | `GestionServicios`, `HistorialEquipos`; `Servicio`. Registra, genera códigos, asigna y reasigna; conserva estado y avances. |
+| Mantenimientos y reparaciones | RF08–RF12 | `TrabajoTecnico/MisServiciosController`, `DiagnosticosController`, `TrabajosController`, `RepuestosController`, `EstadosController` | `RegistroTrabajoTecnico`, `LecturaAvance`, estados `Pendiente`, `EnCurso`, `Completado`; modelos distintos `Diagnostico`, `Trabajo`, `Repuesto`. Completar exige diagnóstico. |
+| Consulta y seguimiento | RF13, RF14 | `Supervision/SupervisionController`, `Consulta/ConsultaController` | `SupervisionServicios`, `ConsultaPublica`; consulta `GestionServicios` y `LecturaAvance`. El cliente solo obtiene un resumen permitido por código. |
+
+Las dependencias entre servicios de módulos van del consumidor al proveedor: Cuentas y acceso → Técnicos; Servicios → Clientes y equipos y Técnicos; Mantenimientos y reparaciones → Servicios; Consulta y seguimiento → Servicios y Mantenimientos y reparaciones. El computador de la consulta pública se obtiene a través de Servicios. El controlador de supervisión compone además el filtro de técnicos. La regla de diagnóstico pertenece a Mantenimientos y reparaciones; Servicios no depende de ese módulo.
+
+Las ocho entidades de negocio son `Usuario`, `Tecnico`, `Cliente`, `Equipo`, `Servicio`, `Diagnostico`, `Trabajo` y `Repuesto`, en una sola base PostgreSQL. `Trabajo.tipo` distingue mantenimiento de reparación; no existen dos tablas de actividades. El cliente del servicio se obtiene por `Servicio → Equipo → Cliente`. `sessions` es infraestructura de Laravel, no una novena entidad de negocio. Las capas son Presentación, Control, Lógica de negocio, Acceso a datos y Datos; un módulo puede tener varios controladores.
+
 `CuentasController` usa `Acceso` para crear cuentas de técnicos. `RegistroTecnicos` registra a las personas y Servicios consulta ese registro para asignarlas. `FichaClienteController` usa `HistorialEquipos` para la ficha administrativa. El técnico modifica sus servicios asignados y puede leer las actividades completadas del mismo equipo. Diagnósticos, trabajos y repuestos se guardan en modelos Eloquent distintos.
 
 Consulta el [diagrama revisado y la comparación con GitDiagram](docs/arquitectura/analisis-gitdiagram.md).
+
+## Entrega y sustentación
+
+- [Concordancia entre ERS, diseño, código y entregas](docs/cierre/concordancia.md).
+- [Manual de usuario](docs/uso/manual-de-usuario.md).
+- [Guion del video de storytelling y recorrido de sustentación](docs/cierre/storytelling.md).
+- [Enlaces públicos y archivos de entrega](docs/cierre/README.md).
 
 ## Entorno de la aplicación
 
