@@ -22,6 +22,24 @@ El GitBook está publicado en GitHub Pages. El workflow **Revisar GitBook** comp
 
 El sistema se organiza en seis módulos: Clientes y equipos, Técnicos, Cuentas y acceso, Servicios, Mantenimientos y reparaciones, y Consulta y seguimiento.
 
+```mermaid
+flowchart TB
+    CE["Clientes y equipos RF04 RF05"]
+    TE["Técnicos RF02"]
+    CA["Cuentas y acceso RF01 RF03"]
+    SE["Servicios RF06 RF07"]
+    MR["Mantenimientos y reparaciones RF08 a RF12"]
+    CS["Consulta y seguimiento RF13 RF14"]
+    CA --> TE
+    SE --> CE
+    SE --> TE
+    MR --> SE
+    CS --> SE
+    CS --> MR
+```
+
+La flecha representa consumo de una interfaz, del módulo consumidor al proveedor; no representa el orden de atención ni una clave foránea.
+
 ### Correspondencia entre requisitos y código
 
 Esta tabla identifica los seis módulos del diseño. Los controladores de cuentas y de técnicos tienen responsabilidades diferentes. El cliente no inicia sesión.
