@@ -29,7 +29,7 @@ El Taller 1 representa seis módulos conceptuales. La implementación reparte su
 
 El Taller 1 se revisó el 18 de noviembre para mostrar la supervisión administrativa en Consulta y seguimiento y las seis dependencias directas de consumo. El computador de la consulta pública se obtiene **a través de Servicios**; no existe una llamada directa desde `ConsultaPublica` a `RegistroClientesEquipos`. Supervisión obtiene también el registro de técnicos desde el controlador para su filtro.
 
-El Taller 2 se revisó para indicar varios controladores por módulo y nombrar al modelo `Trabajo`. Sus cinco capas se conservan. Los observers generan códigos y emiten eventos después de confirmar la transacción. La petición que guarda redirige al detalle; las otras pantallas ven los cambios al consultarse de nuevo, sin prometer actualización automática en tiempo real.
+El Taller 2 se revisó para indicar varios controladores por módulo y nombrar al modelo `Trabajo`. Sus cinco capas se conservan. Los códigos se generan durante el registro. Los observers de avances emiten eventos después de confirmar la transacción. La petición que guarda redirige al detalle; las otras pantallas ven los cambios al consultarse de nuevo, sin prometer actualización automática en tiempo real.
 
 En los diseños de datos, la entidad «Mantenimiento y reparación» corresponde al modelo `Trabajo` y la tabla `trabajo`, con el atributo `tipo`. El servicio conserva `id_equipo`; el cliente se obtiene a través del computador. La tabla técnica `sessions` no cambia las ocho entidades del dominio.
 
