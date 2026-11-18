@@ -1,7 +1,6 @@
 {
     "title": "Valtraza | Documentación técnica y guía de uso",
     "description": "Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza.",
-    "gitbook": "3.2.2",
     "language": "es",
     "author": "Equipo ValleTech",
     "plugins": [

@@ -24,3 +24,9 @@
 * [Git, GitHub y documentación](git/README.md)
     * [Preguntas frecuentes](preguntas-frecuentes.md)
     * [Referencias y licencias](referencias/README.md)
+
+* [Entrega y sustentación](cierre/README.md)
+    * [Concordancia de requisitos y diseño](cierre/concordancia.md)
+    * [Manual de usuario](uso/manual-de-usuario.md)
+    * [Guion de storytelling](cierre/storytelling.md)
+    * [Criterios de elaboración del manual](cierre/referencias-manual.md)

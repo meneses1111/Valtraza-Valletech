@@ -1,6 +1,7 @@
 /contexto/
 /Capturas_BD/
-/ENTREGABLE/
+/ENTREGABLE/*
+!/ENTREGABLE/CIERRE Y SUSTENTACION/
 /*.pdf
 /*.docx
 /*.drawio
@@ -31,3 +32,5 @@
 **/node_modules/
 /docs/_book/
 /_verificacion_gitbook/
+**/__pycache__/
+*.pyc

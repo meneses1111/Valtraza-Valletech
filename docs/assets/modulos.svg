@@ -21,9 +21,10 @@
 <text x="428" y="422" font-family="Segoe UI, sans-serif" font-size="17" fill="#334e68">Recepción y códigos</text>
 <text x="428" y="447" font-family="Segoe UI, sans-serif" font-size="17" fill="#334e68">Asignación y reasignación</text>
 <rect x="40" y="610" width="300" height="130" rx="12" fill="#ffffff" stroke="#b7cce0" stroke-width="2"/>
-<text x="58" y="642" font-family="Segoe UI, sans-serif" font-size="21" font-weight="650" fill="#17436b">Trabajo técnico</text>
-<text x="58" y="672" font-family="Segoe UI, sans-serif" font-size="17" fill="#334e68">Diagnósticos y actividades</text>
-<text x="58" y="697" font-family="Segoe UI, sans-serif" font-size="17" fill="#334e68">Repuestos y estados</text>
+<text x="58" y="638" font-family="Segoe UI, sans-serif" font-size="20" font-weight="650" fill="#17436b">Mantenimientos y</text>
+<text x="58" y="661" font-family="Segoe UI, sans-serif" font-size="20" font-weight="650" fill="#17436b">reparaciones</text>
+<text x="58" y="692" font-family="Segoe UI, sans-serif" font-size="17" fill="#334e68">Diagnósticos y actividades</text>
+<text x="58" y="717" font-family="Segoe UI, sans-serif" font-size="17" fill="#334e68">Repuestos y estados</text>
 <rect x="780" y="610" width="300" height="130" rx="12" fill="#ffffff" stroke="#b7cce0" stroke-width="2"/>
 <text x="798" y="642" font-family="Segoe UI, sans-serif" font-size="21" font-weight="650" fill="#17436b">Consulta y seguimiento</text>
 <text x="798" y="672" font-family="Segoe UI, sans-serif" font-size="17" fill="#334e68">Supervisión administrativa</text>
