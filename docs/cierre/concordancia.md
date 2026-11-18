@@ -27,9 +27,9 @@ Las ubicaciones de controladores parten de `app/Http/Controllers` y las de servi
 
 El Taller 1 representa seis módulos conceptuales. La implementación reparte sus operaciones entre varios controladores; la carpeta de un controlador no determina por sí sola la responsabilidad del módulo. `FichaClienteController`, ubicado en Servicios, compone la ficha del cliente con el historial. Los diagramas de módulos, capas, actores y datos responden preguntas distintas y no necesitan tener el mismo número de cajas.
 
-En el Taller 1, la relación de Consulta y seguimiento con Clientes y equipos expresa una necesidad de información. En el código de consulta pública se resuelve **a través de Servicios**, que carga el computador; no existe una llamada directa desde `ConsultaPublica` a `RegistroClientesEquipos`. La vista de implementación y el README hacen explícita esa diferencia. Supervisión obtiene también el registro de técnicos desde el controlador para su filtro.
+El Taller 1 se revisó el 18 de noviembre para mostrar la supervisión administrativa en Consulta y seguimiento y las seis dependencias directas de consumo. El computador de la consulta pública se obtiene **a través de Servicios**; no existe una llamada directa desde `ConsultaPublica` a `RegistroClientesEquipos`. Supervisión obtiene también el registro de técnicos desde el controlador para su filtro.
 
-La expresión «un controlador por módulo» del Taller 2 describe la coordinación por módulo; la implementación concreta utiliza varios. Sus cinco capas se conservan. Los observers generan códigos y emiten eventos después de confirmar la transacción. La petición que guarda redirige al detalle; las otras pantallas ven los cambios al consultarse de nuevo, sin prometer actualización automática en tiempo real.
+El Taller 2 se revisó para indicar varios controladores por módulo y nombrar al modelo `Trabajo`. Sus cinco capas se conservan. Los observers generan códigos y emiten eventos después de confirmar la transacción. La petición que guarda redirige al detalle; las otras pantallas ven los cambios al consultarse de nuevo, sin prometer actualización automática en tiempo real.
 
 En los diseños de datos, la entidad «Mantenimiento y reparación» corresponde al modelo `Trabajo` y la tabla `trabajo`, con el atributo `tipo`. El servicio conserva `id_equipo`; el cliente se obtiene a través del computador. La tabla técnica `sessions` no cambia las ocho entidades del dominio.
 
@@ -51,4 +51,4 @@ El cierre oficial del ciclo 3 registra 79/79 casos exitosos y 408 pruebas autom�
 
 ## Documentos de referencia
 
-La [ERS y los talleres originales de diseño](https://github.com/meneses1111/Valtraza-Valletech/tree/main/documentacion) están publicados en `documentacion` del repositorio. La [arquitectura](../arquitectura/README.md), el [modelo de datos](../base-de-datos/modelo.md) y el [análisis de GitDiagram](../arquitectura/analisis-gitdiagram.md) explican su correspondencia con la implementación. El [manual](../uso/manual-de-usuario.md) y el [storytelling](storytelling.md) utilizan estas mismas reglas.
+La [ERS y los talleres de diseño](https://github.com/meneses1111/Valtraza-Valletech/tree/main/documentacion) están publicados en `documentacion` del repositorio. La [arquitectura](../arquitectura/README.md), el [modelo de datos](../base-de-datos/modelo.md) y el [análisis de GitDiagram](../arquitectura/analisis-gitdiagram.md) explican su correspondencia con la implementación. El [manual](../uso/manual-de-usuario.md) y el [storytelling](storytelling.md) utilizan estas mismas reglas.

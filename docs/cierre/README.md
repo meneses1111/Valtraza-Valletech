@@ -7,7 +7,7 @@ Esta sección reúne la documentación del cierre del proyecto de ValleTech. El 
 | Recurso | Dirección |
 | --- | --- |
 | Repositorio | https://github.com/meneses1111/Valtraza-Valletech |
-| ERS y diseños originales | [Consultar documentos](https://github.com/meneses1111/Valtraza-Valletech/tree/main/documentacion) |
+| ERS y diseños | [Consultar documentos](https://github.com/meneses1111/Valtraza-Valletech/tree/main/documentacion) |
 | GitBook publicado | https://meneses1111.github.io/Valtraza-Valletech/ |
 | GitDiagram automático | https://gitdiagram.com/meneses1111/valtraza-valletech |
 | Análisis de GitDiagram y vista de referencia | [Análisis del diagrama](../arquitectura/analisis-gitdiagram.md) |
