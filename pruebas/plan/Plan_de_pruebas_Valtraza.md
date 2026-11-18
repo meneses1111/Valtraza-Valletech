@@ -7,6 +7,7 @@
 | 1.0 | 16-11-2026 | Luis Eduardo Ramos Giraldo | Versión inicial del plan para el ciclo 3 |
 | 1.1 | 17-11-2026 | Luis Eduardo Ramos Giraldo | Ajuste a las secciones de la plantilla de pmoinformatica y resultados de la ejecución |
 | 1.2 | 17-11-2026 | Luis Eduardo Ramos Giraldo | Ajustes por la revisión del analista: nuevo SHA `73b5190` con la corrección de la Issue #48, nueva prueba de CP070, ejecución de CP073, prueba complementaria de CP072, salida de PHPUnit guardada, detalle por caso y enlaces |
+| 1.3 | 17-11-2026 | Luis Eduardo Ramos Giraldo | Segunda revisión del analista: criterio de CP072 acordado con el programador y prueba con 15 IP distintas, 170 solicitudes en CP071, aclaración de las sesiones y referencias sin enlaces privados |
 
 ## Ficha del proyecto
 
@@ -17,7 +18,7 @@
 | Líder del proyecto | Dxien Antonio Valencia Páramo |
 | Patrocinador | Jair Enrique Sanclemente Castro, profesor de la asignatura |
 | Líder de pruebas | Luis Eduardo Ramos Giraldo (responsable de pruebas) |
-| Versión del sistema probada | rama `pruebas`: SHA `42d7d07` (develop `300ed7b`) y, para la nueva prueba y la regresión, SHA `73b5190` (develop con la corrección de la Issue #48) |
+| Versión del sistema probada | rama `pruebas`: SHA `42d7d07` (develop `300ed7b`) y, para la nueva prueba y la regresión, SHA `73b5190` (develop con la corrección de la Issue #48). CP072 con 15 IP distintas se ejecutó en `3644709`, que solo agrega documentación sobre `73b5190` |
 | Ciclo | Ciclo 3 (16 y 17-11-2026) |
 
 ## Aprobaciones
@@ -246,14 +247,14 @@ _R: responsable, A: aprueba, C: consultado, I: informado._
 | Tiempo corto con un solo responsable de pruebas | Alta | Alto | Priorizar los casos principales y automatizar todo lo posible |
 | El rendimiento medido en local no representa el servidor real | Media | Medio | Repetir RNF05 en el servidor definitivo |
 | Cambios en `develop` en medio de la ejecución | Media | Alto | Registrar el SHA y reiniciar si cambia |
-| El límite de 10 consultas por minuto por IP bloquea a clientes que comparten red | Media | Medio | Reportarlo al programador como observación |
+| El límite de 10 consultas por minuto por IP bloquea a clientes que comparten red | Media | Medio | Acordado con el programador el 17-11-2026: se mantiene el límite por seguridad, CP072 se valida con 15 clientes desde IP distintas y queda como limitación conocida |
 | Caída de Herd o de PostgreSQL | Baja | Alto | Recuperación probada (2 s) y copias con pg_dump |
 
 ## 7. Referencias
 
-1. Valtraza: Especificación de Requisitos de Software (ERS), versión 1.1: https://drive.google.com/file/d/16QrJTRN7Bl9uvE1IO0KTaHA1Q66vNsWw/view
-2. Valtraza: Mockup y patrones de interfaz: https://drive.google.com/file/d/1Rakk1tbUJEyloWoOoCMdHuMjAlCAFkwL/view
-3. Valtraza: Arquitectura del sistema (https://drive.google.com/file/d/1ZzelE_Phl4G1ydPyd47DiINa9cCIak4z/view) y arquitectura de software MVC (https://drive.google.com/file/d/1gzQBSmN-L1IleR85OYAR-cnyCtYzTbri/view).
+1. Valtraza: Especificación de Requisitos de Software (ERS), versión 1.1, 26-10-2026. Equipo ValleTech.
+2. Valtraza: Mockup y patrones de interfaz. Equipo ValleTech.
+3. Valtraza: Arquitectura del sistema y arquitectura de software MVC. Equipo ValleTech.
 4. Valtraza: Matriz de pruebas, ciclos 1 y 2: https://github.com/meneses1111/Valtraza-Valletech/blob/pruebas/pruebas/matriz/Matriz_Pruebas_Valtraza.xlsx. El ciclo 3 está en `pruebas/matriz/casos.json` y en la hoja «Detalle ciclo 3» del informe.
 5. Valtraza: Informe de ejecución del ciclo 3: https://github.com/meneses1111/Valtraza-Valletech/blob/pruebas/pruebas/plan/Informe_ejecucion_pruebas_Valtraza_C3.xlsx
 6. Valtraza: Hojas de aceptación y usabilidad del ciclo 3 (anexos A y B, y `pruebas/plan/`).
