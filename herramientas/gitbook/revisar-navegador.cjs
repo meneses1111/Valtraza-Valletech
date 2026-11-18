@@ -16,11 +16,17 @@ async function run() {
     const pages = [...summary.matchAll(/\]\(([^)]+\.md)\)/g)].map(match => match[1].replace(/README\.md$/, 'index.html').replace(/\.md$/, '.html'));
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     const origin = `http://127.0.0.1:${server.address().port}${basePath}`;
-    const browser = await puppeteer.launch({ executablePath: process.env.GITBOOK_CHROME, headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+    const browser = await puppeteer.launch({ executablePath: process.env.GITBOOK_CHROME, headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-background-networking', '--disable-component-update', '--disable-sync', '--no-first-run', '--disable-default-apps', '--disable-domain-reliability'] });
     const results = [];
     try {
         for (const size of [{ width: 1366, height: 768 }, { width: 1920, height: 1080 }]) {
             const page = await browser.newPage();
+            await page.setRequestInterception(true);
+            page.on('request', request => {
+                const url = new URL(request.url());
+                if (url.hostname === '127.0.0.1' || url.protocol === 'data:') request.continue();
+                else request.abort();
+            });
             await page.setViewport(size);
             const errors = [];
             page.on('pageerror', error => {
@@ -54,7 +60,7 @@ async function run() {
             if (errors.length) throw new Error('Errores JavaScript: ' + JSON.stringify(errors));
             await page.close();
         }
-        fs.writeFileSync(path.join(destination, 'resultado.json'), JSON.stringify({ gitbook: '3.2.2', ruta_base: basePath, paginas: pages.length, comprobaciones: results.length, indice_navegable: true, resultados: results }, null, 2));
+        fs.writeFileSync(path.join(destination, 'resultado.json'), JSON.stringify({ generador: 'honkit', version: '6.2.5', ruta_base: basePath, paginas: pages.length, comprobaciones: results.length, indice_navegable: true, resultados: results }, null, 2));
         console.log(`GitBook: ${pages.length} páginas, ${results.length} comprobaciones en Chrome y navegación del índice correctas.`);
     } finally {
         await browser.close();

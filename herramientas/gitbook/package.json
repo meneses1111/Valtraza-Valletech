@@ -4,9 +4,12 @@
   "version": "1.0.0",
   "description": "Generador aislado de documentación de Valtraza",
   "engines": {
-    "node": "10.24.1"
+    "node": ">=24 <27"
   },
   "dependencies": {
-    "gitbook": "3.2.2"
+    "honkit": "6.2.5"
+  },
+  "devDependencies": {
+    "puppeteer-core": "25.17.0"
   }
 }

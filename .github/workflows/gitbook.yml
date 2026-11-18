@@ -23,15 +23,21 @@ jobs:
     steps:
       - name: Descargar fuentes
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Comprobar contenido e índice
         run: python3 herramientas/gitbook/verificar.py
-      - name: Preparar Node exclusivo para GitBook
+      - name: Preparar Node LTS para el libro
         uses: actions/setup-node@v6
         with:
-          node-version: '10.24.1'
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: herramientas/gitbook/package-lock.json
       - name: Instalar el generador fijado
-        run: npm install --prefix herramientas/gitbook --ignore-scripts --no-audit
-      - name: Compilar GitBook 3.2.2
+        run: npm ci --prefix herramientas/gitbook --ignore-scripts --no-fund
+      - name: Auditar dependencias del libro
+        run: npm audit --prefix herramientas/gitbook --audit-level=high
+      - name: Compilar el libro compatible con GitBook
         run: node herramientas/gitbook/compilar.cjs
       - name: Comprobar HTML y recursos generados
         run: python3 herramientas/gitbook/verificar.py --html _book
@@ -41,8 +47,7 @@ jobs:
           node-version: '24'
       - name: Preparar revisión en Chrome
         run: |
-          npm install --prefix "$RUNNER_TEMP/gitbook-browser" --ignore-scripts --no-audit --no-fund puppeteer-core@24.10.0
-          echo "GITBOOK_BROWSER_MODULES=$RUNNER_TEMP/gitbook-browser/node_modules" >> "$GITHUB_ENV"
+          echo "GITBOOK_BROWSER_MODULES=$GITHUB_WORKSPACE/herramientas/gitbook/node_modules" >> "$GITHUB_ENV"
           echo "GITBOOK_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
       - name: Revisar páginas y navegación en dos resoluciones
         env:

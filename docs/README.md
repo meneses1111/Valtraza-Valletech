@@ -32,7 +32,7 @@ El alcance acordado está en la **ERS definitiva 1.1**, con RF01–RF14 y RNF01�
 | Interfaz | Blade y Bootstrap 5.3; recursos locales |
 | Servidor de referencia | Nginx con HTTPS; Herd en el entorno Windows de pruebas |
 | Pruebas | PHPUnit, Unit y Feature, más recorridos y evidencias de Luis |
-| Documentación | GitBook 3.2.2, validado y publicado desde GitHub Actions |
+| Documentación | Formato GitBook, generado con HonKit 6.2.5 y publicado desde GitHub Actions |
 
 ## Equipo ValleTech
 
@@ -45,6 +45,6 @@ El alcance acordado está en la **ERS definitiva 1.1**, con RF01–RF14 y RNF01�
 
 ## Estado de esta documentación
 
-El [estado de pruebas](pruebas/estado-y-evidencias.md) registra los tres ciclos de Luis. El ciclo 3 se ejecutó el 16 y 17 de noviembre sobre `42d7d07`, con código de `develop` `300ed7b`, y se integró a `develop` en el PR #47. El informe distingue los resultados oficiales de las comprobaciones de desarrollo posteriores, incluida la corrección de paginación del issue #48.
+El [estado de pruebas](pruebas/estado-y-evidencias.md) registra los tres ciclos de Luis y el cierre de 79/79 casos del ciclo 3. Las ejecuciones conservan sus versiones y límites. El [manual de usuario](uso/manual-de-usuario.md), la [concordancia](cierre/concordancia.md) y el [guion del video](cierre/storytelling.md) reúnen la documentación del cierre.
 
 Utiliza el índice lateral para navegar por capítulos o consulta el [repositorio en GitHub](https://github.com/meneses1111/Valtraza-Valletech).

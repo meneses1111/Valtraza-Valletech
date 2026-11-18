@@ -36,20 +36,20 @@ GitHub Actions ejecuta las comprobaciones y la publicación configuradas. No org
 
 | Rama | Qué contiene |
 | --- | --- |
-| `main` | Versión estable previa al cierre del ciclo 3: `2ac93f3`. |
-| `develop` | Primera entrega de pruebas en `3fee798` y resultados finales en `98521f8`. Luis probó `300ed7b` y `73b5190`. |
-| `pruebas` | `c9b8b12`, con el plan actualizado, el informe, los scripts y las evidencias del ciclo 3. |
-| `gh-pages` | Salida del GitBook gestionada por GitHub Actions. |
+| `main` | Versión estable; incluye el cierre documental del ciclo 3. El SHA vigente se consulta en GitHub. |
+| `develop` | Integración del cierre del ciclo 3; línea base de esta revisión documental: `3644709`. |
+| `pruebas` | Informes, scripts y evidencias mantenidos por Luis. |
+| `gh-pages` | Salida del libro gestionada por GitHub Actions. |
 
 El [PR #47](https://github.com/meneses1111/Valtraza-Valletech/pull/47) incorporó la primera entrega y el [PR #49](https://github.com/meneses1111/Valtraza-Valletech/pull/49) incorporó el cierre. Luis cerró el [issue #48](https://github.com/meneses1111/Valtraza-Valletech/issues/48) al verificar la paginación en español. El [estado de pruebas](../pruebas/estado-y-evidencias.md) conserva ambas ejecuciones.
 
 ## Construcción del GitBook
 
-Las fuentes están en `docs`. `SUMMARY.md` define la navegación y `book.json` fija GitBook 3.2.2. El Node de esta herramienta está separado del entorno PHP de la aplicación.
+Las fuentes están en `docs`. `SUMMARY.md` define la navegación y `book.json` configura el contenido. El generador es HonKit 6.2.5, fijado en `herramientas/gitbook/package-lock.json`, compatible con la estructura de GitBook. El Node de esta herramienta está separado del entorno PHP de la aplicación.
 
 ### Comprobación automática
 
-El workflow **Revisar GitBook** comprueba fuentes y enlaces internos, compila el libro con GitBook 3.2.2 y Node 10.24.1 y revisa el HTML generado. Después abre las páginas con Chrome en 1366 × 768 y 1920 × 1080, tanto en la raíz como bajo `/Valtraza-Valletech/`, y guarda el informe de navegación. Se comprueba también el acceso directo a `index.html` sin depender de redirecciones del servidor.
+El workflow **Revisar GitBook** comprueba fuentes y enlaces internos, compila el libro con HonKit 6.2.5 y Node 24 LTS y revisa el HTML generado. Después abre las páginas con Chrome en 1366 × 768 y 1920 × 1080, tanto en la raíz como bajo `/Valtraza-Valletech/`, y guarda el informe de navegación. Se comprueba también el acceso directo a `index.html` sin depender de redirecciones del servidor.
 
 Si termina correctamente, en la ejecución de GitHub Actions aparece el artefacto **gitbook-vista-previa-SHA**, que contiene el sitio estático, y el artefacto de validación. Para abrir la vista previa, extraer el sitio en una carpeta y servirla con un servidor HTTP local; la búsqueda y la navegación del tema no deben evaluarse mediante `file://`.
 
@@ -57,10 +57,10 @@ En Windows, con Node.js 18 o posterior, extrae todo el ZIP y abre **ABRIR-GITBOO
 
 ### Construcción local en un entorno aislado
 
-Con Node 10.24.1 y npm 6 disponibles únicamente para esta herramienta:
+Con Node 24 LTS y npm disponibles para esta herramienta:
 
 ```text
-npm install --prefix herramientas/gitbook --ignore-scripts --no-audit
+npm ci --prefix herramientas/gitbook --ignore-scripts --no-fund
 node herramientas/gitbook/compilar.cjs
 python herramientas/gitbook/verificar.py --html _book
 ```
@@ -71,7 +71,7 @@ La comprobación de las fuentes se puede ejecutar sin instalar GitBook:
 python herramientas/gitbook/verificar.py
 ```
 
-El generador utiliza la biblioteca oficial GitBook 3.2.2; no se reemplaza por otro motor ni se instala de forma global. `_book` es salida generada y se mantiene fuera de las ramas de desarrollo. Los PR y los cambios de `develop` generan solo vistas previas. El despliegue se habilita únicamente para `main`; no modifica la base de datos.
+Se conserva el nombre GitBook para el libro y su estructura de capítulos; la compilación utiliza HonKit en lugar del generador Legacy 3.2.2. Las dependencias se auditan en CI y no se instalan de forma global. `_book` es salida generada y se mantiene fuera de las ramas de desarrollo. Los PR y los cambios de `develop` generan solo vistas previas. El despliegue se habilita únicamente para `main`; no modifica la base de datos.
 
 ### Publicación de la entrega
 
