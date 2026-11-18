@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
+import https from 'node:https';
 
 const BASE = process.env.VALTRAZA_URL ?? 'https://valtraza.test';
 const CICLO = process.env.VALTRAZA_CICLO ?? '1';
@@ -8,20 +9,45 @@ const SALIDA = path.resolve(process.env.VALTRAZA_EVIDENCIAS ?? `../evidencias/ci
 const REPETICIONES = Number(process.env.VALTRAZA_REPETICIONES ?? 20);
 const USUARIOS = 15;
 const PUBLICAS = Number(process.env.VALTRAZA_PUBLICAS ?? USUARIOS);
+const IPS_DISTINTAS = process.env.VALTRAZA_IPS_DISTINTAS === '1';
 const LIMITE_MS = 2000;
 
+function pedirDesde(origen, url, { method = 'GET', headers = {}, body }) {
+    const datos = body === undefined ? undefined : String(body);
+    const cabeceras = datos === undefined ? headers : { ...headers, 'content-length': Buffer.byteLength(datos) };
+
+    return new Promise((resolver, rechazar) => {
+        const solicitud = https.request(url, { method, headers: cabeceras, localAddress: origen, family: 4 }, (r) => {
+            const partes = [];
+            r.on('data', (parte) => partes.push(parte));
+            r.on('end', () => {
+                const cuerpo = Buffer.concat(partes).toString('utf8');
+                resolver({
+                    status: r.statusCode,
+                    text: async () => cuerpo,
+                    headers: { getSetCookie: () => r.headers['set-cookie'] ?? [], get: (nombre) => r.headers[nombre.toLowerCase()] ?? null },
+                });
+            });
+        });
+        solicitud.on('error', rechazar);
+        solicitud.end(datos);
+    });
+}
+
 class Sesion {
-    constructor() {
+    constructor(origen = null) {
         this.cookies = new Map();
+        this.origen = origen;
     }
 
     async pedir(ruta, opciones = {}) {
         const inicio = performance.now();
-        const respuesta = await fetch(BASE + ruta, {
+        const solicitud = {
             redirect: 'manual',
             ...opciones,
             headers: { cookie: [...this.cookies].map(([k, v]) => `${k}=${v}`).join('; '), ...(opciones.headers ?? {}) },
-        });
+        };
+        const respuesta = this.origen ? await pedirDesde(this.origen, BASE + ruta, solicitud) : await fetch(BASE + ruta, solicitud);
         const cuerpo = await respuesta.text();
         const ms = performance.now() - inicio;
         for (const linea of respuesta.headers.getSetCookie()) {
@@ -144,7 +170,7 @@ for (let n = 1; n <= 5; n++) {
     sesiones.push({ s, rol: 'administrador' });
 }
 
-const visitantes = Array.from({ length: PUBLICAS }, () => new Sesion());
+const visitantes = Array.from({ length: PUBLICAS }, (_, i) => new Sesion(IPS_DISTINTAS ? `127.0.0.${i + 2}` : null));
 const tokens = await Promise.all(visitantes.map((v) => v.token('/')));
 const inicioPublicas = performance.now();
 const publicas = await Promise.all(visitantes.map((v, i) => v.pedir('/consultar', {
@@ -179,12 +205,14 @@ const informe = {
     consultas_simples_un_usuario: simples,
     concurrencia: {
         usuarios_simultaneos: USUARIOS,
-        consultas_publicas_simultaneas: { ...resumen(`${PUBLICAS} POST /consultar al mismo tiempo, una por visitante`, publicas), duracion_total_ms: +duracionPublicas.toFixed(1), estados: [...new Set(publicas.map((p) => p.estado))] },
+        consultas_publicas_simultaneas: { ...resumen(`${PUBLICAS} POST /consultar al mismo tiempo, una por visitante${IPS_DISTINTAS ? `, cada visitante desde su propia IP (127.0.0.2 a 127.0.0.${PUBLICAS + 1})` : ', todas desde la misma IP'}`, publicas), duracion_total_ms: +duracionPublicas.toFixed(1), estados: [...new Set(publicas.map((p) => p.estado))] },
         consultas_autenticadas_simultaneas: { ...resumen(`${USUARIOS} sesiones (10 técnicos y 5 administradores) con ${REPETICIONES} consultas cada una en paralelo`, mixtas), duracion_total_ms: +duracionMixtas.toFixed(1), estados: [...new Set(mixtas.map((p) => p.estado))] },
     },
     limitaciones: [
         'Cliente y servidor comparten el mismo equipo; no se mide la latencia de red real.',
-        'Todas las solicitudes salen de la misma IP. La consulta pública admite 10 solicitudes por minuto por IP como protección contra la adivinación de códigos; se espera un minuto antes de la ráfaga simultánea, y las solicitudes que superan ese límite reciben 429 y se cuentan como limitadas, no como errores ni dentro de los tiempos. Con visitantes reales, cada IP tiene su propio límite.',
+        IPS_DISTINTAS
+            ? 'En la ráfaga pública simultánea cada visitante sale de una dirección de bucle local distinta (127.0.0.2 en adelante), como clientes en equipos diferentes; el resto de las solicitudes sale de 127.0.0.1. La consulta pública admite 10 solicitudes por minuto por IP como protección contra la adivinación de códigos; las solicitudes que superan ese límite reciben 429 y se cuentan como limitadas, no como errores ni dentro de los tiempos.'
+            : 'Todas las solicitudes salen de la misma IP. La consulta pública admite 10 solicitudes por minuto por IP como protección contra la adivinación de códigos; se espera un minuto antes de la ráfaga simultánea, y las solicitudes que superan ese límite reciben 429 y se cuentan como limitadas, no como errores ni dentro de los tiempos. Con visitantes reales, cada IP tiene su propio límite.',
         'Se usa el entorno local de pruebas (APP_ENV=local, APP_DEBUG=true) con datos ficticios.',
     ],
 };
