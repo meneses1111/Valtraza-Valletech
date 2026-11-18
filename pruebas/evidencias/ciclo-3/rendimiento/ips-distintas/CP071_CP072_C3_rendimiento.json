@@ -1,0 +1,164 @@
+{
+  "fecha_inicio": "2026-11-18T00:58:50.904Z",
+  "fecha_fin": "2026-11-18T01:00:24.582Z",
+  "destino": "https://valtraza.test",
+  "metodo": "Cliente HTTP de Node.js (fetch) contra el sitio HTTPS servido por Herd (Nginx + PHP-FPM 8.3) y PostgreSQL 18 en el mismo equipo. Cada tiempo mide desde el envío de la solicitud hasta recibir el cuerpo completo del HTML. No incluye el renderizado del navegador.",
+  "equipo": {
+    "sistema": "Windows_NT 10.0.19045",
+    "cpu": "AMD Ryzen 5 5600X 6-Core Processor             ",
+    "nucleos": 12,
+    "memoria_gb": 31.9,
+    "node": "v24.22.0"
+  },
+  "limite_ms": 2000,
+  "consultas_simples_un_usuario": [
+    {
+      "consulta": "GET / (inicio pública)",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 40.5,
+      "p50_ms": 42.5,
+      "p95_ms": 62.7,
+      "max_ms": 64.2,
+      "promedio_ms": 45.7,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios (supervisión, 1203 servicios)",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 89.6,
+      "p50_ms": 99.4,
+      "p95_ms": 205.7,
+      "max_ms": 218.7,
+      "promedio_ms": 114.5,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios?estado=en_curso",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 89.8,
+      "p50_ms": 99,
+      "p95_ms": 212.6,
+      "max_ms": 213.5,
+      "promedio_ms": 127.2,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios?asignacion=sin_tecnico",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 91.1,
+      "p50_ms": 99.4,
+      "p95_ms": 204.2,
+      "max_ms": 204.9,
+      "promedio_ms": 115.1,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /servicios/{id} (detalle supervisión)",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 88.1,
+      "p50_ms": 97.7,
+      "p95_ms": 111.7,
+      "max_ms": 117.8,
+      "promedio_ms": 101.7,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /clientes?numero_identificacion=CARGA-C00150",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 76.7,
+      "p50_ms": 85.7,
+      "p95_ms": 107.8,
+      "max_ms": 176.9,
+      "promedio_ms": 93.1,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /mis-servicios (técnico)",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 81.9,
+      "p50_ms": 85.5,
+      "p95_ms": 204.5,
+      "max_ms": 205.7,
+      "promedio_ms": 103,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "GET /mis-servicios/{id} (detalle técnico)",
+      "solicitudes": 20,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 95,
+      "p50_ms": 100.9,
+      "p95_ms": 207.8,
+      "max_ms": 220.2,
+      "promedio_ms": 124.9,
+      "dentro_de_2s": 20
+    },
+    {
+      "consulta": "POST /consultar (consulta pública por código)",
+      "solicitudes": 10,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 86.2,
+      "p50_ms": 93,
+      "p95_ms": 112.4,
+      "max_ms": 112.4,
+      "promedio_ms": 95.1,
+      "dentro_de_2s": 10
+    }
+  ],
+  "concurrencia": {
+    "usuarios_simultaneos": 15,
+    "consultas_publicas_simultaneas": {
+      "consulta": "15 POST /consultar al mismo tiempo, una por visitante, cada visitante desde su propia IP (127.0.0.2 a 127.0.0.16)",
+      "solicitudes": 15,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 114.4,
+      "p50_ms": 312.3,
+      "p95_ms": 512.9,
+      "max_ms": 512.9,
+      "promedio_ms": 286.4,
+      "dentro_de_2s": 15,
+      "duracion_total_ms": 514.7,
+      "estados": [
+        200
+      ]
+    },
+    "consultas_autenticadas_simultaneas": {
+      "consulta": "15 sesiones (10 técnicos y 5 administradores) con 20 consultas cada una en paralelo",
+      "solicitudes": 300,
+      "errores": 0,
+      "limitadas_429": 0,
+      "min_ms": 104.4,
+      "p50_ms": 388.5,
+      "p95_ms": 494.6,
+      "max_ms": 579.1,
+      "promedio_ms": 389,
+      "dentro_de_2s": 300,
+      "duracion_total_ms": 7978.5,
+      "estados": [
+        200
+      ]
+    }
+  },
+  "limitaciones": [
+    "Cliente y servidor comparten el mismo equipo; no se mide la latencia de red real.",
+    "En la ráfaga pública simultánea cada visitante sale de una dirección de bucle local distinta (127.0.0.2 en adelante), como clientes en equipos diferentes; el resto de las solicitudes sale de 127.0.0.1. La consulta pública admite 10 solicitudes por minuto por IP como protección contra la adivinación de códigos; las solicitudes que superan ese límite reciben 429 y se cuentan como limitadas, no como errores ni dentro de los tiempos.",
+    "Se usa el entorno local de pruebas (APP_ENV=local, APP_DEBUG=true) con datos ficticios."
+  ]
+}
