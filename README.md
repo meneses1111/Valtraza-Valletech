@@ -61,11 +61,9 @@ Las ocho entidades de negocio son `Usuario`, `Tecnico`, `Cliente`, `Equipo`, `Se
 
 Consulta el [diagrama revisado y la comparación con GitDiagram](docs/arquitectura/analisis-gitdiagram.md).
 
-## Entrega y sustentación
+## Concordancia y recursos públicos
 
 - [Concordancia entre ERS, diseño, código y entregas](docs/cierre/concordancia.md).
-- [Manual de usuario](docs/uso/manual-de-usuario.md).
-- [Guion del video de storytelling y recorrido de sustentación](docs/cierre/storytelling.md).
 - [Enlaces públicos y archivos de entrega](docs/cierre/README.md).
 
 ## Entorno de la aplicación
