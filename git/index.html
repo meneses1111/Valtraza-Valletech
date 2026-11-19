@@ -3,11 +3,10 @@
 <html lang="es" >
     <head><script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Git, GitHub y documentación · Valtraza | Documentación técnica y guía de uso</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="HonKit 6.2.5">
         <meta name="author" content="Equipo ValleTech">
         
         
@@ -17,7 +16,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -25,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -58,7 +57,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -429,14 +428,85 @@
             
         </li>
     
+        <li class="chapter " data-level="1.7" data-path="../cierre/">
+            
+                <a href="../cierre/">
+            
+                    
+                    Entrega y sustentación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../cierre/concordancia.html">
+            
+                <a href="../cierre/concordancia.html">
+            
+                    
+                    Concordancia de requisitos y diseño
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../uso/manual-de-usuario.html">
+            
+                <a href="../uso/manual-de-usuario.html">
+            
+                    
+                    Manual de usuario
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../cierre/storytelling.html">
+            
+                <a href="../cierre/storytelling.html">
+            
+                    
+                    Guion de storytelling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../cierre/referencias-manual.html">
+            
+                <a href="../cierre/referencias-manual.html">
+            
+                    
+                    Criterios de elaboración del manual
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Publicado con GitBook
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Publicado con HonKit
         </a>
     </li>
 </ul>
@@ -474,7 +544,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="git-github-y-publicaci&#xF3;n">Git, GitHub y publicaci&#xF3;n</h1>
+                                <h1 id="git-github-y-publicación">Git, GitHub y publicación</h1>
 <table>
 <thead>
 <tr>
@@ -485,15 +555,15 @@
 <tbody>
 <tr>
 <td>main</td>
-<td>Versi&#xF3;n estable de entrega</td>
+<td>Versión estable de entrega</td>
 </tr>
 <tr>
 <td>develop</td>
-<td>Integraci&#xF3;n del desarrollo aceptado</td>
+<td>Integración del desarrollo aceptado</td>
 </tr>
 <tr>
 <td>feature/<modulo></modulo></td>
-<td>Construcci&#xF3;n de cada m&#xF3;dulo desde develop</td>
+<td>Construcción de cada módulo desde develop</td>
 </tr>
 <tr>
 <td>correccion/<tema></tema></td>
@@ -501,11 +571,11 @@
 </tr>
 <tr>
 <td>pruebas</td>
-<td>Casos, automatizaci&#xF3;n y resultados a cargo de Luis</td>
+<td>Casos, automatización y resultados a cargo de Luis</td>
 </tr>
 <tr>
 <td>docs/<tema></tema></td>
-<td>Documentaci&#xF3;n de una tarea concreta desde develop</td>
+<td>Documentación de una tarea concreta desde develop</td>
 </tr>
 <tr>
 <td>gh-pages</td>
@@ -513,71 +583,71 @@
 </tr>
 </tbody>
 </table>
-<p><code>develop</code> re&#xFA;ne las correcciones de aplicaci&#xF3;n seg&#xFA;n el flujo acordado por el equipo. Una rama temporal, cuando corresponde, parte de un <code>develop</code> actualizado y se asocia a una tarea. Luis entrega sus ciclos desde <code>pruebas</code> a <code>develop</code> mediante PR. La entrega estable se integra a <code>main</code> con su propio PR. Hacer commits peque&#xF1;os, naturales, en primera persona y en espa&#xF1;ol; por ejemplo, <code>Agrego los filtros de supervisi&#xF3;n</code>. Separar cambios de documentaci&#xF3;n y c&#xF3;digo cuando sea posible. No cambiar fechas ni reescribir el historial para simular una jornada de trabajo.</p>
-<p>Antes de subir: revisar el diff, excluir credenciales/contexto/caches, comprobar formato y ejecutar la validaci&#xF3;n apropiada. Abrir PR hacia develop, esperar las comprobaciones y resolver los conflictos sobre la rama de trabajo. Integrar con merge sin squash para conservar commits y la relaci&#xF3;n de ramas. Mantener main para el cierre de la versi&#xF3;n estable.</p>
-<p>Los reportes de Luis originan correcciones trazables: requisito y caso, issue, commit que corrige y ejecuci&#xF3;n de verificaci&#xF3;n. Su rama y resultados no se completan en nombre del programador.</p>
+<p><code>develop</code> reúne las correcciones de aplicación según el flujo acordado por el equipo. Una rama temporal, cuando corresponde, parte de un <code>develop</code> actualizado y se asocia a una tarea. Luis entrega sus ciclos desde <code>pruebas</code> a <code>develop</code> mediante PR. La entrega estable se integra a <code>main</code> con su propio PR. Hacer commits pequeños, naturales, en primera persona y en español; por ejemplo, <code>Agrego los filtros de supervisión</code>. Separar cambios de documentación y código cuando sea posible. No cambiar fechas ni reescribir el historial para simular una jornada de trabajo.</p>
+<p>Antes de subir: revisar el diff, excluir credenciales/contexto/caches, comprobar formato y ejecutar la validación apropiada. Abrir PR hacia develop, esperar las comprobaciones y resolver los conflictos sobre la rama de trabajo. Integrar con merge sin squash para conservar commits y la relación de ramas. Mantener main para el cierre de la versión estable.</p>
+<p>Los reportes de Luis originan correcciones trazables: requisito y caso, issue, commit que corrige y ejecución de verificación. Su rama y resultados no se completan en nombre del programador.</p>
 <h2 id="cierre-y-mantenimiento-de-ramas">Cierre y mantenimiento de ramas</h2>
-<p>Se conservan cuatro ramas permanentes: <code>main</code>, <code>develop</code>, <code>pruebas</code> y <code>gh-pages</code>. Las dem&#xE1;s duran lo que dure su tarea. Evitar varias ramas abiertas para la misma tarea y mantener solo las temporales que tengan trabajo activo. La cantidad de m&#xF3;dulos de la aplicaci&#xF3;n no obliga a mantener una rama por m&#xF3;dulo despu&#xE9;s de integrar su desarrollo.</p>
+<p>Se conservan cuatro ramas permanentes: <code>main</code>, <code>develop</code>, <code>pruebas</code> y <code>gh-pages</code>. Las demás duran lo que dure su tarea. Evitar varias ramas abiertas para la misma tarea y mantener solo las temporales que tengan trabajo activo. La cantidad de módulos de la aplicación no obliga a mantener una rama por módulo después de integrar su desarrollo.</p>
 <p>Antes de cerrar una rama temporal:</p>
 <ol>
 <li>Confirmar con su responsable que no conserva trabajo local pendiente ni un nuevo ciclo en curso.</li>
-<li>Comprobar que su punta actual est&#xE1; contenida en <code>develop</code> y en la versi&#xF3;n de entrega, y que su PR est&#xE1; integrado. No basta con que sus archivos parezcan iguales ni con que no haya PR abiertos.</li>
+<li>Comprobar que su punta actual está contenida en <code>develop</code> y en la versión de entrega, y que su PR está integrado. No basta con que sus archivos parezcan iguales ni con que no haya PR abiertos.</li>
 <li>Guardar un respaldo actualizado fuera del remoto y el SHA de la punta. El inventario de SHA permite identificar commits, pero no sustituye el respaldo de sus objetos Git.</li>
-<li>Retirar la referencia remota solo despu&#xE9;s del cierre y la autorizaci&#xF3;n correspondiente. Los commits integrados y el PR conservan el historial del trabajo.</li>
+<li>Retirar la referencia remota solo después del cierre y la autorización correspondiente. Los commits integrados y el PR conservan el historial del trabajo.</li>
 <li>Actualizar las referencias locales con <code>git fetch --prune</code>. No usar <code>reset --hard</code> para esta limpieza ni descartar cambios locales sin revisar.</li>
 </ol>
-<p>Para <code>main</code> y <code>develop</code>, configurar en GitHub reglas que exijan PR y las comprobaciones aplicables de Actions, y bloqueen force push y eliminaci&#xF3;n. La revisi&#xF3;n por otra persona debe ajustarse a los permisos y disponibilidad reales del equipo. El nombre exacto de cada comprobaci&#xF3;n requerida se obtiene de una ejecuci&#xF3;n correcta; no exigir un workflow condicionado por rutas si eso impide integrar PR donde ese workflow no se ejecuta. Los cambios de estas reglas requieren permisos de administraci&#xF3;n y todav&#xED;a no se han aplicado.</p>
-<p>GitHub Actions ejecuta las comprobaciones y la publicaci&#xF3;n configuradas. No organiza, integra ni cierra por s&#xED; solo todas las ramas del equipo. La eliminaci&#xF3;n autom&#xE1;tica de ramas al integrar PR debe mantenerse desactivada mientras el cierre y respaldo sigan siendo manuales; no afecta de forma retroactiva a las ramas antiguas.</p>
+<p>Para <code>main</code> y <code>develop</code>, configurar en GitHub reglas que exijan PR y las comprobaciones aplicables de Actions, y bloqueen force push y eliminación. La revisión por otra persona debe ajustarse a los permisos y disponibilidad reales del equipo. El nombre exacto de cada comprobación requerida se obtiene de una ejecución correcta; no exigir un workflow condicionado por rutas si eso impide integrar PR donde ese workflow no se ejecuta. Los cambios de estas reglas requieren permisos de administración y todavía no se han aplicado.</p>
+<p>GitHub Actions ejecuta las comprobaciones y la publicación configuradas. No organiza, integra ni cierra por sí solo todas las ramas del equipo. La eliminación automática de ramas al integrar PR debe mantenerse desactivada mientras el cierre y respaldo sigan siendo manuales; no afecta de forma retroactiva a las ramas antiguas.</p>
 <h3 id="integraciones-del-ciclo-3">Integraciones del ciclo 3</h3>
 <table>
 <thead>
 <tr>
 <th>Rama</th>
-<th>Qu&#xE9; contiene</th>
+<th>Qué contiene</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>main</code></td>
-<td>Versi&#xF3;n estable previa al cierre del ciclo 3: <code>2ac93f3</code>.</td>
+<td>Versión estable; incluye el cierre documental del ciclo 3. El SHA vigente se consulta en GitHub.</td>
 </tr>
 <tr>
 <td><code>develop</code></td>
-<td>Primera entrega de pruebas en <code>3fee798</code> y resultados finales en <code>98521f8</code>. Luis prob&#xF3; <code>300ed7b</code> y <code>73b5190</code>.</td>
+<td>Integración del cierre del ciclo 3; línea base de esta revisión documental: <code>3644709</code>.</td>
 </tr>
 <tr>
 <td><code>pruebas</code></td>
-<td><code>c9b8b12</code>, con el plan actualizado, el informe, los scripts y las evidencias del ciclo 3.</td>
+<td>Informes, scripts y evidencias mantenidos por Luis.</td>
 </tr>
 <tr>
 <td><code>gh-pages</code></td>
-<td>Salida del GitBook gestionada por GitHub Actions.</td>
+<td>Salida del libro gestionada por GitHub Actions.</td>
 </tr>
 </tbody>
 </table>
-<p>El <a href="https://github.com/meneses1111/Valtraza-Valletech/pull/47" target="_blank">PR #47</a> incorpor&#xF3; la primera entrega y el <a href="https://github.com/meneses1111/Valtraza-Valletech/pull/49" target="_blank">PR #49</a> incorpor&#xF3; el cierre. Luis cerr&#xF3; el <a href="https://github.com/meneses1111/Valtraza-Valletech/issues/48" target="_blank">issue #48</a> al verificar la paginaci&#xF3;n en espa&#xF1;ol. El <a href="../pruebas/estado-y-evidencias.html">estado de pruebas</a> conserva ambas ejecuciones.</p>
-<h2 id="construcci&#xF3;n-del-gitbook">Construcci&#xF3;n del GitBook</h2>
-<p>Las fuentes est&#xE1;n en <code>docs</code>. <code>SUMMARY.md</code> define la navegaci&#xF3;n y <code>book.json</code> fija GitBook 3.2.2. El Node de esta herramienta est&#xE1; separado del entorno PHP de la aplicaci&#xF3;n.</p>
-<h3 id="comprobaci&#xF3;n-autom&#xE1;tica">Comprobaci&#xF3;n autom&#xE1;tica</h3>
-<p>El workflow <strong>Revisar GitBook</strong> comprueba fuentes y enlaces internos, compila el libro con GitBook 3.2.2 y Node 10.24.1 y revisa el HTML generado. Despu&#xE9;s abre las p&#xE1;ginas con Chrome en 1366 &#xD7; 768 y 1920 &#xD7; 1080, tanto en la ra&#xED;z como bajo <code>/Valtraza-Valletech/</code>, y guarda el informe de navegaci&#xF3;n. Se comprueba tambi&#xE9;n el acceso directo a <code>index.html</code> sin depender de redirecciones del servidor.</p>
-<p>Si termina correctamente, en la ejecuci&#xF3;n de GitHub Actions aparece el artefacto <strong>gitbook-vista-previa-SHA</strong>, que contiene el sitio est&#xE1;tico, y el artefacto de validaci&#xF3;n. Para abrir la vista previa, extraer el sitio en una carpeta y servirla con un servidor HTTP local; la b&#xFA;squeda y la navegaci&#xF3;n del tema no deben evaluarse mediante <code>file://</code>.</p>
-<p>En Windows, con Node.js 18 o posterior, extrae todo el ZIP y abre <strong>ABRIR-GITBOOK.cmd</strong>. El iniciador utiliza un puerto local disponible, abre el navegador y conserva el servidor mientras la ventana permanezca abierta. No requiere instalar GitBook ni sus dependencias. Tambi&#xE9;n se puede ejecutar <code>node abrir-vista-previa.cjs</code> desde la carpeta extra&#xED;da.</p>
-<h3 id="construcci&#xF3;n-local-en-un-entorno-aislado">Construcci&#xF3;n local en un entorno aislado</h3>
-<p>Con Node 10.24.1 y npm 6 disponibles &#xFA;nicamente para esta herramienta:</p>
-<pre><code class="lang-text">npm install --prefix herramientas/gitbook --ignore-scripts --no-audit
+<p>El <a href="https://github.com/meneses1111/Valtraza-Valletech/pull/47" target="_blank">PR #47</a> incorporó la primera entrega y el <a href="https://github.com/meneses1111/Valtraza-Valletech/pull/49" target="_blank">PR #49</a> incorporó el cierre. Luis cerró el <a href="https://github.com/meneses1111/Valtraza-Valletech/issues/48" target="_blank">issue #48</a> al verificar la paginación en español. El <a href="../pruebas/estado-y-evidencias.html">estado de pruebas</a> conserva ambas ejecuciones.</p>
+<h2 id="construcción-del-gitbook">Construcción del GitBook</h2>
+<p>Las fuentes están en <code>docs</code>. <code>SUMMARY.md</code> define la navegación y <code>book.json</code> configura el contenido. El generador es HonKit 6.2.5, fijado en <code>herramientas/gitbook/package-lock.json</code>, compatible con la estructura de GitBook. El Node de esta herramienta está separado del entorno PHP de la aplicación.</p>
+<h3 id="comprobación-automática">Comprobación automática</h3>
+<p>El workflow <strong>Revisar GitBook</strong> comprueba fuentes y enlaces internos, compila el libro con HonKit 6.2.5 y Node 24 LTS y revisa el HTML generado. Después abre las páginas con Chrome en 1366 × 768 y 1920 × 1080, tanto en la raíz como bajo <code>/Valtraza-Valletech/</code>, y guarda el informe de navegación. Se comprueba también el acceso directo a <code>index.html</code> sin depender de redirecciones del servidor.</p>
+<p>Si termina correctamente, en la ejecución de GitHub Actions aparece el artefacto <strong>gitbook-vista-previa-SHA</strong>, que contiene el sitio estático, y el artefacto de validación. Para abrir la vista previa, extraer el sitio en una carpeta y servirla con un servidor HTTP local; la búsqueda y la navegación del tema no deben evaluarse mediante <code>file://</code>.</p>
+<p>En Windows, con Node.js 18 o posterior, extrae todo el ZIP y abre <strong>ABRIR-GITBOOK.cmd</strong>. El iniciador utiliza un puerto local disponible, abre el navegador y conserva el servidor mientras la ventana permanezca abierta. No requiere instalar GitBook ni sus dependencias. También se puede ejecutar <code>node abrir-vista-previa.cjs</code> desde la carpeta extraída.</p>
+<h3 id="construcción-local-en-un-entorno-aislado">Construcción local en un entorno aislado</h3>
+<p>Con Node 24 LTS y npm disponibles para esta herramienta:</p>
+<pre><code class="lang-text">npm ci --prefix herramientas/gitbook --ignore-scripts --no-fund
 node herramientas/gitbook/compilar.cjs
 python herramientas/gitbook/verificar.py --html _book
 </code></pre>
-<p>La comprobaci&#xF3;n de las fuentes se puede ejecutar sin instalar GitBook:</p>
+<p>La comprobación de las fuentes se puede ejecutar sin instalar GitBook:</p>
 <pre><code class="lang-text">python herramientas/gitbook/verificar.py
 </code></pre>
-<p>El generador utiliza la biblioteca oficial GitBook 3.2.2; no se reemplaza por otro motor ni se instala de forma global. <code>_book</code> es salida generada y se mantiene fuera de las ramas de desarrollo. Los PR y los cambios de <code>develop</code> generan solo vistas previas. El despliegue se habilita &#xFA;nicamente para <code>main</code>; no modifica la base de datos.</p>
-<h3 id="publicaci&#xF3;n-de-la-entrega">Publicaci&#xF3;n de la entrega</h3>
-<p>Despu&#xE9;s de integrar a <code>main</code>, <strong>Revisar GitBook</strong> conserva &#xFA;nicamente el sitio generado en <code>gh-pages</code> y prepara el artefacto oficial de Pages. Excluye los iniciadores locales y a&#xF1;ade <code>.nojekyll</code>. No se publican el c&#xF3;digo PHP, <code>.env</code>, dependencias ni archivos de contexto.</p>
-<p>La primera vez, un administrador debe abrir <strong>Settings &#x2192; Pages &#x2192; Build and deployment &#x2192; Source</strong> y seleccionar <strong>GitHub Actions</strong>. Esta activaci&#xF3;n necesita permisos de administraci&#xF3;n; no se sustituye a&#xF1;adiendo permisos al token del workflow. Despu&#xE9;s, abrir <strong>Actions &#x2192; Revisar GitBook &#x2192; Run workflow</strong>, seleccionar <code>main</code> y ejecutar. El workflow despliega el libro comprobado mediante las acciones oficiales de Pages. <code>gh-pages</code> conserva la salida generada; el despliegue utiliza el artefacto de Actions para que las actualizaciones no dependan de que un push del token autom&#xE1;tico active otro workflow.</p>
-<p>Si Pages no est&#xE1; activado, se conserva el libro y se muestra la instrucci&#xF3;n pendiente; una compilaci&#xF3;n correcta no se anuncia como sitio publicado. Tras desplegar, comprobar la URL indicada, el &#xED;ndice, la b&#xFA;squeda, im&#xE1;genes y enlaces internos, y solo entonces a&#xF1;adir el enlace p&#xFA;blico al README. La vista previa y los archivos de <code>docs</code> no equivalen a una publicaci&#xF3;n estable.</p>
+<p>Se conserva el nombre GitBook para el libro y su estructura de capítulos; la compilación utiliza HonKit en lugar del generador Legacy 3.2.2. Las dependencias se auditan en CI y no se instalan de forma global. <code>_book</code> es salida generada y se mantiene fuera de las ramas de desarrollo. Los PR y los cambios de <code>develop</code> generan solo vistas previas. El despliegue se habilita únicamente para <code>main</code>; no modifica la base de datos.</p>
+<h3 id="publicación-de-la-entrega">Publicación de la entrega</h3>
+<p>Después de integrar a <code>main</code>, <strong>Revisar GitBook</strong> conserva únicamente el sitio generado en <code>gh-pages</code> y prepara el artefacto oficial de Pages. Excluye los iniciadores locales y añade <code>.nojekyll</code>. No se publican el código PHP, <code>.env</code>, dependencias ni archivos de contexto.</p>
+<p>La primera vez, un administrador debe abrir <strong>Settings → Pages → Build and deployment → Source</strong> y seleccionar <strong>GitHub Actions</strong>. Esta activación necesita permisos de administración; no se sustituye añadiendo permisos al token del workflow. Después, abrir <strong>Actions → Revisar GitBook → Run workflow</strong>, seleccionar <code>main</code> y ejecutar. El workflow despliega el libro comprobado mediante las acciones oficiales de Pages. <code>gh-pages</code> conserva la salida generada; el despliegue utiliza el artefacto de Actions para que las actualizaciones no dependan de que un push del token automático active otro workflow.</p>
+<p>Si Pages no está activado, se conserva el libro y se muestra la instrucción pendiente; una compilación correcta no se anuncia como sitio publicado. Tras desplegar, comprobar la URL indicada, el índice, la búsqueda, imágenes y enlaces internos, y solo entonces añadir el enlace público al README. La vista previa y los archivos de <code>docs</code> no equivalen a una publicación estable.</p>
 <h2 id="gitdiagram">GitDiagram</h2>
-<p>El an&#xE1;lisis de GitDiagram se produce sobre la versi&#xF3;n final del repositorio. Comparar el grafo con los seis m&#xF3;dulos y sus dependencias, registrar la rama y el SHA analizados y explicar cualquier diferencia. No presentar la vista documental de m&#xF3;dulos como una ejecuci&#xF3;n de GitDiagram.</p>
+<p>El análisis de GitDiagram se produce sobre la versión final del repositorio. Comparar el grafo con los seis módulos y sus dependencias, registrar la rama y el SHA analizados y explicar cualquier diferencia. No presentar la vista documental de módulos como una ejecución de GitDiagram.</p>
 
                                 
                                 </section>
@@ -621,12 +691,56 @@ python herramientas/gitbook/verificar.py --html _book
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Git, GitHub y documentación","level":"1.6","depth":1,"next":{"title":"Preguntas frecuentes","level":"1.6.1","depth":2,"path":"preguntas-frecuentes.md","ref":"preguntas-frecuentes.md","articles":[]},"previous":{"title":"Estado y evidencias","level":"1.5.4","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"git/README.md","mtime":"2026-11-17T23:39:51.761Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Git, GitHub y documentación","level":"1.6","depth":1,"next":{"title":"Preguntas frecuentes","level":"1.6.1","depth":2,"path":"preguntas-frecuentes.md","ref":"preguntas-frecuentes.md","articles":[]},"previous":{"title":"Estado y evidencias","level":"1.5.4","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]},"articles":[{"title":"Preguntas frecuentes","level":"1.6.1","depth":2,"path":"preguntas-frecuentes.md","ref":"preguntas-frecuentes.md","articles":[]},{"title":"Referencias y licencias","level":"1.6.2","depth":2,"path":"referencias/README.md","ref":"referencias/README.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"*","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"git/README.md","mtime":"2026-11-18T23:59:38.786Z","type":"markdown"},"gitbook":{"version":"6.2.5","time":"2026-11-18T23:59:45.241Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     
@@ -647,7 +761,7 @@ python herramientas/gitbook/verificar.py --html _book
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

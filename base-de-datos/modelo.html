@@ -3,11 +3,10 @@
 <html lang="es" >
     <head><script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Base de datos · Valtraza | Documentación técnica y guía de uso</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="HonKit 6.2.5">
         <meta name="author" content="Equipo ValleTech">
         
         
@@ -17,7 +16,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -25,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -58,7 +57,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -429,14 +428,85 @@
             
         </li>
     
+        <li class="chapter " data-level="1.7" data-path="../cierre/">
+            
+                <a href="../cierre/">
+            
+                    
+                    Entrega y sustentación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../cierre/concordancia.html">
+            
+                <a href="../cierre/concordancia.html">
+            
+                    
+                    Concordancia de requisitos y diseño
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../uso/manual-de-usuario.html">
+            
+                <a href="../uso/manual-de-usuario.html">
+            
+                    
+                    Manual de usuario
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../cierre/storytelling.html">
+            
+                <a href="../cierre/storytelling.html">
+            
+                    
+                    Guion de storytelling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../cierre/referencias-manual.html">
+            
+                <a href="../cierre/referencias-manual.html">
+            
+                    
+                    Criterios de elaboración del manual
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Publicado con GitBook
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Publicado con HonKit
         </a>
     </li>
 </ul>
@@ -476,10 +546,10 @@
                                 
                                 <h1 id="base-de-datos">Base de datos</h1>
 <p>PostgreSQL guarda ocho tablas de negocio: cliente, tecnico, usuario, equipo, servicio, diagnostico, trabajo y repuesto. El cliente de un servicio se obtiene mediante su equipo.</p>
-<p>La configuraci&#xF3;n de referencia (<code>.env.example</code>) usa <code>SESSION_DRIVER=file</code> y guarda las sesiones cifradas en <code>storage/framework/sessions</code>. La migraci&#xF3;n tambi&#xE9;n crea la tabla t&#xE9;cnica <code>sessions</code>. Laravel la utiliza al configurar <code>SESSION_DRIVER=database</code> con PostgreSQL. En ese modo guarda el identificador, el usuario opcional, los metadatos, el contenido cifrado y la &#xFA;ltima actividad. El v&#xED;nculo con <code>usuario</code> elimina las sesiones de la cuenta al borrarla.</p>
-<p><img src="../assets/relaciones-datos.svg" alt="Relaciones principales entre las ocho tablas"></p>
-<p>El esquema utiliza tres tipos ENUM: rol_usuario (administrador, tecnico), estado_servicio (pendiente, en_curso, completado) y tipo_trabajo (mantenimiento, reparacion). La migraci&#xF3;n lee database/sql/esquema_valtraza.sql. Los modelos conservan las claves propias del dise&#xF1;o y no utilizan created_at ni updated_at.</p>
-<p>Despu&#xE9;s de configurar una base vac&#xED;a llamada valtraza, se ejecuta <code>php artisan migrate</code> y despu&#xE9;s <code>php artisan db:seed</code>. El seeder crea admin sin activar y muestra su c&#xF3;digo de activaci&#xF3;n en consola.</p>
+<p>La configuración de referencia (<code>.env.example</code>) usa <code>SESSION_DRIVER=file</code> y guarda las sesiones cifradas en <code>storage/framework/sessions</code>. La migración también crea la tabla técnica <code>sessions</code>. Laravel la utiliza al configurar <code>SESSION_DRIVER=database</code> con PostgreSQL. En ese modo guarda el identificador, el usuario opcional, los metadatos, el contenido cifrado y la última actividad. El vínculo con <code>usuario</code> elimina las sesiones de la cuenta al borrarla.</p>
+<p><img src="../assets/relaciones-datos.svg" alt="Relaciones principales entre las ocho tablas"></img></p>
+<p>El esquema utiliza tres tipos ENUM: rol_usuario (administrador, tecnico), estado_servicio (pendiente, en_curso, completado) y tipo_trabajo (mantenimiento, reparacion). La migración lee database/sql/esquema_valtraza.sql. Los modelos conservan las claves propias del diseño y no utilizan created_at ni updated_at.</p>
+<p>Después de configurar una base vacía llamada valtraza, se ejecuta <code>php artisan migrate</code> y después <code>php artisan db:seed</code>. El seeder crea admin sin activar y muestra su código de activación en consola.</p>
 <table>
 <thead>
 <tr>
@@ -490,23 +560,23 @@
 <tbody>
 <tr>
 <td>cliente</td>
-<td>id_cliente; nombre, numero_identificacion &#xFA;nico, correo opcional</td>
+<td>id_cliente; nombre, numero_identificacion único, correo opcional</td>
 </tr>
 <tr>
 <td>tecnico</td>
-<td>id_tecnico; nombre, numero_identificacion &#xFA;nico, correo opcional</td>
+<td>id_tecnico; nombre, numero_identificacion único, correo opcional</td>
 </tr>
 <tr>
 <td>usuario</td>
-<td>id_usuario; nombre_usuario &#xFA;nico, contrasena_hash, sal, rol, codigo_activacion &#xFA;nico, activado, id_tecnico opcional y &#xFA;nico</td>
+<td>id_usuario; nombre_usuario único, contrasena_hash, sal, rol, codigo_activacion único, activado, id_tecnico opcional y único</td>
 </tr>
 <tr>
 <td>equipo</td>
-<td>id_equipo; codigo_equipo &#xFA;nico, id_cliente, fecha_registro, modelo y otros_datos_tecnicos opcionales</td>
+<td>id_equipo; codigo_equipo único, id_cliente, fecha_registro, modelo y otros_datos_tecnicos opcionales</td>
 </tr>
 <tr>
 <td>servicio</td>
-<td>id_servicio; codigo_servicio y codigo_seguimiento &#xFA;nicos, id_equipo, id_tecnico opcional, fecha, nombre, descripcion_problema y estado</td>
+<td>id_servicio; codigo_servicio y codigo_seguimiento únicos, id_equipo, id_tecnico opcional, fecha, nombre, descripcion_problema y estado</td>
 </tr>
 <tr>
 <td>diagnostico</td>
@@ -522,10 +592,10 @@
 </tr>
 </tbody>
 </table>
-<p>Las claves primarias son enteros de identidad. Un cliente tiene varios equipos; cada equipo puede tener varios servicios. Cada servicio tiene cero o un t&#xE9;cnico y varios diagn&#xF3;sticos, trabajos y repuestos. Las siete claves for&#xE1;neas usan RESTRICT. La relaci&#xF3;n usuario-t&#xE9;cnico es obligatoria para el rol t&#xE9;cnico y no se permite para administrador. Un servicio sin t&#xE9;cnico solo puede estar pendiente.</p>
-<p>El archivo SQL versionado contiene los tipos, longitudes, nulabilidad y restricciones completas. La segunda migraci&#xF3;n incorpora ocho &#xED;ndices operativos: equipo por cliente; servicio por equipo; diagn&#xF3;stico, trabajo y repuesto por servicio; servicio por t&#xE9;cnico/estado/fecha y por estado/fecha; y el &#xED;ndice parcial de servicios sin t&#xE9;cnico. Su creaci&#xF3;n usa IF NOT EXISTS para admitir &#xED;ndices previamente existentes; el rollback de esa migraci&#xF3;n retira los &#xED;ndices con esos nombres, incluso si ya exist&#xED;an. No hacer rollback en una base compartida sin revisar su efecto y tener copia.</p>
-<p>Una tercera migraci&#xF3;n a&#xF1;ade seis &#xED;ndices compuestos para listados e historial. La cuarta incorpora <code>sessions</code>. Las ocho tablas del modelo de negocio se mantienen.</p>
-<p>Las comprobaciones autom&#xE1;ticas utilizan la base exclusiva <code>valtraza_test</code>. <code>RefreshDatabase</code> elimina tambi&#xE9;n los tipos ENUM antes de volver a migrar. <code>EsquemaTest</code> comprueba los valores permitidos y el rechazo de valores desconocidos. Ejecuta las pruebas &#xFA;nicamente sobre una base que se pueda recrear. Los casos y ciclos de Luis tienen su propio <a href="../pruebas/estado-y-evidencias.html">registro de resultados</a>.</p>
+<p>Las claves primarias son enteros de identidad. Un cliente tiene varios equipos; cada equipo puede tener varios servicios. Cada servicio tiene cero o un técnico y varios diagnósticos, trabajos y repuestos. Las siete claves foráneas usan RESTRICT. La relación usuario-técnico es obligatoria para el rol técnico y no se permite para administrador. Un servicio sin técnico solo puede estar pendiente.</p>
+<p>El archivo SQL versionado contiene los tipos, longitudes, nulabilidad y restricciones completas. La segunda migración incorpora ocho índices operativos: equipo por cliente; servicio por equipo; diagnóstico, trabajo y repuesto por servicio; servicio por técnico/estado/fecha y por estado/fecha; y el índice parcial de servicios sin técnico. Su creación usa IF NOT EXISTS para admitir índices previamente existentes; el rollback de esa migración retira los índices con esos nombres, incluso si ya existían. No hacer rollback en una base compartida sin revisar su efecto y tener copia.</p>
+<p>Una tercera migración añade seis índices compuestos para listados e historial. La cuarta incorpora <code>sessions</code>. Las ocho tablas del modelo de negocio se mantienen.</p>
+<p>Las comprobaciones automáticas utilizan la base exclusiva <code>valtraza_test</code>. <code>RefreshDatabase</code> elimina también los tipos ENUM antes de volver a migrar. <code>EsquemaTest</code> comprueba los valores permitidos y el rechazo de valores desconocidos. Ejecuta las pruebas únicamente sobre una base que se pueda recrear. Los casos y ciclos de Luis tienen su propio <a href="../pruebas/estado-y-evidencias.html">registro de resultados</a>.</p>
 
                                 
                                 </section>
@@ -569,12 +639,56 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Base de datos","level":"1.2.1","depth":2,"next":{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]},"previous":{"title":"Arquitectura y patrones","level":"1.2","depth":1,"path":"arquitectura/README.md","ref":"arquitectura/README.md","articles":[{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"base-de-datos/modelo.md","mtime":"2026-11-17T23:39:51.761Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Base de datos","level":"1.2.1","depth":2,"next":{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]},"previous":{"title":"Arquitectura y patrones","level":"1.2","depth":1,"path":"arquitectura/README.md","ref":"arquitectura/README.md","articles":[{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"*","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"base-de-datos/modelo.md","mtime":"2026-11-18T23:59:38.786Z","type":"markdown"},"gitbook":{"version":"6.2.5","time":"2026-11-18T23:59:45.241Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     
@@ -595,7 +709,7 @@
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

@@ -3,11 +3,10 @@
 <html lang="es" >
     <head><script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Acceso y cuentas · Valtraza | Documentación técnica y guía de uso</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="HonKit 6.2.5">
         <meta name="author" content="Equipo ValleTech">
         
         
@@ -17,7 +16,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -25,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -58,7 +57,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -429,14 +428,85 @@
             
         </li>
     
+        <li class="chapter " data-level="1.7" data-path="../cierre/">
+            
+                <a href="../cierre/">
+            
+                    
+                    Entrega y sustentación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../cierre/concordancia.html">
+            
+                <a href="../cierre/concordancia.html">
+            
+                    
+                    Concordancia de requisitos y diseño
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="manual-de-usuario.html">
+            
+                <a href="manual-de-usuario.html">
+            
+                    
+                    Manual de usuario
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../cierre/storytelling.html">
+            
+                <a href="../cierre/storytelling.html">
+            
+                    
+                    Guion de storytelling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../cierre/referencias-manual.html">
+            
+                <a href="../cierre/referencias-manual.html">
+            
+                    
+                    Criterios de elaboración del manual
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Publicado con GitBook
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Publicado con HonKit
         </a>
     </li>
 </ul>
@@ -475,12 +545,12 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="acceso-y-cuentas">Acceso y cuentas</h1>
-<p>Este bloque implementa RF01 y RF03. El administrador crea la cuenta de un t&#xE9;cnico previamente registrado y le entrega un c&#xF3;digo de activaci&#xF3;n. El t&#xE9;cnico abre /activar, introduce el c&#xF3;digo y define su contrase&#xF1;a, con un m&#xED;nimo de ocho caracteres. Una cuenta ya activada rechaza otro intento de activaci&#xF3;n con ese c&#xF3;digo.</p>
-<p>En <code>/ingresar</code>, administrador y t&#xE9;cnico utilizan su nombre de usuario y contrase&#xF1;a. Una cuenta inactiva no puede iniciar sesi&#xF3;n. El aviso &#xAB;Usuario o contrase&#xF1;a incorrectos.&#xBB; es el mismo para cuenta inactiva, usuario inexistente o contrase&#xF1;a errada. La p&#xE1;gina ofrece siempre la gu&#xED;a de activaci&#xF3;n con enlace a <code>/activar</code>. El acceso correcto regenera la sesi&#xF3;n y lleva a <code>/panel</code>. Quien ya tiene sesi&#xF3;n tambi&#xE9;n llega al panel al abrir <code>/ingresar</code> o <code>/activar</code>. Un visitante debe iniciar sesi&#xF3;n antes de abrir el panel.</p>
-<p>Las rutas de creaci&#xF3;n de cuentas exigen rol administrador en el servidor. Las cuentas creadas desde <strong>Cuentas</strong> reciben el rol fijo de t&#xE9;cnico. Las contrase&#xF1;as se guardan como hash. Los formularios usan validaci&#xF3;n, protecci&#xF3;n CSRF y cuotas separadas para ingreso y activaci&#xF3;n. Al superar una cuota, la pantalla indica cu&#xE1;ntos segundos faltan para volver a intentar.</p>
-<p>El administrador ve las cuentas registradas, su rol, el t&#xE9;cnico vinculado y si est&#xE1;n activadas. El c&#xF3;digo se entrega al crear la cuenta; la lista no expone c&#xF3;digos, contrase&#xF1;as ni hashes. La activaci&#xF3;n consume el c&#xF3;digo y lo reemplaza por otro valor aleatorio.</p>
-<p>Las contrase&#xF1;as no reaparecen al corregir un formulario. Se rechazan valores que excedan los 72 bytes admitidos por bcrypt, incluidos caracteres multibyte que sobrepasen ese l&#xED;mite.</p>
-<p>AccesoTest verifica activaci&#xF3;n, permisos e inicio de sesi&#xF3;n; PanelTest verifica las redirecciones y el acceso al panel. Las pruebas autom&#xE1;ticas existentes no sustituyen la matriz, los casos ni los ciclos del responsable de pruebas. Cada ejecuci&#xF3;n debe indicar qu&#xE9; versi&#xF3;n del c&#xF3;digo verific&#xF3;.</p>
+<p>Este bloque implementa RF01 y RF03. El administrador crea la cuenta de un técnico previamente registrado y le entrega un código de activación. El técnico abre /activar, introduce el código y define su contraseña, con un mínimo de ocho caracteres. Una cuenta ya activada rechaza otro intento de activación con ese código.</p>
+<p>En <code>/ingresar</code>, administrador y técnico utilizan su nombre de usuario y contraseña. Una cuenta inactiva no puede iniciar sesión. El aviso «Usuario o contraseña incorrectos.» es el mismo para cuenta inactiva, usuario inexistente o contraseña errada. La página ofrece siempre la guía de activación con enlace a <code>/activar</code>. El acceso correcto regenera la sesión y lleva a <code>/panel</code>. Quien ya tiene sesión también llega al panel al abrir <code>/ingresar</code> o <code>/activar</code>. Un visitante debe iniciar sesión antes de abrir el panel.</p>
+<p>Las rutas de creación de cuentas exigen rol administrador en el servidor. Las cuentas creadas desde <strong>Cuentas</strong> reciben el rol fijo de técnico. Las contraseñas se guardan como hash. Los formularios usan validación, protección CSRF y cuotas separadas para ingreso y activación. Al superar una cuota, la pantalla indica cuántos segundos faltan para volver a intentar.</p>
+<p>El administrador ve las cuentas registradas, su rol, el técnico vinculado y si están activadas. El código se entrega al crear la cuenta; la lista no expone códigos, contraseñas ni hashes. La activación consume el código y lo reemplaza por otro valor aleatorio.</p>
+<p>Las contraseñas no reaparecen al corregir un formulario. Se rechazan valores que excedan los 72 bytes admitidos por bcrypt, incluidos caracteres multibyte que sobrepasen ese límite.</p>
+<p>AccesoTest verifica activación, permisos e inicio de sesión; PanelTest verifica las redirecciones y el acceso al panel. Las pruebas automáticas existentes no sustituyen la matriz, los casos ni los ciclos del responsable de pruebas. Cada ejecución debe indicar qué versión del código verificó.</p>
 
                                 
                                 </section>
@@ -524,12 +594,56 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"next":{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},"previous":{"title":"Guía de uso por rol","level":"1.4","depth":1,"path":"uso/README.md","ref":"uso/README.md","articles":[{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"path":"uso/acceso-y-cuentas.md","ref":"uso/acceso-y-cuentas.md","articles":[]},{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},{"title":"Clientes y equipos","level":"1.4.3","depth":2,"path":"uso/clientes-y-equipos.md","ref":"uso/clientes-y-equipos.md","articles":[]},{"title":"Registro y asignación de servicios","level":"1.4.4","depth":2,"path":"uso/servicios.md","ref":"uso/servicios.md","articles":[]},{"title":"Trabajo del técnico","level":"1.4.5","depth":2,"path":"uso/trabajo-tecnico.md","ref":"uso/trabajo-tecnico.md","articles":[]},{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},{"title":"Consulta pública","level":"1.4.7","depth":2,"path":"uso/consulta-publica.md","ref":"uso/consulta-publica.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/acceso-y-cuentas.md","mtime":"2026-11-17T23:39:51.763Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"next":{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},"previous":{"title":"Guía de uso por rol","level":"1.4","depth":1,"path":"uso/README.md","ref":"uso/README.md","articles":[{"title":"Acceso y cuentas","level":"1.4.1","depth":2,"path":"uso/acceso-y-cuentas.md","ref":"uso/acceso-y-cuentas.md","articles":[]},{"title":"Técnicos","level":"1.4.2","depth":2,"path":"uso/tecnicos.md","ref":"uso/tecnicos.md","articles":[]},{"title":"Clientes y equipos","level":"1.4.3","depth":2,"path":"uso/clientes-y-equipos.md","ref":"uso/clientes-y-equipos.md","articles":[]},{"title":"Registro y asignación de servicios","level":"1.4.4","depth":2,"path":"uso/servicios.md","ref":"uso/servicios.md","articles":[]},{"title":"Trabajo del técnico","level":"1.4.5","depth":2,"path":"uso/trabajo-tecnico.md","ref":"uso/trabajo-tecnico.md","articles":[]},{"title":"Supervisión administrativa","level":"1.4.6","depth":2,"path":"uso/supervision.md","ref":"uso/supervision.md","articles":[]},{"title":"Consulta pública","level":"1.4.7","depth":2,"path":"uso/consulta-publica.md","ref":"uso/consulta-publica.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"*","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"uso/acceso-y-cuentas.md","mtime":"2026-11-18T23:59:38.787Z","type":"markdown"},"gitbook":{"version":"6.2.5","time":"2026-11-18T23:59:45.241Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     
@@ -550,7 +664,7 @@
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

@@ -3,11 +3,10 @@
 <html lang="es" >
     <head><script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Seguridad · Valtraza | Documentación técnica y guía de uso</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="HonKit 6.2.5">
         <meta name="author" content="Equipo ValleTech">
         
         
@@ -17,7 +16,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -25,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -58,7 +57,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -429,14 +428,85 @@
             
         </li>
     
+        <li class="chapter " data-level="1.7" data-path="../cierre/">
+            
+                <a href="../cierre/">
+            
+                    
+                    Entrega y sustentación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../cierre/concordancia.html">
+            
+                <a href="../cierre/concordancia.html">
+            
+                    
+                    Concordancia de requisitos y diseño
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../uso/manual-de-usuario.html">
+            
+                <a href="../uso/manual-de-usuario.html">
+            
+                    
+                    Manual de usuario
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../cierre/storytelling.html">
+            
+                <a href="../cierre/storytelling.html">
+            
+                    
+                    Guion de storytelling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../cierre/referencias-manual.html">
+            
+                <a href="../cierre/referencias-manual.html">
+            
+                    
+                    Criterios de elaboración del manual
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Publicado con GitBook
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Publicado con HonKit
         </a>
     </li>
 </ul>
@@ -475,20 +545,20 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="seguridad">Seguridad</h1>
-<p>Las rutas internas exigen autenticaci&#xF3;n y rol en el servidor. Las operaciones t&#xE9;cnicas comprueban adem&#xE1;s que el usuario sea el encargado. La comprobaci&#xF3;n de pertenencia y cuenta activa se repite dentro de la transacci&#xF3;n con las filas del servicio y del usuario bloqueadas. Desde un servicio asignado, el t&#xE9;cnico puede leer actividades de servicios completados del mismo computador, aunque fueran de otro t&#xE9;cnico. La apertura directa y las escrituras de servicios ajenos siguen bloqueadas. El administrador conserva la consulta global.</p>
-<p>Las contrase&#xF1;as usan bcrypt, con sal incorporada al hash; la columna hist&#xF3;rica <code>sal</code> permanece vac&#xED;a. La activaci&#xF3;n requiere confirmaci&#xF3;n y al menos ocho caracteres. Se rechazan m&#xE1;s de 72 bytes y el car&#xE1;cter nulo, evitando truncamiento silencioso. Una cuenta inactiva no inicia sesi&#xF3;n. La activaci&#xF3;n es transaccional y reemplaza el c&#xF3;digo utilizado por un valor aleatorio.</p>
-<p>El ingreso regenera la sesi&#xF3;n; la salida la invalida y renueva el token CSRF. En cada petici&#xF3;n web se vuelve a leer la cuenta: desactivarla o eliminarla revoca la sesi&#xF3;n en la siguiente petici&#xF3;n, y un cambio de rol se aplica inmediatamente a esa petici&#xF3;n. Las cookies son HttpOnly, SameSite=Lax y Secure en producci&#xF3;n; las sesiones se almacenan cifradas. Para desarrollo por HTTP se configura <code>SESSION_SECURE_COOKIE=false</code>. El servidor debe tener certificado y redirecci&#xF3;n HTTP a HTTPS. Configurar enlaces seguros en PHP no reemplaza esa configuraci&#xF3;n del servidor.</p>
-<p>Ingreso y activaci&#xF3;n tienen contadores separados. Ingreso admite cinco solicitudes por usuario e IP y veinte por IP en un minuto. Activaci&#xF3;n admite cinco por minuto e IP; consulta p&#xFA;blica admite diez por minuto e IP. El l&#xED;mite devuelve HTTP 429 y <code>Retry-After</code>, y la pantalla muestra una cuenta atr&#xE1;s. El middleware reserva la cuota de forma at&#xF3;mica y libera el bloqueo antes del controlador. Varias personas detr&#xE1;s de una misma IP comparten el cupo general. En varios servidores, el cupo global requiere un almac&#xE9;n compartido.</p>
-<p>Los formularios POST conservan CSRF. Blade escapa los datos mostrados y Eloquent parametriza las consultas. Las respuestas, incluidos los errores, incluyen CSP para recursos locales de Bootstrap, <code>X-Frame-Options: SAMEORIGIN</code>, <code>nosniff</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code> y restricciones de c&#xE1;mara, micr&#xF3;fono y geolocalizaci&#xF3;n. La CSP permite atributos de estilo para el posicionamiento de Bootstrap y bloquea scripts en l&#xED;nea. No se permite almacenar las p&#xE1;ginas din&#xE1;micas en cach&#xE9;. Producci&#xF3;n desactiva la depuraci&#xF3;n y a&#xF1;ade HSTS a respuestas seguras.</p>
-<p>La consulta p&#xFA;blica selecciona campos expresamente permitidos. Los c&#xF3;digos no se incorporan a la URL ni se recuperan como entrada anterior. Los errores de persistencia se registran con mensaje gen&#xE9;rico y SQLSTATE, sin SQL, par&#xE1;metros o c&#xF3;digos. Las p&#xE1;ginas de error no dependen de una consulta adicional a la base.</p>
-<p>Los c&#xF3;digos de seguimiento nuevos usan <code>Str::random(32)</code> y conservan el &#xED;ndice &#xFA;nico; los c&#xF3;digos anteriores siguen siendo v&#xE1;lidos. Se validan identificadores de 1 a 2147483647, fechas entre los a&#xF1;os 0001 y 9999, UTF-8 sin bytes nulos, textos t&#xE9;cnicos de hasta 10000 caracteres y lotes de hasta 100 repuestos. Los ENUM se validan antes de guardar. Los modelos declaran <code>$fillable</code>; rol, activaci&#xF3;n, hash y c&#xF3;digo de activaci&#xF3;n del usuario requieren asignaci&#xF3;n expl&#xED;cita desde c&#xF3;digo de confianza.</p>
-<p>Los listados e historiales se paginan de 15 en 15, con carga anticipada o conteos de relaciones. La paginaci&#xF3;n rechaza n&#xFA;meros fuera de 1 a 10000 para evitar offsets desmedidos; para conjuntos mayores se debe ampliar con b&#xFA;squeda o paginaci&#xF3;n por cursor. Los &#xED;ndices compuestos complementan los &#xED;ndices de llaves for&#xE1;neas y c&#xF3;digos &#xFA;nicos existentes.</p>
-<p>Las conexiones PostgreSQL tienen tiempos m&#xE1;ximos de conexi&#xF3;n (5 segundos), sentencia (5000 ms), espera de bloqueo (3000 ms) y transacci&#xF3;n inactiva (15000 ms), configurables en <code>config/database.php</code>. La indisponibilidad, saturaci&#xF3;n y vencimiento de esos l&#xED;mites devuelven 503 con un mensaje gen&#xE9;rico. Deben calibrarse con la carga real; no constituyen una garant&#xED;a de capacidad.</p>
-<p>La auditor&#xED;a registra fallos de ingreso, entradas inv&#xE1;lidas de login, denegaciones 403, l&#xED;mites 429 y cambios de rol o activaci&#xF3;n realizados mediante eventos Eloquent. Incluye IP, usuario autenticado y cuenta afectada cuando corresponde; excluye contrase&#xF1;as, c&#xF3;digos y cuerpos de formularios. Los cambios por SQL directo no disparan esos eventos. Los registros rotan diariamente, se conservan 14 d&#xED;as y requieren acceso restringido, supervisi&#xF3;n de espacio y alertas operativas.</p>
-<p>No existen inventario con stock ni carga de archivos en el alcance actual. Los repuestos registran cantidades utilizadas y se guardan de forma transaccional; no descuentan existencias. Los bloqueos serializan operaciones cr&#xED;ticas, pero no convierten dos env&#xED;os v&#xE1;lidos en una &#xFA;nica operaci&#xF3;n: la deduplicaci&#xF3;n por idempotencia ser&#xED;a un requisito adicional.</p>
-<p>Las pruebas automatizadas se niegan a ejecutarse fuera de <code>APP_ENV=testing</code> o si la conexi&#xF3;n efectiva no apunta a <code>valtraza_test</code>. Esa base es exclusiva y la suite recrea sus tablas. La revisi&#xF3;n local y los pasos pendientes est&#xE1;n en <a href="auditoria-local.html">Auditor&#xED;a de seguridad</a>.</p>
-<p>Las credenciales, claves, copias de seguridad y archivos de entorno se mantienen fuera del repositorio. Las copias deben guardarse en un lugar de acceso restringido. La validaci&#xF3;n de permisos, cookies, CSRF, HTTPS y datos expuestos requiere ejecuci&#xF3;n real sobre el entorno de entrega.</p>
-<p>El ciclo 3 reuni&#xF3; 25 comprobaciones HTTP satisfactorias. Las mediciones de estr&#xE9;s y el manejo de fallos se registran aparte en <a href="pruebas-de-fuego.html">pruebas de fuego</a>. La revisi&#xF3;n defensiva comprueba los controles identificados en cada ensayo. Consulta el <a href="../pruebas/estado-y-evidencias.html">estado de los ciclos</a> para ver qu&#xE9; versi&#xF3;n se verific&#xF3;.</p>
+<p>Las rutas internas exigen autenticación y rol en el servidor. Las operaciones técnicas comprueban además que el usuario sea el encargado. La comprobación de pertenencia y cuenta activa se repite dentro de la transacción con las filas del servicio y del usuario bloqueadas. Desde un servicio asignado, el técnico puede leer actividades de servicios completados del mismo computador, aunque fueran de otro técnico. La apertura directa y las escrituras de servicios ajenos siguen bloqueadas. El administrador conserva la consulta global.</p>
+<p>Las contraseñas usan bcrypt, con sal incorporada al hash; la columna histórica <code>sal</code> permanece vacía. La activación requiere confirmación y al menos ocho caracteres. Se rechazan más de 72 bytes y el carácter nulo, evitando truncamiento silencioso. Una cuenta inactiva no inicia sesión. La activación es transaccional y reemplaza el código utilizado por un valor aleatorio.</p>
+<p>El ingreso regenera la sesión; la salida la invalida y renueva el token CSRF. En cada petición web se vuelve a leer la cuenta: desactivarla o eliminarla revoca la sesión en la siguiente petición, y un cambio de rol se aplica inmediatamente a esa petición. Las cookies son HttpOnly, SameSite=Lax y Secure en producción; las sesiones se almacenan cifradas. Para desarrollo por HTTP se configura <code>SESSION_SECURE_COOKIE=false</code>. El servidor debe tener certificado y redirección HTTP a HTTPS. Configurar enlaces seguros en PHP no reemplaza esa configuración del servidor.</p>
+<p>Ingreso y activación tienen contadores separados. Ingreso admite cinco solicitudes por usuario e IP y veinte por IP en un minuto. Activación admite cinco por minuto e IP; consulta pública admite diez por minuto e IP. El límite devuelve HTTP 429 y <code>Retry-After</code>, y la pantalla muestra una cuenta atrás. El middleware reserva la cuota de forma atómica y libera el bloqueo antes del controlador. Varias personas detrás de una misma IP comparten el cupo general. En varios servidores, el cupo global requiere un almacén compartido.</p>
+<p>Los formularios POST conservan CSRF. Blade escapa los datos mostrados y Eloquent parametriza las consultas. Las respuestas, incluidos los errores, incluyen CSP para recursos locales de Bootstrap, <code>X-Frame-Options: SAMEORIGIN</code>, <code>nosniff</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code> y restricciones de cámara, micrófono y geolocalización. La CSP permite atributos de estilo para el posicionamiento de Bootstrap y bloquea scripts en línea. No se permite almacenar las páginas dinámicas en caché. Producción desactiva la depuración y añade HSTS a respuestas seguras.</p>
+<p>La consulta pública selecciona campos expresamente permitidos. Los códigos no se incorporan a la URL ni se recuperan como entrada anterior. Los errores de persistencia se registran con mensaje genérico y SQLSTATE, sin SQL, parámetros o códigos. Las páginas de error no dependen de una consulta adicional a la base.</p>
+<p>Los códigos de seguimiento nuevos usan <code>Str::random(32)</code> y conservan el índice único; los códigos anteriores siguen siendo válidos. Se validan identificadores de 1 a 2147483647, fechas entre los años 0001 y 9999, UTF-8 sin bytes nulos, textos técnicos de hasta 10000 caracteres y lotes de hasta 100 repuestos. Los ENUM se validan antes de guardar. Los modelos declaran <code>$fillable</code>; rol, activación, hash y código de activación del usuario requieren asignación explícita desde código de confianza.</p>
+<p>Los listados e historiales se paginan de 15 en 15, con carga anticipada o conteos de relaciones. La paginación rechaza números fuera de 1 a 10000 para evitar offsets desmedidos; para conjuntos mayores se debe ampliar con búsqueda o paginación por cursor. Los índices compuestos complementan los índices de llaves foráneas y códigos únicos existentes.</p>
+<p>Las conexiones PostgreSQL tienen tiempos máximos de conexión (5 segundos), sentencia (5000 ms), espera de bloqueo (3000 ms) y transacción inactiva (15000 ms), configurables en <code>config/database.php</code>. La indisponibilidad, saturación y vencimiento de esos límites devuelven 503 con un mensaje genérico. Deben calibrarse con la carga real; no constituyen una garantía de capacidad.</p>
+<p>La auditoría registra fallos de ingreso, entradas inválidas de login, denegaciones 403, límites 429 y cambios de rol o activación realizados mediante eventos Eloquent. Incluye IP, usuario autenticado y cuenta afectada cuando corresponde; excluye contraseñas, códigos y cuerpos de formularios. Los cambios por SQL directo no disparan esos eventos. Los registros rotan diariamente, se conservan 14 días y requieren acceso restringido, supervisión de espacio y alertas operativas.</p>
+<p>No existen inventario con stock ni carga de archivos en el alcance actual. Los repuestos registran cantidades utilizadas y se guardan de forma transaccional; no descuentan existencias. Los bloqueos serializan operaciones críticas, pero no convierten dos envíos válidos en una única operación: la deduplicación por idempotencia sería un requisito adicional.</p>
+<p>Las pruebas automatizadas se niegan a ejecutarse fuera de <code>APP_ENV=testing</code> o si la conexión efectiva no apunta a <code>valtraza_test</code>. Esa base es exclusiva y la suite recrea sus tablas. La revisión local y los pasos pendientes están en <a href="auditoria-local.html">Auditoría de seguridad</a>.</p>
+<p>Las credenciales, claves, copias de seguridad y archivos de entorno se mantienen fuera del repositorio. Las copias deben guardarse en un lugar de acceso restringido. La validación de permisos, cookies, CSRF, HTTPS y datos expuestos requiere ejecución real sobre el entorno de entrega.</p>
+<p>El ciclo 3 reunió 25 comprobaciones HTTP satisfactorias. Las mediciones de estrés y el manejo de fallos se registran aparte en <a href="pruebas-de-fuego.html">pruebas de fuego</a>. La revisión defensiva comprueba los controles identificados en cada ensayo. Consulta el <a href="../pruebas/estado-y-evidencias.html">estado de los ciclos</a> para ver qué versión se verificó.</p>
 
                                 
                                 </section>
@@ -532,12 +602,56 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Seguridad","level":"1.5","depth":1,"next":{"title":"Auditoría local y verificaciones","level":"1.5.1","depth":2,"path":"seguridad/auditoria-local.md","ref":"seguridad/auditoria-local.md","articles":[]},"previous":{"title":"Consulta pública","level":"1.4.7","depth":2,"path":"uso/consulta-publica.md","ref":"uso/consulta-publica.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"seguridad/README.md","mtime":"2026-11-17T23:39:51.763Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Seguridad","level":"1.5","depth":1,"next":{"title":"Auditoría local y verificaciones","level":"1.5.1","depth":2,"path":"seguridad/auditoria-local.md","ref":"seguridad/auditoria-local.md","articles":[]},"previous":{"title":"Consulta pública","level":"1.4.7","depth":2,"path":"uso/consulta-publica.md","ref":"uso/consulta-publica.md","articles":[]},"articles":[{"title":"Auditoría local y verificaciones","level":"1.5.1","depth":2,"path":"seguridad/auditoria-local.md","ref":"seguridad/auditoria-local.md","articles":[]},{"title":"Resultado de las pruebas de fuego","level":"1.5.2","depth":2,"path":"seguridad/pruebas-de-fuego.md","ref":"seguridad/pruebas-de-fuego.md","articles":[]},{"title":"Pruebas y entrega de resultados","level":"1.5.3","depth":2,"path":"pruebas/README.md","ref":"pruebas/README.md","articles":[]},{"title":"Estado y evidencias","level":"1.5.4","depth":2,"path":"pruebas/estado-y-evidencias.md","ref":"pruebas/estado-y-evidencias.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"*","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"seguridad/README.md","mtime":"2026-11-18T23:59:38.787Z","type":"markdown"},"gitbook":{"version":"6.2.5","time":"2026-11-18T23:59:45.241Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     
@@ -558,7 +672,7 @@
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

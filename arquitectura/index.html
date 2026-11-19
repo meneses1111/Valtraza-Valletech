@@ -3,11 +3,10 @@
 <html lang="es" >
     <head><script>if(location.pathname.slice(-11)==='/index.html'){history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);}</script>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Arquitectura y patrones · Valtraza | Documentación técnica y guía de uso</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="HonKit 6.2.5">
         <meta name="author" content="Equipo ValleTech">
         
         
@@ -17,7 +16,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -25,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -58,7 +57,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -429,14 +428,85 @@
             
         </li>
     
+        <li class="chapter " data-level="1.7" data-path="../cierre/">
+            
+                <a href="../cierre/">
+            
+                    
+                    Entrega y sustentación
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../cierre/concordancia.html">
+            
+                <a href="../cierre/concordancia.html">
+            
+                    
+                    Concordancia de requisitos y diseño
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../uso/manual-de-usuario.html">
+            
+                <a href="../uso/manual-de-usuario.html">
+            
+                    
+                    Manual de usuario
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../cierre/storytelling.html">
+            
+                <a href="../cierre/storytelling.html">
+            
+                    
+                    Guion de storytelling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../cierre/referencias-manual.html">
+            
+                <a href="../cierre/referencias-manual.html">
+            
+                    
+                    Criterios de elaboración del manual
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Publicado con GitBook
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Publicado con HonKit
         </a>
     </li>
 </ul>
@@ -475,17 +545,17 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="arquitectura-y-patrones">Arquitectura y patrones</h1>
-<p>Valtraza es un monolito modular con Laravel 12, PHP 8.3 y una sola base PostgreSQL. Nginx recibe la solicitud, <code>public/index.php</code> inicia Laravel y las rutas despachan al controlador de cada operaci&#xF3;n. Un m&#xF3;dulo puede tener varios controladores. Blade presenta el resultado, los controladores coordinan la validaci&#xF3;n y los servicios, y Eloquent conserva los datos.</p>
+<p>Valtraza es un monolito modular con Laravel 12, PHP 8.3 y una sola base PostgreSQL. Nginx recibe la solicitud, <code>public/index.php</code> inicia Laravel y las rutas despachan al controlador de cada operación. Un módulo puede tener varios controladores. Blade presenta el resultado, los controladores coordinan la validación y los servicios, y Eloquent conserva los datos.</p>
 <table>
 <thead>
 <tr>
 <th>Capa</th>
-<th>Ubicaci&#xF3;n y funci&#xF3;n</th>
+<th>Ubicación y función</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Presentaci&#xF3;n</td>
+<td>Presentación</td>
 <td><code>resources/views</code>, componentes Blade y recursos de <code>public/assets</code></td>
 </tr>
 <tr>
@@ -493,8 +563,8 @@
 <td><code>routes</code>, <code>app/Http/Controllers</code>, middleware y Form Requests</td>
 </tr>
 <tr>
-<td>L&#xF3;gica de negocio</td>
-<td><code>app/Services</code>, <code>app/States</code>, observers y reglas de la operaci&#xF3;n</td>
+<td>Lógica de negocio</td>
+<td><code>app/Services</code>, <code>app/States</code>, observers y reglas de la operación</td>
 </tr>
 <tr>
 <td>Acceso a datos</td>
@@ -502,15 +572,15 @@
 </tr>
 <tr>
 <td>Datos</td>
-<td>PostgreSQL; esquema, restricciones e &#xED;ndices de <code>database</code></td>
+<td>PostgreSQL; esquema, restricciones e índices de <code>database</code></td>
 </tr>
 </tbody>
 </table>
-<p>Las capas de l&#xF3;gica y acceso a datos forman el modelo de MVC. La autorizaci&#xF3;n se exige en rutas y solicitudes; las operaciones sobre un servicio vuelven a comprobar al encargado dentro de la transacci&#xF3;n.</p>
+<p>Las capas de lógica y acceso a datos forman el modelo de MVC. La autorización se exige en rutas y solicitudes; las operaciones sobre un servicio vuelven a comprobar al encargado dentro de la transacción.</p>
 <table>
 <thead>
 <tr>
-<th>M&#xF3;dulo</th>
+<th>Módulo</th>
 <th>Responsabilidad e interfaces utilizadas</th>
 </tr>
 </thead>
@@ -520,20 +590,20 @@
 <td>Clientes, computadores e historial; ofrece RegistroClientesEquipos</td>
 </tr>
 <tr>
-<td>T&#xE9;cnicos</td>
-<td>Registro de t&#xE9;cnicos; ofrece RegistroTecnicos</td>
+<td>Técnicos</td>
+<td>Registro de técnicos; ofrece RegistroTecnicos</td>
 </tr>
 <tr>
 <td>Cuentas y acceso</td>
-<td>Usuarios, activaci&#xF3;n y sesi&#xF3;n; utiliza RegistroTecnicos</td>
+<td>Usuarios, activación y sesión; utiliza RegistroTecnicos</td>
 </tr>
 <tr>
 <td>Servicios</td>
-<td>Registro, c&#xF3;digos, asignaci&#xF3;n y pertenencia; utiliza Clientes y equipos y T&#xE9;cnicos</td>
+<td>Registro, códigos, asignación y pertenencia; utiliza Clientes y equipos y Técnicos</td>
 </tr>
 <tr>
 <td>Mantenimientos y reparaciones</td>
-<td>Diagn&#xF3;sticos, actividades, repuestos y cambio de estado; utiliza Servicios</td>
+<td>Diagnósticos, actividades, repuestos y cambio de estado; utiliza Servicios</td>
 </tr>
 <tr>
 <td>Consulta y seguimiento</td>
@@ -541,18 +611,18 @@
 </tr>
 </tbody>
 </table>
-<p>Servicios no depende de Mantenimientos y reparaciones. La condici&#xF3;n de completar con diagn&#xF3;stico se resuelve en la operaci&#xF3;n de trabajo t&#xE9;cnico, evitando una dependencia circular. La consulta p&#xFA;blica obtiene el computador mediante la relaci&#xF3;n del servicio y construye una salida con campos permitidos. En supervisi&#xF3;n, el controlador consulta tambi&#xE9;n el listado de t&#xE9;cnicos para el filtro. La ficha del cliente combina los datos del equipo con <code>HistorialEquipos</code> desde la capa de control.</p>
+<p>Servicios no depende de Mantenimientos y reparaciones. La condición de completar con diagnóstico se resuelve en la operación de trabajo técnico, evitando una dependencia circular. La consulta pública obtiene el computador mediante la relación del servicio y construye una salida con campos permitidos. En supervisión, el controlador consulta también el listado de técnicos para el filtro. La ficha del cliente combina los datos del equipo con <code>HistorialEquipos</code> desde la capa de control.</p>
 <table>
 <thead>
 <tr>
-<th>Patr&#xF3;n</th>
-<th>Aplicaci&#xF3;n concreta</th>
+<th>Patrón</th>
+<th>Aplicación concreta</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>MVC</td>
-<td>Separaci&#xF3;n de vistas, controladores y modelo</td>
+<td>Separación de vistas, controladores y modelo</td>
 </tr>
 <tr>
 <td>Controlador frontal</td>
@@ -560,15 +630,15 @@
 </tr>
 <tr>
 <td>Plantilla maestra</td>
-<td>Layouts base, administrador, t&#xE9;cnico y p&#xFA;blico</td>
+<td>Layouts base, administrador, técnico y público</td>
 </tr>
 <tr>
 <td>Cadena de filtros</td>
-<td>Middleware de sesi&#xF3;n, autenticaci&#xF3;n, rol, CSRF y cabeceras</td>
+<td>Middleware de sesión, autenticación, rol, CSRF y cabeceras</td>
 </tr>
 <tr>
-<td>Validaci&#xF3;n de formularios</td>
-<td>Form Requests con reglas y mensajes en espa&#xF1;ol</td>
+<td>Validación de formularios</td>
+<td>Form Requests con reglas y mensajes en español</td>
 </tr>
 <tr>
 <td>Active Record</td>
@@ -580,7 +650,7 @@
 </tr>
 <tr>
 <td>Observador</td>
-<td>Generaci&#xF3;n de c&#xF3;digos y notificaci&#xF3;n de nuevos registros de avance</td>
+<td>Generación de códigos y notificación de nuevos registros de avance</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -588,11 +658,11 @@
 </tr>
 </tbody>
 </table>
-<p>Los detalles del cambio de estado, el historial del computador y la asignaci&#xF3;n est&#xE1;n en <a href="../uso/trabajo-tecnico.html">Trabajo t&#xE9;cnico</a>. El <a href="analisis-gitdiagram.html">an&#xE1;lisis de GitDiagram</a> compara el grafo p&#xFA;blico regenerado con estas responsabilidades y contiene la vista de referencia por rol.</p>
-<p>Los observers emiten <code>ServicioActualizado</code> al confirmar la transacci&#xF3;n. La pantalla que guarda redirige al detalle y las dem&#xE1;s vistas muestran el estado al volver a consultarse.</p>
-<h2 id="vista-de-m&#xF3;dulos">Vista de m&#xF3;dulos</h2>
-<p><img src="../assets/modulos.svg" alt="Seis m&#xF3;dulos y sus dependencias de consumo"></p>
-<p>La vista resume las dependencias principales entre m&#xF3;dulos. La composici&#xF3;n de supervisi&#xF3;n y de la ficha del cliente se realiza en el controlador. El administrador y el t&#xE9;cnico usan rutas autenticadas. El cliente consulta por c&#xF3;digo en una ruta p&#xFA;blica.</p>
+<p>Los detalles del cambio de estado, el historial del computador y la asignación están en <a href="../uso/trabajo-tecnico.html">Trabajo técnico</a>. El <a href="analisis-gitdiagram.html">análisis de GitDiagram</a> compara el grafo público regenerado con estas responsabilidades y contiene la vista de referencia por rol.</p>
+<p>Los observers emiten <code>ServicioActualizado</code> al confirmar la transacción. La pantalla que guarda redirige al detalle y las demás vistas muestran el estado al volver a consultarse.</p>
+<h2 id="vista-de-módulos">Vista de módulos</h2>
+<p><img src="../assets/modulos.svg" alt="Seis módulos y sus dependencias de consumo"></img></p>
+<p>La vista resume las dependencias principales entre módulos. La composición de supervisión y de la ficha del cliente se realiza en el controlador. El administrador y el técnico usan rutas autenticadas. El cliente consulta por código en una ruta pública.</p>
 
                                 
                                 </section>
@@ -636,12 +706,56 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Arquitectura y patrones","level":"1.2","depth":1,"next":{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},"previous":{"title":"Requisitos y alcance","level":"1.1.2","depth":2,"path":"requisitos/README.md","ref":"requisitos/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"3.2.2","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"arquitectura/README.md","mtime":"2026-11-17T23:39:51.760Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2026-11-17T23:40:07.547Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Arquitectura y patrones","level":"1.2","depth":1,"next":{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},"previous":{"title":"Requisitos y alcance","level":"1.1.2","depth":2,"path":"requisitos/README.md","ref":"requisitos/README.md","articles":[]},"articles":[{"title":"Base de datos","level":"1.2.1","depth":2,"path":"base-de-datos/modelo.md","ref":"base-de-datos/modelo.md","articles":[]},{"title":"Análisis de GitDiagram","level":"1.2.2","depth":2,"path":"arquitectura/analisis-gitdiagram.md","ref":"arquitectura/analisis-gitdiagram.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Equipo ValleTech","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Valtraza | Documentación técnica y guía de uso","language":"es","gitbook":"*","description":"Equipo ValleTech: instalación, uso, arquitectura, seguridad y evidencias de pruebas de Valtraza."},"file":{"path":"arquitectura/README.md","mtime":"2026-11-18T23:59:38.782Z","type":"markdown"},"gitbook":{"version":"6.2.5","time":"2026-11-18T23:59:45.241Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
     
@@ -662,7 +776,7 @@
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 
