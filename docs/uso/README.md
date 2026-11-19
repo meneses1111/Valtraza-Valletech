@@ -1,6 +1,5 @@
 # Uso por rol
 
-El [manual de usuario](manual-de-usuario.md) presenta los procedimientos paso a paso con capturas y solución de dificultades. Las páginas siguientes amplían las reglas de cada operación para consulta técnica.
 
 | Actor | Recorrido |
 | --- | --- |

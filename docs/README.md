@@ -45,6 +45,6 @@ El alcance acordado está en la **ERS definitiva 1.1**, con RF01–RF14 y RNF01�
 
 ## Estado de esta documentación
 
-El [estado de pruebas](pruebas/estado-y-evidencias.md) registra los tres ciclos de Luis y el cierre de 79/79 casos del ciclo 3. Las ejecuciones conservan sus versiones y límites. El [manual de usuario](uso/manual-de-usuario.md), la [concordancia](cierre/concordancia.md) y el [guion del video](cierre/storytelling.md) reúnen la documentación del cierre.
+El [estado de pruebas](pruebas/estado-y-evidencias.md) registra los tres ciclos de Luis y el cierre de 79/79 casos del ciclo 3. Las ejecuciones conservan sus versiones y límites. La [concordancia](cierre/concordancia.md) relaciona los requisitos con el diseño y el código.
 
 Utiliza el índice lateral para navegar por capítulos o consulta el [repositorio en GitHub](https://github.com/meneses1111/Valtraza-Valletech).

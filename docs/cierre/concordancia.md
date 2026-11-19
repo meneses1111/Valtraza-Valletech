@@ -1,27 +1,27 @@
 # Concordancia de Valtraza
 
-La referencia funcional es la ERS definitiva 1.1 del 26 de octubre de 2026. Esta revisión del 18 de noviembre relaciona el diseño con las rutas, controladores, servicios y modelos del repositorio. Permite comprobar que el manual y la demostración describen las mismas operaciones. No reemplaza los resultados de Luis ni certifica una ejecución nueva.
+La referencia funcional es la ERS definitiva 1.1 del 26 de octubre de 2026. Esta revisión del 18 de noviembre relaciona el diseño con las rutas, controladores, servicios y modelos del repositorio. No reemplaza los resultados de Luis ni certifica una ejecución nueva.
 
 ## Requisitos funcionales
 
 Las ubicaciones de controladores parten de `app/Http/Controllers` y las de servicios de `app/Services`.
 
-| ERS | Módulo del diseño | Implementación de referencia | Manual y escena del video |
-| --- | --- | --- | --- |
-| RF01 | Cuentas y acceso | `AccesoController`, `Cuentas/Acceso` | Acceso y cierre de sesión; escena 3 |
-| RF02 | Técnicos | `Tecnicos/TecnicosController`, `Tecnicos/RegistroTecnicos` | Registrar técnicos; escena 4 |
-| RF03 | Cuentas y acceso | `CuentasController`, `Cuentas/Acceso` | Crear y activar cuenta; escenas 3 y 4 |
-| RF04 | Clientes y equipos | `ClientesEquipos/ClientesController`, `RegistroClientesEquipos` | Registrar cliente; escena 4 |
-| RF05 | Clientes y equipos | `ClientesEquipos/EquiposController`, `Servicios/FichaClienteController`, `Servicios/HistorialEquipos` | Registrar computador e historial; escena 4 |
-| RF06 | Servicios | `Servicios/ServiciosController`, `Servicios/GestionServicios` | Registrar servicio y entregar código; escena 4 |
-| RF07 | Servicios | `Servicios/ServiciosController`, `Servicios/GestionServicios` | Asignar o cambiar técnico; escenas 4 y 6 |
-| RF08 | Mantenimientos y reparaciones | `TrabajoTecnico/MisServiciosController`, `RegistroTrabajoTecnico`, `GestionServicios` | Mis servicios e historial; escena 5 |
-| RF09 | Mantenimientos y reparaciones | `TrabajoTecnico/DiagnosticosController`, `RegistroTrabajoTecnico` | Registrar diagnóstico; escenas 5 y 6 |
-| RF10 | Mantenimientos y reparaciones | `TrabajoTecnico/TrabajosController`, `RegistroTrabajoTecnico` | Registrar actividad; escena 5 |
-| RF11 | Mantenimientos y reparaciones | `TrabajoTecnico/RepuestosController`, `RegistroTrabajoTecnico` | Registrar repuestos; escena 5 |
-| RF12 | Mantenimientos y reparaciones | `TrabajoTecnico/EstadosController`, `RegistroTrabajoTecnico`, `app/States/Servicios` | Cambiar estado; escenas 5 y 6 |
-| RF13 | Consulta y seguimiento | `Supervision/SupervisionController`, `Consulta/SupervisionServicios` | Supervisar; escena 7 |
-| RF14 | Consulta y seguimiento | `Consulta/ConsultaController`, `Consulta/ConsultaPublica` | Consultar con código sin cuenta; escena 7 |
+| ERS | Módulo del diseño | Implementación de referencia |
+| --- | --- | --- |
+| RF01 | Cuentas y acceso | `AccesoController`, `Cuentas/Acceso` |
+| RF02 | Técnicos | `Tecnicos/TecnicosController`, `Tecnicos/RegistroTecnicos` |
+| RF03 | Cuentas y acceso | `CuentasController`, `Cuentas/Acceso` |
+| RF04 | Clientes y equipos | `ClientesEquipos/ClientesController`, `RegistroClientesEquipos` |
+| RF05 | Clientes y equipos | `ClientesEquipos/EquiposController`, `Servicios/FichaClienteController`, `Servicios/HistorialEquipos` |
+| RF06 | Servicios | `Servicios/ServiciosController`, `Servicios/GestionServicios` |
+| RF07 | Servicios | `Servicios/ServiciosController`, `Servicios/GestionServicios` |
+| RF08 | Mantenimientos y reparaciones | `TrabajoTecnico/MisServiciosController`, `RegistroTrabajoTecnico`, `GestionServicios` |
+| RF09 | Mantenimientos y reparaciones | `TrabajoTecnico/DiagnosticosController`, `RegistroTrabajoTecnico` |
+| RF10 | Mantenimientos y reparaciones | `TrabajoTecnico/TrabajosController`, `RegistroTrabajoTecnico` |
+| RF11 | Mantenimientos y reparaciones | `TrabajoTecnico/RepuestosController`, `RegistroTrabajoTecnico` |
+| RF12 | Mantenimientos y reparaciones | `TrabajoTecnico/EstadosController`, `RegistroTrabajoTecnico`, `app/States/Servicios` |
+| RF13 | Consulta y seguimiento | `Supervision/SupervisionController`, `Consulta/SupervisionServicios` |
+| RF14 | Consulta y seguimiento | `Consulta/ConsultaController`, `Consulta/ConsultaPublica` |
 
 ## Lectura del diseño y del código
 
@@ -51,4 +51,4 @@ El cierre oficial del ciclo 3 registra 79/79 casos exitosos y 408 pruebas autom�
 
 ## Documentos de referencia
 
-La [ERS y los talleres de diseño](https://github.com/meneses1111/Valtraza-Valletech/tree/main/documentacion) están publicados en `documentacion` del repositorio. La [arquitectura](../arquitectura/README.md), el [modelo de datos](../base-de-datos/modelo.md) y el [análisis de GitDiagram](../arquitectura/analisis-gitdiagram.md) explican su correspondencia con la implementación. El [manual](../uso/manual-de-usuario.md) y el [storytelling](storytelling.md) utilizan estas mismas reglas.
+La [ERS y los talleres de diseño](https://github.com/meneses1111/Valtraza-Valletech/tree/main/documentacion) están publicados en `documentacion` del repositorio. La [arquitectura](../arquitectura/README.md), el [modelo de datos](../base-de-datos/modelo.md) y el [análisis de GitDiagram](../arquitectura/analisis-gitdiagram.md) explican su correspondencia con la implementación.
